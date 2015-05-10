@@ -1,0 +1,216 @@
+fileFormatVersion: 2
+guid: cc377407152858a4d81078247645dcaa
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Pit Logo - Atom Black
+    100002: Pit Logo - Atom White
+    100004: Pit Logo - Big BOOM-BOOM
+    100006: Pit Logo - Bokova-L Black
+    100008: Pit Logo - Bokova-L White
+    100010: Pit Logo - Complex Black
+    100012: Pit Logo - Complex White
+    100014: Pit Logo - Escape Vel Black
+    100016: Pit Logo - Escape Vel White
+    100018: Pit Logo - Fermion Black
+    100020: Pit Logo - Fermion White
+    100022: Pit Logo - HRS Fuel
+    100024: Pit Logo - Kinetic E Black
+    100026: Pit Logo - Kinetic E White
+    100028: Pit Logo - NEWLFay
+    100030: Pit Logo - Newtons Black
+    100032: Pit Logo - Newtons White
+    100034: Pit Logo - Quantum Mechanics
+    100036: Pit Logo - RKHA Black
+    100038: Pit Logo - RKHA White
+    100040: Pit Logo - SAYO Black
+    100042: Pit Logo - SAYO White
+    100044: Pit Logo - Schrodingers
+    100046: Pit Logo - SEBES Black
+    100048: Pit Logo - SEBES Black 1
+    100050: Pit Logo - Shayofoyo Black
+    100052: Pit Logo - Shayofoyo White
+    100054: Pit Logo - THERMODYNAMICS
+    100056: Pit Logo - Wall(A)FEl Black
+    100058: Pit Logo - Wall(A)FEl White
+    100060: //RootNode
+    400000: Pit Logo - Atom Black
+    400002: Pit Logo - Atom White
+    400004: Pit Logo - Big BOOM-BOOM
+    400006: Pit Logo - Bokova-L Black
+    400008: Pit Logo - Bokova-L White
+    400010: Pit Logo - Complex Black
+    400012: Pit Logo - Complex White
+    400014: Pit Logo - Escape Vel Black
+    400016: Pit Logo - Escape Vel White
+    400018: Pit Logo - Fermion Black
+    400020: Pit Logo - Fermion White
+    400022: Pit Logo - HRS Fuel
+    400024: Pit Logo - Kinetic E Black
+    400026: Pit Logo - Kinetic E White
+    400028: Pit Logo - NEWLFay
+    400030: Pit Logo - Newtons Black
+    400032: Pit Logo - Newtons White
+    400034: Pit Logo - Quantum Mechanics
+    400036: Pit Logo - RKHA Black
+    400038: Pit Logo - RKHA White
+    400040: Pit Logo - SAYO Black
+    400042: Pit Logo - SAYO White
+    400044: Pit Logo - Schrodingers
+    400046: Pit Logo - SEBES Black
+    400048: Pit Logo - SEBES Black 1
+    400050: Pit Logo - Shayofoyo Black
+    400052: Pit Logo - Shayofoyo White
+    400054: Pit Logo - THERMODYNAMICS
+    400056: Pit Logo - Wall(A)FEl Black
+    400058: Pit Logo - Wall(A)FEl White
+    400060: //RootNode
+    2300000: Pit Logo - Atom Black
+    2300002: Pit Logo - Atom White
+    2300004: Pit Logo - Big BOOM-BOOM
+    2300006: Pit Logo - Bokova-L Black
+    2300008: Pit Logo - Bokova-L White
+    2300010: Pit Logo - Complex Black
+    2300012: Pit Logo - Complex White
+    2300014: Pit Logo - Escape Vel Black
+    2300016: Pit Logo - Escape Vel White
+    2300018: Pit Logo - Fermion Black
+    2300020: Pit Logo - Fermion White
+    2300022: Pit Logo - HRS Fuel
+    2300024: Pit Logo - Kinetic E Black
+    2300026: Pit Logo - Kinetic E White
+    2300028: Pit Logo - NEWLFay
+    2300030: Pit Logo - Newtons Black
+    2300032: Pit Logo - Newtons White
+    2300034: Pit Logo - Quantum Mechanics
+    2300036: Pit Logo - RKHA Black
+    2300038: Pit Logo - RKHA White
+    2300040: Pit Logo - SAYO Black
+    2300042: Pit Logo - SAYO White
+    2300044: Pit Logo - Schrodingers
+    2300046: Pit Logo - SEBES Black
+    2300048: Pit Logo - SEBES Black 1
+    2300050: Pit Logo - Shayofoyo Black
+    2300052: Pit Logo - Shayofoyo White
+    2300054: Pit Logo - THERMODYNAMICS
+    2300056: Pit Logo - Wall(A)FEl Black
+    2300058: Pit Logo - Wall(A)FEl White
+    3300000: Pit Logo - Atom Black
+    3300002: Pit Logo - Atom White
+    3300004: Pit Logo - Big BOOM-BOOM
+    3300006: Pit Logo - Bokova-L Black
+    3300008: Pit Logo - Bokova-L White
+    3300010: Pit Logo - Complex Black
+    3300012: Pit Logo - Complex White
+    3300014: Pit Logo - Escape Vel Black
+    3300016: Pit Logo - Escape Vel White
+    3300018: Pit Logo - Fermion Black
+    3300020: Pit Logo - Fermion White
+    3300022: Pit Logo - HRS Fuel
+    3300024: Pit Logo - Kinetic E Black
+    3300026: Pit Logo - Kinetic E White
+    3300028: Pit Logo - NEWLFay
+    3300030: Pit Logo - Newtons Black
+    3300032: Pit Logo - Newtons White
+    3300034: Pit Logo - Quantum Mechanics
+    3300036: Pit Logo - RKHA Black
+    3300038: Pit Logo - RKHA White
+    3300040: Pit Logo - SAYO Black
+    3300042: Pit Logo - SAYO White
+    3300044: Pit Logo - Schrodingers
+    3300046: Pit Logo - SEBES Black
+    3300048: Pit Logo - SEBES Black 1
+    3300050: Pit Logo - Shayofoyo Black
+    3300052: Pit Logo - Shayofoyo White
+    3300054: Pit Logo - THERMODYNAMICS
+    3300056: Pit Logo - Wall(A)FEl Black
+    3300058: Pit Logo - Wall(A)FEl White
+    4300000: Pit Logo - RKHA Black
+    4300002: Pit Logo - RKHA White
+    4300004: Pit Logo - Bokova-L Black
+    4300006: Pit Logo - Bokova-L White
+    4300008: Pit Logo - Quantum Mechanics
+    4300010: Pit Logo - Newtons Black
+    4300012: Pit Logo - Newtons White
+    4300014: Pit Logo - Wall(A)FEl White
+    4300016: Pit Logo - Wall(A)FEl Black
+    4300018: Pit Logo - Fermion White
+    4300020: Pit Logo - Fermion Black
+    4300022: Pit Logo - Complex Black
+    4300024: Pit Logo - Complex White
+    4300026: Pit Logo - Big BOOM-BOOM
+    4300028: Pit Logo - Schrodingers
+    4300030: Pit Logo - Atom Black
+    4300032: Pit Logo - Atom White
+    4300034: Pit Logo - HRS Fuel
+    4300036: Pit Logo - SAYO White
+    4300038: Pit Logo - SAYO Black
+    4300040: Pit Logo - Escape Vel White
+    4300042: Pit Logo - Escape Vel Black
+    4300044: Pit Logo - NEWLFay
+    4300046: Pit Logo - SEBES Black
+    4300048: Pit Logo - SEBES Black
+    4300050: Pit Logo - THERMODYNAMICS
+    4300052: Pit Logo - Kinetic E Black
+    4300054: Pit Logo - Kinetic E White
+    4300056: Pit Logo - Shayofoyo Black
+    4300058: Pit Logo - Shayofoyo White
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

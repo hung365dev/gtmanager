@@ -1,0 +1,19 @@
+Release log
+
+1.01 
+
+- Original version
+
+1.02
+
+- Over 30 new prefabs has been added
+
+2.0 MAJOR UPDATE! 
+
+WARNING! Complete change of directory system to match HereVR Vehicle Pack 01. and Vehicle Pack 02. (Import to empty project first!)
+
+Updates:
+
+- 20/20 preset colors added for out-of-the-box usage with our vehicle packs (matching designs)
+- LAYERED SOURCE files added for texture/color customization (you can use your own logos, design, etc.), so now you can have infinite variations.
+- New prefabs has been added like wrench/air systems, tyre warmers, low-poly crew as a gift, etc. (More than 900 prefabs at the moment.)

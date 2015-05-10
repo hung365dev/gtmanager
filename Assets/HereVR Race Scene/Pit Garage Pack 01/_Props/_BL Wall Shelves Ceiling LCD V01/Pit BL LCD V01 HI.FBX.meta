@@ -1,0 +1,100 @@
+fileFormatVersion: 2
+guid: 12ed482ea345d56488b499fa1e9a2653
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Pit BL LCD V01 C01 LOW
+    100002: //RootNode
+    100004: Pit BL LCDSCREEN V01
+    400000: Pit BL LCD V01 C01 LOW
+    400002: //RootNode
+    400004: Pit BL LCDSCREEN V01
+    2300000: Pit BL LCD V01 C01 LOW
+    2300002: //RootNode
+    2300004: Pit BL LCDSCREEN V01
+    3300000: Pit BL LCD V01 C01 LOW
+    3300002: //RootNode
+    3300004: Pit BL LCDSCREEN V01
+    4300000: Pit BL LCD V01 HI
+    4300002: Pit BL LCD Screen V01 HI
+    4300004: Pit BL LCD Te03 V01
+    4300006: Pit BL LCD Te02 V01
+    4300008: Pit BL LCD Te01 V01
+    4300010: Pit BL LCD Base V01 HI
+    4300012: Pit BL LCD Screen V01 HI001
+    4300014: Pit BL LCD Te03 V002
+    4300016: Pit BL LCD Te02 V002
+    4300018: Pit BL LCD Te01 V002
+    4300020: Pit BL LCD Base V01 HI001
+    4300022: Pit Car LCD Screen
+    4300024: Pit BL LCD Te03
+    4300026: Pit BL LCD Te02
+    4300028: Pit BL LCD Te01
+    4300030: 'Pit BL LCD Screen V01 '
+    4300032: Pit BL LCD Single V01 C01
+    4300034: Pit BL LCDSCREEN
+    4300036: Object003
+    4300038: Pit BL LCD Screen V01
+    4300040: Pit BL LCD V01 C01
+    4300042: Pit BL LCD V01 C01 LOW
+    4300044: Pit BL LCD V01 C01 HI
+    4300046: Pit BL LCDSCREEN V01
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

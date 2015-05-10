@@ -1,0 +1,193 @@
+fileFormatVersion: 2
+guid: 9ebcf4ccb4a65864db3189b581c61320
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Pit Logo - Allium U
+    100002: Pit Logo - Biotech Alt Black
+    100004: Pit Logo - Biotech Alt White
+    100006: Pit Logo - Bokova-L Black001
+    100008: Pit Logo - Bokova-L White001
+    100010: Pit Logo - Circadian Rhutm
+    100012: Pit Logo - dHelix Black
+    100014: Pit Logo - dHelix White
+    100016: Pit Logo - Dryopteris
+    100018: Pit Logo - Evol 2.0 Black
+    100020: Pit Logo - Evol 2.0 White
+    100022: Pit Logo - Express Gen Black
+    100024: Pit Logo - Express Gen White
+    100026: Pit Logo - PSynth Green
+    100028: Pit Logo - PSynth RED
+    100030: Pit Logo - RKHA Black
+    100032: Pit Logo - RKHA Black001
+    100034: Pit Logo - RKHA White001
+    100036: Pit Logo - RNA
+    100038: Pit Logo - SAYO Black001
+    100040: Pit Logo - SAYO White001
+    100042: Pit Logo - SEBES Black001
+    100044: Pit Logo - SEBES White001
+    100046: Pit Logo - Solanum
+    100048: Pit Logo - Wall(a)fel Black001
+    100050: Pit Logo - Wall(a)fel White001
+    100052: //RootNode
+    400000: Pit Logo - Allium U
+    400002: Pit Logo - Biotech Alt Black
+    400004: Pit Logo - Biotech Alt White
+    400006: Pit Logo - Bokova-L Black001
+    400008: Pit Logo - Bokova-L White001
+    400010: Pit Logo - Circadian Rhutm
+    400012: Pit Logo - dHelix Black
+    400014: Pit Logo - dHelix White
+    400016: Pit Logo - Dryopteris
+    400018: Pit Logo - Evol 2.0 Black
+    400020: Pit Logo - Evol 2.0 White
+    400022: Pit Logo - Express Gen Black
+    400024: Pit Logo - Express Gen White
+    400026: Pit Logo - PSynth Green
+    400028: Pit Logo - PSynth RED
+    400030: Pit Logo - RKHA Black
+    400032: Pit Logo - RKHA Black001
+    400034: Pit Logo - RKHA White001
+    400036: Pit Logo - RNA
+    400038: Pit Logo - SAYO Black001
+    400040: Pit Logo - SAYO White001
+    400042: Pit Logo - SEBES Black001
+    400044: Pit Logo - SEBES White001
+    400046: Pit Logo - Solanum
+    400048: Pit Logo - Wall(a)fel Black001
+    400050: Pit Logo - Wall(a)fel White001
+    400052: //RootNode
+    2300000: Pit Logo - Allium U
+    2300002: Pit Logo - Biotech Alt Black
+    2300004: Pit Logo - Biotech Alt White
+    2300006: Pit Logo - Bokova-L Black001
+    2300008: Pit Logo - Bokova-L White001
+    2300010: Pit Logo - Circadian Rhutm
+    2300012: Pit Logo - dHelix Black
+    2300014: Pit Logo - dHelix White
+    2300016: Pit Logo - Dryopteris
+    2300018: Pit Logo - Evol 2.0 Black
+    2300020: Pit Logo - Evol 2.0 White
+    2300022: Pit Logo - Express Gen Black
+    2300024: Pit Logo - Express Gen White
+    2300026: Pit Logo - PSynth Green
+    2300028: Pit Logo - PSynth RED
+    2300030: Pit Logo - RKHA Black001
+    2300032: Pit Logo - RKHA White001
+    2300034: Pit Logo - RNA
+    2300036: Pit Logo - SAYO Black001
+    2300038: Pit Logo - SAYO White001
+    2300040: Pit Logo - SEBES Black001
+    2300042: Pit Logo - SEBES White001
+    2300044: Pit Logo - Solanum
+    2300046: Pit Logo - Wall(a)fel Black001
+    2300048: Pit Logo - Wall(a)fel White001
+    3300000: Pit Logo - Allium U
+    3300002: Pit Logo - Biotech Alt Black
+    3300004: Pit Logo - Biotech Alt White
+    3300006: Pit Logo - Bokova-L Black001
+    3300008: Pit Logo - Bokova-L White001
+    3300010: Pit Logo - Circadian Rhutm
+    3300012: Pit Logo - dHelix Black
+    3300014: Pit Logo - dHelix White
+    3300016: Pit Logo - Dryopteris
+    3300018: Pit Logo - Evol 2.0 Black
+    3300020: Pit Logo - Evol 2.0 White
+    3300022: Pit Logo - Express Gen Black
+    3300024: Pit Logo - Express Gen White
+    3300026: Pit Logo - PSynth Green
+    3300028: Pit Logo - PSynth RED
+    3300030: Pit Logo - RKHA Black001
+    3300032: Pit Logo - RKHA White001
+    3300034: Pit Logo - RNA
+    3300036: Pit Logo - SAYO Black001
+    3300038: Pit Logo - SAYO White001
+    3300040: Pit Logo - SEBES Black001
+    3300042: Pit Logo - SEBES White001
+    3300044: Pit Logo - Solanum
+    3300046: Pit Logo - Wall(a)fel Black001
+    3300048: Pit Logo - Wall(a)fel White001
+    4300000: Pit Logo - RKHA Black001
+    4300002: Pit Logo - RKHA White001
+    4300004: Pit Logo - Bokova-L Black001
+    4300006: Pit Logo - Bokova-L White001
+    4300008: Pit Logo - Allium U
+    4300010: Pit Logo - Biotech Alt White
+    4300012: Pit Logo - Biotech Alt Black
+    4300014: Pit Logo - RNA
+    4300016: Pit Logo - Circadian Rhutm
+    4300018: Pit Logo - Wall(a)fel White001
+    4300020: Pit Logo - Wall(a)fel Black001
+    4300022: Pit Logo - Dryopteris
+    4300024: Pit Logo - Express Gen Black
+    4300026: Pit Logo - Express Gen White
+    4300028: Pit Logo - SEBES White001
+    4300030: Pit Logo - SEBES Black001
+    4300032: Pit Logo - dHelix Black
+    4300034: Pit Logo - dHelix White
+    4300036: Pit Logo - Evol 2.0 Black
+    4300038: Pit Logo - Evol 2.0 White
+    4300040: Pit Logo - Solanum
+    4300042: Pit Logo - SAYO White001
+    4300044: Pit Logo - SAYO Black001
+    4300046: Pit Logo - PSynth RED
+    4300048: Pit Logo - PSynth Green
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

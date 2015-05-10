@@ -1,0 +1,326 @@
+fileFormatVersion: 2
+guid: b21f26bcc8a68cd42ac400b98aa68235
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Pit Building Number N01
+    100002: Pit Building Number N02
+    100004: Pit Building Number N03
+    100006: Pit Building Number N04
+    100008: Pit Building Number N05
+    100010: Pit Building Number N06
+    100012: Pit Building Number N07
+    100014: Pit Building Number N08
+    100016: Pit Building Number N09
+    100018: Pit Building Number N10
+    100020: Pit Building Number N11
+    100022: Pit Building Number N12
+    100024: Pit Building Number N13
+    100026: Pit Building Number N14
+    100028: Pit Building Number N15
+    100030: Pit Building Number N16
+    100032: Pit Building Number N17
+    100034: Pit Building Number N18
+    100036: Pit Building Number N19
+    100038: Pit Building Number N20
+    100040: Pit Building Number N21
+    100042: Pit Building Number N22
+    100044: Pit Building Number N23
+    100046: Pit Building Number N24
+    100048: Pit Building Number N25
+    100050: Pit Building Number N26
+    100052: Pit Building Number N27
+    100054: Pit Building Number N28
+    100056: Pit Building Number N29
+    100058: Pit Building Number N30
+    100060: Pit Building Number N31
+    100062: Pit Building Number N32
+    100064: Pit Building Number N33
+    100066: Pit Building Number N34
+    100068: Pit Building Number N35
+    100070: Pit Building Number N36
+    100072: Pit Building Number N37
+    100074: Pit Building Number N38
+    100076: Pit Building Number N39
+    100078: Pit Building Number N40
+    100080: Pit Building Number N41
+    100082: Pit Building Number N42
+    100084: Pit Building Number N43
+    100086: Pit Building Number N44
+    100088: Pit Building Number N45
+    100090: Pit Building Number N46
+    100092: Pit Building Number N47
+    100094: Pit Building Number N48
+    100096: Pit Building Number N49
+    100098: Pit Building Number N50
+    100100: Pit Building Number N51
+    100102: Pit Building Number N52
+    100104: //RootNode
+    400000: Pit Building Number N01
+    400002: Pit Building Number N02
+    400004: Pit Building Number N03
+    400006: Pit Building Number N04
+    400008: Pit Building Number N05
+    400010: Pit Building Number N06
+    400012: Pit Building Number N07
+    400014: Pit Building Number N08
+    400016: Pit Building Number N09
+    400018: Pit Building Number N10
+    400020: Pit Building Number N11
+    400022: Pit Building Number N12
+    400024: Pit Building Number N13
+    400026: Pit Building Number N14
+    400028: Pit Building Number N15
+    400030: Pit Building Number N16
+    400032: Pit Building Number N17
+    400034: Pit Building Number N18
+    400036: Pit Building Number N19
+    400038: Pit Building Number N20
+    400040: Pit Building Number N21
+    400042: Pit Building Number N22
+    400044: Pit Building Number N23
+    400046: Pit Building Number N24
+    400048: Pit Building Number N25
+    400050: Pit Building Number N26
+    400052: Pit Building Number N27
+    400054: Pit Building Number N28
+    400056: Pit Building Number N29
+    400058: Pit Building Number N30
+    400060: Pit Building Number N31
+    400062: Pit Building Number N32
+    400064: Pit Building Number N33
+    400066: Pit Building Number N34
+    400068: Pit Building Number N35
+    400070: Pit Building Number N36
+    400072: Pit Building Number N37
+    400074: Pit Building Number N38
+    400076: Pit Building Number N39
+    400078: Pit Building Number N40
+    400080: Pit Building Number N41
+    400082: Pit Building Number N42
+    400084: Pit Building Number N43
+    400086: Pit Building Number N44
+    400088: Pit Building Number N45
+    400090: Pit Building Number N46
+    400092: Pit Building Number N47
+    400094: Pit Building Number N48
+    400096: Pit Building Number N49
+    400098: Pit Building Number N50
+    400100: Pit Building Number N51
+    400102: Pit Building Number N52
+    400104: //RootNode
+    2300000: Pit Building Number N01
+    2300002: Pit Building Number N02
+    2300004: Pit Building Number N03
+    2300006: Pit Building Number N04
+    2300008: Pit Building Number N05
+    2300010: Pit Building Number N06
+    2300012: Pit Building Number N07
+    2300014: Pit Building Number N08
+    2300016: Pit Building Number N09
+    2300018: Pit Building Number N10
+    2300020: Pit Building Number N11
+    2300022: Pit Building Number N12
+    2300024: Pit Building Number N13
+    2300026: Pit Building Number N14
+    2300028: Pit Building Number N15
+    2300030: Pit Building Number N16
+    2300032: Pit Building Number N17
+    2300034: Pit Building Number N18
+    2300036: Pit Building Number N19
+    2300038: Pit Building Number N20
+    2300040: Pit Building Number N21
+    2300042: Pit Building Number N22
+    2300044: Pit Building Number N23
+    2300046: Pit Building Number N24
+    2300048: Pit Building Number N25
+    2300050: Pit Building Number N26
+    2300052: Pit Building Number N27
+    2300054: Pit Building Number N28
+    2300056: Pit Building Number N29
+    2300058: Pit Building Number N30
+    2300060: Pit Building Number N31
+    2300062: Pit Building Number N32
+    2300064: Pit Building Number N33
+    2300066: Pit Building Number N34
+    2300068: Pit Building Number N35
+    2300070: Pit Building Number N36
+    2300072: Pit Building Number N37
+    2300074: Pit Building Number N38
+    2300076: Pit Building Number N39
+    2300078: Pit Building Number N40
+    2300080: Pit Building Number N41
+    2300082: Pit Building Number N42
+    2300084: Pit Building Number N43
+    2300086: Pit Building Number N44
+    2300088: Pit Building Number N45
+    2300090: Pit Building Number N46
+    2300092: Pit Building Number N47
+    2300094: Pit Building Number N48
+    2300096: Pit Building Number N49
+    2300098: Pit Building Number N50
+    2300100: Pit Building Number N51
+    2300102: Pit Building Number N52
+    3300000: Pit Building Number N01
+    3300002: Pit Building Number N02
+    3300004: Pit Building Number N03
+    3300006: Pit Building Number N04
+    3300008: Pit Building Number N05
+    3300010: Pit Building Number N06
+    3300012: Pit Building Number N07
+    3300014: Pit Building Number N08
+    3300016: Pit Building Number N09
+    3300018: Pit Building Number N10
+    3300020: Pit Building Number N11
+    3300022: Pit Building Number N12
+    3300024: Pit Building Number N13
+    3300026: Pit Building Number N14
+    3300028: Pit Building Number N15
+    3300030: Pit Building Number N16
+    3300032: Pit Building Number N17
+    3300034: Pit Building Number N18
+    3300036: Pit Building Number N19
+    3300038: Pit Building Number N20
+    3300040: Pit Building Number N21
+    3300042: Pit Building Number N22
+    3300044: Pit Building Number N23
+    3300046: Pit Building Number N24
+    3300048: Pit Building Number N25
+    3300050: Pit Building Number N26
+    3300052: Pit Building Number N27
+    3300054: Pit Building Number N28
+    3300056: Pit Building Number N29
+    3300058: Pit Building Number N30
+    3300060: Pit Building Number N31
+    3300062: Pit Building Number N32
+    3300064: Pit Building Number N33
+    3300066: Pit Building Number N34
+    3300068: Pit Building Number N35
+    3300070: Pit Building Number N36
+    3300072: Pit Building Number N37
+    3300074: Pit Building Number N38
+    3300076: Pit Building Number N39
+    3300078: Pit Building Number N40
+    3300080: Pit Building Number N41
+    3300082: Pit Building Number N42
+    3300084: Pit Building Number N43
+    3300086: Pit Building Number N44
+    3300088: Pit Building Number N45
+    3300090: Pit Building Number N46
+    3300092: Pit Building Number N47
+    3300094: Pit Building Number N48
+    3300096: Pit Building Number N49
+    3300098: Pit Building Number N50
+    3300100: Pit Building Number N51
+    3300102: Pit Building Number N52
+    4300000: Pit Building Number N52
+    4300002: Pit Building Number N51
+    4300004: Pit Building Number N50
+    4300006: Pit Building Number N49
+    4300008: Pit Building Number N48
+    4300010: Pit Building Number N47
+    4300012: Pit Building Number N46
+    4300014: Pit Building Number N45
+    4300016: Pit Building Number N44
+    4300018: Pit Building Number N43
+    4300020: Pit Building Number N42
+    4300022: Pit Building Number N41
+    4300024: Pit Building Number N40
+    4300026: Pit Building Number N39
+    4300028: Pit Building Number N38
+    4300030: Pit Building Number N37
+    4300032: Pit Building Number N36
+    4300034: Pit Building Number N35
+    4300036: Pit Building Number N34
+    4300038: Pit Building Number N33
+    4300040: Pit Building Number N32
+    4300042: Pit Building Number N31
+    4300044: Pit Building Number N30
+    4300046: Pit Building Number N29
+    4300048: Pit Building Number N28
+    4300050: Pit Building Number N27
+    4300052: Pit Building Number N26
+    4300054: Pit Building Number N25
+    4300056: Pit Building Number N24
+    4300058: Pit Building Number N23
+    4300060: Pit Building Number N22
+    4300062: Pit Building Number N21
+    4300064: Pit Building Number N20
+    4300066: Pit Building Number N19
+    4300068: Pit Building Number N18
+    4300070: Pit Building Number N17
+    4300072: Pit Building Number N16
+    4300074: Pit Building Number N15
+    4300076: Pit Building Number N14
+    4300078: Pit Building Number N13
+    4300080: Pit Building Number N12
+    4300082: Pit Building Number N11
+    4300084: Pit Building Number N10
+    4300086: Pit Building Number N09
+    4300088: Pit Building Number N08
+    4300090: Pit Building Number N07
+    4300092: Pit Building Number N06
+    4300094: Pit Building Number N05
+    4300096: Pit Building Number N04
+    4300098: Pit Building Number N03
+    4300100: Pit Building Number N02
+    4300102: Pit Building Number N01
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

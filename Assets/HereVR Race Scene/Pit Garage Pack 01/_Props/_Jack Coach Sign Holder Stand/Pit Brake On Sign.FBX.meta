@@ -1,0 +1,346 @@
+fileFormatVersion: 2
+guid: 85f858d0f8b435240830d590b8af71d4
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Pit Warming Tyres Column V01
+    4300002: Pit Tyre Warmer Coach V01
+    4300004: Pit Tyre Warmer Coach Cable Box V01
+    4300006: Pit Tyre Warmer V01c
+    4300008: Pit Tyre Warmer RL
+    4300010: Pit Tyre Warmer FR
+    4300012: Pit Tyre Warmer RR
+    4300014: Pit Tyre Warmer FL
+    4300016: Pit Trolley Car V01
+    4300018: Pit Trolley Car V02
+    4300020: Pit Trolley Car V03
+    4300022: Pit Trolley Car V04
+    4300024: Pit Toolbox V01
+    4300026: Pit_Branded_Wall_V01
+    4300028: Pit Big Lamp Warmer Wire V01
+    4300030: Pit Big Lamp V01
+    4300032: Pit Big Lamp Wire IN V01
+    4300034: Pit_Branded_Wall_V002
+    4300036: Pit_Branded_Wall_V003
+    4300038: Pit_Branded_Wall_V004
+    4300040: Pit_Branded_Wall_V005
+    4300042: Pit_Branded_Wall_V006
+    4300044: Pit_Branded_Wall_V007
+    4300046: Pit Wall V01
+    4300048: Pit Building Ceiling
+    4300050: Pit Wall plus Top
+    4300052: Pit_Metal_Girder_for_Lamp
+    4300054: Pit_Metal_Girder_for_Lamp_001
+    4300056: Pit Metal Girder V02
+    4300058: Pit Metal Girder V01
+    4300060: Pit Big Lamp Holder Girder
+    4300062: Pit IT LCD TV C01
+    4300064: Pit IT LCD Keyboard Mouse
+    4300066: Pit IT Keyboard
+    4300068: Pit IT Mouse
+    4300070: Pit Logo Codes4roads White
+    4300072: Pit Logo Codes4roads Black
+    4300074: Pit Logo Ekhaaja White
+    4300076: Pit Logo SAYO Black
+    4300078: Pit Logo Sebes RW White
+    4300080: Pit Logo Wall(A)Fel White
+    4300082: Pit Logo RKHA White
+    4300084: Pit Logo Bokova-L Black
+    4300086: Pit Logo Ekhaaja White
+    4300088: Pit Logo Sebes RW Black
+    4300090: Pit Logo Ekhaaja Black
+    4300092: Pit Logo HereVR
+    4300094: Pit Logo Goodluck
+    4300096: Pit Logo Porseewoh
+    4300098: Pit Logo Blyrica
+    4300100: Pit Logo Wall(A)Fel Black
+    4300102: Pit Logo Bokova-L White
+    4300104: Pit Logo RKHA Black
+    4300106: Pit Logo Carnivore White
+    4300108: Pit Logo Carnivore Black
+    4300110: Pit Building Floor
+    4300112: Pit Building Pipes
+    4300114: Pit Tyre Warming Column V01 HI
+    4300116: Pit Tyre Warming Column V01 MID
+    4300118: Pit Tyre Warming Column V01 LOW
+    4300120: Pit Building Pipe V01
+    4300122: Pit Building Pipe V02
+    4300124: Pit Building Lamp V01 HI
+    4300126: Pit Building Lamp V01 MID
+    4300128: Pit Building Lamp V01 LOW
+    4300130: Pit Building Door Frame
+    4300132: Pit Building Wall
+    4300134: Pit Building Door Frame
+    4300136: Mesh001
+    4300138: Pit Building Girder V01
+    4300140: Pit Building Girder V02
+    4300142: Pit Building Pipe Holder
+    4300144: Pit Building Big Board
+    4300146: Pit Building Name Board02
+    4300148: Pit Building Name Board01
+    4300150: Pit Big Lamp Holder Girder
+    4300152: Pit Big Lamp Holder Girder
+    4300154: Pit Wall
+    4300156: Pit Wall with Ceiling
+    4300158: Pit Building Top Wire
+    4300160: Pit Building Pit Lane Line
+    4300162: Pit Building Floor
+    4300164: Pit Building Floor BASE
+    4300166: Pit Building Girder V01 LOW
+    4300168: Pit Building Top Wire
+    4300170: Pit_Building_Lamp_V01_LOW_002
+    4300172: Pit Building Girder V01 HI
+    4300174: Pit Building
+    4300176: Pit Building Pipes HI
+    4300178: Pit Building Pipes LOW
+    4300180: Pit Building Girder V02 HI
+    4300182: Pit Building Girder V02 LOW
+    4300184: Pit Building Lamp ALL LOW
+    4300186: Pit Building Lamp ALL MID
+    4300188: Pit Building Lamp ALL HI
+    4300190: Pit Building Garage Doors ALL
+    4300192: Pit Building Number N52
+    4300194: Pit Building Number N51
+    4300196: Pit Building Number N50
+    4300198: Pit Building Number N49
+    4300200: Pit Building Number N48
+    4300202: Pit Building Number N47
+    4300204: Pit Building Number N46
+    4300206: Pit Building Number N45
+    4300208: Pit Building Number N44
+    4300210: Pit Building Number N43
+    4300212: Pit Building Number N42
+    4300214: Pit Building Number N41
+    4300216: Pit Building Number N40
+    4300218: Pit Building Number N39
+    4300220: Pit Building Number N38
+    4300222: Pit Building Number N37
+    4300224: Pit Building Number N36
+    4300226: Pit Building Number N35
+    4300228: Pit Building Number N34
+    4300230: Pit Building Number N33
+    4300232: Pit Building Number N32
+    4300234: Pit Building Number N31
+    4300236: Pit Building Number N30
+    4300238: Pit Building Number N29
+    4300240: Pit Building Number N28
+    4300242: Pit Building Number N27
+    4300244: Pit Building Number N26
+    4300246: Pit Building Number N25
+    4300248: Pit Building Number N24
+    4300250: Pit Building Number N23
+    4300252: Pit Building Number N22
+    4300254: Pit Building Number N21
+    4300256: Pit Building Number N20
+    4300258: Pit Building Number N19
+    4300260: Pit Building Number N18
+    4300262: Pit Building Number N17
+    4300264: Pit Building Number N16
+    4300266: Pit Building Number N15
+    4300268: Pit Building Number N14
+    4300270: Pit Building Number N13
+    4300272: Pit Building Number N12
+    4300274: Pit Building Number N11
+    4300276: Pit Building Number N10
+    4300278: Pit Building Number N09
+    4300280: Pit Building Number N08
+    4300282: Pit Building Number N07
+    4300284: Pit Building Number N06
+    4300286: Pit Building Number N05
+    4300288: Pit Building Number N04
+    4300290: Pit Building Number N03
+    4300292: Pit Building Number N02
+    4300294: Pit Building Number N01
+    4300296: Pit Toolbox V01 HI
+    4300298: Pit Toolbox V01 MID
+    4300300: Pit Toolbox V01 LOW
+    4300302: Pit Trolley Car V01 HI
+    4300304: Pit Trolley Car V01 MID
+    4300306: Pit Trolley Car V01 LOW
+    4300308: Pit Trolley Car V02 HI
+    4300310: Pit Trolley Car V02 MID
+    4300312: Pit Trolley Car V02 LOW
+    4300314: Pit Trolley Car V03 HI
+    4300316: Pit Trolley Car V03 LOW
+    4300318: Pit Trolley Car V03 MID
+    4300320: Pit Trolley Car V04 HI
+    4300322: Pit Trolley Car V04 LOW
+    4300324: Pit Trolley Car V04 MID
+    4300326: Pit Stand V01 HI
+    4300328: Pit Stand V01 LOW
+    4300330: Pit Stand V01 MID
+    4300332: Box001
+    4300334: Pit Jack V01 with Sign HI
+    4300336: Pit Jack V01 with Sign MID
+    4300338: Pit Jack V01 with Sign LOW
+    4300340: Pit Jack V01 HI
+    4300342: Pit Jack V01 MID
+    4300344: Pit Jack V01 LOW
+    4300346: Pit Wing Holder V01 HI
+    4300348: Pit Wing Holder V01 MID
+    4300350: Pit Wing Holder V01 LOW
+    4300352: Pit Couch for Tyres with Box V01 HI
+    4300354: Pit Couch for Tyres with Box V01 MID
+    4300356: Pit Couch for Tyres with Box V01 LOW
+    4300358: Pit Car Holder Stand V01 HI
+    4300360: Pit Car Holder Stand V01 MID
+    4300362: Pit Car Holder Stand V01 LOW
+    4300364: Pit Big Lamp V01 HI
+    4300366: Pit Big Lamp V01 LOW
+    4300368: Pit BL Wire V01 HI
+    4300370: Pit BL Wire V01 MID
+    4300372: Pit BL Wire V01 LOW
+    4300374: Pit Big Lamp Holder V01 HI
+    4300376: Pit Big Lamp Holder V01 LOW
+    4300378: Pit Wall with Ceiling
+    4300380: Pit Wall
+    4300382: Pit BL Wire V01 HI 2Sided
+    4300384: Pit BL Wire V01 LOW 2Sided
+    4300386: Pit BL Wire V01 MID 2sided
+    4300388: Pit Shelves V01
+    4300390: Pit Warming Tyres on Wheels V01 C01 HI
+    4300392: Pit Warming Tyres on Wheels V01 C01 LOW
+    4300394: Pit Warming Tyres on Wheels V01 C01 MID
+    4300396: Object002
+    4300398: Pit BL Wire V01 Single Straight HI
+    4300400: Pit BL Wire V01 Single Straight MID
+    4300402: Pit_Building_Big_Board_001
+    4300404: Pit Boards Names V01 C01 HI
+    4300406: Pit Boards Names V01 C01 LOW
+    4300408: Box002
+    4300410: Pit Board BIG V01 C01 HI
+    4300412: Pit Boards BIG V01 C01 LOW
+    4300414: Pit Logo - Good Luck
+    4300416: Pit Logo - Codes for Roads V01 Black
+    4300418: Pit Logo - Codes for Roads V01 White
+    4300420: Pit Logo - Ekhaaja V01 White
+    4300422: Pit Logo - Ekhaaja V01 Black
+    4300424: Pit Logo - SAYO Black
+    4300426: Pit Logo - SAYO White
+    4300428: Pit Logo - Porseevoh
+    4300430: Pit Logo - SEBES Black
+    4300432: Pit Logo - SEBES White
+    4300434: Pit Logo - RKHA Black
+    4300436: Pit Logo - RKHA White
+    4300438: Pit Logo - Bokova-L Black
+    4300440: Pit Logo - Bokova-L White
+    4300442: Pit Logo - Wall(A)FEl White
+    4300444: Pit Logo - Wall(A)FEl Black
+    4300446: Pit Logo - Blyrica
+    4300448: Pit Logo - Carnivore Black
+    4300450: Pit Logo - Carnivore White
+    4300452: Pit Logo - C4R Green
+    4300454: Pit Logo - C4R Yellow
+    4300456: Pit Spots Ceiling
+    4300458: Pit Building Top Wire Single
+    4300460: Pit Wall Collision
+    4300462: Pit BL Wire V01 Single Straight HI 2Sided
+    4300464: Pit BL Wire V01 Single Straight LOW 2Sided
+    4300466: Pit BL Wire V01 Single Straight MID 2Sided
+    4300468: Pit Jack Rear V01 HI
+    4300470: Pit Jack Rear V01 LOW
+    4300472: Pit Jack Rear V01 MID
+    4300474: Car Stand V02 HI
+    4300476: Car Stand V02 MID
+    4300478: Car Stand V02 LOW
+    4300480: Pit T-Box V03 HI
+    4300482: Pit T-Box V03 LOW
+    4300484: Pit T-Box V03 MID
+    4300486: Pit T-Box V03 Opened HI
+    4300488: Pit T-Box V03 Opened MID
+    4300490: Pit T-Box V03 Opened LOW
+    4300492: Pit T-BOX V01 HI
+    4300494: Pit T-BOX V01 LOW
+    4300496: Pit T-BOX V01 MID
+    4300498: Pit T-BOX V02 HI
+    4300500: Pit T-BOX V02 MID
+    4300502: Pit T-BOX V02 LOW
+    4300504: Pit FuelM V01 HI
+    4300506: Pit FuelM V01 MID
+    4300508: Pit FuelM V01 LOW
+    4300510: Pit_Wing_Holder_V0_LOW_003
+    4300512: Pit FuelM V02 HI
+    4300514: Pit FuelM V02 LOW
+    4300516: Pit FuelM V02 MID
+    4300518: Pit Building Lamp HI
+    4300520: Pit Building Lamp LOW
+    4300522: Pit Building Lamp MID
+    4300524: Pit Building Girder Single V01 HI
+    4300526: Pit Building Girder Single  V01 LOW
+    4300528: Pit Building Girder V02 Single HI
+    4300530: Pit Building Girder V02 Single LOW
+    4300532: Pit Building Pipe Single C02 HI
+    4300534: Pit Building Pipe Single C02 LOW
+    4300536: Pit Building Pipe C01 HI
+    4300538: Pit Building Pipe C01 LOW
+    4300540: Pit IT LCD TV C02
+    4300542: Pit IT LCD TV C02 Animated Screen
+    4300544: Pit IT Keyb - Mouse C01 HI
+    4300546: Pit IT Keyb - Mouse C01 LOW
+    4300548: Box003
+    4300550: Pit IT LCD Mon C01 HI
+    4300552: Pit IT LCD Mon C01 LOW
+    4300554: Pit Brake On Sign
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,105 @@
+fileFormatVersion: 2
+guid: 0d8e617c1d87870458fe3a8fb7c92324
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Pit Lamp V02 ALL LOW
+    400000: //RootNode
+    400002: Pit Lamp V02 ALL LOW
+    2300000: //RootNode
+    2300002: Pit Lamp V02 ALL LOW
+    3300000: //RootNode
+    3300002: Pit Lamp V02 ALL LOW
+    4300000: Pit Lamp V02 HI008
+    4300002: Pit Lamp V02 HI007
+    4300004: Pit Lamp V02 HI002
+    4300006: Pit Lamp V02 HI011
+    4300008: Pit Lamp V02 HI012
+    4300010: Pit Lamp V02 HI001
+    4300012: Pit Lamp V02 HI004
+    4300014: Pit Lamp V02 HI005
+    4300016: Pit Lamp V02 HI006
+    4300018: Pit Lamp V02 HI009
+    4300020: Pit Lamp V02 HI010
+    4300022: Pit Lamp V02 HI003
+    4300024: Pit Lamp V02 HI026
+    4300026: Pit Lamp V02 HI025
+    4300028: Pit Lamp V02 HI028
+    4300030: Pit Lamp V02 HI027
+    4300032: Pit Lamp V02 HI014
+    4300034: Pit Lamp V02 HI015
+    4300036: Pit Lamp V02 HI016
+    4300038: Pit Lamp V02 HI017
+    4300040: Pit Lamp V02 HI018
+    4300042: Pit Lamp V02 HI013
+    4300044: Pit Lamp V02 HI020
+    4300046: Pit Lamp V02 HI021
+    4300048: Pit Lamp V02 HI022
+    4300050: Pit Lamp V02 HI023
+    4300052: Pit Lamp V02 HI024
+    4300054: Pit Lamp V02 HI019
+    4300056: Pit Lamp V02 HI030
+    4300058: Pit Lamp V02 LOW001
+    4300060: Box004
+    4300062: Pit Lapm V02 ALL HI
+    4300064: Pit Lamp V02 ALL LOW
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

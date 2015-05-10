@@ -1,0 +1,191 @@
+fileFormatVersion: 2
+guid: 50568951b8f06f54d8e702a151ef574f
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Pit Logo - Blyrica
+    100002: Pit Logo - Bokova-L Black
+    100004: Pit Logo - Bokova-L White
+    100006: Pit Logo - C4R Green
+    100008: Pit Logo - C4R Yellow
+    100010: Pit Logo - Carnivore Black
+    100012: Pit Logo - Carnivore White
+    100014: Pit Logo - Codes for Roads V01 Black
+    100016: Pit Logo - Codes for Roads V01 White
+    100018: Pit Logo - Ekhaaja V01 Black
+    100020: Pit Logo - Ekhaaja V01 White
+    100022: Pit Logo - Good Luck
+    100024: Pit Logo - Porseevoh
+    100026: Pit Logo - RKHA Black
+    100028: Pit Logo - RKHA White
+    100030: Pit Logo - SAYO Black
+    100032: Pit Logo - SAYO White
+    100034: Pit Logo - SEBES Black
+    100036: Pit Logo - SEBES White
+    100038: Pit Logo - Wall(A)FEl Black
+    100040: Pit Logo - Wall(A)FEl White
+    100042: //RootNode
+    400000: Pit Logo - Blyrica
+    400002: Pit Logo - Bokova-L Black
+    400004: Pit Logo - Bokova-L White
+    400006: Pit Logo - C4R Green
+    400008: Pit Logo - C4R Yellow
+    400010: Pit Logo - Carnivore Black
+    400012: Pit Logo - Carnivore White
+    400014: Pit Logo - Codes for Roads V01 Black
+    400016: Pit Logo - Codes for Roads V01 White
+    400018: Pit Logo - Ekhaaja V01 Black
+    400020: Pit Logo - Ekhaaja V01 White
+    400022: Pit Logo - Good Luck
+    400024: Pit Logo - Porseevoh
+    400026: Pit Logo - RKHA Black
+    400028: Pit Logo - RKHA White
+    400030: Pit Logo - SAYO Black
+    400032: Pit Logo - SAYO White
+    400034: Pit Logo - SEBES Black
+    400036: Pit Logo - SEBES White
+    400038: Pit Logo - Wall(A)FEl Black
+    400040: Pit Logo - Wall(A)FEl White
+    400042: //RootNode
+    2300000: Pit Logo - Blyrica
+    2300002: Pit Logo - Bokova-L Black
+    2300004: Pit Logo - Bokova-L White
+    2300006: Pit Logo - C4R Green
+    2300008: Pit Logo - C4R Yellow
+    2300010: Pit Logo - Carnivore Black
+    2300012: Pit Logo - Carnivore White
+    2300014: Pit Logo - Codes for Roads V01 Black
+    2300016: Pit Logo - Codes for Roads V01 White
+    2300018: Pit Logo - Ekhaaja V01 Black
+    2300020: Pit Logo - Ekhaaja V01 White
+    2300022: Pit Logo - Good Luck
+    2300024: Pit Logo - Porseevoh
+    2300026: Pit Logo - RKHA Black
+    2300028: Pit Logo - RKHA White
+    2300030: Pit Logo - SAYO Black
+    2300032: Pit Logo - SAYO White
+    2300034: Pit Logo - SEBES Black
+    2300036: Pit Logo - SEBES White
+    2300038: Pit Logo - Wall(A)FEl Black
+    2300040: Pit Logo - Wall(A)FEl White
+    3300000: Pit Logo - Blyrica
+    3300002: Pit Logo - Bokova-L Black
+    3300004: Pit Logo - Bokova-L White
+    3300006: Pit Logo - C4R Green
+    3300008: Pit Logo - C4R Yellow
+    3300010: Pit Logo - Carnivore Black
+    3300012: Pit Logo - Carnivore White
+    3300014: Pit Logo - Codes for Roads V01 Black
+    3300016: Pit Logo - Codes for Roads V01 White
+    3300018: Pit Logo - Ekhaaja V01 Black
+    3300020: Pit Logo - Ekhaaja V01 White
+    3300022: Pit Logo - Good Luck
+    3300024: Pit Logo - Porseevoh
+    3300026: Pit Logo - RKHA Black
+    3300028: Pit Logo - RKHA White
+    3300030: Pit Logo - SAYO Black
+    3300032: Pit Logo - SAYO White
+    3300034: Pit Logo - SEBES Black
+    3300036: Pit Logo - SEBES White
+    3300038: Pit Logo - Wall(A)FEl Black
+    3300040: Pit Logo - Wall(A)FEl White
+    4300000: Pit Logo Codes4roads White
+    4300002: Pit Logo Codes4roads Black
+    4300004: Pit Logo Ekhaaja White
+    4300006: Pit Logo SAYO Black
+    4300008: Pit Logo Sebes RW White
+    4300010: Pit Logo Wall(A)Fel White
+    4300012: Pit Logo RKHA White
+    4300014: Pit Logo Bokova-L Black
+    4300016: Pit Logo Ekhaaja White
+    4300018: Pit Logo Sebes RW Black
+    4300020: Pit Logo Ekhaaja Black
+    4300022: Pit Logo HereVR
+    4300024: Pit Logo Goodluck
+    4300026: Pit Logo Porseewoh
+    4300028: Pit Logo Blyrica
+    4300030: Pit Logo Wall(A)Fel Black
+    4300032: Pit Logo Bokova-L White
+    4300034: Pit Logo RKHA Black
+    4300036: Pit Logo Carnivore White
+    4300038: Pit Logo Carnivore Black
+    4300040: Pit Logo - Good Luck
+    4300042: Pit Logo - Codes for Roads V01 Black
+    4300044: Pit Logo - Codes for Roads V01 White
+    4300046: Pit Logo - Ekhaaja V01 White
+    4300048: Pit Logo - Ekhaaja V01 Black
+    4300050: Pit Logo - SAYO Black
+    4300052: Pit Logo - SAYO White
+    4300054: Pit Logo - Porseevoh
+    4300056: Pit Logo - SEBES Black
+    4300058: Pit Logo - SEBES White
+    4300060: Pit Logo - RKHA Black
+    4300062: Pit Logo - RKHA White
+    4300064: Pit Logo - Bokova-L Black
+    4300066: Pit Logo - Bokova-L White
+    4300068: Pit Logo - Wall(A)FEl White
+    4300070: Pit Logo - Wall(A)FEl Black
+    4300072: Pit Logo - Blyrica
+    4300074: Pit Logo - Carnivore Black
+    4300076: Pit Logo - Carnivore White
+    4300078: Pit Logo - C4R Green
+    4300080: Pit Logo - C4R Yellow
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
