@@ -49,7 +49,7 @@ namespace championship
 			prizeFund = 50000*(5-aLeague);
 			driversPointsDistribution = EPointsDistribution.F12010Style;
 			constructorsPointsDistribution = EPointsDistribution.F12010Style;
-			startDate = (aRaceInCalendar+1)*20;
+			startDate = (aRaceInCalendar+1)*7;
 		} 
 
 		public List<GTDriver> driversForRace() {

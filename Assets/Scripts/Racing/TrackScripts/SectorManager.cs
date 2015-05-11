@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Racing;
+using championship;
 
 public class SectorManager : MonoBehaviour {
 
@@ -32,13 +33,20 @@ public class SectorManager : MonoBehaviour {
 			if(recordedTimes.Count>1&&recordedTimes[recordedTimes.Count-1].lapNumber==thisOne.lapNumber) {
 				// We can now figure out how far behind the car infront we are
 				float timeDiff = thisOne.totalTime-recordedTimes[recordedTimes.Count-1].totalTime;
-				recordedTimes[recordedTimes.Count-1].customAI.carBehindTime = timeDiff;
-				recordedTimes[recordedTimes.Count-1].customAI.carBehind = ai;
+				if(timeDiff>0f) {
+					recordedTimes[recordedTimes.Count-1].customAI.carBehindTime = timeDiff;
+					recordedTimes[recordedTimes.Count-1].customAI.carBehind = ai;
 
-				thisOne.customAI.carInfrontTime = timeDiff;
-				thisOne.customAI.carInfront = recordedTimes[recordedTimes.Count-1].car;
-				thisOne.customAI.carBehindTime = 0;
-				thisOne.customAI.carBehind = null;
+					thisOne.customAI.carInfrontTime = timeDiff;
+					thisOne.customAI.carInfront = recordedTimes[recordedTimes.Count-1].car;
+					if(timeDiff<ChampionshipSeason.ACTIVE_SEASON.drsTime) {
+						thisOne.customAI.canDRS = true;
+					} else {
+						thisOne.customAI.canDRS = false;
+					}
+					thisOne.customAI.carBehindTime = 0;
+					thisOne.customAI.carBehind = null;
+				}
 
 			}
 			recordedTimes.Add(thisOne);

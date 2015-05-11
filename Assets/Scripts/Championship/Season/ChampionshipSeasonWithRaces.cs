@@ -16,6 +16,7 @@ namespace championship
 	public class ChampionshipSeasonWithRaces : ChampionshipSeasonBase
 	{
 		public ChampionshipRaceSettings nextRace;
+		public float drsTime = 2f;
 		public ChampionshipSeasonWithRaces ()
 		{
 		}

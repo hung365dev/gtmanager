@@ -28,7 +28,7 @@ namespace Teams
 		public int seasonPoints = 0;
 		public int seasonWins = 0;
 		public int cash = 200000;
-		public static string HUMANS_DEBUG_TEAM = "Team Pink";
+		public static string HUMANS_DEBUG_TEAM = "Blue Omega";
 		public GTTeam (TeamDataRecord aTeamDataRecord) {
 			cars.Add(aTeamDataRecord.carA);
 			cars.Add(aTeamDataRecord.carB);

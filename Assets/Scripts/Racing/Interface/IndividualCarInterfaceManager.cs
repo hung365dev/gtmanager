@@ -9,6 +9,12 @@ public class IndividualCarInterfaceManager : MonoBehaviour {
 	public UILabel lapNumberLabel;
 	public UILabel carPosition;
 	public UILabel driverNameLabel;
+
+
+	public UILabel drsLabel;
+	public UILabel nitrosLabel;
+
+
 	public RacingAI targetAI;
 	public IRDSStatistics statistics;
 	public IRDSLevelLoadVariables levLoad;
@@ -63,16 +69,22 @@ DriverName Label
 SpeedValue
 GearValue
 RPM Value
-*/
-		driverNameLabel = GameObject.Find("DriverName Label").GetComponent<UILabel>();
-		lapNumberLabel = GameObject.Find ("LapValue").GetComponent<UILabel>();
-		carPosition = GameObject.Find ("PositionValue").GetComponent<UILabel>();
-		carBehindLabel = GameObject.Find ("CarBehindLabel").GetComponent<UILabel>();
-		carInfrontLabel = GameObject.Find("CarInfrontLabel").GetComponent<UILabel>();
-		speedLabel = GameObject.Find ("SpeedValue").GetComponent<UILabel>();
-		//revCounter = GameObject.Find ("RPM Value").GetComponent<UIProgressBar>();
-		rpmLabel = GameObject.Find ("RPM Value").GetComponent<UILabel>();
-		this.gearLabel = GameObject.Find ("GearValue").GetComponent<UILabel>();
+*/	
+		if(GameObject.Find ("DriverName Label")!=null) {
+			driverNameLabel = GameObject.Find("DriverName Label").GetComponent<UILabel>();
+			lapNumberLabel = GameObject.Find ("LapValue").GetComponent<UILabel>();
+			carPosition = GameObject.Find ("PositionValue").GetComponent<UILabel>();
+			carBehindLabel = GameObject.Find ("CarBehindLabel").GetComponent<UILabel>();
+			carInfrontLabel = GameObject.Find("CarInfrontLabel").GetComponent<UILabel>();
+			speedLabel = GameObject.Find ("SpeedValue").GetComponent<UILabel>();
+			//revCounter = GameObject.Find ("RPM Value").GetComponent<UIProgressBar>();
+			rpmLabel = GameObject.Find ("RPM Value").GetComponent<UILabel>();
+			this.gearLabel = GameObject.Find ("GearValue").GetComponent<UILabel>();
+			
+			this.nitrosLabel = GameObject.Find ("NitrosLabel").GetComponent<UILabel>();
+			this.drsLabel = GameObject.Find ("DRSLabel").GetComponent<UILabel>();
+
+		}
 
 
 	}
@@ -94,6 +106,11 @@ RPM Value
 		
 			if(carPosition!=null)
 				carPosition.text = ""+statistics.GetCarPosition(targetAI.aiCar);
+
+
+			this.nitrosLabel.text = Convert.ToString(targetAI.nitrosRemaining);
+			this.drsLabel.gameObject.SetActive(targetAI.drsActivated);
+
 
 			if(driverNameLabel!=null)
 			driverNameLabel.text = targetAI.driverName;

@@ -512,8 +512,8 @@ public class CameraPathAnimator : MonoBehaviour
     {
         if (animationObject == null)
         {
-            Debug.LogError("There is no animation object specified in the Camera Path Animator component. Nothing to animate.\nYou can find this component in the main camera path game object called "+gameObject.name+".");
-            Stop();
+			Stop();
+			Destroy(this.gameObject);
             return;
         }
 

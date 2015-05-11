@@ -124,6 +124,18 @@ namespace championship
 			}
 		}
 
+		public List<GTDriver> driversChampionshipPositions() {
+			//TODO So far no grid setup is acknowledged.
+			List<GTDriver> ret = new List<GTDriver>();
+			for(int i = 0;i<this.teams.Count;i++) {
+				ret.Add(teams[i].drivers[0]);
+				ret.Add(teams[i].drivers[1]); 
+			}
+			ret.Sort(ChampionshipSeasonBase.SortByChampionshipPoints);
+			return ret;
+		}
+
+
 		public int sortOnChampsPoints(GTTeam aTeam1,GTTeam aTeam2) {
 			if(aTeam1.seasonPoints>aTeam2.seasonPoints) {
 				return -1;

@@ -11,6 +11,7 @@ using Cars;
 public class RaceManager : MonoBehaviour {
 	public IRDSCarCamera carCamera;
 	public IRDSLevelLoadVariables levLoad;
+	public IRDSStatistics statistics;
 	public bool inited = false;
 	public IRDSManager manager;
 	public IRDSPlaceCars placeCars;
@@ -28,12 +29,18 @@ public class RaceManager : MonoBehaviour {
 	public RacePositionsTable racePositions;
 	public bool hasStarted = false;
 	public ChampionshipRaceSettings raceSettings;
+	public RaceStarterTable raceStartersTable;
+	public GameObject genericRaceGUI;
 //	public CarLibrary carLib;
 	// Use this for initialization
 	void Start () {
 		lastUpdate = Time.time;
 		REF = this;
 		carCamera = GameObject.Find("Main_Camera").GetComponent<IRDSCarCamera>();
+		levLoad = GameObject.Find ("LevelLoad").GetComponent<IRDSLevelLoadVariables>();
+
+		levLoad.laps = 3;
+
 		//Screen.SetResolution(640, 480, true);
 		carCamera.ActivateRoadCamera ();
 		if (TeamDatabase.REF == null) {
@@ -48,13 +55,24 @@ public class RaceManager : MonoBehaviour {
 		}
 	//	Time.timeScale = 4;
 		manager = GameObject.Find ("IRDSManager").GetComponent<IRDSManager> ();
-		raceFinisherTable = GameObject.Find("RaceCompletePanel").GetComponent<RaceFinisherTable>();
-		raceFinisherTable.gameObject.SetActive(false);
+		statistics =manager.GetComponentInChildren<IRDSStatistics>();
+		statistics.startRaceManually = true;
+	//	statistics.StartTheRace();
+
 		carCamera = manager.GetComponentInChildren<IRDSCarCamera>();
 		placeCars = manager.gameObject.GetComponentInChildren<IRDSPlaceCars> (); 
 	//	BetterList<IRDSCarControllerAI> allCars = new BetterList<IRDSCarControllerAI> ();
 
+
+		genericRaceGUI = GameObject.Find("GenericRaceGUI");
+		UILabel totalRacers = GameObject.Find ("NumberOfRacers").GetComponent<UILabel>();
+		UILabel totalLaps = GameObject.Find("LAP").GetComponent<UILabel>();
+		if(genericRaceGUI!=null) {
+			genericRaceGUI.gameObject.SetActive(false);
+		}
 		List<GTDriver> driversInRace = ChampionshipRaceSettings.ACTIVE_RACE.driversForRace();
+		totalRacers.text = "/ "+driversInRace.Count;
+		totalLaps.text = "/ "+this.levLoad.laps;
 
 		for(int i = 0;i<driversInRace.Count;i++) {
 			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(driversInRace[i]);
@@ -80,6 +98,12 @@ public class RaceManager : MonoBehaviour {
 			}
 		}
 
+		GameObject raceStarters = GameObject.Find("RaceLineupPanel");
+		if(raceStarters!=null) {
+			raceStartersTable = raceStarters.GetComponent<RaceStarterTable>();
+			raceStartersTable.activate(driversInRace);
+		}
+		//
 	}
 
 	public void HandleNewFinisher(RacingAI aRacingAI) {
@@ -119,11 +143,35 @@ public class RaceManager : MonoBehaviour {
 			}
 		}
 	}
+
+	public void doStartRace() {
+		this.statistics.StartTheRace();
+		if(genericRaceGUI!=null) {
+			genericRaceGUI.gameObject.SetActive(true);
+			GameObject g = GameObject.Find ("TeamController");
+			TeamControl t = g.GetComponent<TeamControl>();
+			t.initButtons();
+
+			raceFinisherTable = GameObject.Find("RaceCompletePanel").GetComponent<RaceFinisherTable>();
+			raceFinisherTable.gameObject.SetActive(false);
+
+			inited = false;
+
+		}
+
+		GameObject g1 = GameObject.Find("RaceStartGUI");
+		Destroy(g1);
+
+	
+	//	
+	}
 	void Update () {
 		if (!inited) {
 			carCamera.ActivateRoadCamera ();
-			racePositions = GameObject.Find ("RacePositionsTable").GetComponent<RacePositionsTable>();
-			inited = true;
+			if(GameObject.Find ("RacePositionsTable")!=null) {
+				racePositions = GameObject.Find ("RacePositionsTable").GetComponent<RacePositionsTable>();
+				inited = true;
+			}
 		} else {
 			if(Time.time-lastUpdate>1f) {
 				// Second has ticked by

@@ -93,20 +93,22 @@ namespace Racing
 			}
 			carInterface.targetAI = selectedCar;
 		}
-		private void initButtons() {
-			btnDoOrDie = GameObject.Find("DriverOrderDoOrDie").GetComponent<UIButton>();
-			btnDriveNormal = GameObject.Find ("DriverOrderDriverNormally").GetComponent<UIButton>();
-			btnTakeItEasy = GameObject.Find ("DriverOrderSaveTyres").GetComponent<UIButton>();
-			btnNitro = GameObject.Find ("ButtonUseNitro").GetComponent<UIButton>();
-			btnDoOrDie.onClick.Add(new EventDelegate(this,"changeToDoOrDie"));
-			btnDriveNormal.onClick.Add(new EventDelegate(this,"changeToDriveNormally"));
-			btnTakeItEasy.onClick.Add(new EventDelegate(this,"changeToSaveTyres"));
-			btnNitro.onClick.Add (new EventDelegate(this,"onUseNitro"));
-			
-			changeCars = GameObject.Find("ChangeDriverButton").GetComponent<UIButton>();
-			changeCamera = GameObject.Find("ButtonToggleCamera").GetComponent<UIButton>();
-			changeCars.onClick.Add(new EventDelegate(this,"changeCar"));
-			changeCamera.onClick.Add (new EventDelegate(this,"onChangeCamera"));
+		public void initButtons() {
+			if(GameObject.Find ("DriverOrderDoOrDie")!=null) {
+				btnDoOrDie = GameObject.Find("DriverOrderDoOrDie").GetComponent<UIButton>();
+				btnDriveNormal = GameObject.Find ("DriverOrderDriverNormally").GetComponent<UIButton>();
+				btnTakeItEasy = GameObject.Find ("DriverOrderSaveTyres").GetComponent<UIButton>();
+				btnNitro = GameObject.Find ("ButtonUseNitro").GetComponent<UIButton>();
+				btnDoOrDie.onClick.Add(new EventDelegate(this,"changeToDoOrDie"));
+				btnDriveNormal.onClick.Add(new EventDelegate(this,"changeToDriveNormally"));
+				btnTakeItEasy.onClick.Add(new EventDelegate(this,"changeToSaveTyres"));
+				btnNitro.onClick.Add (new EventDelegate(this,"onUseNitro"));
+				
+				changeCars = GameObject.Find("ChangeDriverButton").GetComponent<UIButton>();
+				changeCamera = GameObject.Find("ButtonToggleCamera").GetComponent<UIButton>();
+				changeCars.onClick.Add(new EventDelegate(this,"changeCar"));
+				changeCamera.onClick.Add (new EventDelegate(this,"onChangeCamera"));
+			}
 		}
 		public void Update() { 
 			if(selectedCar!=null)
@@ -114,7 +116,11 @@ namespace Racing
 				lastOrders = selectedCar.currentOrders;
 				if(this.btnDoOrDie==null) {
 					initButtons();
+					if(btnDoOrDie==null) {
+						return;
+					}
 				}
+
 				this.btnDoOrDie.isEnabled = true;
 				this.btnDriveNormal.isEnabled = true;
 				this.btnTakeItEasy.isEnabled = true;

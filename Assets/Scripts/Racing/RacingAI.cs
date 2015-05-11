@@ -62,6 +62,9 @@ public class RacingAI : MonoBehaviour {
 	public GameObject engineFire;
 
 	public EEngineFailureStage engineFailure;
+
+	public bool drsActivated = false;
+	public bool canDRS = false;
 	// Use this for initialization
 	void Start () {
 		this.tag = "Player";
@@ -112,8 +115,6 @@ public class RacingAI : MonoBehaviour {
 			this.originalOvertakeFactor = aRecord.overtakeFactor;
 			this.originalShiftUp = aRecord.shiftUpFactor;
 			initSmokes();
-
-			aiCar.SetMaxDriftAngle(45f);
 
 
 			this.aiCar = this.GetComponent<IRDSCarControllerAI>();
@@ -285,6 +286,17 @@ public class RacingAI : MonoBehaviour {
 		
 		engineTempMonitor.Update(this.aiDriveTrain,this.aiCar,this.aiInput,this);
 	}
+
+	public void addWings() {
+		
+		this.wings[1].SetLiftCoefficient(this.frontWingDownforce);
+		this.wings[0].SetLiftCoefficient(this.rearWingDownforce);
+	}
+
+	public void removeWings() {
+		this.wings[1].SetLiftCoefficient(0f);
+		this.wings[0].SetLiftCoefficient(0f);
+	}
 	void Update () {
 
 		if (!inited) {
@@ -352,6 +364,13 @@ public class RacingAI : MonoBehaviour {
 			} else {
 
 			}
+		}
+		if((inNitroZone&&canDRS)&&!drsActivated) {
+			removeWings();
+			drsActivated = true;
+		} else if(drsActivated&&!inNitroZone) {
+			addWings();
+			drsActivated = false;
 		}
 		if (humanControl) {
 		} else {
