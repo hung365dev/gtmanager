@@ -16,6 +16,7 @@ namespace Drivers
 	public class GTDriverBase
 	{
 		public string driverName;
+		public int stamina;
 		public float aggressivenessOnBrake;
 		public float speedSteeringFactor;
 		public float lookAheadFactor;

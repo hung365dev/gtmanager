@@ -42,7 +42,7 @@ public class RacingAI : MonoBehaviour {
 	public float originalShiftUp;
 	public IRDSCarControllerAI carInfront;
 	public IRDSCarControllerAI carBehind;
-
+	public int fatigueCount = 0;
 	public EngineTemperatureMonitor engineTempMonitor;
 
 	public string finishTimeString = "DNF";
@@ -65,6 +65,9 @@ public class RacingAI : MonoBehaviour {
 
 	public bool drsActivated = false;
 	public bool canDRS = false;
+
+	public float fatigue = 8000f;
+	public float staminaDecrementer = 0f;
 	// Use this for initialization
 	void Start () {
 		this.tag = "Player";
@@ -231,6 +234,7 @@ public class RacingAI : MonoBehaviour {
 
 			DriverOrderSetup newOrder = DriverOrderLibrary.REF.getOrderFromEnum(aOrder);
 			newOrder.addEffectToCar(this,this.wings);
+
 			this.currentOrders = aOrder;
 		}
 	}
@@ -285,6 +289,11 @@ public class RacingAI : MonoBehaviour {
 	public void FixedUpdate() {
 		
 		engineTempMonitor.Update(this.aiDriveTrain,this.aiCar,this.aiInput,this);
+		this.fatigue -= this.staminaDecrementer;
+		fatigueCount++;
+		if(fatigueCount%40==0) {
+			this.aiCar.SetHumanError(this.driverRecord.humanError+(this.driverRecord.humanError*(this.fatigue/this.driverRecord.stamina)));
+		}
 	}
 
 	public void addWings() {

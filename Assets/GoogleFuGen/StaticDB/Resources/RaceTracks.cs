@@ -220,7 +220,7 @@ namespace GoogleFu
 			catch(System.ArgumentException) {
 				Debug.LogError( in_RowString + " is not a member of the rowIds enumeration.");
 			}
-			return ret; 
+			return ret;
 		}
 
 	}

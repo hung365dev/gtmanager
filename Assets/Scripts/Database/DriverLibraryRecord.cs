@@ -48,6 +48,8 @@ namespace Database
 		public float jumpThrottleMultiplier;
 		public float jumpThrottleTime;
 		public float agressiveMultiplier;
+
+		public int stamina;
 		public DriverLibraryRecord (DriverNamesRow aRow)
 		{
 			driverName = aRow._drivername;
@@ -81,8 +83,7 @@ namespace Database
 			offtrackThrottleMultiplier = aRow._offtrackthrottlemultiplier;
 			jumpThrottleMultiplier = aRow._jumpthrottlemultiplier;
 			jumpThrottleTime = aRow._jumpthrottletime;
-			speedSteeringFactor = 10000f;
-
+			stamina = Convert.ToInt32(aRow._stamina);;
 			/*
 			 * SIDE_MARGIN	OffTrackThrottleMultiplier	JumpThrottleMultiplier	JumpThrottleTime	AggressiveMultiplier	PassiveMultiplier
 			 */
