@@ -74,11 +74,41 @@ public class RaceStarterMember : MonoBehaviour {
 	}
 
 	public void initTeam(GTTeam aTeam) {
+		if(positionLabel==null) {
+			UILabel[] childLabels = this.GetComponentsInChildren<UILabel>();
+			for(int i = 0;i<childLabels.Length;i++) {
+				if(childLabels[i].gameObject.name=="FinisherPosition") {
+					positionLabel = childLabels[i];
+				}
+				if(childLabels[i].gameObject.name=="FinisherName") {
+					nameLabel = childLabels[i];
+				}
+				if(childLabels[i].gameObject.name=="FinisherDetail") {
+					prizeInfo = childLabels[i];
+				}
+			}
+		}
+
 		this.nameLabel.text = aTeam.teamName;
 		this.prizeInfo.text = ""+aTeam.seasonPoints;
 	}
 	
 	public void showChampionshipPoints(GTDriver aDriver) {
+		if(positionLabel==null) {
+			UILabel[] childLabels = this.GetComponentsInChildren<UILabel>();
+			for(int i = 0;i<childLabels.Length;i++) {
+				if(childLabels[i].gameObject.name=="FinisherPosition") {
+					positionLabel = childLabels[i];
+				}
+				if(childLabels[i].gameObject.name=="FinisherName") {
+					nameLabel = childLabels[i];
+				}
+				if(childLabels[i].gameObject.name=="FinisherDetail") {
+					prizeInfo = childLabels[i];
+				}
+			}
+		}
+
 		this.nameLabel.text = aDriver.driverName+" "+ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aDriver).teamName;
 		this.prizeInfo.text = aDriver.championshipPoints+"";
 	}

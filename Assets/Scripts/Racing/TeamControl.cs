@@ -157,7 +157,8 @@ namespace Racing
 
 		public void onUseNitro() {
 			if (selectedCar != null) {
-				selectedCar.useNitro();
+				if(selectedCar.nitrosRemaining>0)
+					selectedCar.useNitro();
 			}
 		}
 		public void onChangeCamera() {

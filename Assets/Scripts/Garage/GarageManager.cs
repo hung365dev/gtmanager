@@ -29,6 +29,13 @@ public class GarageManager : MonoBehaviour {
 	}
 
 	
+	public void hideTopButtons() {
+		interfacePanel.gameObject.SetActive(false);
+	}
+	public void showTopButtons() {
+		interfacePanel.gameObject.SetActive(true);
+	}
+
 	public void handleStartOfCalendarView() {
 		ChampionshipSeason.ACTIVE_SEASON.allowTimeToPass = true;
 		calendarManager.gameObject.SetActive(true);

@@ -16,6 +16,7 @@ public class InterfaceMainButtons : MonoBehaviour {
 	public CarDetails prefabCarDetails;
 	public DriverPanel prefabDriverDetails;
 	public SettingsScreen prefabSettingsScreen;
+	public ChampionshipStandings champSettingsScreen;
 
 	public static InterfaceMainButtons REF;
 	// Use this for initialization
@@ -34,6 +35,17 @@ public class InterfaceMainButtons : MonoBehaviour {
 		researchScreen.initFromCar(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().cars[0]);
 	}
 
+	public void onLaunchChampionshipScreens() {
+		
+		this.gameObject.SetActive(false);
+		champSettingsScreen.activate();
+		GarageManager.REF.hideTopButtons();
+	}
+	public void onCloseChampionshipScreen() {
+		this.gameObject.SetActive(true);
+		champSettingsScreen.gameObject.SetActive(false);
+		GarageManager.REF.showTopButtons();
+	}
 	public void onLaunchSettingsScreen() {
 		GameObject g = NGUITools.AddChild(GameObject.Find ("UI Root"),prefabSettingsScreen.gameObject);
 	}
