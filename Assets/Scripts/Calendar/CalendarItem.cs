@@ -5,7 +5,7 @@ using championship;
 using Database;
 using Teams;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class CalendarItem : MonoBehaviour {
 
 	// Use this for initialization
