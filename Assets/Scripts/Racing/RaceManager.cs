@@ -120,7 +120,7 @@ public class RaceManager : MonoBehaviour {
 			timeUntilForcedFinish = 45;
 			owningTeam.seasonWins++;
 		}
-		owningTeam.seasonPoints += aRacingAI.finishPoints;
+		owningTeam.addPoints(aRacingAI.finishPoints,finishers.size);
 		activeCarsCount--;
 		if(activeCarsCount==0) {
 			Debug.Log ("Race Finished!");

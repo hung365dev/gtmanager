@@ -12,12 +12,14 @@ public class InterfaceMainButtons : MonoBehaviour {
 
 	public CarDetails carDetailsScreen;
 	public DriverPanel driverDetailsScreen;
-
+	public SponsorScreen sponsorScreen;
+	
 	public CarDetails prefabCarDetails;
 	public DriverPanel prefabDriverDetails;
 	public SettingsScreen prefabSettingsScreen;
 	public ChampionshipStandings champSettingsScreen;
-
+	public SponsorScreen prefabSponsorScreen;
+	
 	public static InterfaceMainButtons REF;
 	// Use this for initialization
 	void Start () {
@@ -28,7 +30,14 @@ public class InterfaceMainButtons : MonoBehaviour {
 	void Update () {
 	
 	}
-
+	public void onLaunchSponsors() {
+		
+		this.gameObject.SetActive(false);
+		GameObject g = NGUITools.AddChild(GameObject.Find ("UI Root"),this.prefabSponsorScreen.gameObject);
+		sponsorScreen = g.GetComponent<SponsorScreen>();
+		
+	}
+	
 	public void onLaunchResearch() {
 		researchScreen.gameObject.SetActive(true);
 		this.gameObject.SetActive(false);
@@ -47,6 +56,8 @@ public class InterfaceMainButtons : MonoBehaviour {
 		GarageManager.REF.showTopButtons();
 	}
 	public void onLaunchSettingsScreen() {
+		
+		this.gameObject.SetActive(false);
 		GameObject g = NGUITools.AddChild(GameObject.Find ("UI Root"),prefabSettingsScreen.gameObject);
 	}
 	public void onLaunchCarDetails() {

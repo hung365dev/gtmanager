@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ad7094cf1016b4e5e9db9497c76472fc
-timeCreated: 1431443615
+timeCreated: 1431462794
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ TextureImporter:
     21300002: logo_wildwestauto
     21300004: logo_yikipedia
     21300006: logo_quotemark
-    21300008: sponsorspritesheet_4
+    21300008: logo_twinarrow
     21300010: logo_tokia
     21300012: logo_terramonsters
     21300014: logo_raf
@@ -30,11 +30,11 @@ TextureImporter:
     21300046: logo_diceformoes
     21300048: logo_dds
     21300050: logo_threestripe
-    21300052: sponsorspritesheet_26
+    21300052: logo_cola
     21300054: logo_chicago
     21300056: logo_wondys
-    21300058: sponsorspritesheet_29
-    21300060: sponsorspritesheet_30
+    21300058: logo_blueomega
+    21300060: logo_awkwardpenguin
     21300062: logo_acars
     21300064: sponsorspritesheet_32
     21300066: sponsorspritesheet_33
@@ -68,10 +68,38 @@ TextureImporter:
     21300122: sponsorspritesheet_61
     21300124: sponsorspritesheet_62
     21300126: sponsorspritesheet_63
+    21300128: logo_howlwolf
+    21300130: logo_wildwestautos
+    21300132: logo_yikipedia
+    21300134: logo_quotemark
+    21300136: logo_tokia
+    21300138: logo_terramonsters
+    21300140: logo_raf
+    21300142: logo_dino
+    21300144: logo_socialtitans
+    21300146: logo_skull
+    21300148: logo_redpillars
+    21300150: logo_mastersvoice
+    21300152: logo_pineapple
+    21300154: logo_manysoft
+    21300156: logo_spokes
+    21300158: logo_mastercrook
+    21300160: logo_js
+    21300162: logo_hypnotoad
+    21300164: logo_hedgefund
+    21300166: logo_goggles
+    21300168: logo_fedup
+    21300170: logo_emp
+    21300172: logo_diceformoes
+    21300174: logo_dds
+    21300176: logo_threestripe
+    21300178: logo_chicago
+    21300180: logo_wondys
+    21300182: logo_acars
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -93,7 +121,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 1024
   textureSettings:
-    filterMode: -1
+    filterMode: 2
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -123,7 +151,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: logo_wildwestauto
+    - name: logo_wildwestautos
       rect:
         serializedVersion: 2
         x: 128
@@ -153,7 +181,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_4
+    - name: logo_twinarrow
       rect:
         serializedVersion: 2
         x: 512
@@ -226,8 +254,8 @@ TextureImporter:
     - name: logo_redpillars
       rect:
         serializedVersion: 2
-        x: 384
-        y: 768
+        x: 382
+        y: 766
         width: 128
         height: 128
       alignment: 0
@@ -247,7 +275,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
-        y: 768
+        y: 766
         width: 128
         height: 128
       alignment: 0
@@ -327,7 +355,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
-        y: 639
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -337,7 +365,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 768
-        y: 896
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -373,7 +401,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_26
+    - name: logo_cola
       rect:
         serializedVersion: 2
         x: 256
@@ -403,7 +431,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_29
+    - name: logo_blueomega
       rect:
         serializedVersion: 2
         x: 640
@@ -413,11 +441,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_30
+    - name: logo_awkwardpenguin
       rect:
         serializedVersion: 2
         x: 768
-        y: 513
+        y: 512
         width: 128
         height: 128
       alignment: 0
@@ -436,7 +464,7 @@ TextureImporter:
     - name: sponsorspritesheet_32
       rect:
         serializedVersion: 2
-        x: 0
+        x: 256
         y: 384
         width: 128
         height: 128
@@ -446,308 +474,8 @@ TextureImporter:
     - name: sponsorspritesheet_33
       rect:
         serializedVersion: 2
-        x: 128
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_34
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_35
-      rect:
-        serializedVersion: 2
         x: 384
         y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_36
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_37
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_38
-      rect:
-        serializedVersion: 2
-        x: 769
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_39
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_40
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_41
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_42
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_43
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_44
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_45
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_46
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_47
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_48
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_49
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_50
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_51
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_52
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_53
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_54
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_55
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_56
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_57
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_58
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_59
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_60
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_61
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_62
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_63
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 0
         width: 128
         height: 128
       alignment: 0

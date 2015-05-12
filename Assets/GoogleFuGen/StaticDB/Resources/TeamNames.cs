@@ -22,7 +22,8 @@ namespace GoogleFu
 		public string _teamdescription;
 		public string _startingcar1;
 		public string _startingcar2;
-		public TeamNamesRow(string __id, string __teamname, string __startleague, string __teamcolorr, string __teamcolorg, string __teamcolorb, string __teamdescription, string __startingcar1, string __startingcar2) 
+		public int _reputation;
+		public TeamNamesRow(string __id, string __teamname, string __startleague, string __teamcolorr, string __teamcolorg, string __teamcolorb, string __teamdescription, string __startingcar1, string __startingcar2, string __reputation) 
 		{
 			{
 			int res;
@@ -63,9 +64,16 @@ namespace GoogleFu
 			_teamdescription = __teamdescription;
 			_startingcar1 = __startingcar1;
 			_startingcar2 = __startingcar2;
+			{
+			int res;
+				if(int.TryParse(__reputation, out res))
+					_reputation = res;
+				else
+					Debug.LogError("Failed To Convert reputation string: "+ __reputation +" to int");
+			}
 		}
 
-		public int Length { get { return 9; } }
+		public int Length { get { return 10; } }
 
 		public string this[int i]
 		{
@@ -107,6 +115,9 @@ namespace GoogleFu
 				case 8:
 					ret = _startingcar2.ToString();
 					break;
+				case 9:
+					ret = _reputation.ToString();
+					break;
 			}
 
 			return ret;
@@ -144,6 +155,9 @@ namespace GoogleFu
 				case "startingcar2":
 					ret = _startingcar2.ToString();
 					break;
+				case "reputation":
+					ret = _reputation.ToString();
+					break;
 			}
 
 			return ret;
@@ -160,6 +174,7 @@ namespace GoogleFu
 			ret += "{" + "teamdescription" + " : " + _teamdescription.ToString() + "} ";
 			ret += "{" + "startingcar1" + " : " + _startingcar1.ToString() + "} ";
 			ret += "{" + "startingcar2" + " : " + _startingcar2.ToString() + "} ";
+			ret += "{" + "reputation" + " : " + _reputation.ToString() + "} ";
 			return ret;
 		}
 	}
@@ -194,7 +209,8 @@ namespace GoogleFu
 														"192",
 														"Not yet",
 														"Koenigsegg",
-														"Bugatti Veyron"));
+														"Bugatti Veyron",
+														"1000"));
 			Rows.Add( new TeamNamesRow("2",
 														"Ferraro",
 														"1",
@@ -203,7 +219,8 @@ namespace GoogleFu
 														"0",
 														"Not yet",
 														"Ferrari Enzo",
-														"Zonda"));
+														"Zonda",
+														"900"));
 			Rows.Add( new TeamNamesRow("3",
 														"Walliams",
 														"1",
@@ -212,7 +229,8 @@ namespace GoogleFu
 														"118",
 														"Not yet",
 														"Porsche 911",
-														"Aston Martin DB10"));
+														"Aston Martin DB10",
+														"850"));
 			Rows.Add( new TeamNamesRow("4",
 														"Tsunami Racing",
 														"1",
@@ -221,7 +239,8 @@ namespace GoogleFu
 														"52",
 														"Not yet",
 														"Lamborghini Spider",
-														"Lamborghini Spider"));
+														"Lamborghini Spider",
+														"825"));
 			Rows.Add( new TeamNamesRow("5",
 														"Force China",
 														"2",
@@ -230,7 +249,8 @@ namespace GoogleFu
 														"48",
 														"Not yet",
 														"Nissan GTR",
-														"Ford GT40"));
+														"Ford GT40",
+														"900"));
 			Rows.Add( new TeamNamesRow("6",
 														"USGT",
 														"2",
@@ -239,7 +259,8 @@ namespace GoogleFu
 														"160",
 														"Not yet",
 														"Audi TT",
-														"Aston Martin DB10"));
+														"Aston Martin DB10",
+														"800"));
 			Rows.Add( new TeamNamesRow("7",
 														"Russia Racing",
 														"2",
@@ -248,7 +269,8 @@ namespace GoogleFu
 														"36",
 														"Not yet",
 														"Ferrari Scagialetti",
-														"Porsche 911"));
+														"Porsche 911",
+														"750"));
 			Rows.Add( new TeamNamesRow("8",
 														"Blue Omega",
 														"2",
@@ -257,7 +279,8 @@ namespace GoogleFu
 														"85",
 														"Not yet",
 														"Mitsubishi",
-														"Mitsubishi"));
+														"Mitsubishi",
+														"700"));
 			Rows.Add( new TeamNamesRow("9",
 														"Skidmark Racing",
 														"3",
@@ -266,7 +289,8 @@ namespace GoogleFu
 														"24",
 														"Not yet",
 														"Lexus",
-														"Ford Mustang"));
+														"Ford Mustang",
+														"670"));
 			Rows.Add( new TeamNamesRow("10",
 														"Piston GT",
 														"3",
@@ -275,7 +299,8 @@ namespace GoogleFu
 														"155",
 														"Not yet",
 														"BMW 5 Series",
-														"Corvette"));
+														"Corvette",
+														"620"));
 			Rows.Add( new TeamNamesRow("11",
 														"Panther",
 														"3",
@@ -284,7 +309,8 @@ namespace GoogleFu
 														"3",
 														"Not yet",
 														"Ford Mondeo",
-														"TVR"));
+														"TVR",
+														"500"));
 			Rows.Add( new TeamNamesRow("12",
 														"Super Hans Racing",
 														"3",
@@ -293,7 +319,8 @@ namespace GoogleFu
 														"25",
 														"Not yet",
 														"Corvette",
-														"Lexus"));
+														"Lexus",
+														"480"));
 			Rows.Add( new TeamNamesRow("13",
 														"Joe GT",
 														"4",
@@ -302,7 +329,8 @@ namespace GoogleFu
 														"255",
 														"Not yet",
 														"Ford Focus",
-														"Ford Focus"));
+														"Ford Focus",
+														"700"));
 			Rows.Add( new TeamNamesRow("14",
 														"Team Pink",
 														"4",
@@ -311,7 +339,8 @@ namespace GoogleFu
 														"255",
 														"Not yet",
 														"Mini Cooper",
-														"Volkswagen Golf"));
+														"Volkswagen Golf",
+														"500"));
 			Rows.Add( new TeamNamesRow("15",
 														"Test Pilots",
 														"4",
@@ -320,7 +349,8 @@ namespace GoogleFu
 														"0",
 														"Not yet",
 														"Honda Civic",
-														"Volkswagen Golf"));
+														"Volkswagen Golf",
+														"400"));
 			Rows.Add( new TeamNamesRow("16",
 														"Backstreet Racing",
 														"4",
@@ -329,7 +359,8 @@ namespace GoogleFu
 														"191",
 														"Not yet",
 														"Audi A3",
-														"Mini Cooper"));
+														"Mini Cooper",
+														"300"));
 		}
 		public IGoogleFuRow GetGenRow(string in_RowString)
 		{

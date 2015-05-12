@@ -29,6 +29,8 @@ namespace Database
 
 		public Color teamColor;
 		public int startLeague;
+		
+		public int reputation;
 		public TeamDataRecord (TeamNamesRow aTeamNameRow)
 		{
 			id = aTeamNameRow._id;
@@ -37,6 +39,8 @@ namespace Database
 			teamColor = new Color(aTeamNameRow._teamcolorr/255f,aTeamNameRow._teamcolorg/255f,aTeamNameRow._teamcolorb/255f);
 			startLeague = aTeamNameRow._startleague;
 			carA = new GTCar (aTeamNameRow._startingcar1);
+			reputation = aTeamNameRow._reputation;
+			
 
 			driverA = new GTDriver (); 
 			DriverLibraryRecord driverRecord = DriverLibrary.REF.getAvailableDriver();

@@ -11,11 +11,17 @@ using System;
 using UnityEngine;
 using Database;
 using GoogleFu;
+using Teams;
+using championship;
 
 	public class SponsorScreen : MonoBehaviour
 	{
 	public UILabel companyTitle;
+	public UILabel contractLength;
+	public UILabel contractValue;
+	public UILabel sponsorDescription;
 	
+	public UILabel sponsorInterest;
 	public int showingSponsor = 0;
 	public UI2DSprite companySprite;
 	 
@@ -44,6 +50,10 @@ using GoogleFu;
 				}
 			}
 			companyTitle = initLabel("SponsorTitle");
+			sponsorDescription = initLabel("SponsorDescription");
+			contractLength = initLabel("ContractLengthValue");
+			contractValue = initLabel("SponsorOfferValue");
+			this.sponsorInterest = initLabel("InterestValue");
 		}
 		public void showNextSponsor() {
 			showingSponsor++; 
@@ -51,6 +61,7 @@ using GoogleFu;
 				showingSponsor = 0;
 			}
 			showSponsor(SponsorDatabase.REF.sponsors[showingSponsor]);
+		
 			
 		}
 		public void showPreviousSponsor() {
@@ -67,6 +78,12 @@ using GoogleFu;
 			showingSponsor = SponsorDatabase.REF.indexOfSponsor(aSponsor);
 			companySprite.sprite2D = aSponsor.logo;
 			companyTitle.text = aSponsor.name;
+			
+			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+			SponsorInterestInfo sii = team.interestFromSponsor(aSponsor);
+			contractLength.text = ""+sii.contractLength;
+			this.contractValue.text = ""+sii.sponsorValue;
+			this.sponsorInterest.text = ""+sii.sponsorInterestString;
 		}
 	}
 

@@ -30,7 +30,7 @@ namespace Database
 		public Sprite logo {
 			get {
 				//	prefabName = "GolfWhite";
-				if(sponsorTextures==null) {
+				if(sponsorTextures==null||sponsorTextures.Count==0) {
 					sponsorTextures = new List<Sprite>();
 					UnityEngine.Object[] o = Resources.LoadAll("Sponsors/sponsorspritesheet");
 					for(int i = 1;i<o.Length;i++) {

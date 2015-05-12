@@ -50,6 +50,15 @@ namespace championship
 			}
 			return null;
 		}
+		
+		public ChampionshipSeasonLeague leagueForTeam(GTTeam aTeam) {
+			for(int i = 0;i<leagues.Count;i++) {
+				if(leagues[i].hasTeam(aTeam)!=null) {
+					return leagues[i];
+				}
+			}
+			return leagues[0];
+		}
 		public GTTeam getTeamFromDriver(GTDriver aDriver) {
 			for(int i = 0;i<leagues.Count;i++) {
 				GTTeam team = leagues[i].getTeamFromDriver(aDriver);
