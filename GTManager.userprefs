@@ -1,20 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Database/DriverLibraryRecord.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Car Paint Shader PRO Mobile/Shaders/MultiTexture.shader">
     <Files>
       <File FileName="Assets/Scripts/Racing/Interface/IndividualCarInterfaceManager.cs" Line="13" Column="1" />
-      <File FileName="Assets/Scripts/Racing/RaceManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Racing/RaceManager.cs" Line="136" Column="53" />
       <File FileName="Assets/Scripts/Racing/Interface/RaceStarterTable.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Racing/RacingAI.cs" Line="295" Column="1" />
-      <File FileName="Assets/Scripts/Garage/InterfaceMainButtons.cs" Line="76" Column="1" />
       <File FileName="Assets/Scripts/Garage/GarageManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Garage/Championship/ChampionshipStandings.cs" Line="146" Column="50" />
+      <File FileName="Assets/Scripts/Garage/Championship/ChampionshipStandings.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Racing/Interface/RaceStarterMember.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Racing/TeamControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Racing/DriverOrders/DriverOrderLibrary.cs" Line="9" Column="30" />
-      <File FileName="Assets/Scripts/Drivers/GTDriver.cs" Line="18" Column="38" />
-      <File FileName="Assets/Scripts/Drivers/GTDriverBase.cs" Line="19" Column="22" />
+      <File FileName="Assets/Scripts/Racing/DriverOrders/DriverOrderLibrary.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Drivers/GTDriver.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Drivers/GTDriverBase.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Database/DriverLibraryRecord.cs" Line="86" Column="3" />
+      <File FileName="Assets/Scripts/Championship/ChampionshipRaceSettings.cs" Line="55" Column="1" />
+      <File FileName="Assets/Scripts/Championship/ChampionshipSeasonLeague.cs" Line="134" Column="60" />
+      <File FileName="Assets/Scripts/Championship/Season/ChampionshipSeasonBase.cs" Line="86" Column="63" />
+      <File FileName="Assets/Car Paint Shader PRO Mobile/Shaders/CarPaint Medium Detail RefMask.shader" Line="2" Column="1" />
+      <File FileName="Assets/Car Paint Shader PRO Mobile/Shaders/MultiTexture.shader" Line="38" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

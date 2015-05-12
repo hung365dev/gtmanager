@@ -45,7 +45,7 @@ public class DriverOrderSetup {
 		ai.SetAggressivenessOnBrake(aAI.originalBrakingAggressiveness*aggressionOnBrakingPercent);
 		ai.SetOvertakeSpeedDiference(aAI.originalOvertakeSpeedDiff+overtakeSpeedDiffModifier);
 		ai.SetOvertakeFactor(aAI.originalOvertakeFactor*overtakeFactorPercent);
-		aAI.staminaDecrementer = aAI.staminaDecrementer;
+		aAI.staminaDecrementer = staminaDecrementer;
 		float newPower = aAI.originalPower*horsePowerMultiplier;
 		if(float.IsNaN(newPower)) {
 			Debug.LogError("New Power is NaN: "+aAI.originalPower+","+horsePowerMultiplier);

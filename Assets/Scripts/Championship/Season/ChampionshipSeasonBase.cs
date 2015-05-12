@@ -83,7 +83,7 @@ namespace championship
 		}
 
 		public string dateString(int aDay) {
-			DateTime theDate = new DateTime( 2016, 1, 1 ).AddDays( aDay - 1 );
+			DateTime theDate = new DateTime( 2016, 1, 1 ).AddDays( aDay );
 			return theDate.ToShortDateString();
 		}
 

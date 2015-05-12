@@ -195,6 +195,7 @@
      <Compile Include="Assets\iRDS\Scripts\Editor\IRDSSpeedLimitsEditor.cs" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\ReadMe - 3.8.2.txt" />
+     <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\MultiTexture.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Convolution3x3.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked 1.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 2.shader" />

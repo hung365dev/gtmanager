@@ -128,8 +128,20 @@ public class RaceManager : MonoBehaviour {
 			Destroy(this.minimapObject);
 			Destroy(this.racePositions.gameObject);
 			raceFinisherTable.activate(finishers);
+			findAndDestroyGameObjectIfExists("PositionArea");
+			findAndDestroyGameObjectIfExists("TopMiddleArea");
+			findAndDestroyGameObjectIfExists("LapArea");
+			findAndDestroyGameObjectIfExists("BottomArea");
+			findAndDestroyGameObjectIfExists("CarBehindLabel");
+			findAndDestroyGameObjectIfExists("CarInfrontLabel");
+
 		}
 	}
+
+		private void findAndDestroyGameObjectIfExists(string aName) {
+			GameObject g = GameObject.Find(aName);
+			Destroy(g);
+		}
 	// Update is called once per frame
 
 	private void forceFinish() {
@@ -158,7 +170,14 @@ public class RaceManager : MonoBehaviour {
 			inited = false;
 
 		}
-
+		GameObject rsc = GameObject.Find ("RaceStartCamera");
+		if(rsc!=null) {
+			Destroy(rsc);
+		}
+		GameObject mc = GameObject.Find ("Main_Camera");
+		if(mc!=null) {
+			mc.GetComponent<Camera>().enabled = true;
+		}
 		GameObject g1 = GameObject.Find("RaceStartGUI");
 		Destroy(g1);
 
