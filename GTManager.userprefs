@@ -1,16 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Database/SponsorRelationshipRecord.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Garage/Sponsor/SponsorScreen.cs">
     <Files>
       <File FileName="Assets/Scripts/Racing/RaceManager.cs" Line="123" Column="61" />
-      <File FileName="Assets/Scripts/Database/SponsorRelationshipRecord.cs" Line="24" Column="31" />
-      <File FileName="Assets/Scripts/Garage/Sponsor/SponsorInterestInfo.cs" Line="13" Column="2" />
+      <File FileName="Assets/Scripts/Database/SponsorRelationshipRecord.cs" Line="55" Column="74" />
+      <File FileName="Assets/Scripts/Garage/Sponsor/GTTeam.cs" Line="43" Column="44" />
+      <File FileName="Assets/Scripts/Garage/Sponsor/SponsorScreen.cs" Line="79" Column="1" />
+      <File FileName="Assets/Scripts/Garage/Sponsor/SponsorInterestInfo.cs" Line="22" Column="41" />
+      <File FileName="Assets/Scripts/Championship/Season/ChampionshipSeasonBase.cs" Line="56" Column="39" />
+      <File FileName="Assets/Scripts/Garage/InterfaceMainButtons.cs" Line="38" Column="3" />
+      <File FileName="Assets/Scripts/Database/SponsorRecord.cs" Line="36" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint enabled="false" file="/Users/andrew/Documents/GoKartManager/New Unity Project/Assets/Scripts/Racing/RacingAI.cs" line="121" />
       <Breakpoint enabled="false" file="/Users/andrew/Documents/GoKartManager/New Unity Project/Assets/Scripts/Racing/TeamControl.cs" line="47" />
+      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Garage/Sponsor/SponsorScreen.cs" line="79" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

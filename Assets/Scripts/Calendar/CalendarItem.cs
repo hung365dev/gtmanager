@@ -61,9 +61,9 @@ public class CalendarItem : MonoBehaviour {
 		}
 
 		if(myTeam.hasResearchCompletingOnDay(aDayOfYear)) {
-			this.researchIcon.gameObject.SetActive(true);
+		//	this.researchIcon.gameObject.SetActive(true);
 		} else {
-			this.researchIcon.gameObject.SetActive(false);
+		//	this.researchIcon.gameObject.SetActive(false);
 		}
 	}
 	[ContextMenu("SetMyAnchors")]
