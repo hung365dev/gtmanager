@@ -1,41 +1,41 @@
 fileFormatVersion: 2
 guid: ad7094cf1016b4e5e9db9497c76472fc
-timeCreated: 1431428569
+timeCreated: 1431443615
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: logo_cocacola
-    21300002: logo_microsoft
-    21300004: sponsorspritesheet_2
-    21300006: logo_wimpy
+    21300000: logo_howlwolf
+    21300002: logo_wildwestauto
+    21300004: logo_yikipedia
+    21300006: logo_quotemark
     21300008: sponsorspritesheet_4
-    21300010: sponsorspritesheet_5
-    21300012: sponsorspritesheet_6
-    21300014: sponsorspritesheet_7
-    21300016: sponsorspritesheet_8
-    21300018: sponsorspritesheet_9
-    21300020: sponsorspritesheet_10
-    21300022: sponsorspritesheet_11
-    21300024: sponsorspritesheet_12
-    21300026: sponsorspritesheet_13
-    21300028: sponsorspritesheet_14
-    21300030: sponsorspritesheet_15
-    21300032: sponsorspritesheet_16
-    21300034: sponsorspritesheet_17
-    21300036: sponsorspritesheet_18
-    21300038: sponsorspritesheet_19
-    21300040: sponsorspritesheet_20
-    21300042: sponsorspritesheet_21
-    21300044: sponsorspritesheet_22
-    21300046: sponsorspritesheet_23
-    21300048: sponsorspritesheet_24
-    21300050: sponsorspritesheet_25
+    21300010: logo_tokia
+    21300012: logo_terramonsters
+    21300014: logo_raf
+    21300016: logo_dino
+    21300018: logo_socialtitans
+    21300020: logo_skull
+    21300022: logo_redpillars
+    21300024: logo_mastersvoice
+    21300026: logo_pineapple
+    21300028: logo_manysoft
+    21300030: logo_spokes
+    21300032: logo_mastercrook
+    21300034: logo_js
+    21300036: logo_hypnotoad
+    21300038: logo_hedgefund
+    21300040: logo_goggles
+    21300042: logo_fedup
+    21300044: logo_emp
+    21300046: logo_diceformoes
+    21300048: logo_dds
+    21300050: logo_threestripe
     21300052: sponsorspritesheet_26
-    21300054: sponsorspritesheet_27
-    21300056: sponsorspritesheet_28
+    21300054: logo_chicago
+    21300056: logo_wondys
     21300058: sponsorspritesheet_29
     21300060: sponsorspritesheet_30
-    21300062: sponsorspritesheet_31
+    21300062: logo_acars
     21300064: sponsorspritesheet_32
     21300066: sponsorspritesheet_33
     21300068: sponsorspritesheet_34
@@ -91,7 +91,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 2048
+  maxTextureSize: 1024
   textureSettings:
     filterMode: -1
     aniso: 16
@@ -113,7 +113,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: logo_cocacola
+    - name: logo_howlwolf
       rect:
         serializedVersion: 2
         x: 0
@@ -123,7 +123,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: logo_microsoft
+    - name: logo_wildwestauto
       rect:
         serializedVersion: 2
         x: 128
@@ -133,7 +133,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_2
+    - name: logo_yikipedia
       rect:
         serializedVersion: 2
         x: 256
@@ -143,7 +143,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: logo_wimpy
+    - name: logo_quotemark
       rect:
         serializedVersion: 2
         x: 384
@@ -163,7 +163,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_5
+    - name: logo_tokia
       rect:
         serializedVersion: 2
         x: 640
@@ -173,7 +173,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_6
+    - name: logo_terramonsters
       rect:
         serializedVersion: 2
         x: 768
@@ -183,7 +183,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_7
+    - name: logo_raf
       rect:
         serializedVersion: 2
         x: 896
@@ -193,7 +193,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_8
+    - name: logo_dino
       rect:
         serializedVersion: 2
         x: 0
@@ -203,7 +203,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_9
+    - name: logo_socialtitans
       rect:
         serializedVersion: 2
         x: 128
@@ -213,7 +213,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_10
+    - name: logo_skull
       rect:
         serializedVersion: 2
         x: 256
@@ -223,7 +223,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_11
+    - name: logo_redpillars
       rect:
         serializedVersion: 2
         x: 384
@@ -233,7 +233,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_12
+    - name: logo_mastersvoice
       rect:
         serializedVersion: 2
         x: 512
@@ -243,7 +243,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_13
+    - name: logo_pineapple
       rect:
         serializedVersion: 2
         x: 640
@@ -253,7 +253,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_14
+    - name: logo_manysoft
       rect:
         serializedVersion: 2
         x: 768
@@ -263,7 +263,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_15
+    - name: logo_spokes
       rect:
         serializedVersion: 2
         x: 896
@@ -273,7 +273,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_16
+    - name: logo_mastercrook
       rect:
         serializedVersion: 2
         x: 0
@@ -283,7 +283,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_17
+    - name: logo_js
       rect:
         serializedVersion: 2
         x: 128
@@ -293,7 +293,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_18
+    - name: logo_hypnotoad
       rect:
         serializedVersion: 2
         x: 256
@@ -303,7 +303,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_19
+    - name: logo_hedgefund
       rect:
         serializedVersion: 2
         x: 384
@@ -313,7 +313,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_20
+    - name: logo_goggles
       rect:
         serializedVersion: 2
         x: 512
@@ -323,27 +323,27 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_21
+    - name: logo_fedup
       rect:
         serializedVersion: 2
         x: 640
-        y: 640
+        y: 639
         width: 128
         height: 128
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_22
+    - name: logo_emp
       rect:
         serializedVersion: 2
         x: 768
-        y: 640
+        y: 896
         width: 128
         height: 128
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_23
+    - name: logo_diceformoes
       rect:
         serializedVersion: 2
         x: 896
@@ -353,7 +353,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_24
+    - name: logo_dds
       rect:
         serializedVersion: 2
         x: 0
@@ -363,7 +363,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_25
+    - name: logo_threestripe
       rect:
         serializedVersion: 2
         x: 128
@@ -383,7 +383,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_27
+    - name: logo_chicago
       rect:
         serializedVersion: 2
         x: 384
@@ -393,7 +393,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_28
+    - name: logo_wondys
       rect:
         serializedVersion: 2
         x: 512
@@ -417,13 +417,13 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 768
-        y: 512
+        y: 513
         width: 128
         height: 128
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: sponsorspritesheet_31
+    - name: logo_acars
       rect:
         serializedVersion: 2
         x: 896
@@ -496,7 +496,7 @@ TextureImporter:
     - name: sponsorspritesheet_38
       rect:
         serializedVersion: 2
-        x: 768
+        x: 769
         y: 384
         width: 128
         height: 128

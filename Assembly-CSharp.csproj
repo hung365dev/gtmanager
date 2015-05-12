@@ -116,6 +116,7 @@
      <Compile Include="Assets\GoogleFuGen\StaticDB\Resources\DriverNames.cs" />
      <Compile Include="Assets\GoogleFuGen\StaticDB\Resources\RaceTracks.cs" />
      <Compile Include="Assets\GoogleFuGen\StaticDB\Resources\RnD.cs" />
+     <Compile Include="Assets\GoogleFuGen\StaticDB\Resources\SponsorLibrary.cs" />
      <Compile Include="Assets\GoogleFuGen\StaticDB\Resources\TeamNames.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX2_Demo.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX3_Demo.cs" />
@@ -299,6 +300,8 @@
      <Compile Include="Assets\Scripts\Database\CarLibraryRecord.cs" />
      <Compile Include="Assets\Scripts\Database\DriverLibrary.cs" />
      <Compile Include="Assets\Scripts\Database\DriverLibraryRecord.cs" />
+     <Compile Include="Assets\Scripts\Database\SponsorDatabase.cs" />
+     <Compile Include="Assets\Scripts\Database\SponsorRecord.cs" />
      <Compile Include="Assets\Scripts\Database\TeamDataRecord.cs" />
      <Compile Include="Assets\Scripts\Database\TeamDatabase.cs" />
      <Compile Include="Assets\Scripts\Database\TrackDatabase.cs" />
@@ -314,6 +317,8 @@
      <Compile Include="Assets\Scripts\Garage\RnD\IndividualPieceOfResearch.cs" />
      <Compile Include="Assets\Scripts\Garage\RnD\ResearchItem.cs" />
      <Compile Include="Assets\Scripts\Garage\RnD\ResearchScreenMain.cs" />
+     <Compile Include="Assets\Scripts\Garage\Sponsor\ESponsorPosition.cs" />
+     <Compile Include="Assets\Scripts\Garage\Sponsor\SponsorScreen.cs" />
      <Compile Include="Assets\Scripts\InitGame\InitGameScript.cs" />
      <Compile Include="Assets\Scripts\Racing\CarInfo\EEngineFailureStage.cs" />
      <Compile Include="Assets\Scripts\Racing\CarInfo\EngineTemperatureMonitor.cs" />

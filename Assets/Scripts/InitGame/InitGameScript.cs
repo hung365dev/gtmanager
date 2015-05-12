@@ -14,6 +14,7 @@ public class InitGameScript : MonoBehaviour {
 		this.GetComponent<CarDatabase> ().init ();
 		this.GetComponent<TeamDatabase> ().init ();
 		this.GetComponent<TrackDatabase>().init();
+		this.GetComponent<SponsorDatabase>().init();
 		ChampionshipSeason champ = GameObject.Find ("ChampionshipObject").GetComponent<ChampionshipSeason>();
 		champ.initFromDatabase();
 		//StartCoroutine(LoadLevel());

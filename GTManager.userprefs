@@ -1,29 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Car Paint Shader PRO Mobile/Shaders/MultiTexture.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Database/SponsorRecord.cs">
     <Files>
-      <File FileName="Assets/Scripts/Racing/Interface/IndividualCarInterfaceManager.cs" Line="13" Column="1" />
-      <File FileName="Assets/Scripts/Racing/RaceManager.cs" Line="136" Column="53" />
-      <File FileName="Assets/Scripts/Racing/Interface/RaceStarterTable.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Garage/GarageManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Garage/Championship/ChampionshipStandings.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Racing/Interface/RaceStarterMember.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Racing/TeamControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Racing/DriverOrders/DriverOrderLibrary.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Drivers/GTDriver.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Drivers/GTDriverBase.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Database/DriverLibraryRecord.cs" Line="86" Column="3" />
-      <File FileName="Assets/Scripts/Championship/ChampionshipRaceSettings.cs" Line="55" Column="1" />
-      <File FileName="Assets/Scripts/Championship/ChampionshipSeasonLeague.cs" Line="134" Column="60" />
-      <File FileName="Assets/Scripts/Championship/Season/ChampionshipSeasonBase.cs" Line="86" Column="63" />
-      <File FileName="Assets/Car Paint Shader PRO Mobile/Shaders/CarPaint Medium Detail RefMask.shader" Line="2" Column="1" />
-      <File FileName="Assets/Car Paint Shader PRO Mobile/Shaders/MultiTexture.shader" Line="38" Column="3" />
+      <File FileName="Assets/Scripts/Teams/GTTeam.cs" Line="45" Column="12" />
+      <File FileName="Assets/Scripts/Garage/Sponsor/ESponsorPosition.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Database/CarDatabase.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Database/SponsorRecord.cs" Line="33" Column="5" />
+      <File FileName="Assets/Scripts/Garage/Sponsor/SponsorScreen.cs" Line="45" Column="1" />
+      <File FileName="Assets/Scripts/Database/SponsorDatabase.cs" Line="37" Column="4" />
+      <File FileName="Assets/Scripts/InitGame/InitGameScript.cs" Line="20" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint enabled="false" file="/Users/andrew/Documents/GoKartManager/New Unity Project/Assets/Scripts/Racing/RacingAI.cs" line="121" />
       <Breakpoint enabled="false" file="/Users/andrew/Documents/GoKartManager/New Unity Project/Assets/Scripts/Racing/TeamControl.cs" line="47" />
+      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Garage/Sponsor/SponsorScreen.cs" line="45" />
+      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Database/SponsorRecord.cs" line="32" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
