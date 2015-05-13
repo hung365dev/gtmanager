@@ -44,7 +44,8 @@ namespace championship
 			case(1):track = TrackDatabase.REF.recordFromName("LongStraights");break;
 			case(4):track = TrackDatabase.REF.recordFromName("RaceCircuit1");break;
 			case(3):track = TrackDatabase.REF.recordFromName("OvalTrack");break;
-			case(0):track = TrackDatabase.REF.recordFromName("LowerLevel1");break;
+			case(5):track = TrackDatabase.REF.recordFromName("LowerLevel1");break;
+			case(0):track = TrackDatabase.REF.recordFromName("MiniOval");break;
 			} 
 			prizeFund = 50000*(5-aLeague);
 			driversPointsDistribution = EPointsDistribution.F12010Style;

@@ -68,6 +68,11 @@ public class RacingAI : MonoBehaviour {
 
 	public float fatigue = 8000f;
 	public float staminaDecrementer = 0f;
+
+	public EDriverMessage lastMessage;
+	public bool dmgTriggered = false;
+
+	public float lastMessageTime;
 	// Use this for initialization
 	void Start () {
 		this.tag = "Player";
@@ -81,6 +86,7 @@ public class RacingAI : MonoBehaviour {
 		aiCar = g.GetComponent<IRDSCarControllerAI>();
 		if (aiCar != null) {
 			driverRecord = aRecord;
+			lastMessageTime = Time.time;
 			aiCar.SetAggressivenessOnBrake(aRecord.aggressivenessOnBrake);
 			this.originalBrakingAggressiveness = aRecord.aggressivenessOnBrake;
 			aiCar.SetBackCollDist(aRecord.backCollDist);
@@ -144,6 +150,12 @@ public class RacingAI : MonoBehaviour {
 		return this;
 	}
 
+	public bool tiresWorn {
+		get {
+			return false;
+		}
+	}
+
 	public void initSmokes() {
 		try {
 			if(engineWhiteSmoke==null&&this.gameObject.transform.FindChild("EngineWhiteSmoke")!=null) {
@@ -172,9 +184,10 @@ public class RacingAI : MonoBehaviour {
 					engineBlackSmoke.gameObject.SetActive(false);	
 				if(aiDriveTrain!=null) {
 					if(!float.IsNaN(this.originalMaxRPM)&&(this.originalMaxRPM>0)) {
-						this.aiDriveTrain.SetMaxPower(this.originalPower);
-						this.aiDriveTrain.SetMaxTorque(this.originalTorque);
-						this.aiDriveTrain.SetMaxRPM(this.originalMaxRPM);
+					//	this.aiDriveTrain.SetMaxPower(this.originalPower);
+					//	this.aiDriveTrain.SetMaxTorque(this.originalTorque);
+					//	this.aiDriveTrain.SetMaxRPM(this.originalMaxRPM);
+						this.aiDriveTrain.TurnOff();
 					}
 				}
 		
@@ -292,7 +305,8 @@ public class RacingAI : MonoBehaviour {
 		this.fatigue -= this.staminaDecrementer;
 		fatigueCount++;
 		if(fatigueCount%40==0&&aiCar!=null) {
-			this.aiCar.SetHumanError(this.driverRecord.humanError+(this.driverRecord.humanError*(this.fatigue/this.driverRecord.stamina)));
+			if(fatigue>0)
+				this.aiCar.SetHumanError(this.driverRecord.humanError+(this.driverRecord.humanError*(this.fatigue/this.driverRecord.stamina)));
 		}
 	}
 
@@ -355,6 +369,7 @@ public class RacingAI : MonoBehaviour {
 		if(this.aiCar==null) {
 			return;
 		}
+		float time = Time.time;
 		if(this.aiCar.GetCarSpeed()*3.6f>maxSpeed) {
 			maxSpeed = aiCar.GetCarSpeed()*3.6f;
 		}
@@ -383,6 +398,26 @@ public class RacingAI : MonoBehaviour {
 			drsActivated = false;
 		}
 		if (humanControl) {
+			if(time-this.lastMessageTime>10f) {
+				lastMessageTime = time;
+				if(lastMessage!=EDriverMessage.BrakingOnOpponent&&this.aiCar.GetIsBrakingOnOpponent()) {
+					RaceManager.REF.carDriverMessage(this,EDriverMessage.BrakingOnOpponent);
+				} else if(lastMessage!=EDriverMessage.Avoiding&&this.aiCar.GetIsAvoidingOpponentSideways()) {
+					RaceManager.REF.carDriverMessage(this,EDriverMessage.Avoiding);
+				} else if(lastMessage!=EDriverMessage.Damage&&dmgTriggered) {
+					RaceManager.REF.carDriverMessage(this,EDriverMessage.Damage);
+				} else if(lastMessage!=EDriverMessage.GettingHot&&this.engineTempMonitor.isGettingHot) {
+					RaceManager.REF.carDriverMessage(this,EDriverMessage.GettingHot);
+				} else if(lastMessage!=EDriverMessage.GettingHot&&this.engineTempMonitor.isOverheating) {
+					RaceManager.REF.carDriverMessage(this,EDriverMessage.Overheating);
+				} else if(lastMessage!=EDriverMessage.Overtaking&&this.aiCar.GetIsOvertaking()) {
+					RaceManager.REF.carDriverMessage(this,EDriverMessage.Overtaking);
+				} else if(lastMessage!=EDriverMessage.TiresWorn&&tiresWorn) {
+					RaceManager.REF.carDriverMessage(this,EDriverMessage.TiresWorn);
+				} else if(lastMessage!=EDriverMessage.TooHot&&this.engineTempMonitor.isTooHot) {
+					RaceManager.REF.carDriverMessage(this,EDriverMessage.TooHot);
+				}
+			}
 		} else {
 			if(this.engineTempMonitor.percentTempRange<0.5f) {
 				if(this.currentOrders!=EDriverOrders.DoOrDie)

@@ -114,6 +114,7 @@
      <None Include="Assets\Colorful\Shaders\CC_Blend.shader" />
      <None Include="Assets\Colorful\Shaders\CC_CrossStitch.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Alpha-Diffuse.shader" />
+     <None Include="Assets\HereVR Race Scene\RaceTrack Pack 01\_Scenes\RaceTrack Pack 01 - HereVR Race Scene - Release log.txt" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAlphaBlend_Alpha8.shader" />
      <None Include="Assets\UI\GameUI\LatoHeavy144.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Medium Detail Scrolled Env.shader" />
@@ -215,6 +216,7 @@
      <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
      <None Include="Assets\Colorful\Shaders\CC_PhotoFilter.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Road-Edit-Mode.shader" />
+     <None Include="Assets\HereVR Race Scene\RaceTrack Pack 01\_Scenes\README - Important.txt" />
      <None Include="Assets\iRDS\Required\Pictures\Skidmarks\Skidmarks.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Normal-Bumped.shader" />
      <None Include="Assets\iRDS\Required\Shaders\AlphaTest-Diffuse-GEqual.shader" />

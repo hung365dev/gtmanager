@@ -31,6 +31,10 @@ public class RaceManager : MonoBehaviour {
 	public ChampionshipRaceSettings raceSettings;
 	public RaceStarterTable raceStartersTable;
 	public GameObject genericRaceGUI;
+
+	public UILabel driver1Label;
+	public UILabel driver2Label;
+
 //	public CarLibrary carLib;
 	// Use this for initialization
 	void Start () {
@@ -67,6 +71,10 @@ public class RaceManager : MonoBehaviour {
 		genericRaceGUI = GameObject.Find("GenericRaceGUI");
 		UILabel totalRacers = GameObject.Find ("NumberOfRacers").GetComponent<UILabel>();
 		UILabel totalLaps = GameObject.Find("LAP").GetComponent<UILabel>();
+
+		driver1Label = GameObject.Find("DriverMessage1").GetComponent<UILabel>();
+		driver2Label = GameObject.Find("DriverMessage2").GetComponent<UILabel>();
+
 		if(genericRaceGUI!=null) {
 			genericRaceGUI.gameObject.SetActive(false);
 		}
@@ -187,6 +195,49 @@ public class RaceManager : MonoBehaviour {
 
 	
 	//	
+	}
+
+	public void carDriverMessage(RacingAI aDriver,EDriverMessage aMessageType) {
+		string msg = "Unknown Message";
+		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+		aDriver.lastMessage = aMessageType;
+		int indexForDriver = team.indexForDriver(aDriver.driverRecord);
+		UILabel labelToUse = this.driver1Label;
+		if(indexForDriver == 1) {
+			labelToUse = driver2Label;
+		}
+		switch(aMessageType) {
+			case(EDriverMessage.Avoiding):
+				msg = "I'm having to avoid other cars!";
+			break;
+			case(EDriverMessage.BrakingOnOpponent):
+				msg = "The car ahead is holding me up!";
+			break;
+			case(EDriverMessage.Damage):
+				msg = "I've damaged the car!";
+			break;
+			case(EDriverMessage.GettingHot):
+				msg = "The car's starting to overheat!";
+			break;
+			case(EDriverMessage.Overheating):
+				msg = "The car's overheating!";
+			break;
+			case(EDriverMessage.Overtaking):
+				msg = "I'm going for the overtake!";
+			break;
+			case(EDriverMessage.TiresWorn):
+				msg = "These tires are badly worn!";
+			break;
+			case(EDriverMessage.TooHot):
+				msg = "The engines overheated and failing!";
+			break;
+		}
+		labelToUse.text = aDriver.driverName+": "+msg;
+
+		TweenAlpha[] alphas = labelToUse.GetComponents<TweenAlpha>();
+		for(int i = 0;i<alphas.Length;i++) {
+			alphas[i].enabled = true;
+		}
 	}
 	void Update () {
 		if (!inited) {

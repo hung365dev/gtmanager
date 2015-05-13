@@ -44,6 +44,10 @@ namespace Racing
 		public float maxTempPercent = 0f;
 
 		public bool hasFailed = false;
+
+		public bool isGettingHot = false;
+		public bool isTooHot = false;
+		public bool isOverheating = false;
 		public EngineTemperatureMonitor ()
 		{
 		}
@@ -68,9 +72,7 @@ namespace Racing
 				// Just for montioring in Unity IDE
 				lastHeat = tempToAdd;
 				lastRPMPercent = aDriveTrain.GetRPM()/aDriveTrain.revLimiterRPM;
-				if(float.IsNaN(lastHeat)) {
-					Debug.Log ("Stop!");
-				}
+
 			}
 			// Is the cars cooler "on" (yes if temperature is above perfect temperature)?
 			if(currentTemperature>perfectTemperature) {
@@ -97,22 +99,41 @@ namespace Racing
 				if(aAI.engineFailure!=EEngineFailureStage.Normal) {
 					aAI.engineFailure = EEngineFailureStage.Normal;
 					aAI.setEngineFailureStage();
+					this.isTooHot = false;
+					this.isOverheating = false;
+					this.isGettingHot = false;
 				}
 			} else if(percentTempRange<0.90f) {
 				if(aAI.engineFailure!=EEngineFailureStage.Hot) {
 					aAI.engineFailure = EEngineFailureStage.Hot;
 					aAI.setEngineFailureStage();
+					
+					this.isGettingHot = true;
+					
+					this.isTooHot = false;
+					this.isOverheating = false;
 				}
 			} else if(percentTempRange<1f) {
 				if(aAI.engineFailure!=EEngineFailureStage.VeryHot) {
 					aAI.engineFailure = EEngineFailureStage.VeryHot;
 					aAI.setEngineFailureStage();
+					
+					this.isGettingHot = false;
+					
+					this.isTooHot = false;
+					this.isOverheating = true;
 				}
 			} else {
 				if(aAI.engineFailure!=EEngineFailureStage.Failed) {
 					hasFailed = true;
 					aAI.engineFailure = EEngineFailureStage.Failed;
 					aAI.setEngineFailureStage();
+					
+					this.isGettingHot = false;
+					
+					this.isTooHot = true;
+					this.isOverheating = true;
+		
 				}
 			}
 
