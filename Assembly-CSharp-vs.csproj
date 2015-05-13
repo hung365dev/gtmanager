@@ -301,6 +301,7 @@
      <Compile Include="Assets\Scripts\Database\DriverLibrary.cs" />
      <Compile Include="Assets\Scripts\Database\DriverLibraryRecord.cs" />
      <Compile Include="Assets\Scripts\Database\SponsorDatabase.cs" />
+     <Compile Include="Assets\Scripts\Database\SponsorPlacedRelationshipRecord.cs" />
      <Compile Include="Assets\Scripts\Database\SponsorRecord.cs" />
      <Compile Include="Assets\Scripts\Database\SponsorRelationshipRecord.cs" />
      <Compile Include="Assets\Scripts\Database\TeamDataRecord.cs" />
@@ -319,7 +320,6 @@
      <Compile Include="Assets\Scripts\Garage\RnD\ResearchItem.cs" />
      <Compile Include="Assets\Scripts\Garage\RnD\ResearchScreenMain.cs" />
      <Compile Include="Assets\Scripts\Garage\Sponsor\ESponsorPosition.cs" />
-     <Compile Include="Assets\Scripts\Garage\Sponsor\GTTeam.cs" />
      <Compile Include="Assets\Scripts\Garage\Sponsor\SponsorInterestInfo.cs" />
      <Compile Include="Assets\Scripts\Garage\Sponsor\SponsorScreen.cs" />
      <Compile Include="Assets\Scripts\InitGame\InitGameScript.cs" />
@@ -344,6 +344,7 @@
      <Compile Include="Assets\Scripts\Racing\TrackScripts\SectorManager.cs" />
      <Compile Include="Assets\Scripts\Racing\TrackScripts\SectorTimeTriplet.cs" />
      <Compile Include="Assets\Scripts\Racing\TrackScripts\TrackSectorManager.cs" />
+     <Compile Include="Assets\Scripts\Teams\GTTeam.cs" />
      <Compile Include="Assets\Scripts\Utils\SetNullAnchorsToGameObject.cs" />
      <Compile Include="Assets\Scripts\Utils\SettingsScreen.cs" />
      <Compile Include="Assets\SmoothLookAt.cs" />

@@ -102,6 +102,9 @@ public class InterfaceMainButtons : MonoBehaviour {
 
 	public void onCloseOtherScreen() {
 		destroyCarDetailsScreen();
+		if(sponsorScreen!=null) {
+			Destroy(sponsorScreen.gameObject);
+		}
 		researchScreen.gameObject.SetActive(false);
 		this.gameObject.SetActive(true);
 	}

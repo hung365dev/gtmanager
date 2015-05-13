@@ -89,6 +89,9 @@ public class RaceManager : MonoBehaviour {
 				thisCar.recolourCarForTeam(team);
 				thisCar.carRef = gtCar;
 				gtCar.applyResearchToCar(thisCar.aiDriveTrain,thisCar.aiCar,thisCar.GetComponent<RacingAI>());
+				
+				
+				team.applySponsorsToCar(thisCar.gameObject);
 				activeCarsCount++;
 				this.maxCars++;
 			}

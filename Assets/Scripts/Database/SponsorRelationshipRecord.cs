@@ -16,10 +16,13 @@ public class SponsorRelationshipRecord
 	public int currentRelationshipValue;
 	public SponsorRelationshipRecord (SponsorRecord aRecord,int aRelationshipValue)
 	{
+		init(aRecord,aRelationshipValue);
+	}
+	public void init(SponsorRecord aRecord,int aRelationshipValue)
+	{
 		record = aRecord;
 		currentRelationshipValue = aRelationshipValue - record.requiredReputation;
 	}
-	
 	public SponsorInterestInfo interest {
 		get {
 			if(currentRelationshipValue<-200) {

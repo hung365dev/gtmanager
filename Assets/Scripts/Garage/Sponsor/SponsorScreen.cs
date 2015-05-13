@@ -24,7 +24,11 @@ using championship;
 	public UILabel sponsorInterest;
 	public int showingSponsor = 0;
 	public UI2DSprite companySprite;
+	
+	public SponsorInterestInfo sponsorInterestInfo;
+	
 	 
+	 public ESponsorPosition currentPosition = ESponsorPosition.Bonnet;
 		public SponsorScreen ()
 		{
 		 
@@ -37,8 +41,44 @@ using championship;
 			} 
 		return null;
 		}
-
-		public void Start() {
+		
+		public void changePosition() {
+			switch(currentPosition) {
+				case(ESponsorPosition.Bonnet):
+					currentPosition = ESponsorPosition.Back;
+					break;
+				case(ESponsorPosition.Back):
+					currentPosition = ESponsorPosition.Roof;
+					break;
+				case(ESponsorPosition.Roof):
+					currentPosition = ESponsorPosition.Left;
+					break;
+				case(ESponsorPosition.Left):
+					currentPosition = ESponsorPosition.Right;
+					break;
+				case(ESponsorPosition.Right):
+					currentPosition = ESponsorPosition.Bonnet;
+					break;
+			}
+		}
+		public void onAcceptOffer() {
+			GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+		
+			myTeam.addContract(this.currentPosition,myTeam.sponsorRelationship(SponsorDatabase.REF.sponsors[showingSponsor]),Convert.ToInt32(sponsorInterestInfo.sponsorValue),sponsorInterestInfo.contractLength);
+			
+			
+			rePaintCars();
+		}
+		public void rePaintCars() {
+			GameObject gls = GameObject.Find("GarageLeftSide");
+			GameObject grs = GameObject.Find ("GarageRightSide");
+			GarageCarManager gcm = gls.GetComponent<GarageCarManager>();
+			GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+			myTeam.applySponsorsToCar(gcm.thisCarsGameObject);
+			gcm = grs.GetComponent<GarageCarManager>();
+			myTeam.applySponsorsToCar(gcm.thisCarsGameObject);
+		}
+	public void Start() {
 			if(SponsorDatabase.REF!=null)
 			showSponsor(SponsorDatabase.REF.sponsorByID(1));
 		}
@@ -71,7 +111,12 @@ using championship;
 			}
 			showSponsor(SponsorDatabase.REF.sponsors[showingSponsor]);
 		}
-		public void showSponsor(SponsorRecord aSponsor) {
+	
+		public void onCloseSponsorScreen() {
+			InterfaceMainButtons.REF.onCloseOtherScreen();
+		}
+	
+	public void showSponsor(SponsorRecord aSponsor) {
 			if(companyTitle==null) {
 				initLabels();
 			} 
@@ -81,7 +126,9 @@ using championship;
 			
 			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 			SponsorInterestInfo sii = team.interestFromSponsor(aSponsor);
-			contractLength.text = ""+sii.contractLength;
+			
+			sponsorInterestInfo = sii;
+			contractLength.text = ""+sii.contractLength+" Races";
 			this.contractValue.text = ""+sii.sponsorValue;
 			this.sponsorInterest.text = ""+sii.sponsorInterestString;
 		}
