@@ -89,7 +89,34 @@ public class CarDetails : MonoBehaviour {
 		}
 	
 	}
+	
+	public void alignToLeft() {
 
+		GameObject go = this.transform.FindChild("FadeBG").gameObject;
+		UISprite spr = go.GetComponent<UISprite>();
+		if(spr!=null) {
+		 
+			go = this.transform.parent.gameObject;
+			 
+			if(go!=null) {
+				Debug.Log ("Game Object is: "+go);
+				Transform t = go.transform;
+			//	pan.leftAnchor.target = t;
+				spr.leftAnchor.relative = 0;
+				//pan.rightAnchor.target = t;
+				spr.rightAnchor.relative = 0.35f;
+					//pan.topAnchor.target = t;
+				spr.topAnchor.relative = 0.84f;
+				spr.topAnchor.absolute = 0;
+
+					
+				spr.bottomAnchor.target = t;
+				spr.bottomAnchor.relative = 0;
+				spr.bottomAnchor.absolute = 0;
+				spr.ResetAndUpdateAnchors();
+			}
+		}
+	}
 	public void hideButtons() {
 		buttonsHolder = this.gameObject.transform.FindChild("MoreButtons").gameObject;
 		buttonsHolder.gameObject.SetActive(false);

@@ -14,11 +14,13 @@ using Database;
 	{
 		public ESponsorPosition position;
 		public int remaining = 0;
-		public SponsorPlacedRelationshipRecord (ESponsorPosition aSponsor,SponsorRecord aRecord,int aRelationshipValue,int aRacesRemaining) : base(aRecord,aRelationshipValue)
+		public float valuePerRace;
+		public SponsorPlacedRelationshipRecord (ESponsorPosition aSponsor,SponsorRecord aRecord,float aValuePerRace,int aRacesRemaining) : base(aRecord,0)
 		{
 		
 			position = aSponsor;
 			remaining = aRacesRemaining;
+			valuePerRace = aValuePerRace;
 			
 		}
 	}

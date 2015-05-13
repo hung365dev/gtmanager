@@ -36,6 +36,7 @@ public class GarageCarManager : MonoBehaviour {
 				
 			}
 			thisCarsGameObject = thisCar;
+			team.applySponsorsToCar(thisCarsGameObject);
 			thisAI.engineFailure = Racing.EEngineFailureStage.Normal;
 			thisAI.setEngineFailureStage();
 			thisAI.recolourCarForTeam(team);

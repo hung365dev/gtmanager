@@ -291,7 +291,7 @@ public class RacingAI : MonoBehaviour {
 		engineTempMonitor.Update(this.aiDriveTrain,this.aiCar,this.aiInput,this);
 		this.fatigue -= this.staminaDecrementer;
 		fatigueCount++;
-		if(fatigueCount%40==0) {
+		if(fatigueCount%40==0&&aiCar!=null) {
 			this.aiCar.SetHumanError(this.driverRecord.humanError+(this.driverRecord.humanError*(this.fatigue/this.driverRecord.stamina)));
 		}
 	}

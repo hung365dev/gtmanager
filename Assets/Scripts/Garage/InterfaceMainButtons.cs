@@ -90,7 +90,7 @@ public class InterfaceMainButtons : MonoBehaviour {
 		}
 	}
 
-	public void createCarDetailsScreen(GameObject aLastScreen,GTCar aCar,bool aShowButtons) {
+	public CarDetails createCarDetailsScreen(GameObject aLastScreen,GTCar aCar,bool aShowButtons) {
 		destroyCarDetailsScreen();
 		GameObject g = NGUITools.AddChild(GameObject.Find ("UI Root"),prefabCarDetails.gameObject);
 		carDetailsScreen = g.GetComponent<CarDetails>();
@@ -98,6 +98,7 @@ public class InterfaceMainButtons : MonoBehaviour {
 		if(!aShowButtons) {
 			carDetailsScreen.disableButtons();
 		}
+		return carDetailsScreen;
 	}
 
 	public void onCloseOtherScreen() {

@@ -31,7 +31,7 @@ namespace Teams
 		public int seasonWins = 0;
 		public static Material sponsorMaterial;
 		public int cash = 200000;
-		public static string HUMANS_DEBUG_TEAM = "Team Pink";
+		public static string HUMANS_DEBUG_TEAM = "Test Pilots";
 		
 		
 		public List<SponsorPlacedRelationshipRecord> currentContracts = new List<SponsorPlacedRelationshipRecord>();

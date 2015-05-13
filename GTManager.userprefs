@@ -1,12 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Teams/GTTeam.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Garage/Sponsor/SponsorScreen.cs">
     <Files>
       <File FileName="Assets/Scripts/Racing/RaceManager.cs" Line="94" Column="15" />
-      <File FileName="Assets/Scripts/Garage/Sponsor/SponsorScreen.cs" Line="116" Column="24" />
-      <File FileName="Assets/Scripts/Database/SponsorPlacedRelationshipRecord.cs" Line="20" Column="24" />
+      <File FileName="Assets/Scripts/Garage/Sponsor/SponsorScreen.cs" Line="138" Column="61" />
+      <File FileName="Assets/Scripts/Database/SponsorPlacedRelationshipRecord.cs" Line="24" Column="4" />
       <File FileName="Assets/Scripts/Garage/InterfaceMainButtons.cs" Line="106" Column="38" />
-      <File FileName="Assets/Scripts/Teams/GTTeam.cs" Line="104" Column="43" />
+      <File FileName="Assets/Scripts/Teams/GTTeam.cs" Line="89" Column="1" />
+      <File FileName="Assets/Scripts/Database/SponsorRecord.cs" Line="18" Column="29" />
+      <File FileName="Assets/GarageCameraController.cs" Line="25" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

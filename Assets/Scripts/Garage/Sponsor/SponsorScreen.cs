@@ -22,12 +22,19 @@ using championship;
 	public UILabel sponsorDescription;
 	
 	public UILabel sponsorInterest;
+	
+	public UILabel positionLabel;
 	public int showingSponsor = 0;
 	public UI2DSprite companySprite;
 	
 	public SponsorInterestInfo sponsorInterestInfo;
+	public UIButton acceptButton;
+	public UIButton rightButton;
+	public UIButton leftButton;
+	public Camera mainCamera;
+	public GameObject getCameraPositionsFromThis;
 	
-	 
+	
 	 public ESponsorPosition currentPosition = ESponsorPosition.Bonnet;
 		public SponsorScreen ()
 		{
@@ -60,14 +67,13 @@ using championship;
 					currentPosition = ESponsorPosition.Bonnet;
 					break;
 			}
+			this.showSponsor(SponsorDatabase.REF.sponsors[showingSponsor]);
 		}
 		public void onAcceptOffer() {
 			GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
-		
 			myTeam.addContract(this.currentPosition,myTeam.sponsorRelationship(SponsorDatabase.REF.sponsors[showingSponsor]),Convert.ToInt32(sponsorInterestInfo.sponsorValue),sponsorInterestInfo.contractLength);
-			
-			
 			rePaintCars();
+			showSponsor(SponsorDatabase.REF.sponsors[showingSponsor]);
 		}
 		public void rePaintCars() {
 			GameObject gls = GameObject.Find("GarageLeftSide");
@@ -78,9 +84,13 @@ using championship;
 			gcm = grs.GetComponent<GarageCarManager>();
 			myTeam.applySponsorsToCar(gcm.thisCarsGameObject);
 		}
-	public void Start() {
-			if(SponsorDatabase.REF!=null)
+		public void Start() {
+		
+		mainCamera = GameObject.Find ("Main Camera").GetComponent<Camera>();
+		getCameraPositionsFromThis = GameObject.Find ("GarageLeftSide");
+		if(SponsorDatabase.REF!=null)
 			showSponsor(SponsorDatabase.REF.sponsorByID(1));
+			
 		}
 		public void initLabels() {
 			UI2DSprite[] uis = this.GetComponentsInChildren<UI2DSprite>();
@@ -94,7 +104,10 @@ using championship;
 			contractLength = initLabel("ContractLengthValue");
 			contractValue = initLabel("SponsorOfferValue");
 			this.sponsorInterest = initLabel("InterestValue");
-		}
+			this.positionLabel = initLabel("AdPositionValue");
+			
+			
+	}
 		public void showNextSponsor() {
 			showingSponsor++; 
 			if(showingSponsor>=SponsorDatabase.REF.sponsors.Count) {
@@ -115,22 +128,109 @@ using championship;
 		public void onCloseSponsorScreen() {
 			InterfaceMainButtons.REF.onCloseOtherScreen();
 		}
-	
+	public void changeCar() {
+		if(getCameraPositionsFromThis.gameObject.name=="GarageLeftSide") { 
+			getCameraPositionsFromThis = GameObject.Find ("GarageRightSide");
+		} else {
+			getCameraPositionsFromThis = GameObject.Find ("GarageLeftSide");
+		}
+		
+		showSponsor(SponsorDatabase.REF.sponsors[showingSponsor]);
+	}
 	public void showSponsor(SponsorRecord aSponsor) {
 			if(companyTitle==null) {
 				initLabels();
 			} 
-			showingSponsor = SponsorDatabase.REF.indexOfSponsor(aSponsor);
-			companySprite.sprite2D = aSponsor.logo;
-			companyTitle.text = aSponsor.name;
+			/*
+				
+				switch(sprites[i].name) {
+					case("SponsorTop"):
+						rec = hasSponsorForPlace(ESponsorPosition.Bonnet);break;
+					case("SponsorRoof"):
+						rec = hasSponsorForPlace(ESponsorPosition.Roof);break;
+					case("SponsorRightSide"):
+						rec = hasSponsorForPlace(ESponsorPosition.Right);break;
+					case("SponsorLeftSide"):
+						rec = hasSponsorForPlace(ESponsorPosition.Left);break;
+					case("SponsorBackside"):
+						rec = hasSponsorForPlace(ESponsorPosition.Back);break;
+				}
+*/
+			GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+			GameObject thisCar = this.getCameraPositionsFromThis.GetComponent<GarageCarManager>().thisCarsGameObject;
+			SpriteRenderer[] sponsorRenderers = thisCar.GetComponentsInChildren<SpriteRenderer>();
+			string wantToLookAtThis = "";
+			GameObject lookAtThis = null;
+			switch(this.currentPosition) {
+				case(ESponsorPosition.Back):
+					positionLabel.text = "Back";
 			
-			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
-			SponsorInterestInfo sii = team.interestFromSponsor(aSponsor);
+					this.mainCamera.gameObject.transform.position = this.getCameraPositionsFromThis.transform.FindChild("CameraBack").position;
+					wantToLookAtThis = "SponsorBackside";
+				break;
+				case(ESponsorPosition.Bonnet):
+					positionLabel.text = "Front";
+					this.mainCamera.gameObject.transform.position = this.getCameraPositionsFromThis.transform.FindChild("CameraFront").position;
+					wantToLookAtThis = "SponsorTop";
+			break;
+				case(ESponsorPosition.Left):
+					positionLabel.text = "Left Side";
+					this.mainCamera.gameObject.transform.position = this.getCameraPositionsFromThis.transform.FindChild("CameraRight").position;
+					wantToLookAtThis = "SponsorLeftSide";
+			break;
+				case(ESponsorPosition.Right):
+					positionLabel.text = "Right Side";
+					this.mainCamera.gameObject.transform.position = this.getCameraPositionsFromThis.transform.FindChild("CameraLeft").position;
+					wantToLookAtThis = "SponsorRightSide";
+			break;	
+				case(ESponsorPosition.Roof):
+					positionLabel.text = "Top";
+					this.mainCamera.gameObject.transform.position = this.getCameraPositionsFromThis.transform.FindChild("CameraTop").position;
+					wantToLookAtThis = "SponsorRoof";
+					break;		
+		}
+
+		for(int i = 0;i<sponsorRenderers.Length;i++) {
+			if(sponsorRenderers[i].name==wantToLookAtThis) {
+				lookAtThis = sponsorRenderers[i].gameObject;
+			}
+		}
+		this.mainCamera.GetComponent<GarageCameraController>().desiredFieldOfView = 90f;
+		this.mainCamera.GetComponent<GarageCameraController>().lookAtThis = lookAtThis;
+		if(myTeam.hasSponsorForPlace(this.currentPosition)!=null) {
+				SponsorPlacedRelationshipRecord recRecord = myTeam.hasSponsorForPlace(this.currentPosition);
+				sponsorDescription.text = "Sponsored by "+recRecord.record.name+" for $"+recRecord.valuePerRace+" Per Race for "+recRecord.remaining+" more race(s)";
+				showingSponsor = SponsorDatabase.REF.indexOfSponsor(recRecord.record);
+				companyTitle.text = recRecord.record.name;
+				companySprite.sprite2D = recRecord.record.logo;
+				
+				contractLength.text = ""+recRecord.remaining+" Races";
+				this.contractValue.text = ""+recRecord.valuePerRace;
+				this.sponsorInterest.text = "Sponsored";
+				this.acceptButton.isEnabled = false;
+				this.rightButton.isEnabled = false;
+				this.leftButton.isEnabled = false;
+				
+		} else {
+				showingSponsor = SponsorDatabase.REF.indexOfSponsor(aSponsor);
+				companySprite.sprite2D = aSponsor.logo;
+				GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+				SponsorInterestInfo sii = team.interestFromSponsor(aSponsor);
+				companyTitle.text = aSponsor.name;
 			
-			sponsorInterestInfo = sii;
-			contractLength.text = ""+sii.contractLength+" Races";
-			this.contractValue.text = ""+sii.sponsorValue;
-			this.sponsorInterest.text = ""+sii.sponsorInterestString;
+				this.rightButton.isEnabled = true;
+				this.leftButton.isEnabled = true;
+				sponsorDescription.text = aSponsor.description;
+				sponsorInterestInfo = sii;
+				contractLength.text = ""+sii.contractLength+" Races";
+				this.contractValue.text = ""+sii.sponsorValue;
+				this.sponsorInterest.text = ""+sii.sponsorInterestString;
+				if(sii.sponsorValue>0f) {
+					this.acceptButton.isEnabled = true;
+				} else {
+					this.acceptButton.isEnabled = false;
+				}
+			}
 		}
 	}
 

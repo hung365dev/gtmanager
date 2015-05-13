@@ -2,38 +2,30 @@ Base path: /Applications/Unity/Unity.app/Contents
 Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-1966789376
 Cmd: getPlatforms
 Cmd: compileSnippet
-  api=0 type=0 insize=46630 outsize=5912 kw=POINT SHADOWS_OFF ok=1
+  api=0 type=0 insize=1237 outsize=831 kw= ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=46630 outsize=6 kw=POINT SHADOWS_OFF ok=1
+  api=0 type=1 insize=1237 outsize=6 kw= ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=3835 outsize=1760 kw=POINT ok=1
+  api=0 type=0 insize=4918 outsize=3698 kw=SPOT ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=3835 outsize=6 kw=POINT ok=1
+  api=0 type=1 insize=4918 outsize=6 kw=SPOT ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=4918 outsize=3543 kw=POINT ok=1
+  api=0 type=0 insize=6845 outsize=4442 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF VERTEXLIGHT_ON ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=4918 outsize=6 kw=POINT ok=1
+  api=0 type=1 insize=6845 outsize=6 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=3686 outsize=1866 kw=POINT ok=1
+  api=0 type=0 insize=7432 outsize=4253 kw=DIRECTIONAL LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=3686 outsize=6 kw=POINT ok=1
+  api=0 type=1 insize=7432 outsize=6 kw=DIRECTIONAL LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=4561 outsize=2416 kw=POINT ok=1
+  api=0 type=0 insize=4828 outsize=3645 kw=SPOT ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=4561 outsize=6 kw=POINT ok=1
+  api=0 type=1 insize=4828 outsize=6 kw=SPOT ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=1004 outsize=2756 kw=SHADOWS_DEPTH ok=1
+  api=0 type=0 insize=8065 outsize=7068 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF VERTEXLIGHT_ON ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=1004 outsize=6 kw=SHADOWS_DEPTH ok=1
+  api=0 type=1 insize=8065 outsize=6 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF ok=1
 Cmd: compileSnippet
-  api=0 type=0 insize=631 outsize=4535 kw= ok=1
+  api=0 type=0 insize=8801 outsize=5507 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF VERTEXLIGHT_ON ok=1
 Cmd: compileSnippet
-  api=0 type=1 insize=631 outsize=6 kw= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=1642 outsize=528 kw=SOFTPARTICLES_OFF ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=1642 outsize=6 kw=SOFTPARTICLES_OFF ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=3647 outsize=1807 kw=POINT ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=3647 outsize=6 kw=POINT ok=1
+  api=0 type=1 insize=8801 outsize=6 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF ok=1

@@ -15,7 +15,7 @@ namespace Database
 		public int startPayPerRace;
 		public string sponsorLogo;
 		public int requiredReputation;
-
+		public string description;
 		public static List<Sprite> sponsorTextures;
 		public SponsorRecord (SponsorLibraryRow aRow)
 		{

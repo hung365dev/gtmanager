@@ -80,7 +80,8 @@ public class ResearchScreenMain : MonoBehaviour {
 			blackFadeForIndividualResearch.gameObject.SetActive(true);
 			individualResearch.initResearch(aItem.researchRow,this.carRef);
 			
-			InterfaceMainButtons.REF.createCarDetailsScreen(this.gameObject,this.carRef,false);
+			CarDetails cd = InterfaceMainButtons.REF.createCarDetailsScreen(this.gameObject,this.carRef,false);
+			cd.alignToLeft();
 		}
 	}
 	// Update is called once per frame

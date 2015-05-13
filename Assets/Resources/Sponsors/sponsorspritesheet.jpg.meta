@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ad7094cf1016b4e5e9db9497c76472fc
-timeCreated: 1431462794
+timeCreated: 1431504510
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -69,7 +69,7 @@ TextureImporter:
     21300124: sponsorspritesheet_62
     21300126: sponsorspritesheet_63
     21300128: logo_howlwolf
-    21300130: logo_wildwestautos
+    21300130: logo_wildwestauto
     21300132: logo_yikipedia
     21300134: logo_quotemark
     21300136: logo_tokia
@@ -151,7 +151,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: logo_wildwestautos
+    - name: logo_wildwestauto
       rect:
         serializedVersion: 2
         x: 128

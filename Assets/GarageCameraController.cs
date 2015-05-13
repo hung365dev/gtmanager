@@ -5,7 +5,7 @@ public class GarageCameraController : MonoBehaviour {
 
 	public GameObject lookAtThis;
 	public Vector3 eulerAngleVelocity = new Vector3(0f,50f,0f);
-
+	public float desiredFieldOfView = 40f;
 	// Use this for initialization
 	void Start () {
 	
@@ -17,12 +17,12 @@ public class GarageCameraController : MonoBehaviour {
 		if(this.GetComponent<SmoothLookAt>()!=null&&lookAtThis!=null) {
 			this.GetComponent<SmoothLookAt>().target = lookAtThis.gameObject.transform;
 
-			if(cam.fieldOfView>40f) {
+			if(cam.fieldOfView>desiredFieldOfView) {
 				cam.fieldOfView--;
 			}
 		}
 		else
-		if(cam.fieldOfView<55f) {
+		if(cam.fieldOfView<desiredFieldOfView-5f) {
 			cam.fieldOfView++;
 		}
 	}
