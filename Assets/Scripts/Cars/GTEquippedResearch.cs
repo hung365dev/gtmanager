@@ -41,7 +41,8 @@ namespace Cars
 
 			for(int i = 0;i<activeLevel;i++) {
 				aDriveTrain.SetTurboPSI(aDriveTrain.GetTurboAirPresure()+researchRow._effectonturbopsi);
-				aDriveTrain.SetMaxPower(aDriveTrain.GetOriginalPower()+researchRow._effectonhp);
+				float hpToKW = 745.699872f;
+				aDriveTrain.SetMaxPower(aDriveTrain.GetOriginalPower()+researchRow._effectonhp*hpToKW);
 				aDriveTrain.SetMaxTorque(aDriveTrain.GetMaxTorque()+researchRow._effectontorque);
 				aRacingAI.nitrosRemaining += (byte) researchRow._effectonnitrocapacity;
 				aDriveTrain.ShiftSpeed += researchRow._effectonshiftspeed;

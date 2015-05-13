@@ -66,7 +66,7 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 		staffRequired.text = "Staff Required: "+aRow._partprerequisitestaff;
 		divisionRequired.text = "Division Required: "+aRow._partprerequisitedivision;
 		prerequisiteParts.text = "Prerequisite Parts: "+aRow._partprerequisites;
-		lblCost.text = "Cost to Research: "+String.Format("${0:C}",aRow._costtoresearch);
+		lblCost.text = "Cost to Research: "+String.Format("{0:C}",aRow._costtoresearch);
 		this.lblDaysToResearch.text = "Days to Research: "+aRow._daystoresearch;
 	}
 } 

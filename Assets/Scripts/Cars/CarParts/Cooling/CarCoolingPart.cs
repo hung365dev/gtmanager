@@ -15,7 +15,7 @@ namespace cars
 	{
 		public float heatAddRPMPercent = 0.85f;
 		public float maxCoolingSpeed = 60f;
-		public float baseCooling = 0.02f;
+		public float baseCooling = 0.01f;
 		public CarCoolingPart ()
 		{
 		}

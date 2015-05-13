@@ -15,6 +15,10 @@ public class CarDetails : MonoBehaviour {
 	public UILabel torqueValue;
 	public UILabel torqueBoost;
 
+
+	public UILabel turboValue;
+	public UILabel turboBoost;
+
 	public UILabel nitroValue;
 	public UILabel nitroBoost;
 
@@ -73,6 +77,9 @@ public class CarDetails : MonoBehaviour {
 		carValue = this.transform.FindChild("CarValueValue").GetComponent<UILabel>();
 
 		
+		turboValue = this.transform.FindChild("TurboValue").GetComponent<UILabel>();
+		turboBoost = this.transform.FindChild("TurboBoost").GetComponent<UILabel>();
+
 		gripValue = this.transform.FindChild("GripValue").GetComponent<UILabel>();
 		drivabilityValue = this.transform.FindChild("DrivabilityValue").GetComponent<UILabel>();
 	}
@@ -169,6 +176,7 @@ public class CarDetails : MonoBehaviour {
 		this.carTitle.text = ""+aRecord.name;
 		horsepowerValue.text = ""+aRecord.carHP;
 		torqueValue.text = ""+aRecord.carTorque;
+		this.turboValue.text = "0";
 		nitroValue.text = ""+aRecord.maxNitro;
 		shiftspeedValue.text = ""+aRecord.carShiftSpeed;
 		downforceValue.text = ""+aRecord.carAero;

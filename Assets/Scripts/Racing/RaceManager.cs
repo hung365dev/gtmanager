@@ -88,6 +88,7 @@ public class RaceManager : MonoBehaviour {
 				}
 				thisCar.recolourCarForTeam(team);
 				thisCar.carRef = gtCar;
+				gtCar.initLibraryValues(thisCar.aiDriveTrain,thisCar.aiCar,thisCar.GetComponent<RacingAI>());
 				gtCar.applyResearchToCar(thisCar.aiDriveTrain,thisCar.aiCar,thisCar.GetComponent<RacingAI>());
 				
 				

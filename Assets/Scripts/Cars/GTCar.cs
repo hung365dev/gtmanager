@@ -102,13 +102,22 @@ namespace Cars
 				i++;
 			} 
 		}
-
+		public void initLibraryValues(IRDSDrivetrain aDriveTrain,IRDSCarControllerAI aAI,RacingAI aRacingAI) {
+			float hpToKW = 745.699872f;
+			aDriveTrain.SetMaxPower(this.carLibRecord.carHP*hpToKW);
+			aDriveTrain.SetPowerRPM(this.carLibRecord.carHPRPM);
+	
+			aDriveTrain.SetMaxTorque(this.carLibRecord.carTorque);
+			aDriveTrain.SetTorqueRPM(this.carLibRecord.carTorqueRPM);
+		//	aDriveTrain.SetEngineOrientation(Vector3.up);
+ 
+		}
 		public void applyResearchToCar(IRDSDrivetrain aDriveTrain,IRDSCarControllerAI aAI,RacingAI aRacingAI) {
 			for(int i = 0;i<this.rndParts.Count;i++) {
 				rndParts[i].applyPartToCar(aDriveTrain,aAI,aRacingAI);
 			}
 		}
-		public GTEquippedResearch hasPart(RnDRow aRow) {
+		public GTEquippedResearch hasPart(RnDRow aRow)   {
 
 			for(int j=0;j<rndParts.Count;j++) {
 				if(rndParts[j].researchRow==aRow&&rndParts[j].level>0) {

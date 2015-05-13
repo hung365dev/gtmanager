@@ -51,7 +51,7 @@ namespace Database
 			carHP = aRow._carhp;
 			carHPRPM = aRow._carhprpm;
 
-			carTorque = aRow._cartorque;
+			carTorque = aRow._cartorquenm;
 			carTorqueRPM = aRow._cartorquerpm;
 
 			carShiftSpeed = aRow._carshiftspeed;

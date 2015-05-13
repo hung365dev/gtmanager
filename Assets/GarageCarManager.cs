@@ -30,7 +30,7 @@ public class GarageCarManager : MonoBehaviour {
 			thisCar.transform.rotation = q;
 			RacingAI thisAI = thisCar.GetComponent<RacingAI>();
 			try {
-				thisAI.initSmokes();
+				thisAI.initSmokes();  
 				thisAI.hidePilot();
 			} catch(Exception e) { 
 				

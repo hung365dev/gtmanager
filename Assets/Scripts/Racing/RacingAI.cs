@@ -343,7 +343,8 @@ public class RacingAI : MonoBehaviour {
 
 				this.originalPower = this.aiDriveTrain.GetMaxPower();
 				this.originalTorque = this.aiDriveTrain.GetMaxTorque();
-
+				Debug.Log ("This "+this.gameObject.name+" original Power was: "+this.originalPower);
+				Debug.Log ("This cars original Torque was: "+this.originalTorque);
 				
 				engineTempMonitor = new EngineTemperatureMonitor();
 				engineTempMonitor.initDriveTrainVals(this.aiDriveTrain,this.aiInput);
