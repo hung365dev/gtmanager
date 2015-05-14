@@ -2,6 +2,7 @@
 using System.Collections;
 using Teams;
 using championship;
+using PixelCrushers.DialogueSystem;
 
 public class GarageManager : MonoBehaviour {
 
@@ -17,16 +18,29 @@ public class GarageManager : MonoBehaviour {
 	public GameObject interfacePanel;
 	public GameObject mainButtons;
 	public CalendarManager calendarManager;
+	public ConversationTrigger trigger;
+
 	// Use this for initialization
 	void Start () {
-		UpdateDisplay();
 		REF = this;
+		trigger = this.GetComponent<ConversationTrigger>();
+		UpdateDisplay();
+//		trigger.TryStartConversation(this.gameObject.transform);
+		
+		trigger = this.GetComponent<ConversationTrigger>();
+		trigger.conversation = "Welcome Conversation";
+		trigger.TryStartConversation(this.transform);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	}
-
+	public void Awake() {
+		
+		trigger = this.GetComponent<ConversationTrigger>();
+		trigger.conversation = "Welcome Conversation";
+		trigger.OnUse();
+	}
 	public void OnDestroy() {
 		REF = null;
 	}
@@ -37,6 +51,11 @@ public class GarageManager : MonoBehaviour {
 	public void showTopButtons() {
 		if(interfacePanel!=null)
 		interfacePanel.gameObject.SetActive(true);
+		
+		trigger = this.GetComponent<ConversationTrigger>();
+		trigger.conversation = "Welcome Conversation";
+		trigger.OnUse();
+
 	}
 
 	public void handleStartOfCalendarView() {
