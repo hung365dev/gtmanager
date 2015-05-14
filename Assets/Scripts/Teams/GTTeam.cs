@@ -21,8 +21,8 @@ namespace Teams
 	[System.Serializable]
 	public class GTTeam
 	{
-		public BetterList<GTDriver> drivers = new BetterList<GTDriver>();
-		public BetterList<GTCar> cars = new BetterList<GTCar>();
+		public List<GTDriver> drivers = new List<GTDriver>();
+		public List<GTCar> cars = new List<GTCar>();
 		public Color teamColor;
 		public bool humanControlled = false;
 		public string teamName;
@@ -157,7 +157,7 @@ namespace Teams
 			return false;
 		}
 		public void doTick(int aTick) {
-			for(int i = 0;i<this.cars.size;i++) {
+			for(int i = 0;i<this.cars.Count;i++) {
 				if(cars[i].partBeingResearched!=null) {
 					GTEquippedResearch partBeingResearched = cars[i].partBeingResearched;
 					cars[i].partBeingResearched.daysOfResearchRemaining--;
@@ -174,7 +174,7 @@ namespace Teams
 			GTCar car = cars[index];
 
 			IRDSCarControllerAI ret = car.carReference;
-			ret.SetDriverName(aDriver.driverName);
+			ret.SetDriverName(aDriver.name);
 			return ret;
 		}
 
@@ -189,7 +189,7 @@ namespace Teams
 			return car;
 		}
 		public GTCar hasCar(GTCar aCar) {
-			for(int i = 0;i<this.cars.size;i++) {
+			for(int i = 0;i<this.cars.Count;i++) {
 				if(cars[i]==aCar) {
 					return cars[i];
 				}
@@ -197,7 +197,7 @@ namespace Teams
 			return null;
 		}
 		public GTDriver hasDriver(GTDriver aDriver) {
-			for(int i = 0;i<drivers.size;i++) {
+			for(int i = 0;i<drivers.Count;i++) {
 				if(drivers[i]==aDriver) {
 					return drivers[i];
 				}
@@ -205,7 +205,7 @@ namespace Teams
 			return null;
 		}
 		public int indexForCar(GTCar aCar) {
-			for(int i = 0;i<cars.size;i++) {
+			for(int i = 0;i<cars.Count;i++) {
 				if(cars[i]==aCar) {
 					return i;
 				}
@@ -213,7 +213,7 @@ namespace Teams
 			return -1;
 		}
 		public int indexForDriver(GTDriver aDriver) {
-			for(int i = 0;i<drivers.size;i++) {
+			for(int i = 0;i<drivers.Count;i++) {
 				if(drivers[i]==aDriver) {
 					return i;
 				}

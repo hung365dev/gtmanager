@@ -15,7 +15,8 @@ namespace Drivers
 {
 	public class GTDriverBase
 	{
-		public string driverName;
+		public int id;
+		public string name;
 		public int stamina;
 		public float aggressivenessOnBrake;
 		public float speedSteeringFactor;
@@ -50,7 +51,7 @@ namespace Drivers
 		public float agressiveMultiplier;
 
 		public void initFromLibrary(DriverLibraryRecord aLibraryRecord) {
-
+			this.id = aLibraryRecord.id;
 			this.aggressivenessOnBrake = aLibraryRecord.aggressivenessOnBrake;
 			this.agressiveMultiplier = aLibraryRecord.agressiveMultiplier;
 			this.backCollDist = aLibraryRecord.backCollDist;
@@ -58,7 +59,7 @@ namespace Drivers
 			this.collisionSideFactor = aLibraryRecord.collisionSideFactor;
 			this.corneringSpeedFactor = aLibraryRecord.corneringSpeedFactor;
 			this.driftingThrottleFactor = aLibraryRecord.driftingThrottleFactor;
-			this.driverName = aLibraryRecord.driverName;
+			this.name = aLibraryRecord.driverName;
 			this.frontCollDist = aLibraryRecord.frontCollDist;
 			this.fuelLoadPercentage = aLibraryRecord.fuelLoadPercentage;
 			this.fullAccelMargin = aLibraryRecord.fullAccelMargin;

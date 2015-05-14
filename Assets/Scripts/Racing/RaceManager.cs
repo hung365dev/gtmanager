@@ -86,7 +86,7 @@ public class RaceManager : MonoBehaviour {
 			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(driversInRace[i]);
 			GTCar gtCar = team.getGTCarFromDriver(driversInRace[i]);
 			IRDSCarControllerAI car = team.getCarFromDriver(driversInRace[i]);
-			IRDSCarControllerAI placedCar = placeCars.AddNewAICar(car.gameObject,team.teamColor,driversInRace[i].driverName);
+			IRDSCarControllerAI placedCar = placeCars.AddNewAICar(car.gameObject,team.teamColor,driversInRace[i].name);
 			if(placedCar!=null) {
 
 				RacingAI thisCar = placedCar.GetComponent<RacingAI>().initDriver(driversInRace[i]);

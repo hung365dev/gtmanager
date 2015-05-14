@@ -29,6 +29,25 @@ namespace championship
 		{
 
 		}
+
+		public GTTeam relegatedTeam {
+			get {
+				if(divisionNumber<4) {
+					List<GTTeam> teams = sortedTeams;
+					return teams[teams.Count-1];
+				}
+				return null;
+			}
+		}
+		public GTTeam promotedTeam {
+			get {
+				if(divisionNumber>1) {
+					List<GTTeam> teams = sortedTeams;
+					return teams[0];
+				}
+				return null;
+			}
+		}
 		public GTTeam getTeamFromDriver(GTDriver aDriver) {
 			for(int i = 0;i<teams.Count;i++) {
 				if(teams[i].hasDriver(aDriver)!=null) {
@@ -65,11 +84,28 @@ namespace championship
 		public void addTeam(GTTeam aTeamToAdd) {
 			teams.Add(aTeamToAdd);
 		}
-
+		public void removeTeam(GTTeam aTeamToRemove) {
+			teams.Remove(aTeamToRemove);
+		}
+ 
 		public void initRaces() {
+			switch(this.divisionNumber) {
+				case(1):
+					this.leagueName = "Premier Championship";
+				break;
+				case(2):
+					this.leagueName = "Division 1";
+				break;
+				case(3):
+					this.leagueName = "Division 2";
+				break;
+				case(4):
+					this.leagueName = "Division 3";
+				break;
+			}
 			ChampionshipRaceSettings race1 = new ChampionshipRaceSettings();
 			race1.setupDefaultsForLeague(divisionNumber,0);
-			races.Add(race1);
+			races.Add(race1);/*
 			ChampionshipRaceSettings race2 = new ChampionshipRaceSettings();
 			race2.setupDefaultsForLeague(divisionNumber,1);
 			races.Add(race2);
@@ -79,7 +115,7 @@ namespace championship
 
 			ChampionshipRaceSettings race4 = new ChampionshipRaceSettings();
 			race4.setupDefaultsForLeague(divisionNumber,3);
-			races.Add(race4);
+			races.Add(race4);*/
 		}
 		public bool humanLeague {
 			get {
@@ -181,11 +217,15 @@ namespace championship
 
 			}
 			if(humanLeague) {
-				
 				ChampionshipSeason.ACTIVE_SEASON.nextRace = nextRace;
-				int ticksTillNextRace = nextRace.startDate-aCurrentTick;
-				Debug.Log("Ticks till next race: "+ticksTillNextRace);
-			}
+				
+				if(nextRace!=null) {
+					
+					int nextRaceStartDate = nextRace.startDate;
+					int ticksTillNextRace = nextRaceStartDate -aCurrentTick;
+					Debug.Log("Ticks till next race: "+ticksTillNextRace);
+				}
+			} 
 		}
 	}	
 }

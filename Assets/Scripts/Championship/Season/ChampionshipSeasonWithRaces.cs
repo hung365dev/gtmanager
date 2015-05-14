@@ -20,11 +20,16 @@ namespace championship
 		public ChampionshipSeasonWithRaces ()
 		{
 		}
-
+	
+		public bool seasonComplete {
+			get {
+				return (nextRace==null||nextRace.track==null||nextRace.track.name.Length==0);
+			}
+		}
 		public override void Update() {
 
 			base.Update ();
-			if(nextRace.startDate==this.secondsPast&&this.secondsPast>0&&allowTimeToPass) {
+			if(nextRace!=null&&nextRace.startDate==this.secondsPast&&this.secondsPast>0&&allowTimeToPass) {
 				allowTimeToPass = false;
 				ChampionshipRaceSettings.ACTIVE_RACE = nextRace;
 				StartCoroutine(LoadLevel(nextRace.track.sceneName));

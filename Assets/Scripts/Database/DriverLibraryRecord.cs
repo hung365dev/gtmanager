@@ -14,7 +14,8 @@ namespace Database
 	
 	[System.Serializable]
 	public class DriverLibraryRecord
-	{
+	{	
+		public int id = 0;
 		public int assignedTeam = 0;
 		public string driverName;
 		public float aggressivenessOnBrake;
@@ -52,6 +53,7 @@ namespace Database
 		public int stamina;
 		public DriverLibraryRecord (DriverNamesRow aRow)
 		{
+			id = aRow._id;
 			driverName = aRow._drivername;
 			aggressivenessOnBrake = aRow._aggressivenessonbrake;
 			speedSteeringFactor = aRow._spdsteeringfactor;

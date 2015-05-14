@@ -38,7 +38,8 @@ namespace GoogleFu
 		public float _finaldrive;
 		public float _reversegear;
 		public float _tiregrip;
-		public CarLibraryRow(string __id, string __carname, string __carprefabname, string __carcost, string __carstyle, string __carhp, string __carhprpm, string __cartorquenm, string __cartorquerpm, string __carshiftspeed, string __caraero, string __carfrontwing, string __carrearwing, string __cartireweareffect, string __cardrivabilityeffect, string __gear1, string __gear2, string __gear3, string __gear4, string __gear5, string __gear6, string __gear7, string __finaldrive, string __reversegear, string __tiregrip) 
+		public float _maxspeed;
+		public CarLibraryRow(string __id, string __carname, string __carprefabname, string __carcost, string __carstyle, string __carhp, string __carhprpm, string __cartorquenm, string __cartorquerpm, string __carshiftspeed, string __caraero, string __carfrontwing, string __carrearwing, string __cartireweareffect, string __cardrivabilityeffect, string __gear1, string __gear2, string __gear3, string __gear4, string __gear5, string __gear6, string __gear7, string __finaldrive, string __reversegear, string __tiregrip, string __maxspeed) 
 		{
 			{
 			int res;
@@ -203,9 +204,16 @@ namespace GoogleFu
 				else
 					Debug.LogError("Failed To Convert tiregrip string: "+ __tiregrip +" to float");
 			}
+			{
+			float res;
+				if(float.TryParse(__maxspeed, out res))
+					_maxspeed = res;
+				else
+					Debug.LogError("Failed To Convert maxspeed string: "+ __maxspeed +" to float");
+			}
 		}
 
-		public int Length { get { return 25; } }
+		public int Length { get { return 26; } }
 
 		public string this[int i]
 		{
@@ -295,6 +303,9 @@ namespace GoogleFu
 				case 24:
 					ret = _tiregrip.ToString();
 					break;
+				case 25:
+					ret = _maxspeed.ToString();
+					break;
 			}
 
 			return ret;
@@ -380,6 +391,9 @@ namespace GoogleFu
 				case "tiregrip":
 					ret = _tiregrip.ToString();
 					break;
+				case "maxspeed":
+					ret = _maxspeed.ToString();
+					break;
 			}
 
 			return ret;
@@ -412,6 +426,7 @@ namespace GoogleFu
 			ret += "{" + "finaldrive" + " : " + _finaldrive.ToString() + "} ";
 			ret += "{" + "reversegear" + " : " + _reversegear.ToString() + "} ";
 			ret += "{" + "tiregrip" + " : " + _tiregrip.ToString() + "} ";
+			ret += "{" + "maxspeed" + " : " + _maxspeed.ToString() + "} ";
 			return ret;
 		}
 	}
@@ -464,7 +479,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														"132"));
 			Rows.Add( new CarLibraryRow("2",
 														"Volkswagen Golf",
 														"GolfWhite",
@@ -489,7 +505,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														"144"));
 			Rows.Add( new CarLibraryRow("3",
 														"Mini Cooper",
 														"NewMini1",
@@ -514,7 +531,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														"138"));
 			Rows.Add( new CarLibraryRow("4",
 														"Ford Focus",
 														"BlueFordFocus",
@@ -539,7 +557,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														"141"));
 			Rows.Add( new CarLibraryRow("5",
 														"Lamborghini Spider",
 														"Avantador1",
@@ -564,7 +583,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("6",
 														"Ferrari Enzo",
 														"FerrariEnzo",
@@ -589,7 +609,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("7",
 														"Nissan GTR",
 														"NissanGTR1",
@@ -614,7 +635,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("8",
 														"Bugatti Veyron",
 														"BugattiVeyron",
@@ -639,7 +661,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("9",
 														"Audi A3",
 														"AudiA3",
@@ -664,7 +687,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														"145"));
 			Rows.Add( new CarLibraryRow("10",
 														"Seat Leon",
 														"SeatLeon1",
@@ -689,7 +713,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														"140"));
 			Rows.Add( new CarLibraryRow("11",
 														"Porsche 911",
 														"Porsche911",
@@ -714,7 +739,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("12",
 														"Aston Martin DB10",
 														"AstonMartinDB10",
@@ -739,7 +765,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("13",
 														"Ford Mustang",
 														"Mustang1",
@@ -764,7 +791,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("14",
 														"Audi TT",
 														"AudiTT",
@@ -789,7 +817,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("15",
 														"BMW 5 Series",
 														"BMW5Series",
@@ -814,7 +843,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("16",
 														"Corvette",
 														"Corvette",
@@ -839,7 +869,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("17",
 														"Ferrari Scagialetti",
 														"FerrariScagialetti",
@@ -864,7 +895,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("18",
 														"Ford GT40",
 														"FordGT40",
@@ -889,7 +921,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("19",
 														"Ford Mondeo",
 														"FordMondeo",
@@ -914,7 +947,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("20",
 														"Koenigsegg",
 														"Koenigsegg",
@@ -939,7 +973,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("21",
 														"Lexus",
 														"Lexus",
@@ -964,7 +999,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("22",
 														"McClaren P1",
 														"McClarenP1",
@@ -989,7 +1025,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("23",
 														"Mitsubishi",
 														"Mitsubishi",
@@ -1014,7 +1051,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("24",
 														"Zonda",
 														"Zonda",
@@ -1039,7 +1077,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 			Rows.Add( new CarLibraryRow("25",
 														"TVR",
 														"CarTVR1",
@@ -1064,7 +1103,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"1.2"));
+														"1.2",
+														""));
 		}
 		public IGoogleFuRow GetGenRow(string in_RowString)
 		{

@@ -32,6 +32,24 @@ namespace championship
 			DontDestroyOnLoad(this);
 			_lastUpdate = Time.time;
 		}
+
+		public void handleRelegationsAndPromotions() {
+			for(int i = 0;i<leagues.Count;i++) {
+				GTTeam relegatedTeam = leagues[i].relegatedTeam;
+				if(relegatedTeam!=null) {
+					leagues[i+1].addTeam(relegatedTeam);
+					leagues[i].removeTeam(relegatedTeam);
+				} 
+				GTTeam promotedTeam = leagues[i].promotedTeam;
+				if(promotedTeam!=null) {
+					leagues[i-1].addTeam(promotedTeam);
+					leagues[i].removeTeam(promotedTeam);
+				}
+			}
+			for(int i = 0;i<leagues.Count;i++) {
+				leagues[i].initRaces();
+			}
+		}
 		public GTTeam getTeamFromCar(GTCar aCar) {
 			for(int i = 0;i<leagues.Count;i++) {
 				GTTeam team = leagues[i].getTeamFromCar(aCar);

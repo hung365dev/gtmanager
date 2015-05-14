@@ -43,7 +43,7 @@ public class RaceStarterMember : MonoBehaviour {
 		}
 		string pos = (aPosition+1)+". ";
 		this.positionLabel.text = pos;
-		this.nameLabel.text = aDriver.driverName+" "+ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aDriver).teamName;
+		this.nameLabel.text = aDriver.name+" "+ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aDriver).teamName;
 		if(!showPoints)
 			this.prizeInfo.text = ""; else {
 			this.prizeInfo.text = ""+aDriver.championshipPoints;
@@ -109,7 +109,7 @@ public class RaceStarterMember : MonoBehaviour {
 			}
 		}
 
-		this.nameLabel.text = aDriver.driverName+" "+ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aDriver).teamName;
+		this.nameLabel.text = aDriver.name+" "+ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aDriver).teamName;
 		this.prizeInfo.text = aDriver.championshipPoints+"";
 	}
 	public void doContinue() {

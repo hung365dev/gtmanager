@@ -101,6 +101,12 @@ namespace Garage
 			//	thisCar.transform.SetParent(parent.transform);
 			thisCar.transform.position = parent.transform.position;
 			thisCar.GetComponent<RacingAI>().initSmokes();
+			thisCar.GetComponent<RacingAI>().hidePilot();
+			SpriteRenderer[] renderers = thisCar.GetComponentsInChildren<SpriteRenderer>();
+			for(int i = 0;i<renderers.Length;i++) {			
+				Destroy(renderers[i].gameObject);
+			}
+//thisCar.GetComponent<RacingAI>()
 			carOnSale = thisCar;
 			deleteIRDSClasses(carOnSale);
 			this.GetComponent<CarDetails>().showCar (car);

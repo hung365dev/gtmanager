@@ -15,7 +15,14 @@ public class ChampionshipStandings : MonoBehaviour {
 	public List<GTDriver> champStandings;
 	
 	public Color colorIfHumanDriver;
+	public Color colorForWinner;
+	public Color colorForRelegated;
+	public Color colorRegular;
+	
+	public bool isComplete = false;
 	public int startSetting = 0;
+
+	public UIButton nextSeasonButton;
 	void Start () {
 		
 	}
@@ -24,88 +31,25 @@ public class ChampionshipStandings : MonoBehaviour {
 	void Update () {
 		
 	}
-	public void onStartRace() {
-		GameObject g = GameObject.Find ("RaceManager");
-		if(g!=null) {
-			RaceManager r = g.GetComponent<RaceManager>();
-			r.doStartRace();
-			
-		}
+	public void activate(bool aIsFinished) {
+		isComplete = aIsFinished;
+		activate();
 	}
+
 	public void activate() {
 		this.gameObject.SetActive(true);
 		teamPositions = ChampionshipSeason.ACTIVE_SEASON.seasonForTeam(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()).sortedTeams;
 		champStandings = ChampionshipSeason.ACTIVE_SEASON.seasonForTeam(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()).driversChampionshipPositions();
 		stage = -1;
+		if(isComplete) {
+			GameObject g = GameObject.Find ("ExitToMenuBtn");
+			if(g!=null)
+			g.gameObject.SetActive(false);
+		}
 		this.doContinue();
-/*		int i = 0;
-		for(i = 0;i<this.starters.Count;i++) {
-			starterMembers[i].init(starters[i],i,false);
-			starterMembers[i].gameObject.SetActive(true);
-		}
 		
-		for(int j = i;j<starterMembers.Count;j++) {
-			starterMembers[j].gameObject.SetActive(false);
-		}
-		for(i = starterMembers.Count-1;i>=0;i--) {
-			TweenAlpha alph = TweenAlpha.Begin(starterMembers[i].gameObject,0.5f,1f);
-			//starterMembers[i].doContinue(startSetting);
-			alph.delay = i*0.1f;
-		}
-		StartCoroutine(rotateStartAlphas());*/
 	}
 	
-	private IEnumerator rotateStartAlphas() {
-		
-		while(true) {
-			yield return new WaitForSeconds(4f);
-			int c = 0;
-			for(int i = starterMembers.Count-1;i>=0;i--) {
-				TweenAlpha alph = TweenAlpha.Begin(starterMembers[i].gameObject,0.5f,0f);
-				alph.delay = c*0.1f;
-				c++;
-			}
-			yield return new WaitForSeconds(2f);
-			startSetting++;
-			switch(startSetting) {
-			case(1):
-				this.titleText.text = "Constructors Championship";
-				int k = 0;
-				for(k = 0;k<this.teamPositions.Count;k++) {
-					starterMembers[k].init(teamPositions[k],k,true);
-					starterMembers[k].gameObject.SetActive(true);
-				}
-				
-				for(int j = k;k<starterMembers.Count;k++) {
-					starterMembers[k].gameObject.SetActive(false);
-				}
-				
-				
-				break;
-			case(2):
-				this.titleText.text = "Drivers Championship";
-				int l = 0;
-				for(l = 0;l<this.champStandings.Count;l++) {
-					starterMembers[l].init(champStandings[l],l,true);
-					starterMembers[l].gameObject.SetActive(true);
-				}
-				
-				for(int j = l;l<starterMembers.Count;l++) {
-					starterMembers[l].gameObject.SetActive(false);
-				}
-				
-				
-				break;
-			}
-			for(int i = starterMembers.Count-1;i>=0;i--) {
-				TweenAlpha alph = TweenAlpha.Begin(starterMembers[i].gameObject,0.5f,1f);
-				//starterMembers[i].doContinue(startSetting);
-				alph.delay = i*0.1f;
-			}
-			
-		}
-		
-	}
 	private int finishPositionSort(RacingAI a1,RacingAI a2) {
 		if(a1.finishPosition<a2.finishPosition) {
 			return -1;
@@ -116,20 +60,32 @@ public class ChampionshipStandings : MonoBehaviour {
 		}
 		return 0;
 	}
+	public void onNextSeason() {
+		ChampionshipSeason.ACTIVE_SEASON.handleRelegationsAndPromotions();
+		this.gameObject.SetActive(false);
+		GarageManager.REF.gameObject.SetActive(true);
+		InterfaceMainButtons.REF.onCloseOtherScreen();
+	}
 	public void doContinue() {
 		stage++;
 		if(stage>1) {
 			stage = 0;
 		}
 		switch(stage) {
-		case(0):titleText.text = "Drivers Championship";break;
-		case(1):titleText.text = "Constructors Championship";break;
+		case(0):titleText.text = "Drivers Championship";nextSeasonButton.gameObject.SetActive(false);break;
+		case(1):titleText.text = "Constructors Championship";if(this.isComplete) nextSeasonButton.gameObject.SetActive(true);break;
 		} 
 		if(stage==1) {
 			List<GTTeam> sortedTeams = ChampionshipSeason.ACTIVE_SEASON.seasonForTeam(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()).sortedTeams;
 			int i = 0;
 			for(i = 0;i<sortedTeams.Count;i++) {
 				starterMembers[i].initTeam(sortedTeams[i]);
+				if(this.isComplete&&i==0) {
+					starterMembers[i].GetComponent<UISprite>().color = this.colorForWinner;
+				} else if(this.isComplete&&i==sortedTeams.Count-1) {
+					starterMembers[i].GetComponent<UISprite>().color = this.colorForRelegated;
+				}
+					
 				starterMembers[i].gameObject.SetActive(true);
 			}
 			
@@ -143,6 +99,11 @@ public class ChampionshipStandings : MonoBehaviour {
 			//drivers.Sort(ChampionshipSeasonBase.SortByChampionshipPoints);
 			for(int i = 0;i<starterMembers.Count;i++) {
 				starterMembers[i].showChampionshipPoints(drivers[i]);
+				if(this.isComplete&&i==0) {	
+					starterMembers[i].GetComponent<UISprite>().color = this.colorForWinner;
+				} else {
+					starterMembers[i].GetComponent<UISprite>().color = this.colorRegular;
+				}
 				starterMembers[i].gameObject.SetActive(true);
 			}
 		}

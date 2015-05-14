@@ -34,10 +34,17 @@ namespace Database
 				teams.Add(new TeamDataRecord(teamLibRows[i]));
 			}
 		}
-
+		public TeamDataRecord teamFromDriverID(int aDriverID) {
+			for(int i = 0;i<teams.Count;i++) {
+				if(teams[i].driverA.id==aDriverID||teams[i].driverB.id==aDriverID) {
+					return teams[i];
+				}
+			}
+			return null;
+		}
 		public TeamDataRecord teamFromDriverName(string aDriverName) {
 			for(int i =0 ;i<teams.Count;i++) {
-				if(teams[i].driverA.driverName==aDriverName||teams[i].driverB.driverName==aDriverName) {
+				if(teams[i].driverA.name==aDriverName||teams[i].driverB.name==aDriverName) {
 					return teams[i];
 				}
 			}

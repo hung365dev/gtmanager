@@ -42,7 +42,7 @@ public class ResearchScreenMain : MonoBehaviour {
 		camController = GameObject.Find("Main Camera").GetComponent<GarageCameraController>();
 		carRef = aCar;
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
-		this.researchBoxTitle.text = aCar.carLibRecord.name+" - "+team.getDriverFromCar(carRef).driverName;
+		this.researchBoxTitle.text = aCar.carLibRecord.name+" - "+team.getDriverFromCar(carRef).name;
 
 		if(team.cars[0]==aCar) {
 			camController.lookAtThis = GameObject.Find ("GarageLeftSide");

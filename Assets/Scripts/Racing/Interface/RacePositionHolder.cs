@@ -25,7 +25,7 @@ public class RacePositionHolder : MonoBehaviour {
 		if(racingAI.humanControl) {
 			myLabel.color = colourWhenOwned;
 		}
-		mySprite.color = TeamDatabase.REF.teamFromDriverName(ai.GetDriverName()).teamColor;
+		mySprite.color = TeamDatabase.REF.teamFromDriverID(racingAI.driverRecord.id).teamColor;
 	}
 
 	public void doUpdate() {

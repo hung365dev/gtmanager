@@ -55,9 +55,11 @@ public class CalendarItem : MonoBehaviour {
 
 		if(tdr!=null) {
 			Texture texture1 = (Texture) Resources.Load ("Race/Thumbnails/"+tdr.imagePrefabName);
-			t.mainTexture = texture1;
+			if(t!=null)
+				t.mainTexture = texture1;
 		} else {
-			t.mainTexture = null;
+			if(t!=null)
+				t.mainTexture = null;
 		}
 
 		if(myTeam.hasResearchCompletingOnDay(aDayOfYear)) {

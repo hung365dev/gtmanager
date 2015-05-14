@@ -30,6 +30,11 @@ public class InterfaceMainButtons : MonoBehaviour {
 	void Update () {
 	
 	}
+	public void OnDestroy() {
+		REF = null;
+		Debug.Log ("OnDestroy()");
+	}
+
 	public void onLaunchSponsors() {
 		
 		this.gameObject.SetActive(false);
@@ -49,6 +54,13 @@ public class InterfaceMainButtons : MonoBehaviour {
 		this.gameObject.SetActive(false);
 		champSettingsScreen.activate();
 		GarageManager.REF.hideTopButtons();
+	}
+	public void onLaunchChampionshipCompleteScreens() {
+		REF = this;
+		this.gameObject.SetActive(false);
+		champSettingsScreen.activate(true);
+		if(GarageManager.REF!=null)
+			GarageManager.REF.hideTopButtons();
 	}
 	public void onCloseChampionshipScreen() {
 		this.gameObject.SetActive(true);
@@ -100,13 +112,16 @@ public class InterfaceMainButtons : MonoBehaviour {
 		}
 		return carDetailsScreen;
 	}
-
+	
 	public void onCloseOtherScreen() {
 		destroyCarDetailsScreen();
 		if(sponsorScreen!=null) {
 			Destroy(sponsorScreen.gameObject);
-		}
-		researchScreen.gameObject.SetActive(false);
-		this.gameObject.SetActive(true);
+		} 
+		GarageManager.REF.showTopButtons();
+		if(researchScreen!=null&&researchScreen.gameObject!=null)
+			researchScreen.gameObject.SetActive(false);
+		if(gameObject!=null)
+			this.gameObject.SetActive(true);
 	}
 }

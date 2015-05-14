@@ -15,6 +15,7 @@ using UnityEngine;
 
 namespace Drivers
 {
+	[System.Serializable]
 	public class GTDriver : GTDriverBase
 	{
 		public GTCar assignedCar;

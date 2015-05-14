@@ -53,7 +53,7 @@ public class RaceCompleteMember : MonoBehaviour {
 	}
 
 	public void showChampionshipPoints(GTDriver aDriver) {
-		this.nameLabel.text = aDriver.driverName+" "+ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aDriver).teamName;
+		this.nameLabel.text = aDriver.name+" "+ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aDriver).teamName;
 		this.prizeInfo.text = aDriver.championshipPoints+"";
 	}
 	public void doContinue() {

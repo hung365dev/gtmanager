@@ -25,14 +25,17 @@ public class GarageManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
-	
+	public void OnDestroy() {
+		REF = null;
+	}
 	public void hideTopButtons() {
+		if(interfacePanel!=null)
 		interfacePanel.gameObject.SetActive(false);
 	}
 	public void showTopButtons() {
+		if(interfacePanel!=null)
 		interfacePanel.gameObject.SetActive(true);
 	}
 
@@ -67,7 +70,8 @@ public class GarageManager : MonoBehaviour {
 		}
 		;
 		this.currentDate.text = "Current Date: "+ChampionshipSeason.ACTIVE_SEASON.dateString(ChampionshipSeason.ACTIVE_SEASON.secondsPast);
-		this.nextRaceDate.text = "Next Race: "+ChampionshipSeason.ACTIVE_SEASON.dateString(ChampionshipSeason.ACTIVE_SEASON.nextRace.startDate);
+		if(ChampionshipSeason.ACTIVE_SEASON.nextRace!=null)
+			this.nextRaceDate.text = "Next Race: "+ChampionshipSeason.ACTIVE_SEASON.dateString(ChampionshipSeason.ACTIVE_SEASON.nextRace.startDate);
 		MeshRenderer[] ms = this.GetComponentsInChildren<MeshRenderer>();
 		for(int i =0;i<ms.Length;i++) {
 			for(int j = 0;j<ms[i].materials.Length;j++) {
@@ -76,5 +80,19 @@ public class GarageManager : MonoBehaviour {
 			}
 
 		}
+		if(ChampionshipSeason.ACTIVE_SEASON.seasonComplete) {
+			
+			Debug.Log ("The season is now complete! Show the championship end screen and promote / relegate!");
+			GameObject mbp = GameObject.Find("MainButtonsPanel");
+			if(mbp!=null) {
+				InterfaceMainButtons imb = mbp.GetComponent<InterfaceMainButtons>();
+				imb.onLaunchChampionshipCompleteScreens();
+			} else {
+				InterfaceMainButtons.REF.onLaunchChampionshipScreens();
+			}
+			this.handleEndOfCalendarView();
+			ChampionshipSeason.ACTIVE_SEASON.allowTimeToPass = false;
+		}	
+
 	}
 }

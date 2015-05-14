@@ -50,7 +50,7 @@ namespace championship
 			prizeFund = 50000*(5-aLeague);
 			driversPointsDistribution = EPointsDistribution.F12010Style;
 			constructorsPointsDistribution = EPointsDistribution.F12010Style;
-			startDate = (aRaceInCalendar+1)*7;
+			startDate = (aRaceInCalendar+1)*7+ChampionshipSeason.ACTIVE_SEASON.secondsPast;
 		} 
 
 		public List<GTDriver> driversForRace() {
@@ -71,7 +71,6 @@ namespace championship
 
 		private static int SortListByReverse(GTDriver a1, GTDriver a2)
 		{
-			Debug.Log ("Driver "+a1.driverName+" has "+a1.championshipPoints+" and "+a2.driverName+" has "+a2.championshipPoints);
 			if(a1==a2) {
 				return 0;
 			}

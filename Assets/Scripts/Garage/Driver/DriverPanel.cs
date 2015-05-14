@@ -52,7 +52,7 @@ public class DriverPanel : MonoBehaviour {
 		if(driverTitle==null)
 			initLabels();
 		if(driverTitle!=null) {
-			driverTitle.text = aDriver.driverName;
+			driverTitle.text = aDriver.name;
 			brakingAggressionLabel.text = aDriver.brakingAggressionString;
 			corneringLabel.text = aDriver.corneringSkillString;
 			errorProneLabel.text = aDriver.errorProneString;
