@@ -23,6 +23,8 @@ namespace championship
 	
 		public bool seasonComplete {
 			get {
+				int secondsGone = this.secondsPast;
+				if(secondsGone<1) return false;
 				return (nextRace==null||nextRace.track==null||nextRace.track.name.Length==0);
 			}
 		}

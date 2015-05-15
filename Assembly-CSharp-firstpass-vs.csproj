@@ -243,6 +243,9 @@
  <Reference Include="CruncherScripts">
  <HintPath>/Users/andrew/Documents/GTManager/Assets/Cruncher/Scripts/CruncherScripts.dll</HintPath>
  </Reference>
+ <Reference Include="DialogueSystem">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Dialogue System/DLLs/DialogueSystem.dll</HintPath>
+ </Reference>
  <Reference Include="LuaInterpreter">
  <HintPath>/Users/andrew/Documents/GTManager/Assets/Dialogue System/DLLs/LuaInterpreter.dll</HintPath>
  </Reference>
@@ -251,9 +254,6 @@
  </Reference>
  <Reference Include="iRDSMain">
  <HintPath>/Users/andrew/Documents/GTManager/Assets/iRDS/Scripts/Main/iRDSMain.dll</HintPath>
- </Reference>
- <Reference Include="DialogueSystem">
- <HintPath>/Users/andrew/Documents/GTManager/Assets/Dialogue System/DLLs/DialogueSystem.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

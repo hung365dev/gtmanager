@@ -99,7 +99,8 @@ public class CarDetails : MonoBehaviour {
 	
 	public void alignToLeft() {
 
-		GameObject go = this.transform.FindChild("FadeBG").gameObject;
+
+		GameObject go = this.transform.FindChild("FadedCarBG").gameObject;
 		UISprite spr = go.GetComponent<UISprite>();
 		if(spr!=null) {
 		 

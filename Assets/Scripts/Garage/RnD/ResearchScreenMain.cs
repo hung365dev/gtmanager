@@ -19,6 +19,7 @@ public class ResearchScreenMain : MonoBehaviour {
 	public GameObject blackFadeForIndividualResearch;
 	public List<ResearchItem> researchItems = new List<ResearchItem>();
 
+	public UILabel currentlyResearching;
 	public GTCar carRef;
 	// Use this for initialization
 	void Start () {
@@ -49,18 +50,24 @@ public class ResearchScreenMain : MonoBehaviour {
 		} else {
 			camController.lookAtThis = GameObject.Find ("GarageRightSide");
 		}
+		if(carRef.partBeingResearched!=null) {
+			this.currentlyResearching.text = "Currently Researching: "+carRef.partBeingResearched.researchRow._partname+" ("+carRef.partBeingResearched.daysOfResearchRemaining+" Day(s) Remaining)";
+		}	else {
+			this.currentlyResearching.text = "Currently Researching: [ff0000]Nothing![-]";
+		}
 		StartCoroutine(delayToInit());
 	}
 	private IEnumerator delayToInit() {
 		yield return new WaitForEndOfFrame();
 		
-		selectKid(null);
+		selectKid(null,null);
 	}
 
 	public void closeInidividualResearchScreen() {
 		individualResearch.gameObject.SetActive(false);
 		blackFadeForIndividualResearch.gameObject.SetActive(false);
 		InterfaceMainButtons.REF.destroyCarDetailsScreen();
+		initFromCar(this.carRef);
 	}
 	public void notifyOfIndividualResearchScreen(IndividualPieceOfResearch aResearch) {
 		aResearch.gameObject.SetActive(false);
@@ -73,13 +80,13 @@ public class ResearchScreenMain : MonoBehaviour {
 		}
 	}
 
-	public void selectKid(ResearchItem aItem) {
+	public void selectKid(ResearchItem aItem,UISprite aSprite) {
 		deselectAllKids();
 		if(aItem!=null) {
 			aItem.select();
 			blackFadeForIndividualResearch.gameObject.SetActive(true);
-			individualResearch.initResearch(aItem.researchRow,this.carRef);
-			
+			individualResearch.initResearch(aItem.researchRow,this.carRef,aSprite);
+			individualResearch.toggleConversation();
 			CarDetails cd = InterfaceMainButtons.REF.createCarDetailsScreen(this.gameObject,this.carRef,false);
 			cd.alignToLeft();
 		}

@@ -4,6 +4,7 @@ using Cars;
 using GoogleFu;
 using championship;
 using System;
+using PixelCrushers.DialogueSystem;
 
 public class IndividualPieceOfResearch : MonoBehaviour {
 	public ResearchScreenMain parent;
@@ -13,7 +14,7 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 	public UILabel staffRequired;
 	public UILabel divisionRequired;
 	public UILabel prerequisiteParts;
-
+	public UISprite  partGraphic;
 	public UILabel lblCost;
 	public UILabel lblDaysToResearch;
 	public UIButton closeBtn;
@@ -26,16 +27,30 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 		parent.notifyOfIndividualResearchScreen(this);
 		closeBtn.onClick.Add(new EventDelegate(this,"onCloseWindow"));
 		startResearchBtn.onClick.Add(new EventDelegate(this,"onStartDoingResearch"));
+		
+	}
+
+	public void Awake() {
+		
 	}
 	public void onCloseWindow() {
 		parent.closeInidividualResearchScreen();
 	}
 	public void onStartDoingResearch() {
 		//TODO make it so we make sure we meet requirements, etc..
+		
 		GTEquippedResearch er = carRef.addPartToCar(researchRow,ChampionshipSeason.ACTIVE_SEASON.getUsersTeam());
 		if(er!=null) {
 			er.daysOfResearchRemaining = researchRow._daystoresearch;
+			Lua.Result res = DialogueLua.GetVariable("ResearchTutorialDone");
+			if(res.AsBool == false ) {
+				
+				GarageManager.REF.doConversation("Research_Tutorial3");
+				er.dayOfCompletion = 2+ChampionshipSeason.ACTIVE_SEASON.secondsPast;
+				er.daysOfResearchRemaining = 2;
+			} else
 			er.dayOfCompletion = researchRow._daystoresearch+ChampionshipSeason.ACTIVE_SEASON.secondsPast;
+			this.onCloseWindow();
 		} else {
 			Debug.Log ("Couldn't research");
 		}
@@ -48,11 +63,14 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 			this.lblDaysToResearch.text = "Days to Research: "+carRef.partBeingResearched.daysOfResearchRemaining;
 		} else {
 			startResearchBtn.SetState(UIButtonColor.State.Normal,true);
-			initResearch(this.researchRow,carRef);
+			initResearch(this.researchRow,carRef,this.partGraphic);
 		}
 	}
 
-	public void initResearch(RnDRow aRow,GTCar aCar) {
+	public void toggleConversation() {
+		GarageManager.REF.doConversation("Research_Tutorial2");
+	}
+	public void initResearch(RnDRow aRow,GTCar aCar,UISprite aSprite) {
 		this.gameObject.SetActive(true);
 		researchRow = aRow;
 		carRef = aCar;
@@ -62,11 +80,15 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 		} else {
 			partNameTitle.text = aRow._partname+" ("+r.activeLevel+"/"+aRow._maxlevelstounlock+")";
 		}
+		
 		partDescription.text = aRow._partdescription;
 		staffRequired.text = "Staff Required: "+aRow._partprerequisitestaff;
 		divisionRequired.text = "Division Required: "+aRow._partprerequisitedivision;
 		prerequisiteParts.text = "Prerequisite Parts: "+aRow._partprerequisites;
 		lblCost.text = "Cost to Research: "+String.Format("{0:C}",aRow._costtoresearch);
 		this.lblDaysToResearch.text = "Days to Research: "+aRow._daystoresearch;
+		partGraphic.spriteName = aSprite.spriteName;
+
+		
 	}
 } 

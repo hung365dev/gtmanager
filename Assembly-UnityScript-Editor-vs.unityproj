@@ -256,8 +256,14 @@
  <Reference Include="CruncherScripts">
  <HintPath>/Users/andrew/Documents/GTManager/Assets/Cruncher/Scripts/CruncherScripts.dll</HintPath>
  </Reference>
+ <Reference Include="DialogueSystem">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Dialogue System/DLLs/DialogueSystem.dll</HintPath>
+ </Reference>
  <Reference Include="LuaInterpreter">
  <HintPath>/Users/andrew/Documents/GTManager/Assets/Dialogue System/DLLs/LuaInterpreter.dll</HintPath>
+ </Reference>
+ <Reference Include="DialogueSystemEditors">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Dialogue System/DLLs/Editor/DialogueSystemEditors.dll</HintPath>
  </Reference>
  <Reference Include="EasyRoads3DEditor">
  <HintPath>/Users/andrew/Documents/GTManager/Assets/EasyRoads3D/Editor/EasyRoads3DEditor.dll</HintPath>
@@ -315,12 +321,6 @@
  </Reference>
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="DialogueSystemEditors">
- <HintPath>/Users/andrew/Documents/GTManager/Assets/Dialogue System/DLLs/Editor/DialogueSystemEditors.dll</HintPath>
- </Reference>
- <Reference Include="DialogueSystem">
- <HintPath>/Users/andrew/Documents/GTManager/Assets/Dialogue System/DLLs/DialogueSystem.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

@@ -41,6 +41,13 @@ public class GarageManager : MonoBehaviour {
 		trigger.conversation = "Welcome Conversation";
 		trigger.OnUse();
 	}
+
+	public void doConversation(string aConversationName) {
+		
+		trigger = this.GetComponent<ConversationTrigger>();
+		trigger.conversation = aConversationName;
+		trigger.OnUse();
+	}
 	public void OnDestroy() {
 		REF = null;
 	}

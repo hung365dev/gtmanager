@@ -25,7 +25,7 @@ public class ResearchItem : MonoBehaviour {
 		this.GetComponent<UIWidget>().ResizeCollider();
 		this.GetComponent<UIWidget>().depth = 10;
 		_button.onClick.Add(new EventDelegate(this,"onClicked"));
-
+		GarageManager.REF.doConversation("Research_Tutorial1");
 	}
 	
 	// Update is called once per frame
@@ -34,7 +34,7 @@ public class ResearchItem : MonoBehaviour {
 	}
 
 	public void onClicked() {
-		parent.selectKid(this);
+		parent.selectKid(this,this.GetComponent<UISprite>());
 	}
 
 
