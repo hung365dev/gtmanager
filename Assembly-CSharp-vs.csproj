@@ -421,6 +421,7 @@
      <Compile Include="Assets\Scripts\Utils\SetNullAnchorsToGameObject.cs" />
      <Compile Include="Assets\Scripts\Utils\SettingsScreen.cs" />
      <Compile Include="Assets\SmoothLookAt.cs" />
+     <Compile Include="Assets\TutorialArrow.cs" />
      <Compile Include="Assets\iRDS\Required\Extra GUI Skins\SkinTest.cs" />
      <Compile Include="Assets\iRDS\Scripts\Main\AutoStartEngine.cs" />
      <Compile Include="Assets\iRDS\Scripts\Main\AutoThrottle.cs" />

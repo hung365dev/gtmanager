@@ -38,20 +38,35 @@ public class ResearchItem : MonoBehaviour {
 	}
 
 
-	public void deselect() {
+	public void deselect(GTCar aCar) {
+		carRef = aCar;
 		getDefaultColourForPart();
 	}
 	private void getDefaultColourForPart() {
+		
 		if(this.carRef!=null) {
-			if(this.carRef.hasPreRequisiteParts(researchRow._partprerequisites)) {
-				// Car part is available to be put in.
-				if(this.carRef.hasPart(researchRow)!=null) {
-					this._button.defaultColor = parent.unlockedColour;
+			if(carRef.partBeingResearched==null) {
+				
+				if(this.carRef.hasPreRequisiteParts(researchRow._partprerequisites)) {
+					// Car part is available to be put in.
+					if(this.carRef.hasPart(researchRow)!=null) {
+						this._button.defaultColor = parent.unlockedColour;
+						this._button.isEnabled = false;
+					} else {
+						this._button.defaultColor = parent.defaultColour;
+						this._button.isEnabled = true;
+					}
 				} else {
-					this._button.defaultColor = parent.defaultColour;
+					this._button.defaultColor = parent.unavailableColour;
+					this._button.isEnabled = false;
 				}
 			} else {
-				this._button.defaultColor = parent.unavailableColour;
+				if(this.carRef.partBeingResearched.researchRow==researchRow) {
+					this._button.defaultColor = parent.defaultColour;
+				} else {
+					this._button.defaultColor = parent.unavailableColour;
+					this._button.isEnabled = false;
+				}
 			}
 		} else {
 			_button.defaultColor = parent.defaultColour;
@@ -71,6 +86,7 @@ public class ResearchItem : MonoBehaviour {
 	}
 
 	public void initFromCar(GTCar aCar) {
+		carRef = aCar;
 		if(researchRow==null) {
 			initResearchRow();
 		}

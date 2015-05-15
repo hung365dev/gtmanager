@@ -67,6 +67,7 @@ public class ResearchScreenMain : MonoBehaviour {
 		individualResearch.gameObject.SetActive(false);
 		blackFadeForIndividualResearch.gameObject.SetActive(false);
 		InterfaceMainButtons.REF.destroyCarDetailsScreen();
+		this.deselectAllKids();
 		initFromCar(this.carRef);
 	}
 	public void notifyOfIndividualResearchScreen(IndividualPieceOfResearch aResearch) {
@@ -76,7 +77,7 @@ public class ResearchScreenMain : MonoBehaviour {
 	}
 	public void deselectAllKids() {
 		for(int i = 0;i<researchItems.Count;i++) {
-			researchItems[i].deselect();
+			researchItems[i].deselect(this.carRef);
 		}
 	}
 
