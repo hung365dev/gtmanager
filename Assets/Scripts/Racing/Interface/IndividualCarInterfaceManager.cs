@@ -25,6 +25,8 @@ public class IndividualCarInterfaceManager : MonoBehaviour {
 	public UILabel speedLabel;
 	public UILabel gearLabel;
 	public UILabel rpmLabel;
+
+	public UILabel engineTemperature;
 	public UIGrid debugGrid;
 
 	public UILabel carBehindLabel;
@@ -83,7 +85,7 @@ RPM Value
 			
 			this.nitrosLabel = GameObject.Find ("NitrosLabel").GetComponent<UILabel>();
 			this.drsLabel = GameObject.Find ("DRSLabel").GetComponent<UILabel>();
-
+			this.engineTemperature = GameObject.Find ("lblEngineTemp").GetComponent<UILabel>();
 		}
 
 
@@ -110,7 +112,7 @@ RPM Value
 
 			this.nitrosLabel.text = Convert.ToString(targetAI.nitrosRemaining);
 			this.drsLabel.gameObject.SetActive(targetAI.drsActivated);
-
+			engineTemperature.text = ""+Convert.ToInt32(targetAI.engineTempMonitor.currentTemperature)+"c";
 
 			if(driverNameLabel!=null)
 			driverNameLabel.text = targetAI.driverName;

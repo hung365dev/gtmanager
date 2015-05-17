@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{0B1C0CFD-3BA0-94B0-9B5B-626358D83F27}</ProjectGuid>
+	<ProjectGuid>{787723AD-9A94-84B4-4FCF-30450E50B60A}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_5_0_1;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;UNITY_IPHONE;ENABLE_RUNTIME_GI;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_NETWORK;UNITY_IPHONE_API;UNITY_IOS;ENABLE_TEXTUREID_MAP;PLAYERCONNECTION_LISTENS_FIXED_PORT;DEBUGGER_LISTENS_FIXED_PORT;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_5_0_1;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;UNITY_IPHONE;ENABLE_RUNTIME_GI;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_NETWORK;UNITY_IPHONE_API;UNITY_IOS;ENABLE_TEXTUREID_MAP;PLAYERCONNECTION_LISTENS_FIXED_PORT;DEBUGGER_LISTENS_FIXED_PORT;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -211,38 +211,6 @@
      <Compile Include="Assets\JMO Assets\Cartoon FX\Spawn System\CFX_SpawnSystem.cs" />
      <Compile Include="Assets\LeanTouch\Scripts\LeanFinger.cs" />
      <Compile Include="Assets\LeanTouch\Scripts\LeanTouch.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UIEquipmentSlot.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UIItemSlot.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UIItemStorage.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UIStorageSlot.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\System\InvAttachmentPoint.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\System\InvBaseItem.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\System\InvDatabase.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\System\InvEquipment.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\System\InvGameItem.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\System\InvStat.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\ChatInput.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\DownloadTexture.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\EnvelopContent.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\ExampleDragDropItem.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\ExampleDragDropSurface.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\LagPosition.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\LagRotation.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\LoadLevelOnClick.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\LookAtTarget.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\OpenURLOnClick.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\PanWithMouse.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\PlayIdleAnimations.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\SetColorOnSelection.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\Spin.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\SpinWithMouse.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\Tutorial5.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\UISliderColors.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\WindowAutoYaw.cs" />
-     <Compile Include="Assets\NGUI\Examples\Scripts\Other\WindowDragTilt.cs" />
      <Compile Include="Assets\NGUI\Scripts\Interaction\LanguageSelection.cs" />
      <Compile Include="Assets\NGUI\Scripts\Interaction\TypewriterEffect.cs" />
      <Compile Include="Assets\NGUI\Scripts\Interaction\UIButton.cs" />
@@ -348,10 +316,6 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\iTween.cs" />
      <Compile Include="Assets\NGUIDisabler.cs" />
-     <Compile Include="Assets\Quantum Theory\UCP\Scripts\QT_DistanceDropout.cs" />
-     <Compile Include="Assets\Quantum Theory\UCP\Scripts\QT_TrafficLight.cs" />
-     <Compile Include="Assets\Quantum Theory\UCP\Scripts\QT_TrafficLightController.cs" />
-     <Compile Include="Assets\Quantum Theory\UCP\Scripts\Utility Scripts\QT_MeshCombineUtility.cs" />
      <Compile Include="Assets\ScreenDarknessController.cs" />
      <Compile Include="Assets\ScreenFader.cs" />
      <Compile Include="Assets\Scripts\Calendar\CalendarItem.cs" />
@@ -430,9 +394,7 @@
      <Compile Include="Assets\iRDS\Scripts\Main\FinishRaceEventTest.cs" />
      <Compile Include="Assets\iRDS\Scripts\Main\IRDSObjectLabel.cs" />
      <Compile Include="Assets\iRDS\Scripts\Main\RestartRace.cs" />
-     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\Dialogue System\_README.txt" />
-     <None Include="Assets\NGUI\ReadMe - 3.8.2.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\MultiTexture.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Convolution3x3.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked 1.shader" />
@@ -448,7 +410,6 @@
      <None Include="Assets\Colorful\Shaders\CC_Glitch.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Normal-BumpSpec.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Kuwahara.shader" />
-     <None Include="Assets\Quantum Theory\UCP\Materials\Shaders\Optimized\QT_SpecularEmissive.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Car.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Surface.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAdd_Alpha8.shader" />
@@ -459,7 +420,6 @@
      <None Include="Assets\Dialogue System\Third Party Support\NGUI\_README.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 2.shader" />
      <None Include="Assets\HereVR Race Scene\Pit Garage Pack 01\Pit Garage Pack 01. - HereVR Race Scene  - Release log.txt" />
-     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Masked Colored.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 3.shader" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Ultra Detail Bump RefMask SpecMask.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Alpha-Bumped.shader" />
@@ -467,10 +427,8 @@
      <None Include="Assets\Dialogue System\Scripts\Supplemental\UI\Example\Art\_README.txt" />
      <None Include="Assets\Colorful\Shaders\CC_Kuwahara.cginc" />
      <None Include="Assets\Colorful\Shaders\CC_Threshold.shader" />
-     <None Include="Assets\Quantum Theory\UCP\Materials\Shaders\Optimized\QT_BumpedSpecular.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX3 Readme.txt" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Surface_Alpha.shader" />
-     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\CameraPath3\readme.txt" />
      <None Include="Assets\CameraPath3\versionHistory.txt" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\BMW5Series\readme.txt" />
@@ -480,8 +438,6 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (TextureClip).shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\FordMondeo\readme.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Duo Probes.shader" />
-     <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
-     <None Include="Assets\Quantum Theory\UCP\Materials\Shaders\Optimized\QT_DiffuseVCEmissive.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Wiggle.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Alpha-BumpSpec.shader" />
      <None Include="Assets\UI\GameUI\Gent144.txt" />
@@ -496,7 +452,6 @@
      <None Include="Assets\Colorful\Shaders\CC_Blend.shader" />
      <None Include="Assets\Colorful\Shaders\CC_CrossStitch.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Alpha-Diffuse.shader" />
-     <None Include="Assets\HereVR Race Scene\RaceTrack Pack 01\_Scenes\RaceTrack Pack 01 - HereVR Race Scene - Release log.txt" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAlphaBlend_Alpha8.shader" />
      <None Include="Assets\UI\GameUI\LatoHeavy144.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Medium Detail Scrolled Env.shader" />
@@ -509,8 +464,6 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
      <None Include="Assets\UI\GameUI\LatoReg144.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarChrome Probes.shader" />
-     <None Include="Assets\Quantum Theory\UCP\Materials\Shaders\Optimized\QT_Architecture.shader" />
-     <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
      <None Include="Assets\Colorful\Shaders\CC_Led.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Levels.shader" />
@@ -525,12 +478,9 @@
      <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 3.shader" />
      <None Include="Assets\iRDS\Scripts\Force Feedback\Readme.txt" />
-     <None Include="Assets\Quantum Theory\UCP\Materials\Shaders\Optimized\Mobile\QT_ArchitectureMobile.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
-     <None Include="Assets\Quantum Theory\UCP\Materials\Shaders\Optimized\Mobile\QT_RoadMobile.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+AddSoft.shader" />
      <None Include="Assets\Colorful\Shaders\CC_RadialBlur.shader" />
-     <None Include="Assets\Quantum Theory\UCP\Materials\Shaders\Optimized\QT-SkyBoxFog.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+AddSoft VColor.shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarCorvette\readme.txt" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add.shader" />
@@ -545,7 +495,6 @@
      <None Include="Assets\Colorful\Shaders\CC_Vibrance.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored.shader" />
      <None Include="Assets\iRDS\Required\Shaders\LightsEmmissive.shader" />
-     <None Include="Assets\Quantum Theory\UCP\Materials\Shaders\Optimized\QT-SkyBox.shader" />
      <None Include="Assets\Colorful\Shaders\CC_BrightnessContrastGamma.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\surfaceAlpha.shader" />
      <None Include="Assets\EasyRoads3D\_Release Notes.txt" />
@@ -568,13 +517,11 @@
      <None Include="Assets\iRDS\Required\Shaders\LightMappedDiffusetDetail.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
-     <None Include="Assets\Quantum Theory\UCP\Documentation.txt" />
      <None Include="Assets\iRDS\Required\Shaders\GlassBuilding.shader" />
      <None Include="Assets\Dialogue System\Third Party Support\NGUI\Example\Dual Subtitle Example\_README.txt" />
      <None Include="Assets\Colorful\Changelog.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint High Detail RefMask ColorMask.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Normal-BumpSpec_EnvLightmapped.shader" />
-     <None Include="Assets\Quantum Theory\UCP\Materials\Shaders\Optimized\QT_Road.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Alpha-VertexLitGlow02.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Tint.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\Surface.shader" />
@@ -582,7 +529,6 @@
      <None Include="Assets\Colorful\Readme.txt" />
      <None Include="Assets\Colorful\Shaders\CC_ChannelMixer.shader" />
      <None Include="Assets\Colorful\Shaders\CC_FastVignette.shader" />
-     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Additive Colored.shader" />
      <None Include="Assets\Race_Track_Construction_Kit\Shaders\AlphaSelfIllum_NoFog.shader" />
      <None Include="Assets\iRDS\Required\Shaders\PolyTerrain\polysplatting.cginc" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarMcClarenP1\readme.txt" />
@@ -591,20 +537,15 @@
      <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX4 Readme.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked.shader" />
      <None Include="Assets\Dialogue System\Scripts\Supplemental\UI\_README.txt" />
-     <None Include="Assets\NGUI\Examples\Shaders\Refractive.shader" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Unlit.shader" />
      <None Include="Assets\EasyRoads3D\_Readme.txt" />
      <None Include="Assets\iRDS\Required\Shaders\TransparentLightMappedVertexLiZWrite.shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\Lexus\readme.txt" />
      <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX2 Readme.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text (TextureClip).shader" />
-     <None Include="Assets\Quantum Theory\UCP\Materials\Shaders\Optimized\Mobile\QT_EmissiveMobile.shader" />
-     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth.shader" />
-     <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
      <None Include="Assets\Colorful\Shaders\CC_PhotoFilter.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Road-Edit-Mode.shader" />
      <None Include="Assets\Dialogue System\Scripts\Supplemental\UI\Prefabs\Unity UI Assets\_README.txt" />
-     <None Include="Assets\HereVR Race Scene\RaceTrack Pack 01\_Scenes\README - Important.txt" />
      <None Include="Assets\iRDS\Required\Pictures\Skidmarks\Skidmarks.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Normal-Bumped.shader" />
      <None Include="Assets\iRDS\Required\Shaders\AlphaTest-Diffuse-GEqual.shader" />
@@ -612,7 +553,6 @@
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarLamborghini\readme.txt" />
      <None Include="Assets\Colorful\Shaders\CC_LookupFilter.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Halftone.shader" />
-     <None Include="Assets\NGUI\Examples\Resources\Localization.txt" />
      <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX Readme.txt" />
      <None Include="Assets\Colorful\Shaders\CC_ChannelSwapper.shader" />
      <None Include="Assets\Colorful\Shaders\CC_RGBSplit.shader" />
@@ -623,19 +563,19 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="CruncherScripts">
- <HintPath>/Users/jonathanstarnes/Documents/gtmanagerNEW/Assets/Cruncher/Scripts/CruncherScripts.dll</HintPath>
- </Reference>
- <Reference Include="EasyRoads3D">
- <HintPath>/Users/jonathanstarnes/Documents/gtmanagerNEW/Assets/EasyRoads3D/lib/EasyRoads3D.dll</HintPath>
- </Reference>
- <Reference Include="iRDSMain">
- <HintPath>/Users/jonathanstarnes/Documents/gtmanagerNEW/Assets/iRDS/Scripts/Main/iRDSMain.dll</HintPath>
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Cruncher/Scripts/CruncherScripts.dll</HintPath>
  </Reference>
  <Reference Include="DialogueSystem">
- <HintPath>/Users/jonathanstarnes/Documents/gtmanagerNEW/Assets/Dialogue System/DLLs/DialogueSystem.dll</HintPath>
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Dialogue System/DLLs/DialogueSystem.dll</HintPath>
  </Reference>
  <Reference Include="LuaInterpreter">
- <HintPath>/Users/jonathanstarnes/Documents/gtmanagerNEW/Assets/Dialogue System/DLLs/LuaInterpreter.dll</HintPath>
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Dialogue System/DLLs/LuaInterpreter.dll</HintPath>
+ </Reference>
+ <Reference Include="EasyRoads3D">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/EasyRoads3D/lib/EasyRoads3D.dll</HintPath>
+ </Reference>
+ <Reference Include="iRDSMain">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/iRDS/Scripts/Main/iRDSMain.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -643,7 +583,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{3F5CF281-7001-A5AA-CE4E-57E97DE12475}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{BB281839-05EA-5CA6-1562-F2662D1954FC}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

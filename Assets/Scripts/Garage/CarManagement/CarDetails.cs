@@ -5,6 +5,7 @@ using Teams;
 using championship;
 using Garage;
 using Database;
+using Drivers;
 
 public class CarDetails : MonoBehaviour {
 
@@ -25,15 +26,15 @@ public class CarDetails : MonoBehaviour {
 	public UILabel shiftspeedValue;
 	public UILabel shiftspeedBoost;
 
-	public UILabel downforceValue;
-	public UILabel downforceBoost;
+	public UILabel dragValue;
+	public UILabel dragBoost;
 
 	public UILabel hasDRSValue;
 	public UILabel carValue;
 
 	
-	public UILabel drivabilityValue;
-	public UILabel drivabilityBoost;
+	public UILabel maxSpeedValue;
+	public UILabel maxSpeedBoost;
 
 	public UILabel gripValue;
 	public UILabel gripBoost;
@@ -63,6 +64,7 @@ public class CarDetails : MonoBehaviour {
 	}
 	private void initLabels() {
 		carTitle = this.transform.FindChild("CarTitle").GetComponent<UILabel>();
+		
 		horsepowerValue = this.transform.FindChild("HorsepowerValue").GetComponent<UILabel>();
 		horsepowerBoost = this.transform.FindChild("HorsepowerBoost").GetComponent<UILabel>();
 		torqueValue = this.transform.FindChild("TorqueValue").GetComponent<UILabel>();
@@ -71,8 +73,8 @@ public class CarDetails : MonoBehaviour {
 		nitroBoost = this.transform.FindChild("NitroCapacityBoost").GetComponent<UILabel>();
 		shiftspeedValue = this.transform.FindChild("ShiftSpeedValue").GetComponent<UILabel>();
 		shiftspeedBoost = this.transform.FindChild("ShiftSpeedBoost").GetComponent<UILabel>();
-		downforceValue = this.transform.FindChild("DownforceValue").GetComponent<UILabel>();
-		downforceBoost = this.transform.FindChild("DownforceBoost").GetComponent<UILabel>();
+		this.dragValue = this.transform.FindChild("DragValue").GetComponent<UILabel>();
+		this.dragBoost = this.transform.FindChild("DragBoost").GetComponent<UILabel>();
 		hasDRSValue = this.transform.FindChild("HasDRSValue").GetComponent<UILabel>();
 		carValue = this.transform.FindChild("CarValueValue").GetComponent<UILabel>();
 
@@ -81,12 +83,58 @@ public class CarDetails : MonoBehaviour {
 		turboBoost = this.transform.FindChild("TurboBoost").GetComponent<UILabel>();
 
 		gripValue = this.transform.FindChild("GripValue").GetComponent<UILabel>();
-		drivabilityValue = this.transform.FindChild("DrivabilityValue").GetComponent<UILabel>();
+		maxSpeedValue = this.transform.FindChild("MaxSpeedValue").GetComponent<UILabel>();
+		maxSpeedBoost = this.transform.FindChild("MaxSpeedBoost").GetComponent<UILabel>();
 	}
 
 	public void reInit(GTCar aLastCar) {
 		buttonsHolder.gameObject.SetActive(true);
 		this.initCar(aLastCar);
+	}
+
+	public void showEffectOfResearch(ResearchItem aResearch) {
+		if(aResearch.researchRow._effectonhp>0f) {
+			this.horsepowerBoost.color = Color.green;
+			this.horsepowerBoost.text = "+"+aResearch.researchRow._effectonhp;
+			this.horsepowerBoost.gameObject.SetActive(true);
+		}
+		if(aResearch.researchRow._effectontorque>0f) {
+			this.torqueBoost.color = Color.green;
+			this.torqueBoost.text = "+"+aResearch.researchRow._effectontorque;
+			this.torqueBoost.gameObject.SetActive(true);
+		}
+		if(aResearch.researchRow._effectonturbopsi>0f) {
+			this.turboBoost.color = Color.green;
+			this.turboBoost.text = "+"+aResearch.researchRow._effectonturbopsi;
+			this.turboBoost.gameObject.SetActive(true);
+		}
+		if(aResearch.researchRow._effectonnitrocapacity>0f) {
+			this.nitroBoost.color = Color.green;
+			this.nitroBoost.text = "+"+aResearch.researchRow._effectonnitrocapacity;
+			this.nitroBoost.gameObject.SetActive(true);
+		}
+		
+		if(aResearch.researchRow._effectonshiftspeed<0f) {
+			this.shiftspeedBoost.color = Color.green;
+			this.shiftspeedBoost.text = "+"+aResearch.researchRow._effectonshiftspeed;
+			this.shiftspeedBoost.gameObject.SetActive(true);
+		}
+		if(aResearch.researchRow._bodyaerodragreduce<0f) {
+			this.dragBoost.color = Color.green;
+			this.dragBoost.text = "+"+aResearch.researchRow._bodyaerodragreduce;
+			this.dragBoost.gameObject.SetActive(true);
+		}
+		if(aResearch.researchRow._percentofdrswingtoremove>0f) {
+			this.hasDRSValue.color = Color.green;
+			this.hasDRSValue.text = "+ 1 Level";
+			this.hasDRSValue.gameObject.SetActive(true);
+		}
+		if(aResearch.researchRow._maxspeedadd>0f) {
+			this.maxSpeedBoost.color = Color.green;
+			this.maxSpeedBoost.text = "+"+aResearch.researchRow._maxspeedadd;
+			this.maxSpeedBoost.gameObject.SetActive(true);
+		}
+		
 	}
 	public void disableButtons() {
 
@@ -95,6 +143,63 @@ public class CarDetails : MonoBehaviour {
 			Destroy(g);
 		}
 	
+	}
+	public void colorLabel(UILabel aLabel,string aValue,Color aColor) {
+		aLabel.text = aValue;
+		aLabel.color = aColor;
+	}
+	public void compareCarTo(CarLibraryRecord aNewCar,GTCar aCurrentCar,Color aColorIfBetter,Color aColorIfWorse) {
+		Color colorToUse = Color.black;
+		
+		float diff = aNewCar.carHP - aCurrentCar.carLibRecord.carHP;
+		if(aNewCar.carHP>aCurrentCar.carLibRecord.carHP) {
+			colorLabel(this.horsepowerBoost,"+"+diff,aColorIfBetter);
+		} else {
+			colorLabel(this.horsepowerBoost,""+diff,aColorIfWorse);
+		}
+
+		diff = aNewCar.carTorque - aCurrentCar.carLibRecord.carTorque;
+		if(aNewCar.carTorque>aCurrentCar.carLibRecord.carTorque) {
+			colorLabel(this.torqueBoost,"+"+diff,aColorIfBetter);
+		} else {
+			colorLabel(this.torqueBoost,""+diff,aColorIfWorse);
+		}
+		if(aNewCar.turboPSI>aCurrentCar.carLibRecord.turboPSI) {
+			colorLabel(this.turboBoost,"",aColorIfBetter);
+		} else {
+			colorLabel(this.turboBoost,"",aColorIfWorse);
+		}
+		
+		diff = aNewCar.maxNitro - aCurrentCar.carLibRecord.maxNitro;
+		if(aNewCar.maxNitro>aCurrentCar.carLibRecord.maxNitro) {
+			colorLabel(this.nitroBoost,"+"+diff,aColorIfBetter);
+		} else {
+			colorLabel(this.nitroBoost,""+diff,aColorIfWorse);
+		}
+		
+		diff = aCurrentCar.carLibRecord.carShiftSpeed-aNewCar.carShiftSpeed;
+		if(aNewCar.carShiftSpeed<aCurrentCar.carLibRecord.carShiftSpeed) {
+			colorLabel(this.shiftspeedBoost,""+diff,aColorIfBetter);
+		} else {
+			colorLabel(this.shiftspeedBoost,"+"+diff,aColorIfWorse);
+		}
+
+		
+		diff = aCurrentCar.carLibRecord.carDrag-aNewCar.carDrag;
+		if(aNewCar.carDrag<aCurrentCar.carLibRecord.carDrag) {
+			colorLabel(this.dragBoost,"+",aColorIfBetter);
+		} else {
+			colorLabel(this.dragBoost,"-",aColorIfWorse);
+		}
+
+		
+		diff = aNewCar.carMaxSpeed-aCurrentCar.carLibRecord.carMaxSpeed;
+
+		if(aNewCar.carMaxSpeed>aCurrentCar.carLibRecord.carMaxSpeed) {
+			colorLabel(this.maxSpeedBoost,"+"+diff,aColorIfBetter);
+		} else {
+			colorLabel(this.maxSpeedBoost,""+diff,aColorIfWorse);
+		} 
 	}
 	
 	public void alignToLeft() {
@@ -168,7 +273,28 @@ public class CarDetails : MonoBehaviour {
 		hideButtons();
 	}
 
-
+	public void showCar(GTCar aRecord) {		
+		if(carTitle==null) {
+			initLabels();
+		}
+		
+		horsepowerValue.text = ""+aRecord.carHP;
+		torqueValue.text = ""+aRecord.carTorque;
+		this.turboValue.text = "0";
+		nitroValue.text = ""+aRecord.nitroCapacity;
+		shiftspeedValue.text = ""+aRecord.shiftSpeed+"s";
+		this.dragValue.text = ""+aRecord.carDragString+" ("+aRecord.carDrag+")";
+		this.maxSpeedValue.text = ""+aRecord.carMaxSpeed+"MPH";
+		this.hasDRSValue.text = "Level "+aRecord.hasDRS;
+		//gripValue.text = ""+aRecord.carTireWearEffect;
+		
+		
+		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+		GTDriver driver = team.getDriverFromCar(this.carRef);
+		if(driver!=null) {
+			this.carTitle.text = driver.name+"'s "+aRecord.carLibRecord.name;
+		}
+	}
 	public void showCar(CarLibraryRecord aRecord) {		
 		if(carTitle==null) {
 			initLabels();
@@ -180,10 +306,17 @@ public class CarDetails : MonoBehaviour {
 		this.turboValue.text = "0";
 		nitroValue.text = ""+aRecord.maxNitro;
 		shiftspeedValue.text = ""+aRecord.carShiftSpeed;
-		downforceValue.text = ""+aRecord.carAero;
-		drivabilityValue.text = ""+aRecord.carDrivabilityEffect;
+		this.dragValue.text = ""+aRecord.carDragString+" ("+aRecord.carDrag+")";
+		this.maxSpeedValue.text = ""+aRecord.carMaxSpeed+"MPH";
 		gripValue.text = ""+aRecord.carTireWearEffect;
-		 
+		this.hasDRSValue.text = "Level 0";
+		
+		
+		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+		GTDriver driver = team.getDriverFromCar(this.carRef);
+		if(driver!=null) {
+			this.carTitle.text = driver.name+"'s "+aRecord.name;
+		}
 	}
 	public void initCar(GTCar aCar) {
 		if(carTitle==null) {
@@ -193,13 +326,9 @@ public class CarDetails : MonoBehaviour {
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		camController = GameObject.Find("Main Camera").GetComponent<GarageCameraController>();
 		carRef = aCar;
-		this.showCar(aCar.carLibRecord);
+		this.showCar(aCar);
 		
-		if(aCar.hasDRS) {
-			hasDRSValue.text = "YES";
-		} else {
-			hasDRSValue.text = "NO";
-		}
+		this.showCarImprovements();
 
 		if(team.cars[0]==carRef) {
 			camController.lookAtThis = GameObject.Find ("GarageLeftSide");
@@ -208,6 +337,65 @@ public class CarDetails : MonoBehaviour {
 			camController.lookAtThis = GameObject.Find ("GarageRightSide");
 		}
 
+
+	}
+
+	private void showCarImprovements() {
+		int hp = this.carRef.getResearchEffectOnHP();
+		if(hp==0) {
+			this.horsepowerBoost.gameObject.SetActive(false);
+		} else if(hp>0) {
+			this.horsepowerBoost.gameObject.SetActive(true);
+			this.horsepowerBoost.text = "+"+hp;
+		}
+
+		int torque = this.carRef.getResearchEffectOnTorque();
+		if(torque==0) {
+			this.torqueBoost.gameObject.SetActive(false);
+		} else if(torque>0) {
+			this.torqueBoost.gameObject.SetActive(true);
+			this.torqueBoost.text = "+"+torque;
+
+		}
+
+		float turboPSI = this.carRef.getResearchEffectOnTurboPSI();
+		if(turboPSI==0f) {
+			this.turboBoost.gameObject.SetActive(false);
+		} else if(turboPSI>0) {
+			this.turboBoost.gameObject.SetActive(true);
+			this.turboBoost.text = "+"+turboPSI+"PSI";
+		}
+
+		int nitroCapacity = this.carRef.getResearchEffectOnNitros();
+		if(nitroCapacity==0) {
+			this.nitroBoost.gameObject.SetActive(false);
+		} else if(nitroCapacity>0) {
+			this.nitroBoost.gameObject.SetActive(true);
+			this.nitroBoost.text = "+"+turboPSI+"";
+		}
+		float shiftSpeed = this.carRef.getResearchEffectOnShiftSpeed();
+		if(shiftSpeed==0f) {
+			this.shiftspeedBoost.gameObject.SetActive(false);
+		} else if(shiftSpeed<0) {
+			this.shiftspeedBoost.gameObject.SetActive(true);
+			this.shiftspeedBoost.text = "-"+shiftSpeed+"s";
+		}
+
+		float maxSpeed = this.carRef.getResearchEffectOnMaxSpeed();
+		if(maxSpeed==0f) {
+			this.maxSpeedBoost.gameObject.SetActive(false);
+		} else if(maxSpeed>0f) {
+			this.maxSpeedBoost.gameObject.SetActive(true);
+			this.maxSpeedBoost.text = "+"+maxSpeed+"MPH";		
+		}
+
+		float dragReduce = this.carRef.getResearchEffectOnDrag();
+		if(dragReduce==0f) {
+			this.dragBoost.gameObject.SetActive(false);
+		} else if(dragReduce<0f) {
+			this.dragBoost.gameObject.SetActive(true);
+			this.dragBoost.text = "-"+dragReduce+"";		
+		}
 
 	}
 	// Update is called once per frame

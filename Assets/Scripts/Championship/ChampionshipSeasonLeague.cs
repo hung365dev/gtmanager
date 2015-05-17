@@ -105,7 +105,7 @@ namespace championship
 			}
 			ChampionshipRaceSettings race1 = new ChampionshipRaceSettings();
 			race1.setupDefaultsForLeague(divisionNumber,0);
-			races.Add(race1);/*
+			races.Add(race1);
 			ChampionshipRaceSettings race2 = new ChampionshipRaceSettings();
 			race2.setupDefaultsForLeague(divisionNumber,1);
 			races.Add(race2);
@@ -115,7 +115,10 @@ namespace championship
 
 			ChampionshipRaceSettings race4 = new ChampionshipRaceSettings();
 			race4.setupDefaultsForLeague(divisionNumber,3);
-			races.Add(race4);*/
+			races.Add(race4);
+			ChampionshipRaceSettings race5 = new ChampionshipRaceSettings();
+			race5.setupDefaultsForLeague(divisionNumber,4);
+			races.Add(race5);
 		}
 		public bool humanLeague {
 			get {

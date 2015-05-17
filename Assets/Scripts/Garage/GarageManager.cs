@@ -39,9 +39,18 @@ public class GarageManager : MonoBehaviour {
 		
 		trigger = this.GetComponent<ConversationTrigger>();
 		trigger.conversation = "Welcome Conversation";
-		trigger.OnUse();
+		if(ChampionshipSeason.ACTIVE_SEASON!=null)
+			trigger.OnUse();
+		
 	}
-
+	public void onConversationEnded() {
+		Lua.Result r = DialogueLua.GetVariable("OnCloseAction");
+		if(r.AsString=="Garage") {
+			handleEndOfCalendarView();
+		} else if(r.AsString=="Calendar")  {
+			handleStartOfCalendarView();
+		}
+	}
 	public void doConversation(string aConversationName) {
 		
 		trigger = this.GetComponent<ConversationTrigger>();
@@ -71,6 +80,7 @@ public class GarageManager : MonoBehaviour {
 		mainButtons.gameObject.SetActive(false);
 	}
 	public void handleEndOfCalendarView() {
+		ChampionshipSeason.ACTIVE_SEASON.allowTimeToPass = false;
 		calendarManager.gameObject.SetActive(false);
 		mainButtons.gameObject.SetActive(true);
 	}

@@ -4,8 +4,9 @@ using System.Collections;
 public class NGUIDisabler : MonoBehaviour {
 	
 	public UICamera cameraRef;
-	public CC_Kuwahara kuwahara;
+	public CC_RadialBlur blur;
 	public CC_AnalogTV analogTV;
+	public static float PAUSED_TIME_SCALE = 0f;
 	// Use this for initialization
 	void Start () {
 	
@@ -16,29 +17,36 @@ public class NGUIDisabler : MonoBehaviour {
 	
 	}
 	void OnDisable() {
+		Time.timeScale = 1f;
 		if(cameraRef!=null) {
 			cameraRef.eventType = UICamera.EventType.UI_2D;
-			kuwahara.enabled = false;
-			analogTV.enabled = false;
+			
+			if(Application.loadedLevelName=="Garage") {
+				blur.enabled = false;
+				analogTV.enabled = false;
+			}
 		}
 	}
 	void OnEnable() {
+		Time.timeScale = PAUSED_TIME_SCALE;
 		GameObject uiRoot = GameObject.Find("UI Root");
 		if(uiRoot!=null) {
 			UICamera camera = uiRoot.GetComponentInChildren<UICamera>();
 			if(camera!=null) {
 				camera.eventType = UICamera.EventType.UI_3D;
 				cameraRef = camera;	
-				kuwahara = camera.GetComponent<CC_Kuwahara>();
-				if(kuwahara==null) {
-					kuwahara = camera.gameObject.AddComponent<CC_Kuwahara>();
+				if(Application.loadedLevelName=="Garage") {
+					blur = camera.GetComponent<CC_RadialBlur>();
+					if(blur==null) {
+						blur = camera.gameObject.AddComponent<CC_RadialBlur>();
+					}
+					blur.enabled = true;
+					analogTV = camera.GetComponent<CC_AnalogTV>();
+					if(analogTV==null) {
+						analogTV = camera.gameObject.AddComponent<CC_AnalogTV>();
+					}
+					analogTV.enabled = true;
 				}
-				kuwahara.enabled = true;
-				analogTV = camera.GetComponent<CC_AnalogTV>();
-				if(analogTV==null) {
-					analogTV = camera.gameObject.AddComponent<CC_AnalogTV>();
-				}
-				analogTV.enabled = true;
 				
 			}
 		}

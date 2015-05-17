@@ -7,6 +7,7 @@ using cars;
 using System;
 using Teams;
 using Cars;
+using PixelCrushers.DialogueSystem;
 
 public class RacingAI : MonoBehaviour {
 	public IRDSCarControllerAI aiCar;
@@ -72,10 +73,16 @@ public class RacingAI : MonoBehaviour {
 	public EDriverMessage lastMessage;
 	public bool dmgTriggered = false;
 
+
+	public static bool considerNitroTutorials = true;
 	public float lastMessageTime;
 	// Use this for initialization
 	void Start () {
 		this.tag = "Player";
+		Lua.Result r = DialogueLua.GetVariable ("HintArrowNitroBoost");
+		if(r.AsInt==3) {
+			considerNitroTutorials = false;
+		}
 	}
 	
 	// Update is called once per frame
@@ -194,6 +201,16 @@ public class RacingAI : MonoBehaviour {
 
 			break;
 		case(EEngineFailureStage.Hot):
+			if(this.humanControl) {
+				if(DialogueLua.GetVariable("HintArrowOverheating").AsInt==0) {
+					if(TeamControl.REF.selectedCar==this) {
+						
+					} else {
+						TeamControl.REF.changeCar();
+					}
+				}
+				RaceManager.REF.doConversation("TutorialOverheating");
+			}
 			if(engineFire!=null)
 				engineFire.gameObject.SetActive(false);	
 			if(engineWhiteSmoke!=null)
@@ -209,6 +226,16 @@ public class RacingAI : MonoBehaviour {
 
 			break;
 		case(EEngineFailureStage.VeryHot):
+			if(this.humanControl) {
+				if(DialogueLua.GetVariable("HintArrowOverheating").AsInt==0) {
+					if(TeamControl.REF.selectedCar==this) {
+						
+					} else {
+						TeamControl.REF.changeCar();
+					}
+				}
+				RaceManager.REF.doConversation("TutorialOverheating");
+			}
 			if(engineFire!=null)
 				engineFire.gameObject.SetActive(false);	
 			if(engineWhiteSmoke!=null)
@@ -244,10 +271,12 @@ public class RacingAI : MonoBehaviour {
 				originalTorque = this.aiDriveTrain.GetMaxTorque();
 				this.originalMaxRPM = this.aiDriveTrain.revLimiterRPM;
 			}
-
+			if(this.humanControl&&aOrder==EDriverOrders.TakeItEasy) {
+				RaceManager.REF.doConversation("TutorialOverheating");
+			}
 			DriverOrderSetup newOrder = DriverOrderLibrary.REF.getOrderFromEnum(aOrder);
 			newOrder.addEffectToCar(this,this.wings);
-
+		
 			this.currentOrders = aOrder;
 		}
 	}
@@ -379,6 +408,7 @@ public class RacingAI : MonoBehaviour {
 			for(int i = 0;i<wheelInfo.Length;i++) {
 				wheelInfo[i].Update();
 			}
+			this.aiCar.SetTyreWearExternalPhysics(0.1f);
 			if(this.aiCar.GetEndRace()) {
 				raceComplete = true;
 				finishTimeString = this.aiCar.GetCurrentTotalRaceTimeString();
@@ -417,6 +447,10 @@ public class RacingAI : MonoBehaviour {
 				} else if(lastMessage!=EDriverMessage.TooHot&&this.engineTempMonitor.isTooHot) {
 					RaceManager.REF.carDriverMessage(this,EDriverMessage.TooHot);
 				}
+			}
+			if(this.inNitroZone&&TeamControl.REF.selectedCar==this) {
+				if(considerNitroTutorials)
+					RaceManager.REF.doConversation("NitroBoost");
 			}
 		} else {
 			if(this.engineTempMonitor.percentTempRange<0.5f) {

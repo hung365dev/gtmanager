@@ -64,6 +64,7 @@ x 4 Antialiasing
 */
 
 		Destroy(this.gameObject);
+		InterfaceMainButtons.REF.onCloseOtherScreen();
 	}
 
 	

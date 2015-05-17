@@ -14,6 +14,7 @@ using Database;
 using UnityEngine;
 using championship;
 using System.Collections.Generic;
+using PixelCrushers.DialogueSystem;
 
 
 namespace Teams
@@ -164,7 +165,9 @@ namespace Teams
 					if(partBeingResearched.daysOfResearchRemaining == 0) {
 
 				//		partBeingResearched.level++;
-						Debug.Log (partBeingResearched.researchRow._partname+" is now researched: "+partBeingResearched.level);
+						DialogueLua.SetVariable("CompletedResearchName",""+partBeingResearched.researchRow._partname);
+
+						GarageManager.REF.doConversation("ResearchComplete");
 					}
 				}
 			}
@@ -180,8 +183,12 @@ namespace Teams
 
 		public GTDriver getDriverFromCar(GTCar aCar) {
 			int index = indexForCar(aCar);
-			GTDriver driver = drivers[index];
-			return driver;
+			if(index>=0) {
+
+				GTDriver driver = drivers[index];
+				return driver;
+			}
+			return null;
 		}
 		public GTCar getGTCarFromDriver(GTDriver aDriver) {
 			int index = indexForDriver(aDriver);

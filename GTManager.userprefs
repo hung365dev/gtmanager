@@ -1,11 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Garage/RnD/ResearchItem.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Racing/CarInfo/EngineTemperatureMonitor.cs">
     <Files>
-      <File FileName="Assets/Scripts/Garage/RnD/ResearchScreenMain.cs" Line="60" Column="18" />
-      <File FileName="Assets/Scripts/Garage/RnD/IndividualPieceOfResearch.cs" Line="66" Column="57" />
-      <File FileName="Assets/Scripts/Garage/RnD/ResearchItem.cs" Line="28" Column="1" />
-      <File FileName="Assets/NGUIDisabler.cs" Line="22" Column="4" />
+      <File FileName="Assets/Scripts/Racing/RacingAI.cs" Line="428" Column="23" />
+      <File FileName="Assets/Scripts/Racing/Interface/IndividualCarInterfaceManager.cs" Line="115" Column="98" />
+      <File FileName="Assets/Scripts/Cars/GTCar.cs" Line="116" Column="1" />
+      <File FileName="Assets/Scripts/Racing/CarInfo/EngineTemperatureMonitor.cs" Line="29" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

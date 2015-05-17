@@ -25,6 +25,9 @@ namespace Garage
 		public GameObject parent;
 		public static int currentIndex = 0;
 
+		public Color colorIfCarBetter;
+		public Color colorIfCarWorse;
+
 		private GTCar _carToReplace;
 		private CarDetails _carDetailsScreen;
 		public BuyCarsScreen ()
@@ -47,9 +50,9 @@ namespace Garage
 				cpa.enabled = true;
 			}
 			Lean.LeanTouch.OnFingerSwipe += OnFingerSwipe;
-			showCar(currentIndex);
 			_carToReplace = aCarToReplace;
 			_carDetailsScreen = aCarDetailsScreen;
+			showCar(currentIndex);
 		}
 
 
@@ -110,6 +113,7 @@ namespace Garage
 			carOnSale = thisCar;
 			deleteIRDSClasses(carOnSale);
 			this.GetComponent<CarDetails>().showCar (car);
+			this.GetComponent<CarDetails>().compareCarTo(car,_carToReplace,this.colorIfCarBetter,this.colorIfCarWorse);
 
 		}
 		public void deleteIRDSClasses(GameObject aObject) {

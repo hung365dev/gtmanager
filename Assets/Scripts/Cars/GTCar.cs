@@ -66,11 +66,61 @@ namespace Cars
 				return c;
 			}
 		}
-		public bool hasDRS {
+		public int hasDRS {
 			get {
-				return false;
+				float drsLevel = 0f;
+				for(int i = 0;i<rndParts.Count;i++) {
+					drsLevel += rndParts[i].researchRow._percentofdrswingtoremove*rndParts[i].level;
+				}
+				if(drsLevel==0.33f) {
+					return 1;
+				}
+				if(drsLevel==0.66f) {
+					return 2;
+				}
+				if(drsLevel==0.99f) {
+					return 3;
+				}
+				return 0;
 			}
 		}
+		public int carMaxSpeed {
+			get {
+				float maxSpeed = this.carLibRecord.carMaxSpeed;
+				return Convert.ToInt32(maxSpeed+this.getResearchEffectOnMaxSpeed());
+			} 
+		}
+		public float carDrag {
+			get {
+				float drag = this.carLibRecord.carDrag;
+				for(int i = 0;i<rndParts.Count;i++) {
+					drag += rndParts[i].researchRow._bodyaerodragreduce*rndParts[i].level;
+				}
+				return drag;
+			}
+		}
+		public string carDragString {
+			get {
+				if(carDrag>0.8f) {
+					return "Very Poor";
+				}
+				if(carDrag>0.7f) {
+					return "Poor";
+				}
+				if(carDrag>0.4f) {
+					return "Average";
+				}
+				if(carDrag>0.3f) {
+					return "Good";
+				}
+				if(carDrag>0.2f) {
+					return "Excellent";
+				}
+				return "Amazing";
+			}	
+		}
+		
+
 		public float nitroStrength {
 			get {
 				float c = 0f;
@@ -104,11 +154,14 @@ namespace Cars
 		}
 		public void initLibraryValues(IRDSDrivetrain aDriveTrain,IRDSCarControllerAI aAI,RacingAI aRacingAI) {
 			float hpToKW = 745.699872f;
-			aDriveTrain.SetMaxPower(this.carLibRecord.carHP*hpToKW);
+			aDriveTrain.SetMaxPower(carHP*hpToKW);
 			aDriveTrain.SetPowerRPM(this.carLibRecord.carHPRPM);
 	
-			aDriveTrain.SetMaxTorque(this.carLibRecord.carTorque);
+			aDriveTrain.SetMaxTorque(this.carTorque);
 			aDriveTrain.SetTorqueRPM(this.carLibRecord.carTorqueRPM);
+			aDriveTrain.ShiftSpeed = this.shiftSpeed;
+			aAI.spdLimit = (float) this.carMaxSpeed; 
+			aRacingAI.nitrosRemaining = (byte) this.nitroCapacity;
 		//	aDriveTrain.SetEngineOrientation(Vector3.up);
  
 		}
@@ -134,7 +187,7 @@ namespace Cars
 			string[] split = aPrerequisites.Split(new char[] {','});
 			for(int i = 0;i<split.Length;i++) {
 				for(int j=0;j<rndParts.Count;j++) {
-					if(rndParts[j].researchRow._partname==split[i]) {
+					if(rndParts[j].researchRow._partname==split[i]&&rndParts[j].researchRow._maxlevelstounlock==rndParts[j].activeLevel) {
 						return true;
 					}
 				}
@@ -168,6 +221,81 @@ namespace Cars
 				return carLibRecord.carPrefab.GetComponent<IRDSCarControllerAI>();
 			}
 		}
+		public int carHP {
+			get {
+				return Convert.ToInt32(this.carLibRecord.carHP)+this.getResearchEffectOnHP();
+			}
+		}
+		public int carTorque {
+			get {
+				return Convert.ToInt32(this.carLibRecord.carTorque)+this.getResearchEffectOnTorque();
+			}
+		}
+		public int getResearchEffectOnHP() {
+			int r = 0;
+			for(int i = 0;i<this.rndParts.Count;i++) {
+				if(rndParts[i].researchRow._effectonhp>0) {
+					r+=Convert.ToInt32(rndParts[i].researchRow._effectonhp*rndParts[i].activeLevel);
+				}
+			}
+			return r;
+		}
+		public float shiftSpeed {
+			get {
+				return this.carLibRecord.carShiftSpeed+getResearchEffectOnShiftSpeed();
+			}
+		}
+		public float getResearchEffectOnShiftSpeed() {
+			float shiftSpeed = 0f;
+			for(int i = 0;i<this.rndParts.Count;i++) {
+				if(rndParts[i].researchRow._effectonshiftspeed!=0f) {
+					shiftSpeed+=Convert.ToInt32(rndParts[i].researchRow._effectonshiftspeed*rndParts[i].activeLevel);
+				}
+			}
+			return shiftSpeed;
+		}
+		public int getResearchEffectOnTorque() {
+			int r = 0;
+			for(int i = 0;i<this.rndParts.Count;i++) {
+				if(rndParts[i].researchRow._effectontorque>0) {
+					r+=Convert.ToInt32(rndParts[i].researchRow._effectontorque*rndParts[i].activeLevel);
+				}
+			}
+			return r; 
+		}
+
+		public int getResearchEffectOnNitros() {
+			int r = 0;
+			for(int i = 0;i<this.rndParts.Count;i++) {
+				if(rndParts[i].researchRow._effectonnitrocapacity>0) {
+					r+=Convert.ToInt32(rndParts[i].researchRow._effectonnitrocapacity*rndParts[i].activeLevel);
+				}
+			}
+			return r; 
+		}
+		
+		public float getResearchEffectOnDrag() {
+			float turboPSI = 0f;
+			for(int i = 0;i<rndParts.Count;i++) {
+				turboPSI += rndParts[i].researchRow._bodyaerodragreduce*rndParts[i].activeLevel;
+			}
+			return turboPSI;
+		}
+		public float getResearchEffectOnTurboPSI() {
+			float turboPSI = 0f;
+			for(int i = 0;i<rndParts.Count;i++) {
+				turboPSI += rndParts[i].researchRow._effectonturbopsi*rndParts[i].activeLevel;
+			}
+			return turboPSI;
+		}
+		public float getResearchEffectOnMaxSpeed() {
+			float maxSpeed = 0f;
+			for(int i = 0;i<rndParts.Count;i++) {
+				maxSpeed += rndParts[i].researchRow._maxspeedadd*rndParts[i].activeLevel;
+			}
+			return Convert.ToInt32(maxSpeed);
+		}
+
 
 	}
 }

@@ -39,7 +39,10 @@ namespace Database
 		public float carTireWearEffect;
 		public float carDrivabilityEffect;
 
-
+		public float carDrag;
+		
+		public float turboPSI = 0f;
+		public float carMaxSpeed;
 		public CarLibraryRecord (CarLibraryRow aRow)
 		{
 			id = aRow._id;
@@ -63,6 +66,29 @@ namespace Database
 			carTireWearEffect = aRow._cartireweareffect;
 			carDrivabilityEffect = aRow._cardrivabilityeffect;
 
+			carDrag = aRow._cardrag;
+			this.carShiftSpeed = aRow._carshiftspeed;
+			carMaxSpeed = aRow._maxspeed;  
+		}
+		public string carDragString {
+			get {
+				if(carDrag>0.8f) {
+					return "Very Poor";
+				}
+				if(carDrag>0.7f) {
+					return "Poor";
+				}
+				if(carDrag>0.4f) {
+					return "Average";
+				}
+				if(carDrag>0.3f) {
+					return "Good";
+				}
+				if(carDrag>0.2f) {
+					return "Excellent";
+				}
+				return "Amazing";
+			}	
 		}
 
 		public GameObject carPrefab {
@@ -72,5 +98,5 @@ namespace Database
 			}
 		}
 	}
-}
+} 
 

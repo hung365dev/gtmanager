@@ -326,7 +326,7 @@ public class UIButtonColor : UIWidgetContainer
 					gameObjectToDisableOnDisable.SetActive(false);
 				}
 				break;
-				default: tc = TweenColor.Begin(tweenTarget, duration, mDefaultColor); break;
+			default: tc = TweenColor.Begin(tweenTarget, duration, mDefaultColor);if(gameObjectToDisableOnDisable!=null) gameObjectToDisableOnDisable.SetActive(true);break;
 			}
 
 			if (instant && tc != null)

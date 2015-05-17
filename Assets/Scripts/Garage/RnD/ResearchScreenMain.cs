@@ -90,6 +90,7 @@ public class ResearchScreenMain : MonoBehaviour {
 			individualResearch.toggleConversation();
 			CarDetails cd = InterfaceMainButtons.REF.createCarDetailsScreen(this.gameObject,this.carRef,false);
 			cd.alignToLeft();
+			cd.showEffectOfResearch(aItem);
 		}
 	}
 	// Update is called once per frame

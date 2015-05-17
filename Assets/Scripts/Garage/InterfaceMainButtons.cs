@@ -118,7 +118,7 @@ public class InterfaceMainButtons : MonoBehaviour {
 		if(sponsorScreen!=null) {
 			Destroy(sponsorScreen.gameObject);
 		} 
-		GarageManager.REF.showTopButtons();
+		GarageManager.REF.showTopButtons(); 
 		if(researchScreen!=null&&researchScreen.gameObject!=null)
 			researchScreen.gameObject.SetActive(false);
 		if(gameObject!=null)

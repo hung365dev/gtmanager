@@ -26,15 +26,15 @@ namespace Racing
 		public float _maxRPM = 0f;
 
 		// The base effect of the radiators cooling
-		public float baseCooling = 0.1f;
+		public float baseCooling = 0.02f;
 
 		// After this many meters per second, the radiator cannot cool the car down quicker
-		public float maxCoolingSpeed = 100f;
+		public float maxCoolingSpeed = 75f;
 
 		// Start Temp and Current temp
 		public float currentTemperature = 190f;
 		public float perfectTemperature = 190f;
-		public float engineBlowupTemp = 240f;
+		public float engineBlowupTemp = 260f;
 
 		// These values are just so I can monitor what its doing in Unitys IDE
 		public float percentTempRange = 0f;
@@ -67,7 +67,7 @@ namespace Racing
 			float currentRPM = aDriveTrain.GetRPM();
 			float originalMinRPM = aDriveTrain.GetOriginalMinRPM();
 			if(!float.IsNaN(currentRPM)) {
-				float tempToAdd = ((float) Math.Pow(currentRPM/(aDriveTrain.revLimiterRPM-originalMinRPM),5))/15f;
+				float tempToAdd = (((float) Math.Pow(currentRPM/(aDriveTrain.revLimiterRPM-originalMinRPM),5))/15f)/2;
 				currentTemperature += tempToAdd;
 				// Just for montioring in Unity IDE
 				lastHeat = tempToAdd;
@@ -82,7 +82,7 @@ namespace Racing
 				if(currentSpeed>maxCoolingSpeed) {
 					currentSpeed = maxCoolingSpeed;
 				}
-				float tempToTake = ((float) Math.Pow(currentSpeed/maxCoolingSpeed,3.2))/8f+this.baseCooling;
+				float tempToTake = (((float) Math.Pow(currentSpeed/maxCoolingSpeed,4))/8f+this.baseCooling)/2;
 				currentTemperature -= tempToTake;
 				lastCool = tempToTake;
 			}
@@ -95,7 +95,7 @@ namespace Racing
 			if(hasFailed) {
 				return;
 			}
-			if(percentTempRange<0.80f) {
+			if(percentTempRange<0.70f) {
 				if(aAI.engineFailure!=EEngineFailureStage.Normal) {
 					aAI.engineFailure = EEngineFailureStage.Normal;
 					aAI.setEngineFailureStage();
@@ -103,7 +103,7 @@ namespace Racing
 					this.isOverheating = false;
 					this.isGettingHot = false;
 				}
-			} else if(percentTempRange<0.90f) {
+			} else if(percentTempRange<0.85f) {
 				if(aAI.engineFailure!=EEngineFailureStage.Hot) {
 					aAI.engineFailure = EEngineFailureStage.Hot;
 					aAI.setEngineFailureStage();

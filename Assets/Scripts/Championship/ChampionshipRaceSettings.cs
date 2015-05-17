@@ -44,20 +44,20 @@ namespace championship
 			case(1):track = TrackDatabase.REF.recordFromName("LongStraights");break;
 			case(4):track = TrackDatabase.REF.recordFromName("RaceCircuit1");break;
 			case(3):track = TrackDatabase.REF.recordFromName("OvalTrack");break;
-			case(5):track = TrackDatabase.REF.recordFromName("LowerLevel1");break;
-			case(0):track = TrackDatabase.REF.recordFromName("MiniOval");break;
+			case(0):track = TrackDatabase.REF.recordFromName("LowerLevel1");break;
+			case(5):track = TrackDatabase.REF.recordFromName("MiniOval");break;
 			} 
 			prizeFund = 50000*(5-aLeague);
 			driversPointsDistribution = EPointsDistribution.F12010Style;
 			constructorsPointsDistribution = EPointsDistribution.F12010Style;
-			startDate = (aRaceInCalendar+1)*7+ChampionshipSeason.ACTIVE_SEASON.secondsPast;
+			startDate = (aRaceInCalendar+1)*(7+ChampionshipSeason.ACTIVE_SEASON.secondsPast)-1;
 		} 
 
 		public List<GTDriver> driversForRace() {
 			//TODO So far no grid setup is acknowledged.
 			List<GTDriver> ret = new List<GTDriver>();
 			for(int i = 0;i<teamsInRace.Count;i++) {
-				ret.Add(teamsInRace[i].drivers[0]);
+				ret.Add(teamsInRace[i].drivers[0]); 
 				ret.Add(teamsInRace[i].drivers[1]); 
 			}
 			switch(this.gridSetup) {

@@ -13,8 +13,8 @@ public class CalendarManager : MonoBehaviour {
 
 
 	void OnEnable() {
-		Debug.Log ("OnEnable");
 		updateDay();
+		GarageManager.REF.doConversation("CalendarConversation");
 	}
 
 

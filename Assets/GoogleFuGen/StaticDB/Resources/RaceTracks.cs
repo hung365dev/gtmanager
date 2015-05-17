@@ -150,31 +150,31 @@ namespace GoogleFu
 			Rows.Add( new RaceTracksRow("2",
 														"Oval Track",
 														"OvalTrack",
-														"LowerLevel2",
+														"OvalTrack",
 														"ShortDescription",
 														"0"));
 			Rows.Add( new RaceTracksRow("3",
 														"Race Circuit",
 														"RaceCircuit1",
-														"LowerLevel3",
+														"RaceCircuit1",
 														"ShortDescription",
 														"0"));
 			Rows.Add( new RaceTracksRow("4",
 														" Short Snow Track",
 														"ShortSnowTrack",
-														"LowerLevel4",
+														"ShortSnowTrack",
 														"ShortDescription",
 														"0"));
 			Rows.Add( new RaceTracksRow("5",
 														"Long Straights",
 														"LongStraights",
-														"LowerLevel5",
+														"LongStraights",
 														"ShortDescription",
 														"0"));
 			Rows.Add( new RaceTracksRow("6",
 														"Mini Oval",
 														"MiniOval",
-														"LowerLevel6",
+														"MiniOval",
 														"ShortDescription",
 														"0"));
 		}

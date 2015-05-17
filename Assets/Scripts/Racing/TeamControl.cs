@@ -14,6 +14,7 @@ using Database;
 using System.Collections.Generic;
 using championship;
 using Teams;
+using PixelCrushers.DialogueSystem;
 
 
 namespace Racing
@@ -40,6 +41,7 @@ namespace Racing
 
 		public EDriverOrders lastOrders;
 		public Camera raceStartCamera;
+		public static TeamControl REF;
 		public TeamControl ()
 		{
 		}
@@ -145,7 +147,7 @@ namespace Racing
 			if(selectedCar == null) {
 				selectedCar = racingAIs[1];
 			}
-			if (selectedCar.driverName.Equals(racingAIs [0].driverName)) {
+			if (selectedCar.driverRecord.id==racingAIs[0].driverRecord.id) {
 				carCamera.changeTarget(racingAIs[1].aiInput.GetInstanceID());
 				selectedCar = racingAIs[1];
 			} else {
@@ -157,8 +159,14 @@ namespace Racing
 
 		public void onUseNitro() {
 			if (selectedCar != null) {
-				if(selectedCar.nitrosRemaining>0)
+				if(selectedCar.nitrosRemaining>0) {
+					if(RacingAI.considerNitroTutorials) {
+						DialogueLua.SetVariable("HintArrowNitroBoost",2);
+						RaceManager.REF.doConversation("NitroBoost");
+						RacingAI.considerNitroTutorials = false;
+					}
 					selectedCar.useNitro();
+				}
 			}
 		}
 		public void onChangeCamera() {
@@ -194,6 +202,7 @@ namespace Racing
 			}
 		}
 		public void Start() {
+			REF = this;
 			manager = GameObject.Find ("IRDSManager").GetComponent<IRDSManager> ();
 			if (TeamDatabase.REF == null) {
 				Application.LoadLevel("InitGame");

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Teams;
 using Drivers;
 using Cars;
+using PixelCrushers.DialogueSystem;
 
 public class RaceManager : MonoBehaviour {
 	public IRDSCarCamera carCamera;
@@ -31,7 +32,7 @@ public class RaceManager : MonoBehaviour {
 	public ChampionshipRaceSettings raceSettings;
 	public RaceStarterTable raceStartersTable;
 	public GameObject genericRaceGUI;
-
+	public ConversationTrigger conversationTrigger;
 	public UILabel driver1Label;
 	public UILabel driver2Label;
 
@@ -57,6 +58,8 @@ public class RaceManager : MonoBehaviour {
 			case(1):dl.shadows = LightShadows.Hard;break;
 			case(2):dl.shadows = LightShadows.Soft;break;
 		}
+
+		NGUIDisabler.PAUSED_TIME_SCALE = 0.1f;
 	//	Time.timeScale = 4;
 		manager = GameObject.Find ("IRDSManager").GetComponent<IRDSManager> ();
 		statistics =manager.GetComponentInChildren<IRDSStatistics>();
@@ -116,6 +119,16 @@ public class RaceManager : MonoBehaviour {
 			raceStartersTable.activate(driversInRace);
 		}
 		//
+	}
+	
+	public void doConversation(string aConversationName) {
+		
+		conversationTrigger = this.GetComponent<ConversationTrigger>();
+		if(conversationTrigger==null) {
+			conversationTrigger = this.gameObject.AddComponent<ConversationTrigger>();
+		}
+		conversationTrigger.conversation = aConversationName;
+		conversationTrigger.OnUse();
 	}
 
 	public void HandleNewFinisher(RacingAI aRacingAI) {

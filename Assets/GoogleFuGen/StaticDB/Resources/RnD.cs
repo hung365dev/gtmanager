@@ -42,7 +42,8 @@ namespace GoogleFu
 		public float _rearwingangleeffect;
 		public float _bodyaerodragreduce;
 		public float _percentofdrswingtoremove;
-		public RnDRow(string __id, string __partname, string __partcategory, string __partdescription, string __maxlevelstounlock, string __upgradestacktype, string __partprerequisites, string __partprerequisitestaff, string __partprerequisitedivision, string __daystoresearch, string __costtoresearch, string __effectonhp, string __effectontorque, string __effectonturbopsi, string __effectonnitrocapacity, string __effectonnitrodurability, string __effectonnitrofuel, string __effectonshiftspeed, string __tirecoefficientofgripchange, string __tirehardnesseffect, string __coolingmaxtempeffect, string __coolingbaseeffect, string __humanerrorreductor, string __frontwingeffectdownforceeffect, string __rearwingdownforceeffect, string __frontwingangleeffect, string __rearwingangleeffect, string __bodyaerodragreduce, string __percentofdrswingtoremove) 
+		public float _maxspeedadd;
+		public RnDRow(string __id, string __partname, string __partcategory, string __partdescription, string __maxlevelstounlock, string __upgradestacktype, string __partprerequisites, string __partprerequisitestaff, string __partprerequisitedivision, string __daystoresearch, string __costtoresearch, string __effectonhp, string __effectontorque, string __effectonturbopsi, string __effectonnitrocapacity, string __effectonnitrodurability, string __effectonnitrofuel, string __effectonshiftspeed, string __tirecoefficientofgripchange, string __tirehardnesseffect, string __coolingmaxtempeffect, string __coolingbaseeffect, string __humanerrorreductor, string __frontwingeffectdownforceeffect, string __rearwingdownforceeffect, string __frontwingangleeffect, string __rearwingangleeffect, string __bodyaerodragreduce, string __percentofdrswingtoremove, string __maxspeedadd) 
 		{
 			{
 			int res;
@@ -217,9 +218,16 @@ namespace GoogleFu
 				else
 					Debug.LogError("Failed To Convert percentofdrswingtoremove string: "+ __percentofdrswingtoremove +" to float");
 			}
+			{
+			float res;
+				if(float.TryParse(__maxspeedadd, out res))
+					_maxspeedadd = res;
+				else
+					Debug.LogError("Failed To Convert maxspeedadd string: "+ __maxspeedadd +" to float");
+			}
 		}
 
-		public int Length { get { return 29; } }
+		public int Length { get { return 30; } }
 
 		public string this[int i]
 		{
@@ -321,6 +329,9 @@ namespace GoogleFu
 				case 28:
 					ret = _percentofdrswingtoremove.ToString();
 					break;
+				case 29:
+					ret = _maxspeedadd.ToString();
+					break;
 			}
 
 			return ret;
@@ -418,6 +429,9 @@ namespace GoogleFu
 				case "percentofdrswingtoremove":
 					ret = _percentofdrswingtoremove.ToString();
 					break;
+				case "maxspeedadd":
+					ret = _maxspeedadd.ToString();
+					break;
 			}
 
 			return ret;
@@ -454,6 +468,7 @@ namespace GoogleFu
 			ret += "{" + "rearwingangleeffect" + " : " + _rearwingangleeffect.ToString() + "} ";
 			ret += "{" + "bodyaerodragreduce" + " : " + _bodyaerodragreduce.ToString() + "} ";
 			ret += "{" + "percentofdrswingtoremove" + " : " + _percentofdrswingtoremove.ToString() + "} ";
+			ret += "{" + "maxspeedadd" + " : " + _maxspeedadd.ToString() + "} ";
 			return ret;
 		}
 	}
@@ -489,7 +504,7 @@ namespace GoogleFu
 														"",
 														"1",
 														"4",
-														"12",
+														"5",
 														"60000",
 														"0",
 														"0",
@@ -508,7 +523,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"0"));
+														"0",
+														"1"));
 			Rows.Add( new RnDRow("2",
 														"Medium Turbo",
 														"Turbo",
@@ -518,7 +534,7 @@ namespace GoogleFu
 														"Micro Turbo",
 														"3",
 														"3",
-														"30",
+														"9",
 														"90000",
 														"0",
 														"0",
@@ -537,7 +553,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"0"));
+														"0",
+														"2"));
 			Rows.Add( new RnDRow("3",
 														"Super Turbo",
 														"Turbo",
@@ -547,7 +564,7 @@ namespace GoogleFu
 														"Medium Turbo",
 														"6",
 														"1",
-														"60",
+														"12",
 														"120000",
 														"0",
 														"0",
@@ -566,7 +583,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"0"));
+														"0",
+														"3"));
 			Rows.Add( new RnDRow("4",
 														"Advanced Ignition",
 														"Engine",
@@ -576,7 +594,7 @@ namespace GoogleFu
 														"",
 														"1",
 														"4",
-														"15",
+														"6",
 														"50000",
 														"20",
 														"20",
@@ -595,7 +613,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"0"));
+														"0",
+														"3"));
 			Rows.Add( new RnDRow("5",
 														"Variable Valve Timing",
 														"Engine",
@@ -605,7 +624,7 @@ namespace GoogleFu
 														"Advanced Ignition",
 														"2",
 														"3",
-														"35",
+														"10",
 														"75000",
 														"30",
 														"30",
@@ -624,7 +643,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"0"));
+														"0",
+														"5"));
 			Rows.Add( new RnDRow("6",
 														"Hybrid Boost",
 														"Engine",
@@ -634,7 +654,7 @@ namespace GoogleFu
 														"Variable Valve Timing",
 														"8",
 														"2",
-														"70",
+														"15",
 														"150000",
 														"50",
 														"40",
@@ -653,7 +673,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"0"));
+														"0",
+														"10"));
 			Rows.Add( new RnDRow("7",
 														"Lite Nitro Storage",
 														"Engine",
@@ -663,7 +684,7 @@ namespace GoogleFu
 														"",
 														"2",
 														"4",
-														"18",
+														"2",
 														"75000",
 														"0",
 														"0",
@@ -671,6 +692,7 @@ namespace GoogleFu
 														"1",
 														"0.2",
 														"5",
+														"0",
 														"0",
 														"0",
 														"0",
@@ -692,7 +714,7 @@ namespace GoogleFu
 														"Lite Nitro Storage",
 														"2",
 														"4",
-														"18",
+														"6",
 														"75000",
 														"0",
 														"0",
@@ -700,6 +722,7 @@ namespace GoogleFu
 														"0",
 														"0",
 														"10",
+														"0",
 														"0",
 														"0",
 														"0",
@@ -721,13 +744,14 @@ namespace GoogleFu
 														"Lite Nitro Storage",
 														"2",
 														"4",
-														"18",
+														"10",
 														"75000",
 														"0",
 														"0",
 														"0",
 														"0",
 														"0.3",
+														"0",
 														"0",
 														"0",
 														"0",
@@ -750,7 +774,7 @@ namespace GoogleFu
 														"Advanced Ignition",
 														"2",
 														"4",
-														"23",
+														"11",
 														"75000",
 														"0",
 														"0",
@@ -759,6 +783,7 @@ namespace GoogleFu
 														"0.2",
 														"10",
 														"-0.05",
+														"0",
 														"0",
 														"0",
 														"0",
@@ -779,7 +804,7 @@ namespace GoogleFu
 														"",
 														"5",
 														"2",
-														"20",
+														"5",
 														"75000",
 														"50",
 														"20",
@@ -798,7 +823,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"-0.15",
-														"0"));
+														"0",
+														"10"));
 			Rows.Add( new RnDRow("12",
 														"Cooling Kit",
 														"Reliability",
@@ -808,7 +834,7 @@ namespace GoogleFu
 														"",
 														"1",
 														"4",
-														"20",
+														"3",
 														"75000",
 														"0",
 														"0",
@@ -827,6 +853,7 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
+														"0",
 														"0"));
 			Rows.Add( new RnDRow("13",
 														"Retreadded Rubber",
@@ -837,7 +864,7 @@ namespace GoogleFu
 														"Medium Turbo",
 														"4",
 														"4",
-														"20",
+														"9",
 														"75000",
 														"0",
 														"0",
@@ -856,7 +883,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"0"));
+														"0",
+														"8"));
 			Rows.Add( new RnDRow("14",
 														"DRS System",
 														"Aerodynamics",
@@ -866,7 +894,7 @@ namespace GoogleFu
 														"Retreadded Rubber,Advanced Nitro Durability",
 														"7",
 														"4",
-														"20",
+														"11",
 														"75000",
 														"0",
 														"0",
@@ -885,7 +913,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"0.33"));
+														"0.33",
+														"10"));
 			Rows.Add( new RnDRow("15",
 														"Holographic Driver HUD",
 														"Reliability",
@@ -895,7 +924,7 @@ namespace GoogleFu
 														"Nitro Ferocity ",
 														"5",
 														"4",
-														"21",
+														"12",
 														"75001",
 														"0",
 														"0",
@@ -914,7 +943,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"0"));
+														"0",
+														"10"));
 			Rows.Add( new RnDRow("16",
 														"Composite Cooling Liquids",
 														"Reliability",
@@ -924,7 +954,7 @@ namespace GoogleFu
 														"Syncro Upgrade",
 														"6",
 														"2",
-														"25",
+														"6",
 														"100000",
 														"0",
 														"0",
@@ -943,6 +973,7 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
+														"0",
 														"0"));
 			Rows.Add( new RnDRow("17",
 														"Airless Tires",
@@ -953,7 +984,7 @@ namespace GoogleFu
 														"Cooling Kit",
 														"6",
 														"2",
-														"25",
+														"4",
 														"100000",
 														"0",
 														"0",
@@ -972,7 +1003,8 @@ namespace GoogleFu
 														"0",
 														"0",
 														"0",
-														"0"));
+														"0",
+														"5"));
 		}
 		public IGoogleFuRow GetGenRow(string in_RowString)
 		{

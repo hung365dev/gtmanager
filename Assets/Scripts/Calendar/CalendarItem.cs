@@ -6,6 +6,10 @@ using Database;
 using Teams;
 
 //[ExecuteInEditMode]
+using Cars;
+using Drivers;
+
+
 public class CalendarItem : MonoBehaviour {
 
 	// Use this for initialization
@@ -15,7 +19,7 @@ public class CalendarItem : MonoBehaviour {
 	public Color tint;
 	public Color original;
 
-	public UITexture researchIcon;
+	public UILabel researchText;
 	void Start () {
 	
 	}
@@ -28,8 +32,10 @@ public class CalendarItem : MonoBehaviour {
 	public void initLabels() {
 		if(this.title==null) {
 			title = this.transform.FindChild("CalendarDate").GetComponent<UILabel>();
+			
 		}
-
+		researchText = this.transform.FindChild("ResearchEventOnDay").GetComponent<UILabel>();
+		
 		if(thisIndex==7) {
 			title.text = "Return to Menu";
 			return;
@@ -40,7 +46,7 @@ public class CalendarItem : MonoBehaviour {
 	public void setToDayOfYear(int aDayOfYear) {
 		initLabels();
 
-		DateTime theDate = new DateTime( 2016, 1, 1 ).AddDays( aDayOfYear );
+		DateTime theDate = new DateTime( 2015, 12, 28 ).AddDays( aDayOfYear );
 		title.text = theDate.ToLongDateString().Substring(0,theDate.ToLongDateString().Length-5);
 		if(aDayOfYear==ChampionshipSeason.ACTIVE_SEASON.secondsPast) {
 			TweenColor.Begin(this.gameObject,0.25f,this.tint);
@@ -63,9 +69,22 @@ public class CalendarItem : MonoBehaviour {
 		}
 
 		if(myTeam.hasResearchCompletingOnDay(aDayOfYear)) {
-		//	this.researchIcon.gameObject.SetActive(true);
+			GTCar car1 = myTeam.cars[0];
+			GTCar car2 = myTeam.cars[1]; 
+			GTDriver driver1 = myTeam.drivers[0];
+			GTDriver driver2 = myTeam.drivers[1];
+			string research = "";
+			if(car1.hasResearchCompletingOnDay(aDayOfYear)!=null) {
+				GTEquippedResearch researchBit = car1.hasResearchCompletingOnDay(aDayOfYear);
+				research = researchBit.researchRow._partname+" Completion for "+driver1.name+"\n";
+			}		
+			if(car2.hasResearchCompletingOnDay(aDayOfYear)!=null) {
+				GTEquippedResearch researchBit = car2.hasResearchCompletingOnDay(aDayOfYear);
+				research += researchBit.researchRow._partname+" Completion for "+driver2.name;
+			}
+			this.researchText.text = research;
 		} else {
-		//	this.researchIcon.gameObject.SetActive(false);
+			this.researchText.text = "";
 		}
 	}
 	[ContextMenu("SetMyAnchors")]
