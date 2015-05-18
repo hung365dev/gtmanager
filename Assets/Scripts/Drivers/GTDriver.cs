@@ -11,6 +11,7 @@ using System;
 using Cars;
 using Database;
 using UnityEngine;
+using System.Collections.Generic;
 
 
 namespace Drivers
@@ -21,6 +22,8 @@ namespace Drivers
 		public GTCar assignedCar;
 		public int championshipPoints;
 		public int lastRacePoints;
+
+		public static List<GTDriver> allDrivers = new List<GTDriver>();
 		public GTDriver ()
 		{
 		}

@@ -17,6 +17,11 @@ public class DriverPanel : MonoBehaviour {
 	public UILabel payPerRaceLabel;
 	public UILabel sponsorAppealLabel;
 
+	public GTDriver driverRef;
+	public NewDriverPanel otherDrivers;
+	public NewDriverPanel prefabDriverPanel;
+
+	public UI2DSprite faceSprite;
 	// Use this for initialization
 	void Start () {
 	
@@ -27,6 +32,20 @@ public class DriverPanel : MonoBehaviour {
 	
 	}
 
+	public void onLookAtOtherDrivers() {
+		if(otherDrivers!=null) {
+			Destroy(otherDrivers.gameObject);
+		}
+		GameObject go = NGUITools.AddChild(this.gameObject.transform.parent.gameObject,prefabDriverPanel.gameObject);
+		Debug.Log (go.name);
+		
+		otherDrivers = go.GetComponent<NewDriverPanel>();
+		otherDrivers.alignToLeft();
+		otherDrivers.myDriverPanel = this;
+	//	if(otherDrivers!=null)
+	//		otherDrivers.initDriver(this.driverRef);
+		//hideButtons();
+	}
 	private void initLabels() {
 		driverTitle = this.transform.FindChild("DriverTitle").GetComponent<UILabel>();
 		this.brakingAggressionLabel = this.transform.FindChild("BrakingAggressionValue").GetComponent<UILabel>();
@@ -37,6 +56,9 @@ public class DriverPanel : MonoBehaviour {
 		this.currentTeamLabel = this.transform.FindChild("CurrentTeamValue").GetComponent<UILabel>();
 		this.payPerRaceLabel = this.transform.FindChild("PayPerRaceValue").GetComponent<UILabel>();
 		this.sponsorAppealLabel = this.transform.FindChild("SponsorAppealValue").GetComponent<UILabel>();
+
+		this.faceSprite = this.gameObject.GetComponentInChildren<UI2DSprite>();
+		
 	}
 	public void onGotoMainMenu() {
 		InterfaceMainButtons.REF.onCloseOtherScreen();
@@ -46,10 +68,13 @@ public class DriverPanel : MonoBehaviour {
 			otherDrivers = null;
 			
 		}*/
+		if(this.otherDrivers!=null) {
+			Destroy(otherDrivers.gameObject);
+		}
 		Destroy(this.gameObject);
 	}
 	public void initDriver(GTDriver aDriver) {
-		if(driverTitle==null)
+		//if(driverTitle==null)
 			initLabels();
 		if(driverTitle!=null) {
 			driverTitle.text = aDriver.name;
@@ -59,10 +84,16 @@ public class DriverPanel : MonoBehaviour {
 			overtakingLabel.text = aDriver.overtakingString;
 			staminaLabel.text = aDriver.staminaString;
 			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aDriver);
+			if(team==null) {
+				this.currentTeamLabel.text = "No Team";
+				
+			} else
 			this.currentTeamLabel.text = team.teamName;
-			 
-
+			
+			faceSprite.sprite2D = aDriver.record.sprite;;
+			
 		}
+		this.driverRef = aDriver;
 	}
 
 

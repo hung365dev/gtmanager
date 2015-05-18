@@ -49,8 +49,11 @@ namespace Drivers
 		public float jumpThrottleMultiplier;
 		public float jumpThrottleTime;
 		public float agressiveMultiplier;
-
+		public DriverLibraryRecord record;
 		public void initFromLibrary(DriverLibraryRecord aLibraryRecord) {
+			record = aLibraryRecord;
+
+			GTDriver.allDrivers.Add((GTDriver) this);
 			this.id = aLibraryRecord.id;
 			this.aggressivenessOnBrake = aLibraryRecord.aggressivenessOnBrake;
 			this.agressiveMultiplier = aLibraryRecord.agressiveMultiplier;

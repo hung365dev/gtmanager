@@ -9,6 +9,10 @@
 // ------------------------------------------------------------------------------
 using System;
 using GoogleFu;
+using UnityEngine;
+using System.Collections.Generic;
+
+
 namespace Database
 {
 	
@@ -49,12 +53,22 @@ namespace Database
 		public float jumpThrottleMultiplier;
 		public float jumpThrottleTime;
 		public float agressiveMultiplier;
-
+	
+		public string firstname;
+		public string surname;
 		public int stamina;
+
+		public string faceSpriteString;
+
+		public List<Sprite> driverFaces = new List<Sprite>();
 		public DriverLibraryRecord (DriverNamesRow aRow)
 		{
 			id = aRow._id;
-			driverName = aRow._drivername;
+			firstname = aRow._firstname;
+			surname = aRow._lastname;
+
+			faceSpriteString = aRow._picture;
+			driverName = firstname.Substring(0,1)+". "+surname;
 			aggressivenessOnBrake = aRow._aggressivenessonbrake;
 			speedSteeringFactor = aRow._spdsteeringfactor;
 			lookAheadFactor = aRow._lookaheadfactor;
@@ -89,6 +103,28 @@ namespace Database
 			/*
 			 * SIDE_MARGIN	OffTrackThrottleMultiplier	JumpThrottleMultiplier	JumpThrottleTime	AggressiveMultiplier	PassiveMultiplier
 			 */
+		}
+
+		public Sprite sprite {
+			get {
+				//	prefabName = "GolfWhite";
+				if(driverFaces==null||driverFaces.Count==0) {
+					driverFaces = new List<Sprite>();
+					UnityEngine.Object[] o = Resources.LoadAll("Faces/Faces");
+					for(int i = 1;i<o.Length;i++) {
+						if(o[i].name.StartsWith("Faces_")) {
+							driverFaces.Add((Sprite) o[i]);
+						}
+					}
+				}
+				
+				for(int i = 0;i<driverFaces.Count;i++) {
+					if(driverFaces[i].name==this.faceSpriteString) {
+						return driverFaces[i];
+					}
+				}
+				return driverFaces[0];
+			} 
 		}
 	}
 }

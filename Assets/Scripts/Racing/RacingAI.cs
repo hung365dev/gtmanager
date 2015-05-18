@@ -407,7 +407,7 @@ public class RacingAI : MonoBehaviour {
 		if(!raceComplete) {
 			for(int i = 0;i<wheelInfo.Length;i++) {
 				wheelInfo[i].Update();
-			}
+			} 
 			this.aiCar.SetTyreWearExternalPhysics(0.1f);
 			if(this.aiCar.GetEndRace()) {
 				raceComplete = true;

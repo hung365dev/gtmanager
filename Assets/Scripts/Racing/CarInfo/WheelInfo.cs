@@ -27,6 +27,8 @@ namespace Racing
 		}
 
 		public void Update() {
+			
+		//	_wheelRef.SetWear(true);
 			tireWear = _wheelRef.GetTyreWear();
 		//	Debug.Log(tireWear+" - "+_wheelRef.realTireMode+" - "+this._wheelRef.GetTyreTemp());
 

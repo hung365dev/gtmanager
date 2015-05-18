@@ -2,6 +2,7 @@
 using System.Collections;
 using Database;
 using System;
+using championship;
 
 public class RacePositionHolder : MonoBehaviour {
 
@@ -25,7 +26,8 @@ public class RacePositionHolder : MonoBehaviour {
 		if(racingAI.humanControl) {
 			myLabel.color = colourWhenOwned;
 		}
-		mySprite.color = TeamDatabase.REF.teamFromDriverID(racingAI.driverRecord.id).teamColor;
+		mySprite.color = ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(racingAI.driverRecord).teamColor;
+//.teamFromDriverID(racingAI.driverRecord.id).teamColor;
 	}
 
 	public void doUpdate() {
