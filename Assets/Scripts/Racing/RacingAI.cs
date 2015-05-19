@@ -154,7 +154,18 @@ public class RacingAI : MonoBehaviour {
 					cp[i].set_height_(40f);
 					cp[i].set_distance_(5f);
 					cp[i].sidesDamping = 9f; 
-
+				}
+				if(cp[i].gameObject.name=="FrontBumper") {
+					Vector3 v = new Vector3(5f,1.21f,9.4f);
+					cp[i].distanceSides= v;
+					cp[i].minFieldOfView = 55;
+					cp[i].maxFieldOfView = 72;
+					cp[i].fieldOfViewChangeSpeedMultiplier = 2f;
+					cp[i].set_rotationDamping_(1000f);
+					cp[i].set_heightDamping_(20f);
+					cp[i].set_height_(40f);
+					cp[i].set_distance_(5f);
+					cp[i].sidesDamping = 9f; 
 				}
 			}
 		}

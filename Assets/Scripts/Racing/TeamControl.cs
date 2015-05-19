@@ -178,7 +178,10 @@ namespace Racing
 					cameraView = ECameraViews.TVCamera;
 				break;
 				case(ECameraViews.TVCamera):
-					cameraView = ECameraViews.ChaseCamera;
+					cameraView = ECameraViews.FrontBumper;
+				break;
+			case(ECameraViews.FrontBumper):
+				cameraView = ECameraViews.ChaseCamera;
 				break;
 			}
 			setCameraFromView ();
@@ -197,6 +200,10 @@ namespace Racing
 				break;
 				case(ECameraViews.TVCamera):
 					carCamera.ActivateRoadCamera();
+				break;
+				case(ECameraViews.FrontBumper):
+				carCamera.DeactivateRoadCamera();
+				carCamera.changeView ("FrontBumper");
 				break;
 
 			}

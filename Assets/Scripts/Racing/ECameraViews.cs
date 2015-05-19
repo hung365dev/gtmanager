@@ -15,6 +15,7 @@ namespace Racing
 			ChaseCamera = 1,
 			TVCamera = 2,
 			HeliCam = 3,
+			FrontBumper =4,
 	}
 }
 

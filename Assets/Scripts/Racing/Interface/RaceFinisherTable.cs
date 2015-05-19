@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using championship;
 using Drivers;
 using Teams;
+using PixelCrushers.DialogueSystem;
 
 public class RaceFinisherTable : MonoBehaviour {
 
@@ -54,6 +55,8 @@ public class RaceFinisherTable : MonoBehaviour {
 		} 
 		if(stage==5) {
 			ChampionshipSeason.ACTIVE_SEASON.secondsPast++;
+			Lua.Result r = DialogueLua.GetVariable("TotalRacesComplete");
+			DialogueLua.SetVariable("TotalRacesComplete",r.AsInt + 1);
 			StartCoroutine(ChampionshipSeason.ACTIVE_SEASON.LoadLevel("Garage"));
 
 		} else if(stage==4) {

@@ -49,8 +49,12 @@ public class GarageManager : MonoBehaviour {
 	}
 	public void onConversationEnded() {
 		Lua.Result r = DialogueLua.GetVariable("OnCloseAction");
+		
+		DialogueLua.SetVariable("OnCloseAction","");
 		if(r.AsString=="Garage") {
 			handleEndOfCalendarView();
+			InterfaceMainButtons.REF.onCloseOtherScreen();
+
 		} else if(r.AsString=="Calendar")  {
 			handleStartOfCalendarView();
 		}
@@ -61,7 +65,7 @@ public class GarageManager : MonoBehaviour {
 		trigger.conversation = aConversationName;
 		trigger.OnUse();
 	}
-	public void OnDestroy() {
+	public void OnDestroy() { 
 		REF = null;
 	}
 	public void hideTopButtons() {
