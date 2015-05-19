@@ -36,7 +36,7 @@ public class InterfaceMainButtons : MonoBehaviour {
 	}
 
 	public void onLaunchSponsors() {
-		
+		GarageManager.REF.doConversation("OpenSponsorsScreen");
 		this.gameObject.SetActive(false);
 		GameObject g = NGUITools.AddChild(GameObject.Find ("UI Root"),this.prefabSponsorScreen.gameObject);
 		sponsorScreen = g.GetComponent<SponsorScreen>();
@@ -44,6 +44,8 @@ public class InterfaceMainButtons : MonoBehaviour {
 	}
 	
 	public void onLaunchResearch() {
+		
+		GarageManager.REF.doConversation("OpenResearchScreen");
 		researchScreen.gameObject.SetActive(true);
 		this.gameObject.SetActive(false);
 		researchScreen.initFromCar(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().cars[0]);
@@ -51,6 +53,7 @@ public class InterfaceMainButtons : MonoBehaviour {
 
 	public void onLaunchChampionshipScreens() {
 		
+		GarageManager.REF.doConversation("OpenChampionshipScreen");
 		this.gameObject.SetActive(false);
 		champSettingsScreen.activate();
 		GarageManager.REF.hideTopButtons();
@@ -73,6 +76,7 @@ public class InterfaceMainButtons : MonoBehaviour {
 		GameObject g = NGUITools.AddChild(GameObject.Find ("UI Root"),prefabSettingsScreen.gameObject);
 	}
 	public void onLaunchCarDetails() {
+		GarageManager.REF.doConversation("OpenCarDetails");
 		this.gameObject.SetActive(false);
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		this.createCarDetailsScreen(null,team.cars[0],true);
@@ -88,6 +92,7 @@ public class InterfaceMainButtons : MonoBehaviour {
 	}
 
 	public void onLaunchDriversScreen() {
+		GarageManager.REF.doConversation("OpenDriversScreen");
 		this.gameObject.SetActive(false);
 		createDriverDetailsScreen(null,ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().drivers[0],true);
 	}

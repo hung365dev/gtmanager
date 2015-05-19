@@ -46,6 +46,7 @@ public class CarDetails : MonoBehaviour {
 	public BuyCarsScreen prefabBuyCars;
 
 	public GameObject buttonsHolder;
+
 	// Use this for initialization
 	void Start () {
 		if(carTitle==null)
@@ -85,6 +86,8 @@ public class CarDetails : MonoBehaviour {
 		gripValue = this.transform.FindChild("GripValue").GetComponent<UILabel>();
 		maxSpeedValue = this.transform.FindChild("MaxSpeedValue").GetComponent<UILabel>();
 		maxSpeedBoost = this.transform.FindChild("MaxSpeedBoost").GetComponent<UILabel>();
+	
+		carValue = this.transform.FindChild("CarValueValue").GetComponent<UILabel>();
 	}
 
 	public void reInit(GTCar aLastCar) {
@@ -311,7 +314,7 @@ public class CarDetails : MonoBehaviour {
 		gripValue.text = ""+aRecord.carTireWearEffect;
 		this.hasDRSValue.text = "Level 0";
 		
-		
+		this.carValue.text = ""+string.Format("{0:C}", aRecord.carCost);
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		GTDriver driver = team.getDriverFromCar(this.carRef);
 		if(driver!=null) {
@@ -319,7 +322,7 @@ public class CarDetails : MonoBehaviour {
 		}
 	}
 	public void initCar(GTCar aCar) {
-		if(carTitle==null) {
+		if(carTitle==null) {  
 			initLabels();
 		} 
 		

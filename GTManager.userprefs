@@ -1,17 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Garage/Driver/NewDriverPanel.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Racing/RacingAI.cs">
     <Files>
-      <File FileName="Assets/Scripts/Racing/RacingAI.cs" Line="410" Column="6" />
-      <File FileName="Assets/Scripts/Racing/CarInfo/WheelInfo.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Database/DriverLibraryRecord.cs" Line="64" Column="20" />
-      <File FileName="Assets/Scripts/Drivers/GTDriver.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Drivers/GTDriverBase.cs" Line="52" Column="1" />
-      <File FileName="Assets/Scripts/Garage/InterfaceMainButtons.cs" Line="85" Column="5" />
-      <File FileName="Assets/Scripts/Garage/Driver/DriverPanel.cs" Line="29" Column="1" />
-      <File FileName="Assets/Scripts/Garage/Driver/NewDriverPanel.cs" Line="23" Column="55" />
-      <File FileName="Assets/Scripts/Garage/CarManagement/BuyCarsScreen.cs" Line="38" Column="61" />
-      <File FileName="Assets/Scripts/Garage/CarManagement/CarDetails.cs" Line="232" Column="3" />
+      <File FileName="Assets/Scripts/Garage/InterfaceMainButtons.cs" Line="95" Column="54" />
+      <File FileName="Assets/Scripts/Racing/RacingAI.cs" Line="438" Column="63" />
+      <File FileName="Assets/Scripts/Racing/ETireWear.cs" Line="18" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -21,7 +14,6 @@
       <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Dialogue System/Scripts/Core/Manager/DialogueSystemController.cs" line="990" />
       <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Dialogue System/Scripts/Core/Manager/DialogueSystemController.cs" line="991" />
       <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Dialogue System/Scripts/Core/Manager/DialogueSystemController.cs" line="992" />
-      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Garage/CarManagement/CarDetails.cs" line="156" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

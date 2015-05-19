@@ -35,6 +35,15 @@ namespace Cars
 			carLibRecord = CarDatabase.REF.carByName (aCarName);
 		}
 
+		public int carValue {
+			get {
+				float start = carLibRecord.carCost/2;
+				for(int i = 0;i<rndParts.Count;i++) {
+					start += rndParts[i].researchRow._costtoresearch/2*rndParts[i].activeLevel;
+				}
+				return Convert.ToInt32(start);
+			}
+		}
 		public GTEquippedResearch hasResearchCompletingOnDay(int aDay) {
 			for(int i = 0;i<rndParts.Count;i++) {
 				if(rndParts[i].dayOfCompletion==aDay) {

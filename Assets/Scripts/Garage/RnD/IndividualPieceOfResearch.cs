@@ -5,6 +5,7 @@ using GoogleFu;
 using championship;
 using System;
 using PixelCrushers.DialogueSystem;
+using Teams;
 
 public class IndividualPieceOfResearch : MonoBehaviour {
 	public ResearchScreenMain parent;
@@ -38,21 +39,26 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 	}
 	public void onStartDoingResearch() {
 		//TODO make it so we make sure we meet requirements, etc..
-		
-		GTEquippedResearch er = carRef.addPartToCar(researchRow,ChampionshipSeason.ACTIVE_SEASON.getUsersTeam());
-		if(er!=null) {
-			er.daysOfResearchRemaining = researchRow._daystoresearch;
-			Lua.Result res = DialogueLua.GetVariable("ResearchTutorialDone");
-			if(res.AsBool == false ) {
-				
-				GarageManager.REF.doConversation("Research_Tutorial3");
-				er.dayOfCompletion = 2+ChampionshipSeason.ACTIVE_SEASON.secondsPast;
-				er.daysOfResearchRemaining = 2;
-			} else
-			er.dayOfCompletion = researchRow._daystoresearch+ChampionshipSeason.ACTIVE_SEASON.secondsPast;
-			this.onCloseWindow();
+		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+		if(team.cash>=researchRow._costtoresearch) {
+			GTEquippedResearch er = carRef.addPartToCar(researchRow,ChampionshipSeason.ACTIVE_SEASON.getUsersTeam());
+			if(er!=null) {
+				er.daysOfResearchRemaining = researchRow._daystoresearch;
+				team.cash -= researchRow._costtoresearch;
+				Lua.Result res = DialogueLua.GetVariable("ResearchTutorialDone");
+				if(res.AsBool == false ) {
+					
+					GarageManager.REF.doConversation("Research_Tutorial3");
+					er.dayOfCompletion = 2+ChampionshipSeason.ACTIVE_SEASON.secondsPast;
+					er.daysOfResearchRemaining = 2;
+				} else
+					er.dayOfCompletion = researchRow._daystoresearch+ChampionshipSeason.ACTIVE_SEASON.secondsPast;
+				this.onCloseWindow();
+			} else {
+				Debug.Log ("Couldn't research");
+			}
 		} else {
-			Debug.Log ("Couldn't research");
+			GarageManager.REF.doConversation("NoCashForResearch");
 		}
 	}
 	// Update is called once per frame

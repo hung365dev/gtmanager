@@ -34,6 +34,10 @@ public class GarageManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(teamCash!=null) {
+			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+			this.teamCash.text = "$"+team.cash;
+		}
 	}
 	public void Awake() {
 		

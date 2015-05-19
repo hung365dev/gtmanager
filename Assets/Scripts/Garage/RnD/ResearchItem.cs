@@ -12,6 +12,7 @@ public class ResearchItem : MonoBehaviour {
 
 	public ResearchScreenMain parent;
 	private UIButton _button;
+	public UILabel lbl;
 	// Use this for initialization
 
 	public GTCar carRef;
@@ -26,6 +27,9 @@ public class ResearchItem : MonoBehaviour {
 		this.GetComponent<UIWidget>().depth = 10;
 		_button.onClick.Add(new EventDelegate(this,"onClicked"));
 		GarageManager.REF.doConversation("Research_Tutorial1");
+		
+		lbl = this.GetComponentInChildren<UILabel>();
+		
 	}
 	
 	// Update is called once per frame
@@ -45,6 +49,9 @@ public class ResearchItem : MonoBehaviour {
 	private void getDefaultColourForPart() {
 		
 		if(this.carRef!=null) {
+			if(carRef.hasPart(researchRow)!=null)
+				lbl.text = carRef.hasPart(researchRow).activeLevel+"/"+researchRow._maxlevelstounlock; else 
+					lbl.text = "0/"+researchRow._maxlevelstounlock; 
 			if(carRef.partBeingResearched==null) {
 				
 				if(this.carRef.hasPreRequisiteParts(researchRow._partprerequisites)) {

@@ -68,11 +68,11 @@ namespace Cars
 				IRDSWheel[] wheels = aRacingAI.wheels;
 				for(int c = 0;c<wheels.Length;c++) {
 					wheels[c].SetGrip(wheels[c].GetGrip()+researchRow._tirecoefficientofgripchange);
-					wheels[c].SetTyreHardness(1000f);
+					
 				}
+ 
 
-
-			
+			 
 
 			}
 

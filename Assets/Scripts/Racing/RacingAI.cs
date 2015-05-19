@@ -45,12 +45,16 @@ public class RacingAI : MonoBehaviour {
 	public IRDSCarControllerAI carBehind;
 	public int fatigueCount = 0;
 	public EngineTemperatureMonitor engineTempMonitor;
+		
+	public ETireWear currentTireWear;
+	public float tireTemp;
+	public float tireWear;
 
 	public string finishTimeString = "DNF";
 	private bool usingNitro = false;
 	public bool raceComplete = false;
 	public EDriverOrders currentOrders = EDriverOrders.DriveNormal;
-
+	
 	public float damage;
 	public int finishPosition = int.MaxValue;
 	public int finishPoints = 0;
@@ -73,7 +77,7 @@ public class RacingAI : MonoBehaviour {
 	public EDriverMessage lastMessage;
 	public bool dmgTriggered = false;
 
-
+	public ETireWear tireWearLevel = ETireWear.Cold;
 	public static bool considerNitroTutorials = true;
 	public float lastMessageTime;
 	// Use this for initialization
@@ -155,12 +159,6 @@ public class RacingAI : MonoBehaviour {
 			}
 		}
 		return this;
-	}
-
-	public bool tiresWorn {
-		get {
-			return false;
-		}
 	}
 
 	public void initSmokes() {
@@ -340,7 +338,6 @@ public class RacingAI : MonoBehaviour {
 	}
 
 	public void addWings() {
-		
 		this.wings[1].SetLiftCoefficient(this.frontWingDownforce);
 		this.wings[0].SetLiftCoefficient(this.rearWingDownforce);
 	}
@@ -375,7 +372,7 @@ public class RacingAI : MonoBehaviour {
 
 				this.wheelInfo = new WheelInfo[wheels.Length];
 				for(int i = 0;i<wheelInfo.Length;i++) {
-					wheelInfo[i] = new WheelInfo(wheels[i]);
+					wheelInfo[i] = new WheelInfo(wheels[i],this.carRef);
 				}
 				driverName = this.aiCar.GetDriverName();
 				//wings[0].SetLiftCoefficient(-0.3f);
@@ -386,9 +383,7 @@ public class RacingAI : MonoBehaviour {
 
 				this.originalPower = this.aiDriveTrain.GetMaxPower();
 				this.originalTorque = this.aiDriveTrain.GetMaxTorque();
-				Debug.Log ("This "+this.gameObject.name+" original Power was: "+this.originalPower);
-				Debug.Log ("This cars original Torque was: "+this.originalTorque);
-				
+			
 				engineTempMonitor = new EngineTemperatureMonitor();
 				engineTempMonitor.initDriveTrainVals(this.aiDriveTrain,this.aiInput);
 
@@ -407,8 +402,24 @@ public class RacingAI : MonoBehaviour {
 		if(!raceComplete) {
 			for(int i = 0;i<wheelInfo.Length;i++) {
 				wheelInfo[i].Update();
+				if(wheelInfo[i].tireTemp>this.tireTemp) {
+					tireTemp = wheelInfo[i].tireTemp;
+				}
+				if(wheelInfo[i].dividedTireWear<this.tireWear) {
+					tireWear = wheelInfo[i].dividedTireWear;
+				}
+				if(tireTemp<0.8f) {
+					this.currentTireWear = ETireWear.Cold;
+				} else if(tireTemp<1f) {
+					this.currentTireWear = ETireWear.Warm;
+				} else if(tireTemp>0.8f) { 
+					this.currentTireWear = ETireWear.Perfect;
+				} else if(tireTemp>0.6f) {
+					this.currentTireWear = ETireWear.LightWear;
+				} else if(tireTemp>0.4f) {
+					this.currentTireWear = ETireWear.Worn;
+				} else this.currentTireWear = ETireWear.Dangerous;
 			} 
-			this.aiCar.SetTyreWearExternalPhysics(0.1f);
 			if(this.aiCar.GetEndRace()) {
 				raceComplete = true;
 				finishTimeString = this.aiCar.GetCurrentTotalRaceTimeString();
@@ -430,9 +441,9 @@ public class RacingAI : MonoBehaviour {
 		if (humanControl) {
 			if(time-this.lastMessageTime>10f) {
 				lastMessageTime = time;
-				if(lastMessage!=EDriverMessage.BrakingOnOpponent&&this.aiCar.GetIsBrakingOnOpponent()) {
+				if(lastMessage!=EDriverMessage.BrakingOnOpponent&&this.aiCar.GetIsBrakingOnOpponent()&&carInfrontTime<2f) {
 					RaceManager.REF.carDriverMessage(this,EDriverMessage.BrakingOnOpponent);
-				} else if(lastMessage!=EDriverMessage.Avoiding&&this.aiCar.GetIsAvoidingOpponentSideways()) {
+				} else if(lastMessage!=EDriverMessage.Avoiding&&this.aiCar.GetIsAvoidingOpponentSideways()&&(carInfrontTime<1f||carBehindTime>-1f)) {
 					RaceManager.REF.carDriverMessage(this,EDriverMessage.Avoiding);
 				} else if(lastMessage!=EDriverMessage.Damage&&dmgTriggered) {
 					RaceManager.REF.carDriverMessage(this,EDriverMessage.Damage);
@@ -442,7 +453,7 @@ public class RacingAI : MonoBehaviour {
 					RaceManager.REF.carDriverMessage(this,EDriverMessage.Overheating);
 				} else if(lastMessage!=EDriverMessage.Overtaking&&this.aiCar.GetIsOvertaking()) {
 					RaceManager.REF.carDriverMessage(this,EDriverMessage.Overtaking);
-				} else if(lastMessage!=EDriverMessage.TiresWorn&&tiresWorn) {
+				} else if(lastMessage!=EDriverMessage.TiresWorn&&this.tireWearLevel==ETireWear.Dangerous) {
 					RaceManager.REF.carDriverMessage(this,EDriverMessage.TiresWorn);
 				} else if(lastMessage!=EDriverMessage.TooHot&&this.engineTempMonitor.isTooHot) {
 					RaceManager.REF.carDriverMessage(this,EDriverMessage.TooHot);

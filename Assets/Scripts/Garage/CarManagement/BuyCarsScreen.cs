@@ -59,12 +59,16 @@ namespace Garage
 		public void onBuyThisCar() {
 			Debug.Log ("Buying this Car!");
 			GTTeam humansTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+			if(CarDatabase.REF.cars[currentIndex].carCost<=humansTeam.cash) {
 
-			int indexOfCar = humansTeam.indexForCar(_carToReplace);
+				int indexOfCar = humansTeam.indexForCar(_carToReplace);
 
-			_carToReplace.replaceCar(CarDatabase.REF.cars[currentIndex]);
-
-			onGoBackAScreen();
+				_carToReplace.replaceCar(CarDatabase.REF.cars[currentIndex]);
+				humansTeam.cash -= CarDatabase.REF.cars[currentIndex].carCost;
+				onGoBackAScreen();
+			} else {
+				GarageManager.REF.doConversation("NotEnoughCashForCar");
+			}
 		}
 		public void onGoBackAScreen() {
 			Debug.Log ("Going back a screen!");
