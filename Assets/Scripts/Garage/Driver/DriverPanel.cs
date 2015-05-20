@@ -20,11 +20,12 @@ public class DriverPanel : MonoBehaviour {
 	public GTDriver driverRef;
 	public NewDriverPanel otherDrivers;
 	public NewDriverPanel prefabDriverPanel;
-
+	public GarageCameraController camController;
 	public UI2DSprite faceSprite;
 	// Use this for initialization
 	void Start () {
-	
+		
+		GarageManager.REF.doConversation("OpenDriversScreen");
 	}
 	
 	// Update is called once per frame
@@ -32,6 +33,28 @@ public class DriverPanel : MonoBehaviour {
 	
 	}
 
+	public void showButtons() {
+	
+	}	
+	public void onSelectOtherDriver() {
+		if(otherDrivers!=null) {
+			Destroy(otherDrivers.gameObject);
+		}
+		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+		camController = GameObject.Find("Main Camera").GetComponent<GarageCameraController>();
+		
+		if(team.drivers[0]==this.driverRef) {
+			this.initDriver(team.drivers[1]);
+			camController.lookAtThis = GameObject.Find ("GarageRightSide");
+			
+			
+		} else if(team.drivers[1]==this.driverRef) {
+			this.initDriver(team.drivers[0]);
+			camController.lookAtThis = GameObject.Find ("GarageLeftSide");
+		}
+
+		
+	}
 	public void onLookAtOtherDrivers() {
 		if(otherDrivers!=null) {
 			Destroy(otherDrivers.gameObject);
@@ -47,6 +70,7 @@ public class DriverPanel : MonoBehaviour {
 		//hideButtons();
 	}
 	private void initLabels() {
+
 		driverTitle = this.transform.FindChild("DriverTitle").GetComponent<UILabel>();
 		this.brakingAggressionLabel = this.transform.FindChild("BrakingAggressionValue").GetComponent<UILabel>();
 		this.corneringLabel = this.transform.FindChild("CorneringValue").GetComponent<UILabel>();
@@ -61,7 +85,7 @@ public class DriverPanel : MonoBehaviour {
 		
 	}
 	public void onGotoMainMenu() {
-		InterfaceMainButtons.REF.onCloseOtherScreen();
+		InterfaceMainButtons.REF.onCloseOtherScreen(); 
 		/*if(otherDrivers!=null) {
 			Destroy(otherDrivers.gameObject);
 			Destroy(otherDrivers);
@@ -76,6 +100,8 @@ public class DriverPanel : MonoBehaviour {
 	public void initDriver(GTDriver aDriver) {
 		//if(driverTitle==null)
 			initLabels();
+		camController = GameObject.Find("Main Camera").GetComponent<GarageCameraController>();
+		
 		if(driverTitle!=null) {
 			driverTitle.text = aDriver.name;
 			brakingAggressionLabel.text = aDriver.brakingAggressionString;

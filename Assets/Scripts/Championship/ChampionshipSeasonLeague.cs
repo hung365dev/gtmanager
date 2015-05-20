@@ -201,9 +201,6 @@ namespace championship
 			bool foundNextRace = false;
 			
 			ChampionshipRaceSettings nextRace = null;
-			for(int i = 0;i<this.teams.Count;i++) {
-				teams[i].doTick(aCurrentTick);
-			}
 			for(int i = 0;i<races.Count;i++) {
 				
 				int ticksTillThisRace = races[i].startDate-aCurrentTick;
@@ -215,10 +212,15 @@ namespace championship
 					foundNextRace = true;
 				}
 				if(races[i].startDate==aCurrentTick) {
-
+					
 				}
-
+				
 			}
+
+			for(int i = 0;i<this.teams.Count;i++) {
+				teams[i].doTick(aCurrentTick);
+			}
+
 			if(humanLeague) {
 				ChampionshipSeason.ACTIVE_SEASON.nextRace = nextRace;
 				

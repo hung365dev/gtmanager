@@ -243,7 +243,6 @@ public class RacingAI : MonoBehaviour {
 						TeamControl.REF.changeCar();
 					}
 				}
-				RaceManager.REF.doConversation("TutorialOverheating");
 			}
 			if(engineFire!=null)
 				engineFire.gameObject.SetActive(false);	

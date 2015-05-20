@@ -35,6 +35,10 @@ public class GarageManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(teamCash!=null) {
+			if(ChampionshipSeason.ACTIVE_SEASON==null) {
+				Application.LoadLevel("InitGame");
+				return;
+			}
 			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 			this.teamCash.text = "$"+team.cash;
 		}
@@ -52,8 +56,8 @@ public class GarageManager : MonoBehaviour {
 		
 		DialogueLua.SetVariable("OnCloseAction","");
 		if(r.AsString=="Garage") {
-			handleEndOfCalendarView();
-			InterfaceMainButtons.REF.onCloseOtherScreen();
+//			handleEndOfCalendarView();
+//			InterfaceMainButtons.REF.onCloseOtherScreen();
 
 		} else if(r.AsString=="Calendar")  {
 			handleStartOfCalendarView();
@@ -90,7 +94,7 @@ public class GarageManager : MonoBehaviour {
 	public void handleEndOfCalendarView() {
 		ChampionshipSeason.ACTIVE_SEASON.allowTimeToPass = false;
 		calendarManager.gameObject.SetActive(false);
-		mainButtons.gameObject.SetActive(true);
+		mainButtons.gameObject.SetActive(true); 
 	}
 	public void UpdateDisplay() {
 		if(ChampionshipSeason.ACTIVE_SEASON==null) {

@@ -35,7 +35,7 @@ public class RaceManager : MonoBehaviour {
 	public ConversationTrigger conversationTrigger;
 	public UILabel driver1Label;
 	public UILabel driver2Label;
-
+	public List<CC_FastVignette> fv = new List<CC_FastVignette>();
 //	public CarLibrary carLib;
 	// Use this for initialization
 	void Start () {
@@ -118,6 +118,8 @@ public class RaceManager : MonoBehaviour {
 			raceStartersTable = raceStarters.GetComponent<RaceStarterTable>();
 			raceStartersTable.activate(driversInRace);
 		}
+
+
 		//
 	}
 	
@@ -182,6 +184,9 @@ public class RaceManager : MonoBehaviour {
 	}
 
 	public void doStartRace() {
+		for(int i = 0;i<this.fv.Count;i++) {
+			fv[i].enabled = true;
+		}
 		this.statistics.StartTheRace();
 		if(genericRaceGUI!=null) {
 			genericRaceGUI.gameObject.SetActive(true);
@@ -258,6 +263,20 @@ public class RaceManager : MonoBehaviour {
 			if(GameObject.Find ("RacePositionsTable")!=null) {
 				racePositions = GameObject.Find ("RacePositionsTable").GetComponent<RacePositionsTable>();
 				inited = true;
+			}
+			GameObject cam = GameObject.Find("Main_Camera");
+			Camera c = cam.GetComponent<Camera>();
+			if(c.GetComponent<CC_FastVignette>()==null) {
+				CC_FastVignette fv1 = c.gameObject.AddComponent<CC_FastVignette>();
+				fv1.enabled = true;
+				fv.Add(fv1);
+			}
+			GameObject cam2 = GameObject.Find ("RaceStartCamera");
+			c = cam2.GetComponent<Camera>();
+			if(c.GetComponent<CC_FastVignette>()==null) {
+				CC_FastVignette fv1 = c.gameObject.AddComponent<CC_FastVignette>();
+				fv1.enabled = true;
+				fv.Add(fv1);
 			}
 		} else {
 			if(Time.time-lastUpdate>1f) {

@@ -114,19 +114,19 @@ namespace Drivers
 
 		public string corneringSkillString {
 			get {
-				if(this.corneringSpeedFactor<1f) {
+				if(this.corneringSpeedFactor<1.8f) {
 					return "Terribly Slow";
 				}
-				if(this.corneringSpeedFactor<1.25f) {
+				if(this.corneringSpeedFactor<1.9f) {
 					return "Very Slow";
 				}
-				if(this.corneringSpeedFactor<1.5f) {
+				if(this.corneringSpeedFactor<2f) {
 					return "Average";
 				}
-				if(this.corneringSpeedFactor<1.75f) {
+				if(this.corneringSpeedFactor<2.1f) {
 					return "Fast";
 				}
-				if(this.corneringSpeedFactor<2f) {
+				if(this.corneringSpeedFactor<2.4f) {
 					return "Very Fast";
 				}
 				return "Wreckless!";
@@ -157,7 +157,21 @@ namespace Drivers
 		}
 		public string overtakingString {
 			get {
-				return "Unknown";
+				if(this.overtakeSpeedDifference<-10) {
+					return "Aggressive Overtaker";
+				}
+				
+				if(this.overtakeSpeedDifference<-8) {
+					return "Fast Overtaker";
+				}
+				if(this.overtakeSpeedDifference<-8) {
+					return "Average Overtaker";
+				}
+				if(this.overtakeSpeedDifference<-4) {
+					return "Cautious Overtaker";
+				}
+				return "Poor Overtaker";
+				
 			}
 		}
 

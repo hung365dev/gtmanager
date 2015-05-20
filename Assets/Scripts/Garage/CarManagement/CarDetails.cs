@@ -49,6 +49,7 @@ public class CarDetails : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		GarageManager.REF.doConversation("TutorialCarDetails");
 		if(carTitle==null)
 			initLabels();
 	}

@@ -39,6 +39,8 @@ public class NewDriverPanel : DriverPanel
 		}
 		driverList = availableDrivers;
 		this.initDriver(availableDrivers[0]);
+		
+		GarageManager.REF.doConversation("OpenHireDriverScreen");
 	}
 
 	public void OnDestroy() {
@@ -47,6 +49,8 @@ public class NewDriverPanel : DriverPanel
 	}
 
 	public void hireThisDriver() {
+
+		GarageManager.REF.doConversation("OpenHireDriversScreen");
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		GTCar car = team.getGTCarFromDriver(myDriverPanel.driverRef);
 		int indexForMyDriver = team.indexForDriver(this.myDriverPanel.driverRef);
@@ -58,6 +62,8 @@ public class NewDriverPanel : DriverPanel
 		oldTeam.drivers[indexForOldDriver] = myDriverPanel.driverRef;
 		team.drivers[indexForMyDriver] = newDriver;
 		this.myDriverPanel.initDriver(driverList[currentIndex]);
+		this.myDriverPanel.showButtons();
+		Destroy(this.gameObject);
 	
 	}
 	public void OnFingerSwipe(Lean.LeanFinger finger)

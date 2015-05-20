@@ -56,9 +56,9 @@ public class ResearchItem : MonoBehaviour {
 				
 				if(this.carRef.hasPreRequisiteParts(researchRow._partprerequisites)) {
 					// Car part is available to be put in.
-					if(this.carRef.hasPart(researchRow)!=null) {
+					if(this.carRef.hasPart(researchRow)!=null&&this.carRef.hasPart(researchRow).activeLevel==researchRow._maxlevelstounlock) {
 						this._button.defaultColor = parent.unlockedColour;
-						this._button.isEnabled = false;
+						this._button.isEnabled = true;
 					} else {
 						this._button.defaultColor = parent.defaultColour;
 						this._button.isEnabled = true;

@@ -28,6 +28,11 @@ namespace Garage
 		public Color colorIfCarBetter;
 		public Color colorIfCarWorse;
 
+
+		public UILabel lblDivisionLabel;
+		
+		public GameObject centerLight;
+		public UIButton btnBuyCar;
 		private GTCar _carToReplace;
 		private CarDetails _carDetailsScreen;
 		public BuyCarsScreen ()
@@ -36,12 +41,14 @@ namespace Garage
 
 		public void init(CarDetails aCarDetailsScreen,GTCar aCarToReplace) {
 			GarageManager.REF.interfacePanel.gameObject.SetActive(false);
-
+			
 			GarageCameraController camController = GameObject.Find("Main Camera").GetComponent<GarageCameraController>();
-
+			btnBuyCar = GameObject.Find ("BtnBuyCar").GetComponent<UIButton>();
 			camController.lookAtThis = GameObject.Find ("GarageCenter");
 			GameObject g = GameObject.Find("CameraPathForCarOnSale");
-
+			GameObject lbl = GameObject.Find ("lblDivisionLabel");
+			centerLight = GameObject.Find ("Center Car Spotlight");
+			lblDivisionLabel = lbl.GetComponent<UILabel>();
 			if(g!=null) {
 				CameraPath cp = g.GetComponent<CameraPath>();
 				cp.enabled = true;
@@ -52,12 +59,27 @@ namespace Garage
 			Lean.LeanTouch.OnFingerSwipe += OnFingerSwipe;
 			_carToReplace = aCarToReplace;
 			_carDetailsScreen = aCarDetailsScreen;
+			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+			int division = ChampionshipSeason.ACTIVE_SEASON.leagueForTeam(team).divisionNumber;
+			int i = 0;
+			for(i = 0;i<CarDatabase.REF.cars.Count;i++) {
+				if(CarDatabase.REF.cars[i].leagueRequired>=division) {
+					continue;
+				} else {
+					
+					break;
+				}
+			}
+			i--;
+			currentIndex = i;
 			showCar(currentIndex);
 		}
 
 
 		public void onBuyThisCar() {
 			Debug.Log ("Buying this Car!");
+			
+			GarageManager.REF.doConversation("TutorialCarBought");
 			GTTeam humansTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 			if(CarDatabase.REF.cars[currentIndex].carCost<=humansTeam.cash) {
 
@@ -112,6 +134,18 @@ namespace Garage
 			SpriteRenderer[] renderers = thisCar.GetComponentsInChildren<SpriteRenderer>();
 			for(int i = 0;i<renderers.Length;i++) {			
 				Destroy(renderers[i].gameObject);
+			}
+			GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+			if(car.leagueRequired>=ChampionshipSeason.ACTIVE_SEASON.leagueForTeam(myTeam).divisionNumber) {
+				this.lblDivisionLabel.gameObject.SetActive(false);
+				this.centerLight.gameObject.SetActive(true);
+				btnBuyCar.isEnabled = true;
+			} else {
+				lblDivisionLabel.text = "League "+car.leagueRequired+" Required";
+				this.lblDivisionLabel.gameObject.SetActive(true);
+				this.centerLight.gameObject.SetActive(false);
+				btnBuyCar.isEnabled = false;
+				
 			}
 //thisCar.GetComponent<RacingAI>()
 			carOnSale = thisCar;
@@ -185,7 +219,8 @@ namespace Garage
 		}
 
 		public void OnEnable() {
-
+			
+			GarageManager.REF.doConversation("TutorialBuyCar");
 		}
 
 		public void OnDisable() {

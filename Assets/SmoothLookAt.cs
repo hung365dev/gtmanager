@@ -38,7 +38,7 @@ public class SmoothLookAt : MonoBehaviour {
 			if(smooth) {
 				//Look at and dampen the rotation
 				Quaternion rotation = Quaternion.LookRotation(target.position - _myTransform.position);
-				_myTransform.rotation = Quaternion.Slerp(_myTransform.rotation, rotation, Time.deltaTime * damping);
+				_myTransform.rotation = Quaternion.Slerp(_myTransform.rotation, rotation, 0.01f * 10f);
 			}
 			else { //Just look at
 				_myTransform.rotation = Quaternion.FromToRotation(-Vector3.forward, (new Vector3(target.position.x, target.position.y, target.position.z) - _myTransform.position).normalized);
@@ -46,10 +46,10 @@ public class SmoothLookAt : MonoBehaviour {
 				float distance = Vector3.Distance(target.position, _myTransform.position);
 				
 				if(distance < minDistance) {
-					alpha = Mathf.Lerp(alpha, 0.0f, Time.deltaTime * 2.0f);
+					alpha = Mathf.Lerp(alpha, 0.0f, 0.01f * 2.0f);
 				}
 				else {
-					alpha = Mathf.Lerp(alpha, 1.0f, Time.deltaTime * 2.0f);
+					alpha = Mathf.Lerp(alpha, 1.0f, 0.01f * 2.0f);
 					
 				}
 				//				if(!string.IsNullOrEmpty(property)) {

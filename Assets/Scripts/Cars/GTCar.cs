@@ -68,7 +68,7 @@ namespace Cars
 		}
 		public int nitroCapacity {
 			get {
-				int c = 0;
+				int c = 1;
 				for(int i = 0;i<rndParts.Count;i++) {
 					c += rndParts[i].researchRow._effectonnitrocapacity*rndParts[i].level;
 				}

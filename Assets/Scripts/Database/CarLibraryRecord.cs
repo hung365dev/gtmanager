@@ -23,6 +23,7 @@ namespace Database
 		public int carStyle;
 		public string prefabName;
 		public int maxNitro;
+		public int leagueRequired;
 
 		public float carHP;
 		public float carHPRPM;
@@ -68,7 +69,9 @@ namespace Database
 
 			carDrag = aRow._cardrag;
 			this.carShiftSpeed = aRow._carshiftspeed;
-			carMaxSpeed = aRow._maxspeed;  
+			carMaxSpeed = aRow._maxspeed;
+			
+			leagueRequired = aRow._leaguerequired; 
 		}
 		public string carDragString {
 			get {

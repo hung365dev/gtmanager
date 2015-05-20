@@ -41,12 +41,12 @@ namespace championship
 			track = TrackDatabase.REF.recordFromName("OvalTrack");
 			switch(aRaceInCalendar) {
 			case(2):track = TrackDatabase.REF.recordFromName("ShortSnowTrack");break;
-			case(1):track = TrackDatabase.REF.recordFromName("LongStraights");break;
+			case(6):track = TrackDatabase.REF.recordFromName("LongStraights");break;
 			case(4):track = TrackDatabase.REF.recordFromName("RaceCircuit1");break;
 			case(3):track = TrackDatabase.REF.recordFromName("OvalTrack");break;
-			case(6):track = TrackDatabase.REF.recordFromName("LowerLevel1");break;
-			case(5):track = TrackDatabase.REF.recordFromName("MiniOval");break;
-			case(0):track = TrackDatabase.REF.recordFromName("HillTrack1");break;
+			case(1):track = TrackDatabase.REF.recordFromName("LowerLevel1");break;
+			case(0):track = TrackDatabase.REF.recordFromName("MiniOval");break;
+			case(5):track = TrackDatabase.REF.recordFromName("HillTrack1");break;
 			} 
 			prizeFund = 50000*(5-aLeague);
 			driversPointsDistribution = EPointsDistribution.F12010Style;

@@ -50,6 +50,7 @@ namespace Teams
 
 			if(teamName==HUMANS_DEBUG_TEAM) {
 				humanControlled = true;
+				DialogueLua.SetVariable("PlayersDriver1",drivers[0].name);
 			} else {
 			
 			}
@@ -162,15 +163,69 @@ namespace Teams
 				if(cars[i].partBeingResearched!=null) {
 					GTEquippedResearch partBeingResearched = cars[i].partBeingResearched;
 					cars[i].partBeingResearched.daysOfResearchRemaining--;
+					if(cars[i].partBeingResearched!=null&&ChampionshipSeason.ACTIVE_SEASON.nextRace!=null)
+					if(cars[i].partBeingResearched.dayOfCompletion==ChampionshipSeason.ACTIVE_SEASON.nextRace.startDate) {
+						cars[i].partBeingResearched.dayOfCompletion++;
+						cars[i].partBeingResearched.daysOfResearchRemaining++;
+					}
 					if(partBeingResearched.daysOfResearchRemaining == 0) {
 
 				//		partBeingResearched.level++;
-						DialogueLua.SetVariable("CompletedResearchName",""+partBeingResearched.researchRow._partname);
-
-						GarageManager.REF.doConversation("ResearchComplete");
+						if(this.humanControlled) {
+							DialogueLua.SetVariable("CompletedResearchName",""+partBeingResearched.researchRow._partname);
+			
+							GarageManager.REF.doConversation("ResearchComplete");
+						}
 					}
 				}
 			}
+			if(!humanControlled) {
+				findSponsorsForMe();
+			}
+		}
+
+		public List<SponsorRelationshipRecord> allInterestedSponsors {
+			get {
+				List<SponsorRelationshipRecord> r = new List<SponsorRelationshipRecord>();
+				for(int i = 0;i<this.sponsorRelationships.Count;i++) {
+					r.Add(this.sponsorRelationships[i]);
+				}
+				r.Sort(randSort);  
+				return r;
+			}
+		}
+		public int randSort(SponsorRelationshipRecord name1, SponsorRelationshipRecord name2)
+		{
+			return UnityEngine.Random.Range(-1,1);
+		}
+
+		private void findSponsorsForMe() {
+			if(this.hasSponsorForPlace(ESponsorPosition.Back)==null) {
+				if(allInterestedSponsors.Count>0) {
+					addContract(ESponsorPosition.Back,allInterestedSponsors[0],(int) allInterestedSponsors[0].interest.sponsorValue,5);
+				}
+			}
+			if(this.hasSponsorForPlace(ESponsorPosition.Bonnet)==null) {
+				if(allInterestedSponsors.Count>0) {
+					addContract(ESponsorPosition.Bonnet,allInterestedSponsors[0],(int) allInterestedSponsors[0].interest.sponsorValue,5);
+				}
+			}
+			if(this.hasSponsorForPlace(ESponsorPosition.Left)==null) {
+				if(allInterestedSponsors.Count>0) {
+					addContract(ESponsorPosition.Left,allInterestedSponsors[0],(int) allInterestedSponsors[0].interest.sponsorValue,5);
+				}
+			}
+			if(this.hasSponsorForPlace(ESponsorPosition.Right)==null) {
+				if(allInterestedSponsors.Count>0) {
+					addContract(ESponsorPosition.Right,allInterestedSponsors[0],(int) allInterestedSponsors[0].interest.sponsorValue,5);
+				}
+			}
+			if(this.hasSponsorForPlace(ESponsorPosition.Roof)==null) {
+				if(allInterestedSponsors.Count>0) {
+					addContract(ESponsorPosition.Right,allInterestedSponsors[0],(int) allInterestedSponsors[0].interest.sponsorValue,5);
+				}
+			}
+
 		}
 		public IRDSCarControllerAI getCarFromDriver(GTDriver aDriver) {
 			int index = indexForDriver(aDriver);
