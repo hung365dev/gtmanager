@@ -31,6 +31,7 @@ public class RacingAI : MonoBehaviour {
 	public bool inited = false;
 	public string driverName;
 	public float originalSpeedCorner = 0f;
+	public float speedCornerBeforeError = 0f;
 	public float engineWearPerFrame = 0f;
 	public bool humanControl = false;
 	public bool inNitroZone = false;
@@ -83,6 +84,8 @@ public class RacingAI : MonoBehaviour {
 	public float lastMessageTime;
 
 	public DriverFaceManager messageHolder;
+
+	public ErrorState currentErrorState;
 	// Use this for initialization
 	void Start () {
 		this.tag = "Player";
@@ -356,6 +359,20 @@ public class RacingAI : MonoBehaviour {
 	}
 	public void FixedUpdate() {
 		
+		if(this.currentErrorState==null) {
+			if(UnityEngine.Random.Range(0f,100f)<this.aiCar.GetHumanError()) {
+				currentErrorState = new ErrorState(this.aiCar.GetHumanError(),this);
+				speedCornerBeforeError = this.aiCar.GetCorneringSpeedFactor();
+			}
+		} else {
+			currentErrorState.framesOfError--;
+			this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError*currentErrorState.corneringSpeedEffector);
+			if(currentErrorState.framesOfError==0) {
+				currentErrorState = null;
+				this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError);
+			} else
+				this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError*currentErrorState.corneringSpeedEffector);
+		}
 		engineTempMonitor.Update(this.aiDriveTrain,this.aiCar,this.aiInput,this);
 		this.fatigue -= this.staminaDecrementer;
 		fatigueCount++;

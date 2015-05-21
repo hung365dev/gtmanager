@@ -1,13 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Racing/RaceManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Racing/Interface/DriverFaceManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Racing/RacingAI.cs" Line="482" Column="17" />
-      <File FileName="Assets/Scripts/Championship/ChampionshipRaceSettings.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Racing/RaceManager.cs" Line="254" Column="4" />
-      <File FileName="Assets/Scripts/Garage/Championship/ChampionshipStandings.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Racing/TeamControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Racing/Interface/IndividualCarInterfaceManager.cs" Line="88" Column="5" />
+      <File FileName="Assets/Scripts/Racing/ErrorState.cs" Line="21" Column="32" />
+      <File FileName="Assets/Scripts/Racing/RaceManager.cs" Line="166" Column="5" />
+      <File FileName="Assets/Scripts/Racing/RacingAI.cs" Line="374" Column="1" />
+      <File FileName="Assets/Scripts/Racing/TeamControl.cs" Line="199" Column="35" />
+      <File FileName="Assets/Scripts/Racing/EErrorStateType.cs" Line="17" Column="18" />
+      <File FileName="Assets/Scripts/Racing/Interface/DriverFaceManager.cs" Line="52" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
