@@ -105,6 +105,24 @@ namespace Racing
 				carInterface = GameObject.Find("IndividualRaceInterface").GetComponent<IndividualCarInterfaceManager>();
 			}
 			carInterface.targetAI = selectedCar;
+
+			
+
+		}
+
+		public void initDriversFace(RacingAI aAI) {
+			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+			int indexForThis = team.indexForDriver(aAI.driverRecord);
+			string findThis = "DriverFace2";
+			if(indexForThis==0) {
+				findThis = "DriverFace1";
+			}
+			GameObject f = GameObject.Find (findThis);
+			if(f!=null) {
+				DriverFaceManager m = f.GetComponent<DriverFaceManager>();
+				RacingAI ai = aAI;
+				m.init(ai);
+			}	
 		}
 		public void initButtons() {
 			if(GameObject.Find ("btnDriverOrderGoGoGoEngine1")!=null) {
@@ -124,6 +142,9 @@ namespace Racing
 				btnDriveNormalTyres1.onClick.Add(new EventDelegate(this,"changeToDriveNormallyTyres"));
 				btnTakeItEasyTyres1.onClick.Add(new EventDelegate(this,"changeToSaveTyres"));
 
+				for(int i = 0;i<this.racingAIs.Count;i++) {
+					this.initDriversFace(racingAIs[i]);
+				}
 				changeCars = GameObject.Find("ChangeDriverButton").GetComponent<UIButton>();
 				changeCamera = GameObject.Find("ButtonToggleCamera").GetComponent<UIButton>();
 				changeCars.onClick.Add(new EventDelegate(this,"changeCar"));

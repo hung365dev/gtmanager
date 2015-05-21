@@ -95,7 +95,7 @@ public class RaceManager : MonoBehaviour {
 				RacingAI thisCar = placedCar.GetComponent<RacingAI>().initDriver(driversInRace[i]);
 				if(team.humanControlled) {
 					thisCar.humanControl = true;
-		
+				
 				}
 				thisCar.recolourCarForTeam(team);
 				thisCar.carRef = gtCar;
@@ -109,7 +109,17 @@ public class RaceManager : MonoBehaviour {
 			}
 			if(team.humanControlled) {
 				teamController.initHumanCar(placedCar);
-
+				int indexForThis = team.indexForCar(gtCar);
+				string findThis = "DriverFace2";
+				if(indexForThis==0) {
+					findThis = "DriverFace1";
+				}
+				GameObject f = GameObject.Find (findThis);
+				if(f!=null) {
+					DriverFaceManager m = f.GetComponent<DriverFaceManager>();
+					RacingAI ai = placedCar.GetComponent<RacingAI>();
+					m.init(ai);
+				}	
 			}
 		}
 
@@ -124,7 +134,6 @@ public class RaceManager : MonoBehaviour {
 	}
 	
 	public void doConversation(string aConversationName) {
-		
 		conversationTrigger = this.GetComponent<ConversationTrigger>();
 		if(conversationTrigger==null) {
 			conversationTrigger = this.gameObject.AddComponent<ConversationTrigger>();
@@ -214,7 +223,7 @@ public class RaceManager : MonoBehaviour {
 	
 	//	
 	}
-
+/*
 	public void carDriverMessage(RacingAI aDriver,EDriverMessage aMessageType) {
 		string msg = "Unknown Message";
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
@@ -251,14 +260,14 @@ public class RaceManager : MonoBehaviour {
 			break;
 		}
 
-		msg += "Human Error: "+aDriver.GetComponent<IRDSCarControllerAI>().GetHumanError();
-		labelToUse.text = aDriver.driverName+": "+msg;
+	//	msg += "Human Error: "+aDriver.GetComponent<IRDSCarControllerAI>().GetHumanError();
+		labelToUse.text = msg;
 
 		TweenAlpha[] alphas = labelToUse.GetComponents<TweenAlpha>();
 		for(int i = 0;i<alphas.Length;i++) {
 			alphas[i].enabled = true;
 		}
-	}
+	}*/
 	void Update () {
 		if (!inited) {
 			carCamera.ActivateRoadCamera ();
@@ -274,11 +283,13 @@ public class RaceManager : MonoBehaviour {
 				fv.Add(fv1);
 			}
 			GameObject cam2 = GameObject.Find ("RaceStartCamera");
-			c = cam2.GetComponent<Camera>();
-			if(c.GetComponent<CC_FastVignette>()==null) {
-				CC_FastVignette fv1 = c.gameObject.AddComponent<CC_FastVignette>();
-				fv1.enabled = true;
-				fv.Add(fv1);
+			if(cam2!=null) {
+				c = cam2.GetComponent<Camera>();
+				if(c.GetComponent<CC_FastVignette>()==null) {
+					CC_FastVignette fv1 = c.gameObject.AddComponent<CC_FastVignette>();
+					fv1.enabled = true;
+					fv.Add(fv1);
+				}
 			}
 		} else {
 			if(Time.time-lastUpdate>1f) {

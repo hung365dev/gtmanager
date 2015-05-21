@@ -81,6 +81,8 @@ public class RacingAI : MonoBehaviour {
 	public ETireWear tireWearLevel = ETireWear.Cold;
 	public static bool considerNitroTutorials = true;
 	public float lastMessageTime;
+
+	public DriverFaceManager messageHolder;
 	// Use this for initialization
 	void Start () {
 		this.tag = "Player";
@@ -469,21 +471,22 @@ public class RacingAI : MonoBehaviour {
 			if(time-this.lastMessageTime>10f) {
 				lastMessageTime = time;
 				if(lastMessage!=EDriverMessage.BrakingOnOpponent&&this.aiCar.GetIsBrakingOnOpponent()&&carInfrontTime<2f) {
-					RaceManager.REF.carDriverMessage(this,EDriverMessage.BrakingOnOpponent);
+					this.messageHolder.doMessage(EDriverMessage.BrakingOnOpponent);
+					
 				} else if(lastMessage!=EDriverMessage.Avoiding&&this.aiCar.GetIsAvoidingOpponentSideways()&&(carInfrontTime<1f||carBehindTime>-1f)) {
-					RaceManager.REF.carDriverMessage(this,EDriverMessage.Avoiding);
+					this.messageHolder.doMessage(EDriverMessage.Avoiding);
 				} else if(lastMessage!=EDriverMessage.Damage&&dmgTriggered) {
-					RaceManager.REF.carDriverMessage(this,EDriverMessage.Damage);
+					this.messageHolder.doMessage(EDriverMessage.Damage);
 				} else if(lastMessage!=EDriverMessage.GettingHot&&this.engineTempMonitor.isGettingHot) {
-					RaceManager.REF.carDriverMessage(this,EDriverMessage.GettingHot);
+					this.messageHolder.doMessage(EDriverMessage.GettingHot);
 				} else if(lastMessage!=EDriverMessage.GettingHot&&this.engineTempMonitor.isOverheating) {
-					RaceManager.REF.carDriverMessage(this,EDriverMessage.Overheating);
+					this.messageHolder.doMessage(EDriverMessage.Overheating);
 				} else if(lastMessage!=EDriverMessage.Overtaking&&this.aiCar.GetIsOvertaking()) {
-					RaceManager.REF.carDriverMessage(this,EDriverMessage.Overtaking);
+					this.messageHolder.doMessage(EDriverMessage.Overtaking);
 				} else if(lastMessage!=EDriverMessage.TiresWorn&&this.tireWearLevel==ETireWear.Dangerous) {
-					RaceManager.REF.carDriverMessage(this,EDriverMessage.TiresWorn);
+					this.messageHolder.doMessage(EDriverMessage.TiresWorn);
 				} else if(lastMessage!=EDriverMessage.TooHot&&this.engineTempMonitor.isTooHot) {
-					RaceManager.REF.carDriverMessage(this,EDriverMessage.TooHot);
+					this.messageHolder.doMessage(EDriverMessage.TooHot);
 				}
 			}
 			if(this.inNitroZone&&TeamControl.REF.selectedCar==this) {

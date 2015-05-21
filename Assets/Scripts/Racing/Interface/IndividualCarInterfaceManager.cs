@@ -84,8 +84,8 @@ RPM Value
 			this.gearLabel = GameObject.Find ("GearValue").GetComponent<UILabel>();
 			
 		//	this.nitrosLabel = GameObject.Find ("NitrosLabel").GetComponent<UILabel>();
-			this.drsLabel = GameObject.Find ("DRSLabel").GetComponent<UILabel>();
-			this.engineTemperature = GameObject.Find ("lblEngineTemp").GetComponent<UILabel>();
+		//	this.drsLabel = GameObject.Find ("DRSLabel").GetComponent<UILabel>();
+		//	this.engineTemperature = GameObject.Find ("lblEngineTemp").GetComponent<UILabel>();
 		}
 
 
