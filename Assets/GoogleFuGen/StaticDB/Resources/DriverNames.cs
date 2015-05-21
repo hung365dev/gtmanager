@@ -676,7 +676,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"100",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("2",
 														"Bobby",
 														"Gordon",
@@ -715,7 +715,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"100",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("3",
 														"Trey",
 														"Bayliss",
@@ -754,7 +754,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"100",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("4",
 														"Davey",
 														"Waltrip",
@@ -793,7 +793,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"100",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("5",
 														"Charlie",
 														"Balke",
@@ -832,7 +832,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"100",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("6",
 														"Frank",
 														"Styner",
@@ -871,7 +871,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"100",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("7",
 														"Eddie",
 														"Roberts",
@@ -910,7 +910,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"100",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("8",
 														"Nicklaus",
 														"Louder",
@@ -949,7 +949,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"100",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("9",
 														"Gabriela",
 														"Reza",
@@ -988,7 +988,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"90",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("10",
 														"Shiela",
 														"Speed",
@@ -1006,7 +1006,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.03",
-														"-10",
+														"-11",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1027,7 +1027,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"90",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("11",
 														"Harry",
 														"Homberg",
@@ -1066,7 +1066,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"90",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("12",
 														"Gary",
 														"Hill",
@@ -1105,7 +1105,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"90",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("13",
 														"Derek",
 														"Minter",
@@ -1144,7 +1144,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"90",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("14",
 														"Martin",
 														"Hines",
@@ -1183,7 +1183,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"90",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("15",
 														"Nick",
 														"Hayden",
@@ -1222,7 +1222,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"90",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("16",
 														"William",
 														"Cantrell",
@@ -1261,7 +1261,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"90",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("17",
 														"Eddie",
 														"Cheever",
@@ -1300,7 +1300,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"80",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("18",
 														"James",
 														"Thompson",
@@ -1339,7 +1339,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"80",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("19",
 														"Terry",
 														"Labonte",
@@ -1378,7 +1378,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"80",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("20",
 														"Teddy",
 														"Tetzlaff",
@@ -1417,7 +1417,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"80",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("21",
 														"Brian",
 														"Larson",
@@ -1456,7 +1456,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"80",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("22",
 														"George",
 														"Meier",
@@ -1474,7 +1474,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.038",
-														"-6",
+														"-10",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1495,7 +1495,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"80",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("23",
 														"Nigel",
 														"Boysell",
@@ -1513,7 +1513,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.04",
-														"-6",
+														"-10",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1534,7 +1534,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"80",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("24",
 														"Reece",
 														"McBreen",
@@ -1552,7 +1552,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.029",
-														"-6",
+														"-10",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1573,7 +1573,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"80",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("25",
 														"Sammy",
 														"Schmitz",
@@ -1591,7 +1591,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.041",
-														"-6",
+														"-10",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1612,7 +1612,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"60",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("26",
 														"John",
 														"Paul",
@@ -1630,7 +1630,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.044",
-														"-6",
+														"-10",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1651,7 +1651,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"60",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("27",
 														"Alessandro",
 														"Nannini",
@@ -1669,7 +1669,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.045",
-														"-6",
+														"-10",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1690,7 +1690,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"60",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("28",
 														"Mickey",
 														"Gittin",
@@ -1708,7 +1708,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.06",
-														"-6",
+														"-10",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1729,7 +1729,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"60",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("29",
 														"Rhys",
 														"Peterson",
@@ -1747,7 +1747,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.04",
-														"-6",
+														"-10",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1768,7 +1768,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"60",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("30",
 														"Bill",
 														"Vukovich",
@@ -1786,7 +1786,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.03",
-														"-6",
+														"-10",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1807,7 +1807,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"60",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("31",
 														"Max",
 														"Biaggi",
@@ -1825,7 +1825,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.032",
-														"-6",
+														"-10",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1846,7 +1846,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"60",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("32",
 														"Larry",
 														"Ragland",
@@ -1864,7 +1864,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.034",
-														"-6",
+														"-10",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1885,7 +1885,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"60",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("33",
 														"Wylie",
 														"Baker",
@@ -1903,7 +1903,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.037",
-														"-6",
+														"-10",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1924,7 +1924,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"60",
-														""));
+														"1"));
 			Rows.Add( new DriverNamesRow("34",
 														"Larry",
 														"Perkins",
@@ -1942,7 +1942,7 @@ namespace GoogleFu
 														"1",
 														"2",
 														"0.038",
-														"-6",
+														"-10",
 														"0.03",
 														"0.08",
 														"0.05",
@@ -1963,7 +1963,7 @@ namespace GoogleFu
 														"1.2",
 														"0.8",
 														"60",
-														""));
+														"1"));
 		}
 		public IGoogleFuRow GetGenRow(string in_RowString)
 		{

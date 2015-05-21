@@ -31,15 +31,21 @@ namespace Racing
 		public ECameraViews cameraView = ECameraViews.ChaseCamera;
 
 
-		public UIButton btnDoOrDie;
-		public UIButton btnDriveNormal;
-		public UIButton btnTakeItEasy;
+		public UIButton btnDoOrDieTyres1;
+		public UIButton btnDriveNormalTyres1;
+		public UIButton btnTakeItEasyTyres1;
+		
+		public UIButton btnDoOrDieEngine1;
+		public UIButton btnDriveNormalEngine1;
+		public UIButton btnTakeItEasyEngine1;
+
 		public UIButton btnNitro;
 		
 		public UIButton changeCars;
 		public UIButton changeCamera;
 
 		public EDriverOrders lastOrders;
+		public EDriverOrders lastTyreOrders;
 		public Camera raceStartCamera;
 		public static TeamControl REF;
 		public TeamControl ()
@@ -47,15 +53,20 @@ namespace Racing
 		}
 
 		public void finish() {
-			Destroy(btnDoOrDie.gameObject);
-			Destroy(btnDriveNormal.gameObject);
-			Destroy(btnTakeItEasy.gameObject);
+			try {
+			Destroy(this.btnDoOrDieEngine1.gameObject);
+			Destroy(this.btnDriveNormalEngine1.gameObject);
+			Destroy(this.btnTakeItEasyEngine1.gameObject);
 			if(changeCars!=null) {
 				Destroy(this.changeCars.gameObject);
 				Destroy(this.changeCamera.gameObject);
 			}
+			} catch(Exception e) {
+			
+		} 
 			selectedCar = null;
 			carInterface.finish();
+			
 		}
 		public void onStartedRace() {
 			carCamera.freeCamera = false;
@@ -96,16 +107,23 @@ namespace Racing
 			carInterface.targetAI = selectedCar;
 		}
 		public void initButtons() {
-			if(GameObject.Find ("DriverOrderDoOrDie")!=null) {
-				btnDoOrDie = GameObject.Find("DriverOrderDoOrDie").GetComponent<UIButton>();
-				btnDriveNormal = GameObject.Find ("DriverOrderDriverNormally").GetComponent<UIButton>();
-				btnTakeItEasy = GameObject.Find ("DriverOrderSaveTyres").GetComponent<UIButton>();
+			if(GameObject.Find ("btnDriverOrderGoGoGoEngine1")!=null) {
+				this.btnDoOrDieEngine1 = GameObject.Find("btnDriverOrderGoGoGoEngine1").GetComponent<UIButton>();
+				this.btnDriveNormalEngine1 = GameObject.Find ("btnEngineOrderNormal1").GetComponent<UIButton>();
+				this.btnTakeItEasyEngine1 = GameObject.Find ("btnEngineOrderGoEasy1").GetComponent<UIButton>();
 				btnNitro = GameObject.Find ("ButtonUseNitro").GetComponent<UIButton>();
-				btnDoOrDie.onClick.Add(new EventDelegate(this,"changeToDoOrDie"));
-				btnDriveNormal.onClick.Add(new EventDelegate(this,"changeToDriveNormally"));
-				btnTakeItEasy.onClick.Add(new EventDelegate(this,"changeToSaveTyres"));
+				btnDoOrDieEngine1.onClick.Add(new EventDelegate(this,"changeToDoOrDieEngine"));
+				btnDriveNormalEngine1.onClick.Add(new EventDelegate(this,"changeToDriveNormallyEngine"));
+				btnTakeItEasyEngine1.onClick.Add(new EventDelegate(this,"changeToSaveTyresEngine"));
 				btnNitro.onClick.Add (new EventDelegate(this,"onUseNitro"));
 				
+				this.btnDoOrDieTyres1 = GameObject.Find("btnGoGoGoTires1").GetComponent<UIButton>();
+				this.btnDriveNormalTyres1 = GameObject.Find ("btnNormalOnTires1").GetComponent<UIButton>();
+				this.btnTakeItEasyTyres1 = GameObject.Find ("btnEasyOnTires1").GetComponent<UIButton>();
+				btnDoOrDieTyres1.onClick.Add(new EventDelegate(this,"changeToDoOrDieTyres"));
+				btnDriveNormalTyres1.onClick.Add(new EventDelegate(this,"changeToDriveNormallyTyres"));
+				btnTakeItEasyTyres1.onClick.Add(new EventDelegate(this,"changeToSaveTyres"));
+
 				changeCars = GameObject.Find("ChangeDriverButton").GetComponent<UIButton>();
 				changeCamera = GameObject.Find("ButtonToggleCamera").GetComponent<UIButton>();
 				changeCars.onClick.Add(new EventDelegate(this,"changeCar"));
@@ -116,32 +134,62 @@ namespace Racing
 			if(selectedCar!=null)
 			if(selectedCar.currentOrders!=lastOrders) {
 				lastOrders = selectedCar.currentOrders;
-				if(this.btnDoOrDie==null) {
+				if(this.btnDoOrDieEngine1==null) {
 					initButtons();
-					if(btnDoOrDie==null) {
+					if(this.btnDoOrDieEngine1==null) {
 						return;
 					}
 				}
 
-				this.btnDoOrDie.isEnabled = true;
-				this.btnDriveNormal.isEnabled = true;
-				this.btnTakeItEasy.isEnabled = true;
+				this.btnDoOrDieEngine1.isEnabled = true;
+				this.btnDriveNormalEngine1.isEnabled = true;
+				this.btnTakeItEasyEngine1.isEnabled = true;
 				switch(lastOrders) {
-					case(EDriverOrders.DoOrDie):this.btnDoOrDie.isEnabled = false;break;
-					case(EDriverOrders.DriveNormal):this.btnDriveNormal.isEnabled = false;break;
-					case(EDriverOrders.TakeItEasy):this.btnTakeItEasy.isEnabled = false;break;
+					case(EDriverOrders.DoOrDie):this.btnDoOrDieEngine1.isEnabled = false;break;
+					case(EDriverOrders.DriveNormal):this.btnDriveNormalEngine1.isEnabled = false;break;
+					case(EDriverOrders.TakeItEasy):this.btnTakeItEasyEngine1.isEnabled = false;break;
+				}
+			}
+			if(selectedCar!=null)
+			if(selectedCar.currentTyreOrders!=lastTyreOrders) {
+				lastTyreOrders = selectedCar.currentTyreOrders;
+				if(this.btnDoOrDieTyres1==null) {
+					initButtons();
+					if(this.btnDoOrDieTyres1==null) {
+						return;
+					}
+				}
+				
+				this.btnDoOrDieTyres1.isEnabled = true;
+				this.btnDriveNormalTyres1.isEnabled = true;
+				this.btnTakeItEasyTyres1.isEnabled = true;
+				switch(lastTyreOrders) {
+					case(EDriverOrders.DoOrDie):this.btnDoOrDieTyres1.isEnabled = false;break;
+					case(EDriverOrders.DriveNormal):this.btnDriveNormalTyres1.isEnabled = false;break;
+					case(EDriverOrders.TakeItEasy):this.btnTakeItEasyTyres1.isEnabled = false;break;
 				}
 			}
 
 		}
-		public void changeToDriveNormally() {
-			this.selectedCar.changeOrders(EDriverOrders.DriveNormal);
+
+		public void changeToDriveNormallyTyres() {
+			this.selectedCar.changeTyreOrders(EDriverOrders.DriveNormal);
 		}
-		public void changeToDoOrDie() {
-			this.selectedCar.changeOrders(EDriverOrders.DoOrDie);
+		public void changeToDoOrDieTyres() {
+			this.selectedCar.changeTyreOrders(EDriverOrders.DoOrDie);
 		}
 		public void changeToSaveTyres() {
-			this.selectedCar.changeOrders(EDriverOrders.TakeItEasy);
+			this.selectedCar.changeTyreOrders(EDriverOrders.TakeItEasy);
+		}
+
+		public void changeToDriveNormallyEngine() {
+			this.selectedCar.changeEngineOrders(EDriverOrders.DriveNormal);
+		}
+		public void changeToDoOrDieEngine() {
+			this.selectedCar.changeEngineOrders(EDriverOrders.DoOrDie);
+		}
+		public void changeToSaveTyresEngine() {
+			this.selectedCar.changeEngineOrders(EDriverOrders.TakeItEasy);
 		}
 		public void changeCar() {
 			if(selectedCar == null) {
@@ -217,7 +265,7 @@ namespace Racing
 			}
 
 			
-		}
+		} 
 	}
 }
 

@@ -36,35 +36,46 @@ public class DriverOrderSetup {
 		IRDSCarControllerAI ai = aAI.GetComponent<IRDSCarControllerAI>();
 		IRDSDrivetrain driveTrain = aAI.GetComponent<IRDSDrivetrain>();
 		//IRDSCarControllInput controlInput = aAI.GetComponent<IRDSCarControllInput>();
-		ai.SetHumanError(ai.GetHumanError()*humanErrorPercent);
+		if(humanErrorPercent!=0f)
+			ai.SetHumanError(ai.GetHumanError()*humanErrorPercent);
 		ai.SetHumanError(ai.GetHumanError()+humanErrorModifier);
 
-
+		
 		aAI.engineWearPerFrame += engineWearAdd;
-		ai.SetCorneringSpeedFactor(aAI.originalCorneringSpeed*corneringSpeedFactorPercent);
-		ai.SetAggressivenessOnBrake(aAI.originalBrakingAggressiveness*aggressionOnBrakingPercent);
+		if(corneringSpeedFactorPercent!=0f)
+			ai.SetCorneringSpeedFactor(aAI.originalCorneringSpeed*corneringSpeedFactorPercent);
+		if(aggressionOnBrakingPercent!=0f)
+			ai.SetAggressivenessOnBrake(aAI.originalBrakingAggressiveness*aggressionOnBrakingPercent);
 		ai.SetOvertakeSpeedDiference(aAI.originalOvertakeSpeedDiff+overtakeSpeedDiffModifier);
-		ai.SetOvertakeFactor(aAI.originalOvertakeFactor*overtakeFactorPercent);
+		
+		if(overtakeFactorPercent!=0f)
+			ai.SetOvertakeFactor(aAI.originalOvertakeFactor*overtakeFactorPercent);
 		aAI.staminaDecrementer = staminaDecrementer;
-		float newPower = aAI.originalPower*horsePowerMultiplier;
-		if(float.IsNaN(newPower)) {
-			Debug.LogError("New Power is NaN: "+aAI.originalPower+","+horsePowerMultiplier);
-		} else
-			driveTrain.SetMaxPower(newPower);
-		float newMaxTorque = aAI.originalTorque*torqueMultiplier;
-		if(float.IsNaN(newMaxTorque)) {
-			Debug.LogError("New Torque is NaN: "+aAI.originalTorque+","+torqueMultiplier);
-		} else
-			driveTrain.SetMaxTorque(newMaxTorque);
+		if(horsePowerMultiplier!=0f) {
+			float newPower = aAI.originalPower*horsePowerMultiplier;
+			if(float.IsNaN(newPower)) {
+				Debug.LogError("New Power is NaN: "+aAI.originalPower+","+horsePowerMultiplier);
+			} else
+				driveTrain.SetMaxPower(newPower);
+		}
+		if(torqueMultiplier!=0f) {
+			float newMaxTorque = aAI.originalTorque*torqueMultiplier;
+			if(float.IsNaN(newMaxTorque)) {
+				Debug.LogError("New Torque is NaN: "+aAI.originalTorque+","+torqueMultiplier);
+			} else
+				driveTrain.SetMaxTorque(newMaxTorque);
+		}
 		if(float.IsNaN(driveTrain.GetRPM())) {
 			Debug.LogError("RPM is now NaN!");
 		}
-		float newShiftRange = aAI.originalShiftUp*changeUpMultiplier;
-//		Debug.Log ("new shift range is: "+newShiftRange+" car is: "+aAI.gameObject.name);
-		if(newShiftRange>0.97f) {
-			newShiftRange = 0.97f;
+		if(changeUpMultiplier!=0f) {
+			float newShiftRange = changeUpMultiplier;
+	//		Debug.Log ("new shift range is: "+newShiftRange+" car is: "+aAI.gameObject.name);
+			if(newShiftRange>0.97f) {
+				newShiftRange = 0.97f;
+			}
+			ai.shiftUpFactor = newShiftRange;
 		}
-		ai.shiftUpFactor = newShiftRange;
 
 
 

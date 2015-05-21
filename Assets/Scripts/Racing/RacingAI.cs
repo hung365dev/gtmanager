@@ -54,6 +54,7 @@ public class RacingAI : MonoBehaviour {
 	private bool usingNitro = false;
 	public bool raceComplete = false;
 	public EDriverOrders currentOrders = EDriverOrders.DriveNormal;
+	public EDriverOrders currentTyreOrders = EDriverOrders.DriveNormal;
 	
 	public float damage;
 	public int finishPosition = int.MaxValue;
@@ -271,8 +272,21 @@ public class RacingAI : MonoBehaviour {
 			break;
 		}
 	}
+	public void changeTyreOrders(EDriverOrders aOrder) {
+		if(aOrder!=this.currentTyreOrders) {
+			if(originalPower==0f||float.IsNaN(originalMaxRPM)) {
+				originalPower = this.aiDriveTrain.GetMaxPower();
+				originalTorque = this.aiDriveTrain.GetMaxTorque();
+				this.originalMaxRPM = this.aiDriveTrain.revLimiterRPM;
+			}
+			DriverOrderSetup newOrder = DriverOrderLibrary.REF.getTyreOrderFromEnum(aOrder);
+			newOrder.addEffectToCar(this,this.wings);
+			
+			this.currentTyreOrders = aOrder;
+		}
+	}
 
-	public void changeOrders(EDriverOrders aOrder) {
+	public void changeEngineOrders(EDriverOrders aOrder) {
 		if(aOrder!=this.currentOrders) {
 			if(originalPower==0f||float.IsNaN(originalMaxRPM)) {
 				originalPower = this.aiDriveTrain.GetMaxPower();
@@ -282,7 +296,7 @@ public class RacingAI : MonoBehaviour {
 			if(this.humanControl&&aOrder==EDriverOrders.TakeItEasy) {
 				RaceManager.REF.doConversation("TutorialOverheating");
 			}
-			DriverOrderSetup newOrder = DriverOrderLibrary.REF.getOrderFromEnum(aOrder);
+			DriverOrderSetup newOrder = DriverOrderLibrary.REF.getEngineOrderFromEnum(aOrder);
 			newOrder.addEffectToCar(this,this.wings);
 		
 			this.currentOrders = aOrder;
@@ -322,7 +336,8 @@ public class RacingAI : MonoBehaviour {
 		if(!this.raceComplete) {
 			finishPosition = int.MaxValue;
 			raceComplete = true;
-			this.changeOrders(EDriverOrders.RaceComplete);
+			this.changeEngineOrders(EDriverOrders.RaceComplete);
+			this.changeTyreOrders(EDriverOrders.RaceComplete);
 			RaceManager.REF.HandleNewFinisher(this);
 
 		}
@@ -433,9 +448,9 @@ public class RacingAI : MonoBehaviour {
 			if(this.aiCar.GetEndRace()) {
 				raceComplete = true;
 				finishTimeString = this.aiCar.GetCurrentTotalRaceTimeString();
-				this.changeOrders(EDriverOrders.RaceComplete);
+				this.changeEngineOrders(EDriverOrders.RaceComplete);
+				this.changeTyreOrders(EDriverOrders.RaceComplete);
 				finishPosition = this.aiCar.racePosition;
-				aiCar.LookAheadConst = 6f;
 				RaceManager.REF.HandleNewFinisher(this);
 			} else {
 
@@ -474,15 +489,30 @@ public class RacingAI : MonoBehaviour {
 					RaceManager.REF.doConversation("NitroBoost");
 			}
 		} else {
-			if(this.engineTempMonitor.percentTempRange<0.5f) {
+			if(this.engineTempMonitor.percentTempRange<0.65f) {
 				if(this.currentOrders!=EDriverOrders.DoOrDie)
-					this.changeOrders(EDriverOrders.DoOrDie);
-			} else if(this.engineTempMonitor.percentTempRange<0.75f) {
+					this.changeEngineOrders(EDriverOrders.DoOrDie);
+			} else if(this.engineTempMonitor.percentTempRange<0.80f) {
 				if(this.currentOrders!=EDriverOrders.DriveNormal)
-					this.changeOrders(EDriverOrders.DriveNormal); 
+					this.changeEngineOrders(EDriverOrders.DriveNormal); 
 			} else {
 				if(this.currentOrders!=EDriverOrders.TakeItEasy)
-					this.changeOrders(EDriverOrders.TakeItEasy);
+					this.changeEngineOrders(EDriverOrders.TakeItEasy);
+			}
+			if(this.tireWearLevel==ETireWear.Cold||this.tireWearLevel==ETireWear.Worn) {
+				if(this.currentTyreOrders!=EDriverOrders.DriveNormal) {
+					this.changeTyreOrders(EDriverOrders.DriveNormal);
+				}
+			}
+			if(this.tireWearLevel==ETireWear.Warm||this.tireWearLevel==ETireWear.Perfect||this.tireWearLevel==ETireWear.LightWear) {
+				if(this.currentTyreOrders!=EDriverOrders.DoOrDie) {
+					this.changeTyreOrders(EDriverOrders.DoOrDie);
+				}
+			}
+			if(this.tireWearLevel==ETireWear.Dangerous) {
+				if(this.currentTyreOrders!=EDriverOrders.TakeItEasy) {
+					this.changeTyreOrders(EDriverOrders.TakeItEasy);
+				}
 			}
 			if(inNitroZone&&allowNitros) {
 				if(!usingNitro&&nitrosRemaining>0) {
