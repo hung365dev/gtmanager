@@ -14,6 +14,8 @@ public class ChampionshipStandings : MonoBehaviour {
 	public List<GTTeam> teamPositions;
 	public List<GTDriver> champStandings;
 	
+	public UILabel nextSeasonButtonLabel;
+
 	public Color colorIfHumanDriver;
 	public Color colorForWinner;
 	public Color colorForRelegated;
@@ -42,9 +44,9 @@ public class ChampionshipStandings : MonoBehaviour {
 		champStandings = ChampionshipSeason.ACTIVE_SEASON.seasonForTeam(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()).driversChampionshipPositions();
 		stage = -1;
 		if(isComplete) {
-			GameObject g = GameObject.Find ("ExitToMenuBtn");
-			if(g!=null)
-			g.gameObject.SetActive(false);
+			this.nextSeasonButtonLabel.text = "NEXT SEASON";
+		} else  {
+			this.nextSeasonButtonLabel.text = "MAIN MENU";
 		}
 		this.doContinue();
 		
@@ -61,10 +63,16 @@ public class ChampionshipStandings : MonoBehaviour {
 		return 0;
 	}
 	public void onNextSeason() {
-		ChampionshipSeason.ACTIVE_SEASON.handleRelegationsAndPromotions();
-		this.gameObject.SetActive(false);
-		GarageManager.REF.gameObject.SetActive(true);
-		InterfaceMainButtons.REF.onCloseOtherScreen();
+		if(isComplete) {
+			ChampionshipSeason.ACTIVE_SEASON.handleRelegationsAndPromotions();
+			this.gameObject.SetActive(false);
+			GarageManager.REF.gameObject.SetActive(true);
+			InterfaceMainButtons.REF.onCloseOtherScreen();
+		} else {
+			this.gameObject.SetActive(false);
+			GarageManager.REF.gameObject.SetActive(true);
+			InterfaceMainButtons.REF.onCloseOtherScreen();
+		}
 	}
 	public void doContinue() {
 		stage++;
@@ -72,8 +80,8 @@ public class ChampionshipStandings : MonoBehaviour {
 			stage = 0;
 		}
 		switch(stage) {
-		case(0):titleText.text = "Drivers Championship";nextSeasonButton.gameObject.SetActive(false);break;
-		case(1):titleText.text = "Constructors Championship";if(this.isComplete) nextSeasonButton.gameObject.SetActive(true);break;
+		case(0):titleText.text = "Drivers Championship";nextSeasonButton.gameObject.SetActive(true);break;
+		case(1):titleText.text = "Constructors Championship";nextSeasonButton.gameObject.SetActive(true);break;
 		} 
 		if(stage==1) {
 			List<GTTeam> sortedTeams = ChampionshipSeason.ACTIVE_SEASON.seasonForTeam(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()).sortedTeams;

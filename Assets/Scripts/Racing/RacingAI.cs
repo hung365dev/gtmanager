@@ -111,6 +111,7 @@ public class RacingAI : MonoBehaviour {
 			aiCar.SetFullAccelMaring(aRecord.fullAccelMargin);
 			aiCar.SetHeightMargin(aRecord.heightMargin);
 			aiCar.SetHumanError(aRecord.humanError);
+			aiCar.SetHumanError(0.5f);
 			aiCar.jumpThrottleMulpilier = aRecord.jumpThrottleMultiplier;
 			aiCar.jumpThrottleTime = aRecord.jumpThrottleTime;
 			aiCar.SetLength_Margin(aRecord.lengthMargin);
@@ -357,8 +358,9 @@ public class RacingAI : MonoBehaviour {
 		this.fatigue -= this.staminaDecrementer;
 		fatigueCount++;
 		if(fatigueCount%40==0&&aiCar!=null) {
-			if(fatigue>0)
-				this.aiCar.SetHumanError(this.driverRecord.humanError+(this.driverRecord.humanError*(this.fatigue/this.driverRecord.stamina)));
+			//if(fatigue>0)
+				//this.aiCar.SetHumanError(500000f+(this.driverRecord.humanError*(this.fatigue/this.driverRecord.stamina)));
+				//this.aiCar.SetHumanError(this.driverRecord.humanError+(this.driverRecord.humanError*(this.fatigue/this.driverRecord.stamina)));
 		}
 	}
 

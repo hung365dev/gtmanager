@@ -250,6 +250,8 @@ public class RaceManager : MonoBehaviour {
 				msg = "The engines overheated and failing!";
 			break;
 		}
+
+		msg += "Human Error: "+aDriver.GetComponent<IRDSCarControllerAI>().GetHumanError();
 		labelToUse.text = aDriver.driverName+": "+msg;
 
 		TweenAlpha[] alphas = labelToUse.GetComponents<TweenAlpha>();

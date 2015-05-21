@@ -111,7 +111,7 @@ namespace Racing
 				this.btnDoOrDieEngine1 = GameObject.Find("btnDriverOrderGoGoGoEngine1").GetComponent<UIButton>();
 				this.btnDriveNormalEngine1 = GameObject.Find ("btnEngineOrderNormal1").GetComponent<UIButton>();
 				this.btnTakeItEasyEngine1 = GameObject.Find ("btnEngineOrderGoEasy1").GetComponent<UIButton>();
-				btnNitro = GameObject.Find ("ButtonUseNitro").GetComponent<UIButton>();
+				btnNitro = GameObject.Find ("ButtonUseNitroDriver1").GetComponent<UIButton>();
 				btnDoOrDieEngine1.onClick.Add(new EventDelegate(this,"changeToDoOrDieEngine"));
 				btnDriveNormalEngine1.onClick.Add(new EventDelegate(this,"changeToDriveNormallyEngine"));
 				btnTakeItEasyEngine1.onClick.Add(new EventDelegate(this,"changeToSaveTyresEngine"));

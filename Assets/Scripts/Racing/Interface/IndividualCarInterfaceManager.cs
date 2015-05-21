@@ -83,7 +83,7 @@ RPM Value
 			rpmLabel = GameObject.Find ("RPM Value").GetComponent<UILabel>();
 			this.gearLabel = GameObject.Find ("GearValue").GetComponent<UILabel>();
 			
-			this.nitrosLabel = GameObject.Find ("NitrosLabel").GetComponent<UILabel>();
+		//	this.nitrosLabel = GameObject.Find ("NitrosLabel").GetComponent<UILabel>();
 			this.drsLabel = GameObject.Find ("DRSLabel").GetComponent<UILabel>();
 			this.engineTemperature = GameObject.Find ("lblEngineTemp").GetComponent<UILabel>();
 		}
@@ -110,9 +110,9 @@ RPM Value
 				carPosition.text = ""+statistics.GetCarPosition(targetAI.aiCar);
 
 
-			this.nitrosLabel.text = Convert.ToString(targetAI.nitrosRemaining);
-			this.drsLabel.gameObject.SetActive(targetAI.drsActivated);
-			engineTemperature.text = ""+Convert.ToInt32(targetAI.engineTempMonitor.currentTemperature)+"c";
+			//this.nitrosLabel.text = Convert.ToString(targetAI.nitrosRemaining);
+			//this.drsLabel.gameObject.SetActive(targetAI.drsActivated);
+	//		engineTemperature.text = ""+Convert.ToInt32(targetAI.engineTempMonitor.currentTemperature)+"c";
 
 			if(driverNameLabel!=null)
 			driverNameLabel.text = targetAI.driverName;
