@@ -71,10 +71,10 @@ using championship;
 		}
 		public void onAcceptOffer() {
 			GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
-			myTeam.addContract(this.currentPosition,myTeam.sponsorRelationship(SponsorDatabase.REF.sponsors[showingSponsor]),Convert.ToInt32(sponsorInterestInfo.sponsorValue),sponsorInterestInfo.contractLength);
+			myTeam.addSponsorContract(this.currentPosition,myTeam.sponsorRelationship(SponsorDatabase.REF.sponsors[showingSponsor]),Convert.ToInt32(sponsorInterestInfo.sponsorValue),sponsorInterestInfo.contractLength);
 			rePaintCars();
 			showSponsor(SponsorDatabase.REF.sponsors[showingSponsor]);
-		}
+		} 
 		public void rePaintCars() {
 			GameObject gls = GameObject.Find("GarageLeftSide");
 			GameObject grs = GameObject.Find ("GarageRightSide");

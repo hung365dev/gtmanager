@@ -32,7 +32,7 @@ public class DriverFaceManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(tempLabel!=null&&racingAIRef!=null) {
-			tempLabel.text = ""+racingAIRef.aiCar.GetCorneringSpeedFactor();
+			tempLabel.text = ""+racingAIRef.aiCar.backToLineIncrement;
 		}
 	}
 

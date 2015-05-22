@@ -33,6 +33,14 @@ namespace championship
 			}
 		}
 
+		public int racesRemainingInSeason {
+			get {
+				GTTeam humansTeam = this.getUsersTeam();
+				ChampionshipSeasonLeague league = this.leagueForTeam(humansTeam);
+				return league.racesRemainingInSeason;
+			}
+		}
+
 
 	}
 }

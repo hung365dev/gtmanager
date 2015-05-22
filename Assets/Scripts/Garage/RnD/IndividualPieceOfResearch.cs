@@ -12,7 +12,6 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 
 	public UILabel partNameTitle;
 	public UILabel partDescription;
-	public UILabel staffRequired;
 	public UILabel divisionRequired;
 	public UILabel prerequisiteParts;
 	public UISprite  partGraphic;
@@ -88,9 +87,12 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 		}
 		
 		partDescription.text = aRow._partdescription;
-		staffRequired.text = "Staff Required: "+aRow._partprerequisitestaff;
 		divisionRequired.text = "Division Required: "+aRow._partprerequisitedivision;
-		prerequisiteParts.text = "Prerequisite Parts: "+aRow._partprerequisites;
+		if(aRow._partprerequisites.Length==0) {
+			prerequisiteParts.text = "Prerequisite Parts: None";
+		} else {
+			prerequisiteParts.text = "Prerequisite Parts: "+aRow._partprerequisites;
+		}
 		lblCost.text = "Cost to Research: "+String.Format("{0:C}",aRow._costtoresearch);
 		this.lblDaysToResearch.text = "Days to Research: "+aRow._daystoresearch;
 		partGraphic.spriteName = aSprite.spriteName;

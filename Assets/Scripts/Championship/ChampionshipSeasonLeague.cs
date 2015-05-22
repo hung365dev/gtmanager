@@ -29,7 +29,17 @@ namespace championship
 		{
 
 		}
-
+		public int racesRemainingInSeason {
+			get {
+				int c = 0;
+				for(int i = 0;i<races.Count;i++) {
+					if(!races[i].isCompleted) {
+						c++;
+					}
+				}
+				return c;
+			}
+		}
 		public GTTeam relegatedTeam {
 			get {
 				if(divisionNumber<4) {

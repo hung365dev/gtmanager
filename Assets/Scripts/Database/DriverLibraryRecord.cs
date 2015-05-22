@@ -53,11 +53,13 @@ namespace Database
 		public float jumpThrottleMultiplier;
 		public float jumpThrottleTime;
 		public float agressiveMultiplier;
+		public float sponsorAppeal;
 	
 		public string firstname;
 		public string surname;
 		public int stamina;
-
+		public int demandsReputation;
+		public int positionDemanded;
 		public string faceSpriteString;
 
 		public List<Sprite> driverFaces = new List<Sprite>();
@@ -99,7 +101,12 @@ namespace Database
 			offtrackThrottleMultiplier = aRow._offtrackthrottlemultiplier;
 			jumpThrottleMultiplier = aRow._jumpthrottlemultiplier;
 			jumpThrottleTime = aRow._jumpthrottletime;
-			stamina = Convert.ToInt32(aRow._stamina);;
+			stamina = Convert.ToInt32(aRow._stamina);
+			sponsorAppeal = (float) aRow._sponsorfriendliness;
+
+			demandsReputation = aRow._wantsreputation;
+
+			positionDemanded = aRow._positiondemanded;
 			/*
 			 * SIDE_MARGIN	OffTrackThrottleMultiplier	JumpThrottleMultiplier	JumpThrottleTime	AggressiveMultiplier	PassiveMultiplier
 			 */

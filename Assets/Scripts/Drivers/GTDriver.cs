@@ -17,7 +17,7 @@ using System.Collections.Generic;
 namespace Drivers
 {
 	[System.Serializable]
-	public class GTDriver : GTDriverBase
+	public class GTDriver : GTDriverWithContract
 	{
 		public GTCar assignedCar;
 		public int championshipPoints;

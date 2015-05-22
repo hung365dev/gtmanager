@@ -56,8 +56,8 @@ public class GarageManager : MonoBehaviour {
 		
 		DialogueLua.SetVariable("OnCloseAction","");
 		if(r.AsString=="Garage") {
-//			handleEndOfCalendarView();
-//			InterfaceMainButtons.REF.onCloseOtherScreen();
+		//	handleEndOfCalendarView();
+		//	InterfaceMainButtons.REF.onCloseOtherScreen();
 
 		} else if(r.AsString=="Calendar")  {
 			handleStartOfCalendarView();

@@ -17,6 +17,8 @@ public class DriverPanel : MonoBehaviour {
 	public UILabel payPerRaceLabel;
 	public UILabel sponsorAppealLabel;
 
+
+	public UIButton hireNewDriversBtn;
 	public GTDriver driverRef;
 	public NewDriverPanel otherDrivers;
 	public NewDriverPanel prefabDriverPanel;
@@ -34,12 +36,13 @@ public class DriverPanel : MonoBehaviour {
 	}
 
 	public void showButtons() {
-	
+		hireNewDriversBtn.gameObject.SetActive(true);
 	}	
 	public void onSelectOtherDriver() {
 		if(otherDrivers!=null) {
 			Destroy(otherDrivers.gameObject);
 		}
+		
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		camController = GameObject.Find("Main Camera").GetComponent<GarageCameraController>();
 		
@@ -60,8 +63,8 @@ public class DriverPanel : MonoBehaviour {
 			Destroy(otherDrivers.gameObject);
 		}
 		GameObject go = NGUITools.AddChild(this.gameObject.transform.parent.gameObject,prefabDriverPanel.gameObject);
-		Debug.Log (go.name);
 		
+		hireNewDriversBtn.gameObject.SetActive(false);
 		otherDrivers = go.GetComponent<NewDriverPanel>();
 		otherDrivers.alignToLeft();
 		otherDrivers.myDriverPanel = this;
@@ -76,7 +79,7 @@ public class DriverPanel : MonoBehaviour {
 		this.corneringLabel = this.transform.FindChild("CorneringValue").GetComponent<UILabel>();
 		this.errorProneLabel = this.transform.FindChild("ErrorProneValue").GetComponent<UILabel>();
 		this.overtakingLabel = this.transform.FindChild("OvertakingValue").GetComponent<UILabel>();
-		this.staminaLabel = this.transform.FindChild("StaminaValue").GetComponent<UILabel>();
+	//	this.staminaLabel = this.transform.FindChild("StaminaValue").GetComponent<UILabel>();
 		this.currentTeamLabel = this.transform.FindChild("CurrentTeamValue").GetComponent<UILabel>();
 		this.payPerRaceLabel = this.transform.FindChild("PayPerRaceValue").GetComponent<UILabel>();
 		this.sponsorAppealLabel = this.transform.FindChild("SponsorAppealValue").GetComponent<UILabel>();
@@ -108,15 +111,19 @@ public class DriverPanel : MonoBehaviour {
 			corneringLabel.text = aDriver.corneringSkillString;
 			errorProneLabel.text = aDriver.errorProneString;
 			overtakingLabel.text = aDriver.overtakingString;
-			staminaLabel.text = aDriver.staminaString;
-			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aDriver);
+		//	staminaLabel.text = aDriver.staminaString;
+			GTTeam team = aDriver.contract.team;
 			if(team==null) {
 				this.currentTeamLabel.text = "No Team";
 				
 			} else
-			this.currentTeamLabel.text = team.teamName;
+				this.currentTeamLabel.text = team.teamName;
 			
 			faceSprite.sprite2D = aDriver.record.sprite;;
+			this.sponsorAppealLabel.text = aDriver.sponsorAppealString;
+			
+			this.payPerRaceLabel.text = ""+string.Format("{0:C}", aDriver.contract.payPerRace);
+
 			
 		}
 		this.driverRef = aDriver;

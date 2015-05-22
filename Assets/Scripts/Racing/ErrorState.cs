@@ -14,11 +14,14 @@ namespace Racing
 	{	
 		public int framesOfError;
 		public float corneringSpeedEffector = 1f;
+		public float backToLineError = -0.1f;
 		public ErrorState (float aHumanError,RacingAI aAI)
 		{
-			framesOfError = Convert.ToInt32(aHumanError*100);
+			framesOfError = Convert.ToInt32(aHumanError*500);
 			
 			corneringSpeedEffector = 1000f*UnityEngine.Random.Range(0,aHumanError);
+
+			backToLineError = -1f*aHumanError;
 		}
 	}
 }

@@ -78,8 +78,6 @@ public class CarDetails : MonoBehaviour {
 		this.dragValue = this.transform.FindChild("DragValue").GetComponent<UILabel>();
 		this.dragBoost = this.transform.FindChild("DragBoost").GetComponent<UILabel>();
 		hasDRSValue = this.transform.FindChild("HasDRSValue").GetComponent<UILabel>();
-		carValue = this.transform.FindChild("CarValueValue").GetComponent<UILabel>();
-
 		
 		turboValue = this.transform.FindChild("TurboValue").GetComponent<UILabel>();
 		turboBoost = this.transform.FindChild("TurboBoost").GetComponent<UILabel>();
@@ -292,7 +290,7 @@ public class CarDetails : MonoBehaviour {
 		this.hasDRSValue.text = "Level "+aRecord.hasDRS;
 		//gripValue.text = ""+aRecord.carTireWearEffect;
 		
-		
+		this.carValue.text = ""+string.Format("{0:C}", aRecord.carValue);
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		GTDriver driver = team.getDriverFromCar(this.carRef);
 		if(driver!=null) {

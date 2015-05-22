@@ -49,6 +49,9 @@ namespace Drivers
 		public float jumpThrottleMultiplier;
 		public float jumpThrottleTime;
 		public float agressiveMultiplier;
+		public float sponsorFriendliness;
+		public int demandingReputation;
+		public int positionDemanded;
 		public DriverLibraryRecord record;
 		public void initFromLibrary(DriverLibraryRecord aLibraryRecord) {
 			record = aLibraryRecord;
@@ -88,8 +91,34 @@ namespace Drivers
 			this.steeringDriftFactor = aLibraryRecord.steeringDriftFactor;
 			this.tyreChangePercentage = aLibraryRecord.tyreChangePercentage;
 
-		}
+			this.sponsorFriendliness = aLibraryRecord.sponsorAppeal;
 
+			this.demandingReputation = aLibraryRecord.demandsReputation;
+		}
+		
+		public string sponsorAppealString {
+			get {
+				if(this.sponsorFriendliness<0.25f) {
+					return "Toxic";
+				}
+				if(this.sponsorFriendliness<0.5f) {
+					return "Awful";
+				}
+				if(this.sponsorFriendliness<0.75f) {
+					return "Very Poor";
+				}
+				if(this.sponsorFriendliness<1f) {
+					return "Poor";
+				}
+				if(this.sponsorFriendliness<1.25f) {
+					return "Average";
+				}
+				if(this.sponsorFriendliness<1.5f) {
+					return "Good";
+				}
+				return "Excellent";
+			}
+		}
 		public string brakingAggressionString {
 			get {
 				if(this.aggressivenessOnBrake>1.5f) {

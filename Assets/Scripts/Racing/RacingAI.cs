@@ -9,32 +9,11 @@ using Teams;
 using Cars;
 using PixelCrushers.DialogueSystem;
 
-public class RacingAI : MonoBehaviour {
-	public IRDSCarControllerAI aiCar;
-	public IRDSDrivetrain aiDriveTrain;
-	public IRDSCarControllInput aiInput;
-	public IRDSAerodynamicResistance aero;
-	public float frontWingDownforce;
-	public float rearWingDownforce;
-	public GTCar carRef;
-	public float originalPower;
-	public float originalTorque; 
-	public float originalBrakingAggressiveness;
-	public float originalCorneringSpeed;
-	public float originalOvertakeSpeedDiff;
-	public float originalOvertakeFactor;
-	public float originalMaxRPM;
-	public IRDSWing[] wings;
-	public IRDSWheel[] wheels;
-	public WheelInfo[] wheelInfo;
+public class RacingAI : RacingAIWithHeating {
 	public float nitroBoostDurability = 200f;
-	public bool inited = false;
-	public string driverName;
-	public float originalSpeedCorner = 0f;
 	public float speedCornerBeforeError = 0f;
+	public float backToLineBeforeError = 0f;
 	public float engineWearPerFrame = 0f;
-	public bool humanControl = false;
-	public bool inNitroZone = false;
 	public static bool allowNitros = true;
 	public int lastSector;
 	public float carInfrontTime;
@@ -45,7 +24,6 @@ public class RacingAI : MonoBehaviour {
 	public IRDSCarControllerAI carInfront;
 	public IRDSCarControllerAI carBehind;
 	public int fatigueCount = 0;
-	public EngineTemperatureMonitor engineTempMonitor;
 		
 	public ETireWear currentTireWear;
 	public float tireTemp;
@@ -64,11 +42,6 @@ public class RacingAI : MonoBehaviour {
 
 	public GTDriver driverRecord;
 
-	public GameObject engineWhiteSmoke;
-	public GameObject engineBlackSmoke;
-	public GameObject engineFire;
-
-	public EEngineFailureStage engineFailure;
 
 	public bool drsActivated = false;
 	public bool canDRS = false;
@@ -116,7 +89,6 @@ public class RacingAI : MonoBehaviour {
 			aiCar.SetFullAccelMaring(aRecord.fullAccelMargin);
 			aiCar.SetHeightMargin(aRecord.heightMargin);
 			aiCar.SetHumanError(aRecord.humanError);
-			aiCar.SetHumanError(0.5f);
 			aiCar.jumpThrottleMulpilier = aRecord.jumpThrottleMultiplier;
 			aiCar.jumpThrottleTime = aRecord.jumpThrottleTime;
 			aiCar.SetLength_Margin(aRecord.lengthMargin);
@@ -179,105 +151,8 @@ public class RacingAI : MonoBehaviour {
 		return this;
 	}
 
-	public void initSmokes() {
-		try {
-			if(engineWhiteSmoke==null&&this.gameObject.transform.FindChild("EngineWhiteSmoke")!=null) {
-				engineWhiteSmoke = this.gameObject.transform.FindChild("EngineWhiteSmoke").gameObject;
-			}
-			if(engineBlackSmoke==null&&this.gameObject.transform.FindChild("EngineBlackSmoke")!=null) {
-				engineBlackSmoke = this.gameObject.transform.FindChild("EngineBlackSmoke").gameObject;
-			}
-			if(engineFire==null&&this.gameObject.transform.FindChild("EngineFire")!=null) {
-				engineFire = this.gameObject.transform.FindChild("EngineFire").gameObject;
-			}
-		} catch(Exception e) {
-			
-		}
-		engineFailure = EEngineFailureStage.Normal;
-		setEngineFailureStage();
-	}
-	public void setEngineFailureStage() {
-		switch(engineFailure) {
-			case(EEngineFailureStage.Normal):
-				if(engineFire!=null)
-					engineFire.gameObject.SetActive(false);	
-				if(engineWhiteSmoke!=null)
-					engineWhiteSmoke.gameObject.SetActive(false);	
-				if(engineBlackSmoke!=null)
-					engineBlackSmoke.gameObject.SetActive(false);	
-				if(aiDriveTrain!=null) {
-					if(!float.IsNaN(this.originalMaxRPM)&&(this.originalMaxRPM>0)) {
-					//	this.aiDriveTrain.SetMaxPower(this.originalPower);
-					//	this.aiDriveTrain.SetMaxTorque(this.originalTorque);
-					//	this.aiDriveTrain.SetMaxRPM(this.originalMaxRPM);
-						this.aiDriveTrain.TurnOff();
-					}
-				}
-		
 
-			break;
-		case(EEngineFailureStage.Hot):
-			if(this.humanControl) {
-				if(DialogueLua.GetVariable("HintArrowOverheating").AsInt==0) {
-					if(TeamControl.REF.selectedCar==this) {
-						
-					} else {
-						TeamControl.REF.changeCar();
-					}
-				}
-				RaceManager.REF.doConversation("TutorialOverheating");
-			}
-			if(engineFire!=null)
-				engineFire.gameObject.SetActive(false);	
-			if(engineWhiteSmoke!=null)
-				engineWhiteSmoke.gameObject.SetActive(true);	
-			if(engineBlackSmoke!=null)
-				engineBlackSmoke.gameObject.SetActive(false);	
 
-			if(aiDriveTrain!=null) {
-			//	this.aiDriveTrain.SetMaxPower(this.originalPower*0.95f);
-			//	this.aiDriveTrain.SetMaxTorque(this.originalTorque*0.95f);
-			//	this.aiDriveTrain.SetMaxRPM(this.originalMaxRPM);
-			}
-
-			break;
-		case(EEngineFailureStage.VeryHot):
-			if(this.humanControl) {
-				if(DialogueLua.GetVariable("HintArrowOverheating").AsInt==0) {
-					if(TeamControl.REF.selectedCar==this) {
-						
-					} else {
-						TeamControl.REF.changeCar();
-					}
-				}
-			}
-			if(engineFire!=null)
-				engineFire.gameObject.SetActive(false);	
-			if(engineWhiteSmoke!=null)
-				engineWhiteSmoke.gameObject.SetActive(true);	
-			if(engineBlackSmoke!=null)
-				engineBlackSmoke.gameObject.SetActive(true);
-			if(aiDriveTrain!=null) {
-			//	this.aiDriveTrain.SetMaxPower(this.originalPower*0.90f);
-			//	this.aiDriveTrain.SetMaxTorque(this.originalTorque*0.90f);
-			//	this.aiDriveTrain.SetMaxRPM(this.originalMaxRPM*0.95f);
-			}
-			break;
-		case(EEngineFailureStage.Failed):
-			if(engineFire!=null)
-				engineFire.gameObject.SetActive(true);	
-			if(engineWhiteSmoke!=null)
-				engineWhiteSmoke.gameObject.SetActive(true);	
-			if(engineBlackSmoke!=null)
-				engineBlackSmoke.gameObject.SetActive(true);	
-
-			if(aiDriveTrain!=null) {
-				this.aiCar.EnableSpeedRestriction(0,int.MaxValue,true,5f);
-			}
-
-			break;
-		}
-	}
 	public void changeTyreOrders(EDriverOrders aOrder) {
 		if(aOrder!=this.currentTyreOrders) {
 			if(originalPower==0f||float.IsNaN(originalMaxRPM)) {
@@ -317,15 +192,6 @@ public class RacingAI : MonoBehaviour {
 		}
 	}
 
-	public void hidePilot() {
-		MeshRenderer[] findPilot = this.gameObject.GetComponentsInChildren<MeshRenderer>();
-		for(int i = 0;i<findPilot.Length;i++) {
-			if(findPilot[i].name.ToLower().Contains("pilot")) {
-				findPilot[i].gameObject.SetActive(false);
-			}
-		}
-	}
-
 	public void OnTriggerEnter(Collider aOtherCollider) {
 		if (aOtherCollider.gameObject.tag == "NitroZone") {
 			inNitroZone = true;
@@ -348,28 +214,24 @@ public class RacingAI : MonoBehaviour {
 
 		}
 	}
-	public void recolourCarForTeam(GTTeam aTeam) {
-		MeshRenderer[] ms = this.GetComponentsInChildren<MeshRenderer>();
-	//	Debug.Log (ms[0].material.shader.name+" on "+this.gameObject.name);
-		for(int i = 0;i<ms.Length;i++) 
-			if(ms[i].material.shader.name.Contains("Car Paint"))
-				ms[i].material.SetColor("_Color",aTeam.teamColor); else {
-//			Debug.Log (ms[i].material.shader.name);
-		} 
-	}
+
 	public void FixedUpdate() {
 		
 		if(this.currentErrorState==null) {
-			if(UnityEngine.Random.Range(0f,100f)<this.aiCar.GetHumanError()) {
+			if(this.aiCar!=null&&UnityEngine.Random.Range(0f,10f)<this.aiCar.GetHumanError()) {
 				currentErrorState = new ErrorState(this.aiCar.GetHumanError(),this);
 				speedCornerBeforeError = this.aiCar.GetCorneringSpeedFactor();
+				this.backToLineBeforeError = this.aiCar.backToLineIncrement; 
+				
 			}
 		} else {
 			currentErrorState.framesOfError--;
 			this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError*currentErrorState.corneringSpeedEffector);
+			this.aiCar.backToLineIncrement = currentErrorState.backToLineError;
 			if(currentErrorState.framesOfError==0) {
 				currentErrorState = null;
 				this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError);
+				this.aiCar.backToLineIncrement = backToLineBeforeError;
 			} else
 				this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError*currentErrorState.corneringSpeedEffector);
 		}
@@ -383,58 +245,14 @@ public class RacingAI : MonoBehaviour {
 		}
 	}
 
-	public void addWings() {
-		this.wings[1].SetLiftCoefficient(this.frontWingDownforce);
-		this.wings[0].SetLiftCoefficient(this.rearWingDownforce);
-	}
 
-	public void removeWings() {
-		this.wings[1].SetLiftCoefficient(0f);
-		this.wings[0].SetLiftCoefficient(0f);
-	}
 	void Update () {
 
 		if (!inited) {
+			initCar();
+			initEngineTempMonitor();
 			inited = true;
 
-			GameObject g = this.gameObject;
-			aiCar = g.GetComponent<IRDSCarControllerAI>();
-			aiDriveTrain = g.GetComponent<IRDSDrivetrain>();
-			if(g==null||aiDriveTrain==null) {
-				return;
-			}
-
-			aiDriveTrain.useNitro = true;
-			aiDriveTrain.nitroBoostDurability = 5;
-			aiDriveTrain.nitroFuel = 0;
-			aiInput = g.GetComponent<IRDSCarControllInput>();
-			
-			if(aiInput!=null&&aiInput.GetCarDamage()!=null) {
-				aero = g.GetComponent<IRDSAerodynamicResistance>();
-				wings = g.GetComponentsInChildren<IRDSWing>();
-				
-				frontWingDownforce = wings[0].GetLiftCoefficient();
-				rearWingDownforce = wings[1].GetLiftCoefficient();
-
-				this.wheelInfo = new WheelInfo[wheels.Length];
-				for(int i = 0;i<wheelInfo.Length;i++) {
-					wheelInfo[i] = new WheelInfo(wheels[i],this.carRef);
-				}
-				driverName = this.aiCar.GetDriverName();
-				//wings[0].SetLiftCoefficient(-0.3f);
-				//wings[1].SetLiftCoefficient(-0.8f);
-				originalSpeedCorner = aiCar.GetCorneringSpeedFactor();
-				inNitroZone = false;
-				this.aiInput.GetCarDamage().SetRepairDelta(0f);
-
-				this.originalPower = this.aiDriveTrain.GetMaxPower();
-				this.originalTorque = this.aiDriveTrain.GetMaxTorque();
-			
-				engineTempMonitor = new EngineTemperatureMonitor();
-				engineTempMonitor.initDriveTrainVals(this.aiDriveTrain,this.aiInput);
-
-			}
-			return;
 		}
 		if(this.aiCar==null) {
 			return;

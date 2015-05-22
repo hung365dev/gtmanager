@@ -20,30 +20,15 @@ using PixelCrushers.DialogueSystem;
 namespace Teams
 {
 	[System.Serializable]
-	public class GTTeam
+	public class GTTeam : GTTeamWithSponsors
 	{
-		public List<GTDriver> drivers = new List<GTDriver>();
-		public List<GTCar> cars = new List<GTCar>();
-		public Color teamColor;
-		public bool humanControlled = false;
-		public string teamName;
-		public int reputation;
-		public int seasonPoints = 0;
-		public int seasonWins = 0;
-		public static Material sponsorMaterial;
-		public int cash = 200000;
-		public static string HUMANS_DEBUG_TEAM = "Test Pilots";
-		
-		
-		public List<SponsorPlacedRelationshipRecord> currentContracts = new List<SponsorPlacedRelationshipRecord>();
-		public List<SponsorRelationshipRecord> sponsorRelationships = new List<SponsorRelationshipRecord>();
 		public GTTeam (TeamDataRecord aTeamDataRecord) {
 			cars.Add(aTeamDataRecord.carA);
 			cars.Add(aTeamDataRecord.carB);
 
-			drivers.Add(aTeamDataRecord.driverA);
-			drivers.Add(aTeamDataRecord.driverB);
-			
+
+			initDriver(aTeamDataRecord.driverA);
+			initDriver(aTeamDataRecord.driverB);
 			reputation = aTeamDataRecord.reputation;
 			teamColor = aTeamDataRecord.teamColor;
 			teamName = aTeamDataRecord.name;
@@ -55,95 +40,18 @@ namespace Teams
 			
 			}
 			
-			if(sponsorMaterial==null) {
-				sponsorMaterial = (Material) Resources.Load ("Sponsors/SponsorMaterial");
-			}
-			for(int i = 0;i<SponsorDatabase.REF.sponsors.Count;i++) {
-				sponsorRelationships.Add(new SponsorRelationshipRecord(SponsorDatabase.REF.sponsors[i],this.reputation));
-			}
+			initSponsorRelationships();
 		}
-		
-		public void addContract(ESponsorPosition aPosition,SponsorRelationshipRecord aRecord,int aValue,int aRaces) {
-			currentContracts.Add(new SponsorPlacedRelationshipRecord(aPosition,aRecord.record,aValue,aRaces));
-		}
-		
-		public SponsorRelationshipRecord sponsorRelationship(SponsorRecord aRecord) {
-			for(int i= 0;i<sponsorRelationships.Count;i++) {
-				if(sponsorRelationships[i].record==aRecord) {
-					return sponsorRelationships[i];
-				}
-			}
-			return null; 
-		}
-		public SponsorPlacedRelationshipRecord hasSponsorForPlace(ESponsorPosition aPosition) {
-			for(int i= 0;i<currentContracts.Count;i++) {
-				if(currentContracts[i].position==aPosition) {
-					return currentContracts[i];
-				}
-			}
-			return null;
-		}
-		
-		public void applySponsorsToCar(GameObject aGameObject) {
-			SpriteRenderer[] sprites = aGameObject.GetComponentsInChildren<SpriteRenderer>();
-			for(int i= 0;i<sprites.Length;i++) {
-				SponsorPlacedRelationshipRecord rec = null;
-				
-				switch(sprites[i].name) {
-					case("SponsorTop"):
-						rec = hasSponsorForPlace(ESponsorPosition.Bonnet);break;
-					case("SponsorRoof"):
-						rec = hasSponsorForPlace(ESponsorPosition.Roof);break;
-					case("SponsorRightSide"):
-						rec = hasSponsorForPlace(ESponsorPosition.Right);break;
-					case("SponsorLeftSide"):
-						rec = hasSponsorForPlace(ESponsorPosition.Left);break;
-					case("SponsorBackside"):
-						rec = hasSponsorForPlace(ESponsorPosition.Back);break;
-				}
-				if(rec!=null) {
-					sprites[i].sprite = rec.record.logo; 
-					sprites[i].material =sponsorMaterial;
-					} else 
-						sprites[i].sprite = null;
-			}
-		}
+
 		public void addPoints(int aPoints,int aPosition) {
 			
 			seasonPoints += aPoints;
 			ChampionshipSeasonLeague league = ChampionshipSeason.ACTIVE_SEASON.leagueForTeam(this);
-			int position = (league.divisionNumber*8)+aPosition;
-			for(int i = 0;i<this.sponsorRelationships.Count;i++) {
-				 int differenceToDemand = sponsorRelationships[i].record.positionDemanded-position;
-				 // If positive, we have impressed this sponsor
-				 // If Negative, we have lost reputation with this sponsor;
-				 if(differenceToDemand<-8) {
-				 	differenceToDemand = -8;
-				 }
-				 if(differenceToDemand>8) {
-				 	differenceToDemand = 8;
-				 }
-				 // Multiply by 20 to make it more effective
-				 differenceToDemand *= 20;
-				 sponsorRelationships[i].currentRelationshipValue += differenceToDemand;
-				 if(sponsorRelationships[i].currentRelationshipValue<0) { 
-				 	sponsorRelationships[i].currentRelationshipValue = 0;
-				}
-				if(sponsorRelationships[i].currentRelationshipValue>1000) {
-					sponsorRelationships[i].currentRelationshipValue = 1000;
-				}
-				
-			}
+			
+			addSponsorPoints(aPosition);
 		}
 		
-		public SponsorInterestInfo interestFromSponsor(SponsorRecord aSponsor) {
-			for(int i = 0;i<this.sponsorRelationships.Count;i++) {
-				if(sponsorRelationships[i].record==aSponsor) {
-					return sponsorRelationships[i].interest;
-				}
-			}
-			return null;
-		}
+
 		public GTCar otherCar(GTCar aThisCar) {
 			if(cars[0]==aThisCar) {
 				return cars[1];
@@ -181,52 +89,9 @@ namespace Teams
 			}
 			if(!humanControlled) {
 				findSponsorsForMe();
-			}
+			} 
 		}
 
-		public List<SponsorRelationshipRecord> allInterestedSponsors {
-			get {
-				List<SponsorRelationshipRecord> r = new List<SponsorRelationshipRecord>();
-				for(int i = 0;i<this.sponsorRelationships.Count;i++) {
-					r.Add(this.sponsorRelationships[i]);
-				}
-				r.Sort(randSort);  
-				return r;
-			}
-		}
-		public int randSort(SponsorRelationshipRecord name1, SponsorRelationshipRecord name2)
-		{
-			return UnityEngine.Random.Range(-1,1);
-		}
-
-		private void findSponsorsForMe() {
-			if(this.hasSponsorForPlace(ESponsorPosition.Back)==null) {
-				if(allInterestedSponsors.Count>0) {
-					addContract(ESponsorPosition.Back,allInterestedSponsors[0],(int) allInterestedSponsors[0].interest.sponsorValue,5);
-				}
-			}
-			if(this.hasSponsorForPlace(ESponsorPosition.Bonnet)==null) {
-				if(allInterestedSponsors.Count>0) {
-					addContract(ESponsorPosition.Bonnet,allInterestedSponsors[0],(int) allInterestedSponsors[0].interest.sponsorValue,5);
-				}
-			}
-			if(this.hasSponsorForPlace(ESponsorPosition.Left)==null) {
-				if(allInterestedSponsors.Count>0) {
-					addContract(ESponsorPosition.Left,allInterestedSponsors[0],(int) allInterestedSponsors[0].interest.sponsorValue,5);
-				}
-			}
-			if(this.hasSponsorForPlace(ESponsorPosition.Right)==null) {
-				if(allInterestedSponsors.Count>0) {
-					addContract(ESponsorPosition.Right,allInterestedSponsors[0],(int) allInterestedSponsors[0].interest.sponsorValue,5);
-				}
-			}
-			if(this.hasSponsorForPlace(ESponsorPosition.Roof)==null) {
-				if(allInterestedSponsors.Count>0) {
-					addContract(ESponsorPosition.Right,allInterestedSponsors[0],(int) allInterestedSponsors[0].interest.sponsorValue,5);
-				}
-			}
-
-		}
 		public IRDSCarControllerAI getCarFromDriver(GTDriver aDriver) {
 			int index = indexForDriver(aDriver);
 			GTCar car = cars[index];
