@@ -269,18 +269,18 @@ public class RacingAI : RacingAIWithHeating {
 				if(wheelInfo[i].tireTemp>this.tireTemp) {
 					tireTemp = wheelInfo[i].tireTemp;
 				}
-				if(wheelInfo[i].dividedTireWear<this.tireWear) {
+				if(wheelInfo[i].dividedTireWear<this.tireWear||this.tireWear==0) {
 					tireWear = wheelInfo[i].dividedTireWear;
 				}
 				if(tireTemp<0.8f) {
 					this.currentTireWear = ETireWear.Cold;
 				} else if(tireTemp<1f) {
 					this.currentTireWear = ETireWear.Warm;
-				} else if(tireTemp>0.8f) { 
+				} else if(tireWear>0.8f) { 
 					this.currentTireWear = ETireWear.Perfect;
-				} else if(tireTemp>0.6f) {
+				} else if(tireWear>0.6f) {
 					this.currentTireWear = ETireWear.LightWear;
-				} else if(tireTemp>0.4f) {
+				} else if(tireWear>0.4f) {
 					this.currentTireWear = ETireWear.Worn;
 				} else this.currentTireWear = ETireWear.Dangerous;
 			} 

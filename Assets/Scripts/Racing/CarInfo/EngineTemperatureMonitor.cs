@@ -51,7 +51,11 @@ namespace Racing
 		public EngineTemperatureMonitor ()
 		{
 		}
-
+		public float heatPercent {
+			get {
+				return (currentTemperature-perfectTemperature)/(engineBlowupTemp-perfectTemperature);
+			}
+		}
 		public void initDriveTrainVals(IRDSDrivetrain aDriveTrain,IRDSCarControllInput aInput) {
 			aiDriveTrain = aDriveTrain;
 			aiInput = aInput;
