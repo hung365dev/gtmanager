@@ -3,6 +3,7 @@ using System.Collections;
 using Drivers;
 using championship;
 using Teams;
+using PixelCrushers.DialogueSystem;
 
 public class DriverPanel : MonoBehaviour {
 
@@ -19,11 +20,15 @@ public class DriverPanel : MonoBehaviour {
 
 
 	public UIButton hireNewDriversBtn;
+	public UIButton manageContractBtn;
 	public GTDriver driverRef;
 	public NewDriverPanel otherDrivers;
 	public NewDriverPanel prefabDriverPanel;
 	public GarageCameraController camController;
 	public UI2DSprite faceSprite;
+	
+	public ContractOfferScreen screenManageContract;
+	public ContractOfferScreen prefabContractScreen;
 	// Use this for initialization
 	void Start () {
 		
@@ -37,6 +42,7 @@ public class DriverPanel : MonoBehaviour {
 
 	public void showButtons() {
 		hireNewDriversBtn.gameObject.SetActive(true);
+		manageContractBtn.gameObject.SetActive(true);
 	}	
 	public void onSelectOtherDriver() {
 		if(otherDrivers!=null) {
@@ -58,6 +64,31 @@ public class DriverPanel : MonoBehaviour {
 
 		
 	}
+	
+	private void onClosedManageContractScreen() {
+		this.gameObject.SetActive(true);
+		this.initDriver(this.driverRef);
+	} 
+	public void onManageContract() {
+		// They've missed out the tutorial if any of these are not 2 by this point. Pre-emptively set these to two so tutorials no longer appear
+
+		DialogueLua.SetVariable("HintArrowOfferContract",2);
+		DialogueLua.SetVariable("HintArrowHireADriver",2);
+		DialogueLua.SetVariable("HintArrowOfferContract",2);
+		GameObject g = NGUITools.AddChild(GameObject.Find("UI Root").gameObject,this.prefabContractScreen.gameObject);
+		ContractOfferScreen contract = g.GetComponent<ContractOfferScreen>();
+		screenManageContract = contract;
+		this.gameObject.SetActive(false);
+		gameObject.SetActive(false); 
+		screenManageContract.initDriver(this.driverRef,null);
+		screenManageContract.onCloseContractScreenF += onClosedManageContractScreen;
+		screenManageContract.onContractAccepted += onContractManageAccepted;
+	}
+	 
+	private void onContractManageAccepted(GTDriver aHiredDriver) {
+		this.gameObject.SetActive(true);
+		initDriver(aHiredDriver);
+	}
 	public void onLookAtOtherDrivers() {
 		if(otherDrivers!=null) {
 			Destroy(otherDrivers.gameObject);
@@ -65,6 +96,7 @@ public class DriverPanel : MonoBehaviour {
 		GameObject go = NGUITools.AddChild(this.gameObject.transform.parent.gameObject,prefabDriverPanel.gameObject);
 		
 		hireNewDriversBtn.gameObject.SetActive(false);
+		manageContractBtn.gameObject.SetActive(false);
 		otherDrivers = go.GetComponent<NewDriverPanel>();
 		otherDrivers.alignToLeft();
 		otherDrivers.myDriverPanel = this;

@@ -39,7 +39,7 @@ namespace Teams
 			} else {
 			
 			}
-			
+			initDriverRelationships();
 			initSponsorRelationships();
 		}
 

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using Teams;
 using PixelCrushers.DialogueSystem;
@@ -42,6 +42,8 @@ public class DriverFaceManager : MonoBehaviour {
 
 	public UISprite engineSprite;
 	public UISprite tireSprite;
+
+	 
 	// Use this for initialization
 	void Start () {
 	

@@ -121,10 +121,10 @@ namespace GoogleFu
 	public sealed class RaceTracks : IGoogleFuDB
 	{
 		public enum rowIds {
-			RACETRACK_1, RACETRACK_2, RACETRACK_3, RACETRACK_4, RACETRACK_5, RACETRACK_6, RACETRACK_7
+			RACETRACK_1, RACETRACK_2, RACETRACK_3, RACETRACK_4, RACETRACK_5, RACETRACK_6, RACETRACK_7, RACETRACK_8
 		};
 		public string [] rowNames = {
-			"RACETRACK_1", "RACETRACK_2", "RACETRACK_3", "RACETRACK_4", "RACETRACK_5", "RACETRACK_6", "RACETRACK_7"
+			"RACETRACK_1", "RACETRACK_2", "RACETRACK_3", "RACETRACK_4", "RACETRACK_5", "RACETRACK_6", "RACETRACK_7", "RACETRACK_8"
 		};
 		public System.Collections.Generic.List<RaceTracksRow> Rows = new System.Collections.Generic.List<RaceTracksRow>();
 
@@ -181,6 +181,12 @@ namespace GoogleFu
 														"Hill Track",
 														"HillTrack1",
 														"HillTrack1",
+														"ShortDescription",
+														"0"));
+			Rows.Add( new RaceTracksRow("8",
+														"DirtGrassTrack",
+														"DirtGrassTrack",
+														"DirtGrassTrack",
 														"ShortDescription",
 														"0"));
 		}

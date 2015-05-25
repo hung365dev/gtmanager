@@ -2,6 +2,8 @@
 using System.Collections;
 using Database;
 using championship;
+using System.Collections.Generic;
+using Drivers;
 
 public class InitGameScript : MonoBehaviour {
 
@@ -13,6 +15,12 @@ public class InitGameScript : MonoBehaviour {
 		this.GetComponent<DriverLibrary> ().init ();
 		this.GetComponent<CarDatabase> ().init ();
 		this.GetComponent<TeamDatabase> ().init ();
+		
+		List<DriverLibraryRecord> availableDrivers = DriverLibrary.REF.getAllAvailableDrivers();
+		for(int i = 0;i<availableDrivers.Count;i++) {
+			GTDriver g = new GTDriver();
+			g.initFromLibrary(availableDrivers[i]);
+		}
 		this.GetComponent<TrackDatabase>().init();
 		this.GetComponent<SponsorDatabase>().init();
 		ChampionshipSeason champ = GameObject.Find ("ChampionshipObject").GetComponent<ChampionshipSeason>();

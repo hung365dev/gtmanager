@@ -346,6 +346,7 @@
      <Compile Include="Assets\Scripts\Database\TrackDatabase.cs" />
      <Compile Include="Assets\Scripts\Database\TrackDatabaseRecord.cs" />
      <Compile Include="Assets\Scripts\Drivers\DriverContract.cs" />
+     <Compile Include="Assets\Scripts\Drivers\DriverInterestInfo.cs" />
      <Compile Include="Assets\Scripts\Drivers\DriverRelationshipRecord.cs" />
      <Compile Include="Assets\Scripts\Drivers\GTDriver.cs" />
      <Compile Include="Assets\Scripts\Drivers\GTDriverBase.cs" />

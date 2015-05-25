@@ -42,6 +42,8 @@ public class GarageManager : MonoBehaviour {
 			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 			this.teamCash.text = "$"+team.cash;
 		}
+		Lua.Result r = DialogueLua.GetVariable("HintArrowHireADriver");
+		Debug.Log ("HintArrowHireADriver: "+r.AsInt);
 	}
 	public void Awake() {
 		
@@ -56,8 +58,8 @@ public class GarageManager : MonoBehaviour {
 		
 		DialogueLua.SetVariable("OnCloseAction","");
 		if(r.AsString=="Garage") {
-		//	handleEndOfCalendarView();
-		//	InterfaceMainButtons.REF.onCloseOtherScreen();
+			handleEndOfCalendarView();
+			InterfaceMainButtons.REF.onCloseOtherScreen();
 
 		} else if(r.AsString=="Calendar")  {
 			handleStartOfCalendarView();

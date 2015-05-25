@@ -37,6 +37,9 @@ namespace Drivers
 				}
 				return _contract;
 			}
+			set {
+				_contract = value;
+			}
 		}
 		
 		public int wantedPay {

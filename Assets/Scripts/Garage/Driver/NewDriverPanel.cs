@@ -22,6 +22,8 @@ public class NewDriverPanel : DriverPanel
 	public int currentIndex;
 	public GTDriver thisDriver;
 	public DriverPanel myDriverPanel;
+	public ContractOfferScreen contractScreen;
+	public UILabel isInterestedInSigning;
 	public NewDriverPanel ()
 	{
 	}
@@ -34,12 +36,24 @@ public class NewDriverPanel : DriverPanel
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		for(int i = 0;i<allDrivers.Count;i++) {
 			if(ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(allDrivers[i])!=team) {
-				availableDrivers.Add(allDrivers[i]);
+				
+				GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+				DriverRelationshipRecord relationship = myTeam.relationshipWithDriver(allDrivers[i]);
+				if(relationship.interest.payDemand>0f)
+					availableDrivers.Add(allDrivers[i]);
 			}
 		}
 		driverList = availableDrivers;
 		this.initDriver(availableDrivers[0]);
-		
+		if(isInterestedInSigning!=null) {
+			GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+			DriverRelationshipRecord relationship = myTeam.relationshipWithDriver(driverList[0]);
+			if(relationship.interest.payDemand>0f) {
+				isInterestedInSigning.text = relationship.interest.driverInterestString;
+			} else {
+				isInterestedInSigning.text = "NO";
+			}
+		}
 		GarageManager.REF.doConversation("OpenHireDriverScreen");
 	}
 
@@ -48,8 +62,24 @@ public class NewDriverPanel : DriverPanel
 		Lean.LeanTouch.OnFingerSwipe -= OnFingerSwipe;
 	}
 
+	private void onClosedContractScreen() {
+		this.gameObject.SetActive(true);
+		myDriverPanel.gameObject.SetActive(true);
+	//	this.initDriver(this.thisDriver);
+	} 
 	public void hireThisDriver() {
+		
 
+		GameObject g = NGUITools.AddChild(GameObject.Find("UI Root").gameObject,this.prefabContractScreen.gameObject);
+		ContractOfferScreen contract = g.GetComponent<ContractOfferScreen>();
+		contractScreen = contract;
+		this.gameObject.SetActive(false);
+		myDriverPanel.gameObject.SetActive(false); 
+		contractScreen.initDriver(this.driverRef,this.myDriverPanel.driverRef);
+		contractScreen.onCloseContractScreenF += onClosedContractScreen;
+		contractScreen.onContractAccepted += onContractAccepted;
+		// This is now accept contract stuff
+		/*
 		GarageManager.REF.doConversation("OpenHireDriversScreen");
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		GTCar car = team.getGTCarFromDriver(myDriverPanel.driverRef);
@@ -63,8 +93,12 @@ public class NewDriverPanel : DriverPanel
 		team.drivers[indexForMyDriver] = newDriver;
 		this.myDriverPanel.initDriver(driverList[currentIndex]);
 		this.myDriverPanel.showButtons();
-		Destroy(this.gameObject);
+		Destroy(this.gameObject);*/
 	
+	}
+	private void onContractAccepted(GTDriver aHiredDriver) {
+		Destroy(this.gameObject);
+		myDriverPanel.initDriver(aHiredDriver);
 	}
 	public void OnFingerSwipe(Lean.LeanFinger finger)
 	{
@@ -103,7 +137,20 @@ public class NewDriverPanel : DriverPanel
 			aIndex = driverList.Count-1;
 		}
 		this.currentIndex = aIndex;
+		if(isInterestedInSigning==null) {
+			GameObject g = this.gameObject.transform.FindChild("InterestedInSigningValue").gameObject;
+			isInterestedInSigning = g.GetComponent<UILabel>();
+		} 
 		this.initDriver(driverList[aIndex]);
+		if(isInterestedInSigning!=null) {
+			GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+			DriverRelationshipRecord relationship = myTeam.relationshipWithDriver(driverList[aIndex]);
+			if(relationship.interest.payDemand>0f) {
+				isInterestedInSigning.text = relationship.interest.driverInterestString;
+			} else {
+				isInterestedInSigning.text = "NO";
+			}
+		}
 	}
 	public void alignToLeft() {
 		

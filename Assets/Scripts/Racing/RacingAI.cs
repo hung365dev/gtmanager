@@ -13,6 +13,7 @@ public class RacingAI : RacingAIWithHeating {
 	public float nitroBoostDurability = 200f;
 	public float speedCornerBeforeError = 0f;
 	public float backToLineBeforeError = 0f;
+	public float breakAggressionBeforeError = 0f;
 	public float engineWearPerFrame = 0f;
 	public static bool allowNitros = true;
 	public int lastSector;
@@ -130,7 +131,7 @@ public class RacingAI : RacingAIWithHeating {
 					cp[i].fieldOfViewChangeSpeedMultiplier = 2f;
 					cp[i].set_rotationDamping_(1000f);
 					cp[i].set_heightDamping_(20f);
-					cp[i].set_height_(40f);
+					cp[i].set_height_(80f);
 					cp[i].set_distance_(5f);
 					cp[i].sidesDamping = 9f; 
 				}
@@ -218,9 +219,10 @@ public class RacingAI : RacingAIWithHeating {
 	public void FixedUpdate() {
 		
 		if(this.currentErrorState==null) {
-			if(this.aiCar!=null&&UnityEngine.Random.Range(0f,10f)<this.aiCar.GetHumanError()) {
+			if(this.aiCar!=null&&UnityEngine.Random.Range(0f,50f)<this.aiCar.GetHumanError()) {
 				currentErrorState = new ErrorState(this.aiCar.GetHumanError(),this);
 				speedCornerBeforeError = this.aiCar.GetCorneringSpeedFactor();
+				this.breakAggressionBeforeError = this.aiCar.GetAggressivenessOnBrake();
 				this.backToLineBeforeError = this.aiCar.backToLineIncrement; 
 				
 			}
@@ -228,10 +230,12 @@ public class RacingAI : RacingAIWithHeating {
 			currentErrorState.framesOfError--;
 			this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError*currentErrorState.corneringSpeedEffector);
 			this.aiCar.backToLineIncrement = currentErrorState.backToLineError;
+			this.aiCar.SetAggressivenessOnBrake(this.currentErrorState.brakeAggressionEffector);
 			if(currentErrorState.framesOfError==0) {
 				currentErrorState = null;
 				this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError);
 				this.aiCar.backToLineIncrement = backToLineBeforeError;
+				this.aiCar.SetAggressivenessOnBrake(this.breakAggressionBeforeError);
 			} else
 				this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError*currentErrorState.corneringSpeedEffector);
 		}
@@ -276,11 +280,11 @@ public class RacingAI : RacingAIWithHeating {
 					this.currentTireWear = ETireWear.Cold;
 				} else if(tireTemp<1f) {
 					this.currentTireWear = ETireWear.Warm;
-				} else if(tireWear>0.8f) { 
+				} else if(tireTemp>0.8f) { 
 					this.currentTireWear = ETireWear.Perfect;
-				} else if(tireWear>0.6f) {
+				} else if(tireTemp>0.6f) {
 					this.currentTireWear = ETireWear.LightWear;
-				} else if(tireWear>0.4f) {
+				} else if(tireTemp>0.4f) {
 					this.currentTireWear = ETireWear.Worn;
 				} else this.currentTireWear = ETireWear.Dangerous;
 			} 
@@ -303,7 +307,7 @@ public class RacingAI : RacingAIWithHeating {
 			drsActivated = false;
 		}
 		if (humanControl) {
-			if(time-this.lastMessageTime>10f) {
+			if(time-this.lastMessageTime>10f&&RaceManager.REF.raceStartersTable==null) {
 				lastMessageTime = time;
 				if(lastMessage!=EDriverMessage.BrakingOnOpponent&&this.aiCar.GetIsBrakingOnOpponent()&&carInfrontTime<2f) {
 					this.messageHolder.doMessage(EDriverMessage.BrakingOnOpponent);

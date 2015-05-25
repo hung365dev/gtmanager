@@ -92,6 +92,10 @@ public class InterfaceMainButtons : MonoBehaviour {
 	}
 
 	public void onLaunchDriversScreen() {
+		if(GarageManager.REF==null) {
+			Application.LoadLevel("InitGame");
+			return;
+		}
 		GarageManager.REF.doConversation("OpenDriversScreen");
 		this.gameObject.SetActive(false);
 		createDriverDetailsScreen(null,ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().drivers[0],true);

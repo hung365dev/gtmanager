@@ -41,7 +41,15 @@ namespace Database
 				}
 			} 
 			return null;
-
+		}
+		public List<DriverLibraryRecord> getAllAvailableDrivers() {
+			List<DriverLibraryRecord> r = new List<DriverLibraryRecord>();
+			for(int i = 0;i<drivers.Count;i++) {
+				if(drivers[i].assignedTeam==0) {
+					r.Add(drivers[i]);
+				}
+			} 
+			return r;
 		}
 	}
 }

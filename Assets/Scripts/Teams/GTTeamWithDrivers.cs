@@ -10,6 +10,7 @@
 using System;
 using Drivers;
 using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace Teams
@@ -26,6 +27,16 @@ namespace Teams
 			for(int i = 0;i<GTDriver.allDrivers.Count;i++) {
 				driverRelationships.Add(new DriverRelationshipRecord(GTDriver.allDrivers[i],this.reputation));
 			}
+		}
+
+		public DriverRelationshipRecord relationshipWithDriver(GTDriver aDriver) {
+			for(int i = 0;i<driverRelationships.Count;i++) {
+				Debug.Log(driverRelationships[i].record.name+" - "+aDriver.name);
+				if(driverRelationships[i].record==aDriver) {
+					return driverRelationships[i]; 
+				}
+			}
+			return null;
 		}
 		public void addDriverPoints(int aPosition) {
 			for(int i = 0;i<this.driverRelationships.Count;i++) {
