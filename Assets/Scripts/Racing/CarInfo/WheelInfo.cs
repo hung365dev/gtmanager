@@ -17,7 +17,7 @@ namespace Racing
 			_wheelRef = aWheel;
 			_wheelRef.SetWear(true);
 			_wheelRef.realTireMode = true;
-			_wheelRef.SetTyreHardness(20f);
+			_wheelRef.SetTyreHardness(10f);
 			
 		}
 

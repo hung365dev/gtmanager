@@ -10,6 +10,8 @@ public class RaceStarterTable : MonoBehaviour {
 	// Use this for initialization
 	public List<RaceStarterMember> starterMembers;
 	public UILabel titleText;
+	public UIButton startButton;
+	public UILabel startButtonLabel;
 	public int stage = 0;
 	public List<GTDriver> starters;
 	public List<GTTeam> teamPositions;
@@ -19,6 +21,8 @@ public class RaceStarterTable : MonoBehaviour {
 	public int startSetting = 0;
 	void Start () {
 		
+		startButtonLabel.text = "LOADING!";
+		startButton.isEnabled = false;
 	}
 	
 	// Update is called once per frame
@@ -32,6 +36,10 @@ public class RaceStarterTable : MonoBehaviour {
 			r.doStartRace();
 
 		}
+	}
+	public void allowRaceStart() {
+		startButtonLabel.text = "START RACE";
+		startButton.isEnabled = true;
 	}
 	public void activate(List<GTDriver> aStarters) {
 		this.gameObject.SetActive(true);

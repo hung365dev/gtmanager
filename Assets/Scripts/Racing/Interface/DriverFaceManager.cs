@@ -114,8 +114,13 @@ public class DriverFaceManager : MonoBehaviour {
 			racingAIRef.useNitro();
 			remainingNitros.text = ""+racingAIRef.nitrosRemaining;
 			if(DialogueLua.GetVariable("HintArrowNitroBoost").AsInt==1) {
-				DialogueLua.SetVariable("HintArrowNitroBoost",2);
 				RaceManager.REF.doConversation("NitroBoost");
+				
+				DialogueLua.SetVariable("HintArrowNitroBoost",2);
+				RacingAI.considerNitroTutorials = false;
+			} else { 
+				
+				DialogueLua.SetVariable("HintArrowNitroBoost",3);
 				RacingAI.considerNitroTutorials = false;
 			}
 		}

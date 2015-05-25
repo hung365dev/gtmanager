@@ -175,7 +175,7 @@ public class RacingAI : RacingAIWithHeating {
 				originalTorque = this.aiDriveTrain.GetMaxTorque();
 				this.originalMaxRPM = this.aiDriveTrain.revLimiterRPM;
 			}
-			if(this.humanControl&&aOrder==EDriverOrders.TakeItEasy) {
+			if(this.humanControl&&aOrder==EDriverOrders.TakeItEasy&&DialogueLua.GetVariable("HintArrowOverheating").AsInt==1) {
 				RaceManager.REF.doConversation("TutorialOverheating");
 			}
 			DriverOrderSetup newOrder = DriverOrderLibrary.REF.getEngineOrderFromEnum(aOrder);

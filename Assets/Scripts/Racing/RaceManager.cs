@@ -82,53 +82,22 @@ public class RaceManager : MonoBehaviour {
 			genericRaceGUI.gameObject.SetActive(false);
 		}
 		List<GTDriver> driversInRace = ChampionshipRaceSettings.ACTIVE_RACE.driversForRace();
+		
 		totalRacers.text = "/ "+driversInRace.Count;
 		totalLaps.text = "/ "+this.levLoad.laps;
-
-		for(int i = 0;i<driversInRace.Count;i++) {
-			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(driversInRace[i]);
-			GTCar gtCar = team.getGTCarFromDriver(driversInRace[i]);
-			IRDSCarControllerAI car = team.getCarFromDriver(driversInRace[i]);
-			IRDSCarControllerAI placedCar = placeCars.AddNewAICar(car.gameObject,team.teamColor,driversInRace[i].name);
-			if(placedCar!=null) {
-
-				RacingAI thisCar = placedCar.GetComponent<RacingAI>().initDriver(driversInRace[i]);
-				if(team.humanControlled) {
-					thisCar.humanControl = true;
-				
-				}
-				thisCar.recolourCarForTeam(team);
-				thisCar.carRef = gtCar;
-				gtCar.initLibraryValues(thisCar.aiDriveTrain,thisCar.aiCar,thisCar.GetComponent<RacingAI>());
-				gtCar.applyResearchToCar(thisCar.aiDriveTrain,thisCar.aiCar,thisCar.GetComponent<RacingAI>());
-				
-				
-				team.applySponsorsToCar(thisCar.gameObject);
-				activeCarsCount++;
-				this.maxCars++;
-			}
-			if(team.humanControlled) {
-				teamController.initHumanCar(placedCar);
-				int indexForThis = team.indexForCar(gtCar);
-				string findThis = "DriverFace2";
-				if(indexForThis==0) {
-					findThis = "DriverFace1";
-				}
-				GameObject f = GameObject.Find (findThis);
-				if(f!=null) {
-					DriverFaceManager m = f.GetComponent<DriverFaceManager>();
-					RacingAI ai = placedCar.GetComponent<RacingAI>();
-					m.init(ai);
-				}	
-			}
-		}
-
+		
 		GameObject raceStarters = GameObject.Find("RaceLineupPanel");
 		if(raceStarters!=null) {
 			raceStartersTable = raceStarters.GetComponent<RaceStarterTable>();
 			raceStartersTable.activate(driversInRace);
 		}
+		
+		
+		for(int i = 0;i<this.fv.Count;i++) {
+			fv[i].enabled = true;
+		}
 
+		StartCoroutine(makeCars());
 
 		//
 	}
@@ -193,10 +162,55 @@ public class RaceManager : MonoBehaviour {
 		}
 	}
 
-	public void doStartRace() {
-		for(int i = 0;i<this.fv.Count;i++) {
-			fv[i].enabled = true;
+	public IEnumerator makeCars() {
+		yield return null;
+		List<GTDriver> driversInRace = ChampionshipRaceSettings.ACTIVE_RACE.driversForRace();
+		
+		
+		for(int i = 0;i<driversInRace.Count;i++) {
+			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(driversInRace[i]);
+			GTCar gtCar = team.getGTCarFromDriver(driversInRace[i]);
+			IRDSCarControllerAI car = team.getCarFromDriver(driversInRace[i]);
+			IRDSCarControllerAI placedCar = placeCars.AddNewAICar(car.gameObject,team.teamColor,driversInRace[i].name);
+			if(placedCar!=null) {
+				
+				RacingAI thisCar = placedCar.GetComponent<RacingAI>().initDriver(driversInRace[i]);
+				if(team.humanControlled) {
+					thisCar.humanControl = true;
+					
+				}
+				thisCar.recolourCarForTeam(team);
+				thisCar.carRef = gtCar;
+				gtCar.initLibraryValues(thisCar.aiDriveTrain,thisCar.aiCar,thisCar.GetComponent<RacingAI>());
+				gtCar.applyResearchToCar(thisCar.aiDriveTrain,thisCar.aiCar,thisCar.GetComponent<RacingAI>());
+				
+				
+				team.applySponsorsToCar(thisCar.gameObject);
+				activeCarsCount++;
+				this.maxCars++;
+			}
+			if(team.humanControlled) {
+				teamController.initHumanCar(placedCar);
+				int indexForThis = team.indexForCar(gtCar);
+				string findThis = "DriverFace2";
+				if(indexForThis==0) {
+					findThis = "DriverFace1";
+				}
+				GameObject f = GameObject.Find (findThis);
+				if(f!=null) {
+					DriverFaceManager m = f.GetComponent<DriverFaceManager>();
+					RacingAI ai = placedCar.GetComponent<RacingAI>();
+					m.init(ai);
+				}	
+			}
+			yield return new WaitForEndOfFrame();
 		}
+		this.raceStartersTable.allowRaceStart();
+		
+
+	}
+	public void doStartRace() {
+
 		this.statistics.StartTheRace();
 		if(genericRaceGUI!=null) {
 			genericRaceGUI.gameObject.SetActive(true);
