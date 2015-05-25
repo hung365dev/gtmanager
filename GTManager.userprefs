@@ -1,14 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Drivers/GTDriverWithContract.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Racing/RacingAI.cs">
     <Files>
-      <File FileName="Assets/Scripts/Teams/GTTeam.cs" Line="92" Column="6" />
-      <File FileName="Assets/Scripts/Teams/GTTeamWithSponsors.cs" Line="25" Column="40" />
-      <File FileName="Assets/Scripts/Teams/GTTeamWithDrivers.cs" Line="11" Column="16" />
-      <File FileName="Assets/Scripts/Database/SponsorRelationshipRecord.cs" Line="21" Column="38" />
-      <File FileName="Assets/Scripts/Drivers/DriverRelationshipRecord.cs" Line="38" Column="29" />
-      <File FileName="Assets/Scripts/Drivers/GTDriver.cs" Line="31" Column="1" />
-      <File FileName="Assets/Scripts/Drivers/GTDriverWithContract.cs" Line="47" Column="57" />
+      <File FileName="Assets/Scripts/Championship/ChampionshipRaceSettings.cs" Line="50" Column="68" />
+      <File FileName="Assets/Scripts/Racing/RacingAI.cs" Line="124" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
