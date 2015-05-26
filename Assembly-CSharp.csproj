@@ -357,6 +357,7 @@
      <Compile Include="Assets\Scripts\Garage\Contracts\ContractOfferScreen.cs" />
      <Compile Include="Assets\Scripts\Garage\Driver\DriverPanel.cs" />
      <Compile Include="Assets\Scripts\Garage\Driver\NewDriverPanel.cs" />
+     <Compile Include="Assets\Scripts\Garage\EndOfRaceFinances.cs" />
      <Compile Include="Assets\Scripts\Garage\GarageManager.cs" />
      <Compile Include="Assets\Scripts\Garage\InterfaceMainButtons.cs" />
      <Compile Include="Assets\Scripts\Garage\RnD\IndividualPieceOfResearch.cs" />

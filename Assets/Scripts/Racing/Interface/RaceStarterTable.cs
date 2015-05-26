@@ -145,9 +145,7 @@ public class RaceStarterTable : MonoBehaviour {
 		case(2):titleText.text = "Constructors Championship";break;
 		} 
 		if(stage==5) {
-			ChampionshipSeason.ACTIVE_SEASON.secondsPast++;
-			StartCoroutine(ChampionshipSeason.ACTIVE_SEASON.LoadLevel("Garage"));
-			
+
 		} else if(stage==4) {
 			List<GTTeam> sortedTeams = ChampionshipSeason.ACTIVE_SEASON.seasonForTeam(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()).sortedTeams;
 			int i = 0;

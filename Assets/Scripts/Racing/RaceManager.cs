@@ -116,6 +116,8 @@ public class RaceManager : MonoBehaviour {
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aRacingAI.driverRecord);
 		team.cash += ChampionshipRaceSettings.ACTIVE_RACE.prizeForPosition(finishers.size,this.maxCars);;
 		aRacingAI.prizeString = ""+ChampionshipRaceSettings.ACTIVE_RACE.prizeForPosition(finishers.size,this.maxCars);
+		aRacingAI.prize = ChampionshipRaceSettings.ACTIVE_RACE.prizeForPosition(finishers.size,this.maxCars);
+		aRacingAI.won = finishers.size==1;
 		aRacingAI.finishPoints = ChampionshipRaceSettings.ACTIVE_RACE.pointsForDriverPosition(finishers.size);
 		aRacingAI.driverRecord.lastRacePoints = aRacingAI.finishPoints;
 		aRacingAI.driverRecord.championshipPoints += aRacingAI.finishPoints;

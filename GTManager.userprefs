@@ -1,16 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Garage/Driver/DriverPanel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Garage/GarageManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Championship/ChampionshipRaceSettings.cs" Line="128" Column="3" />
-      <File FileName="Assets/Scripts/Racing/RacingAI.cs" Line="276" Column="68" />
-      <File FileName="Assets/Scripts/Racing/Interface/DriverFaceManager.cs" Line="46" Column="3" />
-      <File FileName="Assets/Scripts/Racing/Interface/RacePositionHolder.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Racing/CarInfo/EngineTemperatureMonitor.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Garage/GarageManager.cs" Line="149" Column="1" />
-      <File FileName="Assets/Scripts/Drivers/DriverContract.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Garage/Contracts/ContractOfferScreen.cs" Line="186" Column="1" />
-      <File FileName="Assets/Scripts/Garage/Driver/DriverPanel.cs" Line="96" Column="1" />
+      <File FileName="Assets/Scripts/Racing/RaceManager.cs" Line="135" Column="14" />
+      <File FileName="Assets/Scripts/Racing/Interface/RaceFinisherTable.cs" Line="93" Column="19" />
+      <File FileName="Assets/Scripts/Teams/GTTeamWithDrivers.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Teams/GTTeamWithSponsors.cs" Line="51" Column="45" />
+      <File FileName="Assets/Scripts/Garage/EndOfRaceFinances.cs" Line="36" Column="36" />
+      <File FileName="Assets/Scripts/Garage/GarageManager.cs" Line="84" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

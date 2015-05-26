@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Database;
+using PixelCrushers.DialogueSystem;
 
 
 namespace Teams
@@ -26,6 +27,29 @@ namespace Teams
 		{
 		}
 
+		public int sponsorIncomePerRace {
+			get {
+				int r = 0;
+				for(int i = 0;i<currentContracts.Count;i++) {
+					r+=Convert.ToInt32(currentContracts[i].valuePerRace);
+				}
+				return r;
+			}
+		}
+
+		public void decreaseSponsorContractLengths() {
+			List<String> expiredContracts = new List<String>();
+			for(int i = 0;i<currentContracts.Count;i++) {
+				currentContracts[i].remaining--;
+				if(currentContracts[i].remaining==0) {
+					expiredContracts.Add(currentContracts[i].record.name);
+					currentContracts.RemoveAt(i);
+					
+					i--;
+				}
+			}
+			DialogueLua.SetVariable("ContractsExpired",expiredContracts.Count);
+		}
 		public void initSponsorRelationships() {
 			if(sponsorMaterial==null) {
 				sponsorMaterial = (Material) Resources.Load ("Sponsors/SponsorMaterial");

@@ -93,10 +93,10 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 		} else {
 			prerequisiteParts.text = "Prerequisite Parts: "+aRow._partprerequisites;
 		}
-		lblCost.text = "Cost to Research: "+String.Format("{0:C}",aRow._costtoresearch);
+		lblCost.text = "Cost to Research: "+aRow._costtoresearch.ToString("C0");
 		this.lblDaysToResearch.text = "Days to Research: "+aRow._daystoresearch;
 		partGraphic.spriteName = aSprite.spriteName;
-
+ 
 		
 	}
 } 

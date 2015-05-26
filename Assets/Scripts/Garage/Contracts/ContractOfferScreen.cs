@@ -68,16 +68,16 @@ public class ContractOfferScreen : MonoBehaviour {
 		if(relationshipForDriver.interest.payDemand==0f) {
 			this.driverDemands.text = aDriver.name+" is not interested in joining your team at any price";
 		} else {
-			string payDemand = aDriver.name+" is demanding "+string.Format("{0:C}", relationshipForDriver.interest.payDemand)+" Per Race for a minimum of "+relationshipForDriver.interest.contractLength+" seasons. ";
+			string payDemand = aDriver.name+" is demanding "+relationshipForDriver.interest.payDemand.ToString("C0")+" Per Race for a minimum of "+relationshipForDriver.interest.contractLength+" seasons. ";
 			offerContract.payPerRace = Convert.ToInt32(relationshipForDriver.interest.payDemand);
 			if(relationshipForDriver.interest.bonusDemand>0f) {
-				string bonusDemand = "They are also demanding a win bonus of "+string.Format("{0:C}", relationshipForDriver.interest.bonusDemand)+". ";
+				string bonusDemand = "They are also demanding a win bonus of "+relationshipForDriver.interest.bonusDemand.ToString("C0")+". ";
 				payDemand += bonusDemand;
 				offerContract.bonusPerRace = Convert.ToInt32(relationshipForDriver.interest.bonusDemand);
 			}
 			offerContract.remainingOnContract = relationshipForDriver.interest.contractLength;
 			if(aDriver.contract.team!=null&&aDriver.contract.team!=myTeam) {
-				string compensation = "If "+aDriver.name+" accepts our offer, we must pay "+aDriver.contract.team.teamName+" "+string.Format("{0:C}",aDriver.contract.compensationAmount)+" compensation if the contract is accepted.";
+				string compensation = "If "+aDriver.name+" accepts our offer, we must pay "+aDriver.contract.team.teamName+" "+aDriver.contract.compensationAmount.ToString("C0")+" compensation if the contract is accepted.";
 				payDemand += compensation;
 			}
 			this.driverDemands.text = payDemand;
@@ -85,9 +85,9 @@ public class ContractOfferScreen : MonoBehaviour {
 		showCurrentContractOffer();
 	}
 	private void showCurrentContractOffer() {
-		this.payOffer.text = string.Format("{0:C}",this.offerContract.payPerRace);
+		this.payOffer.text = ""+this.offerContract.payPerRace.ToString("C0");
 		this.contractLength.text = ""+this.offerContract.remainingOnContract;
-		this.winBonusOffer.text = string.Format("{0:C}",this.offerContract.bonusPerRace);
+		this.winBonusOffer.text = ""+this.offerContract.bonusPerRace.ToString("C0");
 	}
 	public void onShorterContract() {
 		if(offerContract.remainingOnContract>1) {

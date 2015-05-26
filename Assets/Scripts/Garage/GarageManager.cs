@@ -3,6 +3,7 @@ using System.Collections;
 using Teams;
 using championship;
 using PixelCrushers.DialogueSystem;
+using Championship;
 
 public class GarageManager : MonoBehaviour {
 
@@ -20,6 +21,8 @@ public class GarageManager : MonoBehaviour {
 	public CalendarManager calendarManager;
 	public ConversationTrigger trigger;
 
+	public EndOfRaceFinances endOfRaceFinances;
+	public GameObject endOfRaceFinancesPrefab;
 	// Use this for initialization
 	void Start () {
 		REF = this;
@@ -27,9 +30,7 @@ public class GarageManager : MonoBehaviour {
 		UpdateDisplay();
 //		trigger.TryStartConversation(this.gameObject.transform);
 		
-		trigger = this.GetComponent<ConversationTrigger>();
-		trigger.conversation = "Welcome Conversation";
-		trigger.TryStartConversation(this.transform);
+
 	}
 	
 	// Update is called once per frame
@@ -40,18 +41,31 @@ public class GarageManager : MonoBehaviour {
 				return;
 			}
 			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
-			this.teamCash.text = "$"+team.cash;
+			this.teamCash.text = ""+team.cash.ToString("C0");
 		}
-		Lua.Result r = DialogueLua.GetVariable("HintArrowHireADriver");
-		Debug.Log ("HintArrowHireADriver: "+r.AsInt);
+//		Lua.Result r = DialogueLua.GetVariable("HintArrowHireADriver");
+//		Debug.Log ("HintArrowHireADriver: "+r.AsInt);
 	}
 	public void Awake() {
 		
+		if(!RaceEndFinances.showFinance) {
+			trigger = this.GetComponent<ConversationTrigger>();
+			trigger.conversation = "Welcome Conversation";
+			trigger.TryStartConversation(this.transform);
+		} else {
+			GameObject g =NGUITools.AddChild(GameObject.Find ("UI Root").gameObject,this.endOfRaceFinancesPrefab);
+			Debug.Log (g.name);
+			endOfRaceFinances = g.GetComponent<EndOfRaceFinances>();
+			endOfRaceFinances.onCloseFinances += onCloseFinances;
+		}
+		
+	}
+	private void onCloseFinances() {
 		trigger = this.GetComponent<ConversationTrigger>();
 		trigger.conversation = "Welcome Conversation";
-		if(ChampionshipSeason.ACTIVE_SEASON!=null)
-			trigger.OnUse();
 		
+		trigger.TryStartConversation(this.transform);
+		Destroy(endOfRaceFinances.gameObject);
 	}
 	public void onConversationEnded() {
 		Lua.Result r = DialogueLua.GetVariable("OnCloseAction");

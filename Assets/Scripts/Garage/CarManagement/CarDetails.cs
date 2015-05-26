@@ -290,7 +290,7 @@ public class CarDetails : MonoBehaviour {
 		this.hasDRSValue.text = "Level "+aRecord.hasDRS;
 		//gripValue.text = ""+aRecord.carTireWearEffect;
 		
-		this.carValue.text = ""+string.Format("{0:C}", aRecord.carValue);
+		this.carValue.text = ""+aRecord.carValue.ToString("C0");
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		GTDriver driver = team.getDriverFromCar(this.carRef);
 		if(driver!=null) {
@@ -313,7 +313,7 @@ public class CarDetails : MonoBehaviour {
 		gripValue.text = ""+aRecord.carTireWearEffect;
 		this.hasDRSValue.text = "Level 0";
 		
-		this.carValue.text = ""+string.Format("{0:C}", aRecord.carCost);
+		this.carValue.text = ""+aRecord.carCost.ToString("C0");
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		GTDriver driver = team.getDriverFromCar(this.carRef);
 		if(driver!=null) {

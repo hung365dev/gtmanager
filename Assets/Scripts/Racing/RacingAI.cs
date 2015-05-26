@@ -16,6 +16,8 @@ public class RacingAI : RacingAIWithHeating {
 	public float breakAggressionBeforeError = 0f;
 	public float engineWearPerFrame = 0f;
 	public static bool allowNitros = true;
+
+	public bool won = false;
 	public int lastSector;
 	public float carInfrontTime;
 	public float carBehindTime;
@@ -40,7 +42,7 @@ public class RacingAI : RacingAIWithHeating {
 	public int finishPosition = int.MaxValue;
 	public int finishPoints = 0;
 	public string prizeString;
-
+	public int prize;
 	public GTDriver driverRecord;
 
 

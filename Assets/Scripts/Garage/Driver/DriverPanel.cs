@@ -154,7 +154,7 @@ public class DriverPanel : MonoBehaviour {
 			faceSprite.sprite2D = aDriver.record.sprite;;
 			this.sponsorAppealLabel.text = aDriver.sponsorAppealString;
 			
-			this.payPerRaceLabel.text = ""+string.Format("{0:C}", aDriver.contract.payPerRace);
+			this.payPerRaceLabel.text = ""+aDriver.contract.payPerRace.ToString("C0");
 
 			
 		}
