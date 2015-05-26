@@ -9,14 +9,13 @@ public class DriverPanel : MonoBehaviour {
 
 
 	public UILabel driverTitle;
-	public UILabel brakingAggressionLabel;
-	public UILabel corneringLabel;
-	public UILabel errorProneLabel;
-	public UILabel overtakingLabel;
-	public UILabel staminaLabel;
+	public StarBar brakingAggressionBar;
+	public StarBar corneringBar;
+	public StarBar errorProneBar;
+	public StarBar overtakingBar;
+	public StarBar sponsorAppealBar;
 	public UILabel currentTeamLabel;
 	public UILabel payPerRaceLabel;
-	public UILabel sponsorAppealLabel;
 
 
 	public UIButton hireNewDriversBtn;
@@ -107,15 +106,6 @@ public class DriverPanel : MonoBehaviour {
 	private void initLabels() {
 
 		driverTitle = this.transform.FindChild("DriverTitle").GetComponent<UILabel>();
-		this.brakingAggressionLabel = this.transform.FindChild("BrakingAggressionValue").GetComponent<UILabel>();
-		this.corneringLabel = this.transform.FindChild("CorneringValue").GetComponent<UILabel>();
-		this.errorProneLabel = this.transform.FindChild("ErrorProneValue").GetComponent<UILabel>();
-		this.overtakingLabel = this.transform.FindChild("OvertakingValue").GetComponent<UILabel>();
-	//	this.staminaLabel = this.transform.FindChild("StaminaValue").GetComponent<UILabel>();
-		this.currentTeamLabel = this.transform.FindChild("CurrentTeamValue").GetComponent<UILabel>();
-		this.payPerRaceLabel = this.transform.FindChild("PayPerRaceValue").GetComponent<UILabel>();
-		this.sponsorAppealLabel = this.transform.FindChild("SponsorAppealValue").GetComponent<UILabel>();
-
 		this.faceSprite = this.gameObject.GetComponentInChildren<UI2DSprite>();
 		
 	}
@@ -134,16 +124,22 @@ public class DriverPanel : MonoBehaviour {
 	}
 	public void initDriver(GTDriver aDriver) {
 		//if(driverTitle==null)
-			initLabels();
+		initLabels();
 		camController = GameObject.Find("Main Camera").GetComponent<GarageCameraController>();
 		
 		if(driverTitle!=null) {
 			driverTitle.text = aDriver.name;
-			brakingAggressionLabel.text = aDriver.brakingAggressionString;
+			brakingAggressionBar.value = GTDriver.percentOfGoodnessBrakingValue(aDriver.aggressivenessOnBrake);
+			this.corneringBar.value = GTDriver.percentOfGoodnessCorneringValue(aDriver.corneringSpeedFactor);
+			float errorVal = GTDriver.percentOfGoodnessErrorValue(aDriver.humanError);
+			this.errorProneBar.value = errorVal;
+			this.overtakingBar.value = GTDriver.percentOfGoodnessOvertakingValue(aDriver.overtakeSpeedDifference);
+			this.sponsorAppealBar.value = GTDriver.percentOfGoodnessSponsorValue(aDriver.sponsorFriendliness);
+		/*	brakingAggressionLabel.text = aDriver.brakingAggressionString;
 			corneringLabel.text = aDriver.corneringSkillString;
 			errorProneLabel.text = aDriver.errorProneString;
 			overtakingLabel.text = aDriver.overtakingString;
-		//	staminaLabel.text = aDriver.staminaString;
+		//	staminaLabel.text = aDriver.staminaString;*/
 			GTTeam team = aDriver.contract.team;
 			if(team==null) {
 				this.currentTeamLabel.text = "No Team";
@@ -152,14 +148,21 @@ public class DriverPanel : MonoBehaviour {
 				this.currentTeamLabel.text = team.teamName;
 			
 			faceSprite.sprite2D = aDriver.record.sprite;;
-			this.sponsorAppealLabel.text = aDriver.sponsorAppealString;
+			//this.sponsorAppealLabel.text = aDriver.sponsorAppealString;
 			
 			this.payPerRaceLabel.text = ""+aDriver.contract.payPerRace.ToString("C0");
 
 			
 		}
+		if(overtakingBar.sprites.Count==0) {
+			StartCoroutine(waitToReinit(aDriver));
+		}
 		this.driverRef = aDriver;
 	}
-
+	
+	private IEnumerator waitToReinit(GTDriver aDriver) {
+		yield return new WaitForEndOfFrame();
+		initDriver(aDriver);
+	}
 
 }

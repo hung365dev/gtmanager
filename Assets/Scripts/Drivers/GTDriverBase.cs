@@ -96,6 +96,8 @@ namespace Drivers
 			this.demandingReputation = aLibraryRecord.demandsReputation;
 		}
 		
+
+
 		public string sponsorAppealString {
 			get {
 				if(this.sponsorFriendliness<0.25f) {

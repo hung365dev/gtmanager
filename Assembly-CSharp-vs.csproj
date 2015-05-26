@@ -401,6 +401,7 @@
      <Compile Include="Assets\Scripts\Teams\GTTeamWithSponsors.cs" />
      <Compile Include="Assets\Scripts\Utils\SetNullAnchorsToGameObject.cs" />
      <Compile Include="Assets\Scripts\Utils\SettingsScreen.cs" />
+     <Compile Include="Assets\Scripts\Utils\StarBar.cs" />
      <Compile Include="Assets\SmoothLookAt.cs" />
      <Compile Include="Assets\TutorialArrow.cs" />
      <Compile Include="Assets\iRDS\Scripts\Main\AutoStartEngine.cs" />

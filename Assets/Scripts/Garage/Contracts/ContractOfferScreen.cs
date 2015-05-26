@@ -41,7 +41,6 @@ public class ContractOfferScreen : MonoBehaviour {
 		Debug.Log (r.AsInt);
 	}
 
-
 	public void initDriver(GTDriver aDriver,GTDriver aDriverToReplace) {
 
 		GarageManager.REF.doConversation("OpenHireDriverScreen");
@@ -153,9 +152,12 @@ public class ContractOfferScreen : MonoBehaviour {
 						GTDriver newDriver = this._thisDriver;
 					   
 						GTTeam oldTeam = ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(newDriver);
-					   	int indexForOldDriver = oldTeam.indexForDriver(newDriver);
-						// At the moment the drivers old team just get my driver
-					   	oldTeam.drivers[indexForOldDriver] = this._driverToReplace;
+						if(oldTeam!=null) {
+					   		int indexForOldDriver = oldTeam.indexForDriver(newDriver);
+							// At the moment the drivers old team just get my driver
+					   		oldTeam.drivers[indexForOldDriver] = this._driverToReplace;
+							 
+						}
 						myTeam.drivers[indexForMyDriver] = this._thisDriver;
 					}
 					Destroy(this.gameObject);

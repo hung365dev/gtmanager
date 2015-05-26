@@ -173,7 +173,7 @@ public class NewDriverPanel : DriverPanel
 				//	pan.leftAnchor.target = t;
 				spr.leftAnchor.relative = 0.02f;
 				//pan.rightAnchor.target = t;
-				spr.rightAnchor.relative = 0.35f;
+				spr.rightAnchor.relative = 0.4f;
 				//pan.topAnchor.target = t;
 				spr.topAnchor.relative = 0.80f;
 				spr.topAnchor.absolute = 0;
