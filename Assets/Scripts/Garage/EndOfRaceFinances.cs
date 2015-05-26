@@ -2,6 +2,7 @@
 using System.Collections;
 using Championship;
 using System;
+using championship;
 
 public class EndOfRaceFinances : MonoBehaviour {
 
@@ -36,7 +37,7 @@ public class EndOfRaceFinances : MonoBehaviour {
 		sponsorsLabel.text = ""+sponsors.ToString("C0");
 		
 		int profitLoss = totalPrizeMoney+sponsors-repairs-totalDriversBonus-totalDriversPay;
-		
+		ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().cash += profitLoss;
 		totalProfitLossLabel.text = ""+profitLoss.ToString("C0");
 	}
 	

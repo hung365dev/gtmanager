@@ -44,7 +44,13 @@ public class NewDriverPanel : DriverPanel
 			}
 		}
 		driverList = availableDrivers;
-		this.initDriver(availableDrivers[0]);
+		this.initDriver(availableDrivers[availableDrivers.Count-1]);
+		
+		if(isInterestedInSigning==null) {
+			GameObject g = this.gameObject.transform.FindChild("InterestedInSigningValue").gameObject;
+			isInterestedInSigning = g.GetComponent<UILabel>();
+		} 
+
 		if(isInterestedInSigning!=null) {
 			GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 			DriverRelationshipRecord relationship = myTeam.relationshipWithDriver(driverList[0]);
@@ -57,7 +63,7 @@ public class NewDriverPanel : DriverPanel
 		GarageManager.REF.doConversation("OpenHireDriverScreen");
 	}
 
-	public void OnDestroy() {
+	public void OnDestroy() { 
 		
 		Lean.LeanTouch.OnFingerSwipe -= OnFingerSwipe;
 	}

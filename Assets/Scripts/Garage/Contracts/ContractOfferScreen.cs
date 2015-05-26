@@ -142,7 +142,7 @@ public class ContractOfferScreen : MonoBehaviour {
 		if(offerContract.payPerRace>Convert.ToInt32(relationshipForDriver.interest.willAccept*relationshipForDriver.interest.payDemand)) {
 			if(offerContract.bonusPerRace>Convert.ToInt32(relationshipForDriver.interest.willAccept*relationshipForDriver.interest.bonusDemand)) {
 				if(_thisDriver.contract.compensationAmount<myTeam.cash) {
-					
+					DialogueLua.SetVariable("DriverSigned",1);
 					
 					GarageManager.REF.doConversation("OpenHireDriverScreen");
 					if(_driverToReplace!=null) {

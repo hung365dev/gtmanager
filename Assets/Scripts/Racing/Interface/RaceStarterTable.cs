@@ -19,10 +19,13 @@ public class RaceStarterTable : MonoBehaviour {
 
 	public Color colorIfHumanDriver;
 	public int startSetting = 0;
+
+	public bool startEnabled = false;
 	void Start () {
-		
+		if(!startEnabled) {
 		startButtonLabel.text = "LOADING!";
 		startButton.isEnabled = false;
+		}
 	}
 	
 	// Update is called once per frame
@@ -38,6 +41,7 @@ public class RaceStarterTable : MonoBehaviour {
 		}
 	}
 	public void allowRaceStart() {
+		startEnabled = true;
 		startButtonLabel.text = "START RACE";
 		startButton.isEnabled = true;
 	}

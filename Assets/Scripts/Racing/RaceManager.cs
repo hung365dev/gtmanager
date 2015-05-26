@@ -96,8 +96,12 @@ public class RaceManager : MonoBehaviour {
 		for(int i = 0;i<this.fv.Count;i++) {
 			fv[i].enabled = true;
 		}
-
-		StartCoroutine(makeCars());
+		if(levLoad.raceStartType!=IRDSLevelLoadVariables.RaceStartType.Rolling) {
+			
+			StartCoroutine(makeCars());
+		} else {
+			raceStartersTable.allowRaceStart();
+		}
 
 		//
 	}
@@ -207,12 +211,19 @@ public class RaceManager : MonoBehaviour {
 			}
 			yield return new WaitForEndOfFrame();
 		}
-		this.raceStartersTable.allowRaceStart();
+		if(this.raceStartersTable!=null) 
+			this.raceStartersTable.allowRaceStart(); else 
+				doStartRace();
 		
 
 	}
 	public void doStartRace() {
-
+		if(levLoad.raceStartType==IRDSLevelLoadVariables.RaceStartType.Rolling&&maxCars==0) {
+			StartCoroutine(makeCars());
+			Destroy(raceStartersTable.gameObject);
+			raceStartersTable = null;
+			return; 
+		}
 		this.statistics.StartTheRace();
 		if(genericRaceGUI!=null) {
 			genericRaceGUI.gameObject.SetActive(true);
