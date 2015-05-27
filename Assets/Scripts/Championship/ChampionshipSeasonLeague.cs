@@ -14,6 +14,8 @@ using System.Collections.Generic;
 using Drivers;
 using Cars;
 using Database;
+using Championship;
+using PixelCrushers.DialogueSystem;
 
 
 namespace championship
@@ -25,8 +27,9 @@ namespace championship
 		public int divisionNumber;
 		public List<ChampionshipRaceSettings> races = new List<ChampionshipRaceSettings>();
 		public List<GTTeam> teams = new List<GTTeam>();
+		public List<RandomEvent> randomEvents = new List<RandomEvent>();
 		public ChampionshipSeasonLeague ()
-		{
+		{ 
 
 		}
 		public int racesRemainingInSeason {
@@ -38,6 +41,16 @@ namespace championship
 					}
 				}
 				return c;
+			}
+		}
+		public GTTeam findTeam1AboveOrBelow(GTTeam aTeam) {
+			
+			List<GTTeam> teams = sortedTeams;
+			int positionForTeam = this.positionForTeamInChampionship(aTeam);
+			if(positionForTeam==0) {
+				return teams[positionForTeam+1];
+			} else {
+				return teams[positionForTeam-1];
 			}
 		}
 		public GTTeam relegatedTeam {
@@ -240,7 +253,78 @@ namespace championship
 					int ticksTillNextRace = nextRaceStartDate -aCurrentTick;
 					Debug.Log("Ticks till next race: "+ticksTillNextRace);
 				}
-			} 
+				if(!raceOrEventBeforeRaceOrSincePastRace(aCurrentTick)) {
+					createRandomEvent(aCurrentTick+1);
+				}
+				RandomEvent r = this.getRandomEventOnDay(aCurrentTick);
+				if(r!=null) { 
+					ChampionshipSeason.ACTIVE_SEASON.allowTimeToPass = false;
+					GarageManager.REF.handleEndOfCalendarView();
+					r.initLua();
+					GarageManager.REF.doConversation(r.startConversation);
+
+				}
+			}
+			
+		}
+		public RandomEvent getRandomEventOnDay(int aDay) {
+			for(int i = 0;i<randomEvents.Count;i++) {
+				if(randomEvents[i].date==aDay) {
+					return randomEvents[i];
+				}
+			}
+			return null;
+		}
+		public RandomEvent getRandomEventCompletingOnDay(int aDay) {
+			for(int i = 0;i<randomEvents.Count;i++) {
+				if(randomEvents[i].targetDate==aDay) {
+					return randomEvents[i];
+				}
+			}
+			return null;
+		}
+		public void createRandomEvent(int aDay) {
+			RandomEvent r = new RandomEvent(aDay);
+			this.randomEvents.Add(r);
+		}
+		public bool raceOrEventBeforeRaceOrSincePastRace(int aDay) {
+			int dayOfNextRace = ChampionshipSeason.ACTIVE_SEASON.nextRace.startDate;
+			for(int i = aDay+1;i<dayOfNextRace;i++) {
+				if(raceOrEventOnDay(i)) {
+					return true;
+				}
+			}
+			GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+			if(myTeam.hasResearchCompletingOnDay(aDay)) {
+				return true;
+			}
+			while(aDay>=0) {
+				if(raceOrEventOnDay(aDay)) {
+					return true;
+				}
+				aDay--;
+			}
+
+
+			return false;
+		}
+
+		public bool raceOrEventOnDay(int aDay) {
+			for(int i = 0;i<races.Count;i++) {
+				if(races[i].startDate==aDay) {
+					return true;	
+				}
+			}
+			for(int i = 0;i<this.randomEvents.Count;i++) {
+				if(randomEvents[i].date == aDay) {
+					return true;
+				}		 
+			}
+			GTTeam team = this.getUsersTeam();
+			if(team.hasResearchCompletingOnDay(aDay)) {
+				return true;
+			}
+			return false;
 		}
 	}	
 }

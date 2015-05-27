@@ -33,8 +33,11 @@ public class RaceManager : MonoBehaviour {
 	public RaceStarterTable raceStartersTable;
 	public GameObject genericRaceGUI;
 	public ConversationTrigger conversationTrigger;
+	public SendMessageOnDialogueEvent sendMessage;
 	public UILabel driver1Label;
 	public UILabel driver2Label;
+
+	public bool activateFinishersOnClose = false;
 	public List<CC_FastVignette> fv = new List<CC_FastVignette>();
 //	public CarLibrary carLib;
 	// Use this for initialization
@@ -110,11 +113,18 @@ public class RaceManager : MonoBehaviour {
 		conversationTrigger = this.GetComponent<ConversationTrigger>();
 		if(conversationTrigger==null) {
 			conversationTrigger = this.gameObject.AddComponent<ConversationTrigger>();
+			sendMessage = this.gameObject.GetComponent<SendMessageOnDialogueEvent>();
+
 		}
 		conversationTrigger.conversation = aConversationName;
 		conversationTrigger.OnUse();
 	}
-
+	
+	public void onConversationEnded() {
+		if(activateFinishersOnClose) {
+			raceFinisherTable.activate(finishers);
+		}
+	}
 	public void HandleNewFinisher(RacingAI aRacingAI) {
 		finishers.Add(aRacingAI);
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aRacingAI.driverRecord);
@@ -136,10 +146,6 @@ public class RaceManager : MonoBehaviour {
 		if(activeCarsCount==0) {
 			Debug.Log ("Race Finished!");
 			this.teamController.finish();
-			Destroy(this.minimapObject);
-			if(this.racePositions!=null)
-				Destroy(this.racePositions.gameObject);
-			raceFinisherTable.activate(finishers);
 			findAndDestroyGameObjectIfExists("PositionArea");
 			findAndDestroyGameObjectIfExists("TopMiddleArea");
 			findAndDestroyGameObjectIfExists("LapArea");
@@ -147,13 +153,55 @@ public class RaceManager : MonoBehaviour {
 			findAndDestroyGameObjectIfExists("CarBehindLabel");
 			findAndDestroyGameObjectIfExists("CarInfrontLabel");
 
+			Destroy(this.minimapObject);
+			if(this.racePositions!=null)
+				Destroy(this.racePositions.gameObject);
+
+			RandomEvent r = ChampionshipSeason.ACTIVE_SEASON.leagueForTeam(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()).getRandomEventCompletingOnDay(ChampionshipSeason.ACTIVE_SEASON.secondsPast);
+			if(r!=null) {
+				if(r.eventType==ERandomEventType.FinishAheadOf) {
+					if(pointsForTeamInRace(r.targetTeam)<pointsForTeamInRace(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam())) {
+						// User has won their bet
+						RaceFinisherTable.betWon = r.rewardCash;
+
+						DialogueLua.SetVariable("RandomEventStringMessage",r.wonAlert);
+						//DialogueManager.ShowAlert(r.wonAlert);
+						activateFinishersOnClose = true;
+						this.doConversation("RandomEventComplete");
+					} else {
+						DialogueLua.SetVariable("RandomEventStringMessage",r.lostAlert);
+						RaceFinisherTable.betWon = r.rewardCash*-1;
+						activateFinishersOnClose = true;
+						this.doConversation("RandomEventComplete");
+					}
+					StartCoroutine(delayToActivateFinishers());
+					return;
+				}
+			}
+			
+			raceFinisherTable.activate(finishers);
+
+
 		}
 	}
 
-		private void findAndDestroyGameObjectIfExists(string aName) {
-			GameObject g = GameObject.Find(aName);
-			Destroy(g);
+	private IEnumerator delayToActivateFinishers() {
+		yield return new WaitForSeconds(3f);
+		raceFinisherTable.activate(finishers);
+	}
+	private int pointsForTeamInRace(GTTeam aTeam) {
+		int r = 0;
+		for(int i =0;i<this.finishers.size;i++) {
+			if(ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(finishers[i].driverRecord)==aTeam) {
+				r+= finishers[i].finishPoints;
+			}
 		}
+		return r;
+	}
+	private void findAndDestroyGameObjectIfExists(string aName) {
+		GameObject g = GameObject.Find(aName);
+		Destroy(g);
+	}
 	// Update is called once per frame
 
 	private void forceFinish() {
@@ -223,6 +271,10 @@ public class RaceManager : MonoBehaviour {
 			Destroy(raceStartersTable.gameObject);
 			raceStartersTable = null;
 			return; 
+		}
+		RandomEvent r = ChampionshipSeason.ACTIVE_SEASON.leagueForTeam(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()).getRandomEventCompletingOnDay(ChampionshipSeason.ACTIVE_SEASON.secondsPast);
+		if(r!=null) {
+			DialogueManager.ShowAlert(r.alertMessage);
 		}
 		this.statistics.StartTheRace();
 		if(genericRaceGUI!=null) {

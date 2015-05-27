@@ -94,7 +94,7 @@ namespace championship
 					for(int i = 0;i<leagues.Count;i++) {
 						leagues[i].doTick(secondsPast);
 					}
-
+					
 					GameObject go = GameObject.Find("GarageManager");
 					if(go!=null) {
 						go.GetComponent<GarageManager>().UpdateDisplay();

@@ -15,6 +15,8 @@ public class EndOfRaceFinances : MonoBehaviour {
 	
 	public UILabel totalProfitLossLabel;
 
+	public UILabel betsLabel;
+
 
 	public Color green;
 	public Color red;
@@ -36,11 +38,12 @@ public class EndOfRaceFinances : MonoBehaviour {
 		repairsLabel.text = ""+repairs.ToString("C0");
 		sponsorsLabel.text = ""+sponsors.ToString("C0");
 		
-		int profitLoss = totalPrizeMoney+sponsors-repairs-totalDriversBonus-totalDriversPay;
+		betsLabel.text = ""+RaceEndFinances.mostRecent.bets.ToString("C0");
+		int profitLoss = totalPrizeMoney+sponsors-repairs-totalDriversBonus-totalDriversPay+RaceEndFinances.mostRecent.bets;
 		ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().cash += profitLoss;
 		totalProfitLossLabel.text = ""+profitLoss.ToString("C0");
 	}
-	
+	 
 	public void onClose() {
 		if(onCloseFinances!=null) {
 			onCloseFinances();

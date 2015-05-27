@@ -1,10 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Racing/RaceManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Championship/RandomEvents/RandomEventBase.cs">
     <Files>
-      <File FileName="Assets/Scripts/Racing/RaceManager.cs" Line="225" Column="12" />
-      <File FileName="Assets/Scripts/Championship/ChampionshipRaceSettings.cs" Line="48" Column="10" />
-      <File FileName="Assets/Scripts/Racing/Interface/RaceStarterTable.cs" Line="20" Column="28" />
+      <File FileName="Assets/Scripts/Racing/Interface/DriverFaceManager.cs" Line="84" Column="42" />
+      <File FileName="Assets/Scripts/Racing/Interface/RaceStarterTable.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Racing/CarInfo/WheelInfo.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Championship/ChampionshipDetails.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Championship/Season/ChampionshipSeason.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Championship/Season/ChampionshipSeasonBase.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Championship/RandomEvents/RandomEvent.cs" Line="16" Column="44" />
+      <File FileName="Assets/Scripts/Championship/RandomEvents/ERaceStartEventBehaviour.cs" Line="16" Column="13" />
+      <File FileName="Assets/Scripts/Championship/RandomEvents/ERandomEventType.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Championship/RandomEvents/RandomEventBase.cs" Line="27" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -16,7 +23,6 @@
       <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Dialogue System/Scripts/Core/Manager/DialogueSystemController.cs" line="992" />
       <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Colorful/Components/CC_Base.cs" line="34" />
       <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Garage/RnD/ResearchItem.cs" line="60" />
-      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Racing/Interface/RaceStarterTable.cs" line="26" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

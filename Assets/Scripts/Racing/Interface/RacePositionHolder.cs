@@ -16,7 +16,10 @@ public class RacePositionHolder : MonoBehaviour {
 
 	public IRDSCarControllerAI ai;
 	public RacingAI racingAI;
+
+	public string name;
 	public Color colourWhenOwned;
+	public Color colourWhenBetTarget;
 
 	void Start () {
 	
@@ -32,6 +35,14 @@ public class RacePositionHolder : MonoBehaviour {
 			myLabel.color = colourWhenOwned;
 			
 		}
+		RandomEvent r = ChampionshipSeason.ACTIVE_SEASON.seasonForTeam(ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(racingAI.driverRecord)).getRandomEventCompletingOnDay(ChampionshipSeason.ACTIVE_SEASON.secondsPast);
+		name = racingAI.driverName;
+		if(r!=null) {
+			if(r.targetTeam == ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(racingAI.driverRecord)) {
+				name += "   [ffff00]$[-]";
+				myLabel.color = colourWhenBetTarget;
+			}
+		}
 		mySprite.color = ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(racingAI.driverRecord).teamColor;
 		
 	}
@@ -44,7 +55,7 @@ public class RacePositionHolder : MonoBehaviour {
 			if(racingAI.humanControl) {
 				myLabel.color = colourWhenOwned;
 			}
-			this.myLabel.text = aiPos+". "+ai.GetDriverName();
+			this.myLabel.text = aiPos+". "+name;
 		}
 	}
 }

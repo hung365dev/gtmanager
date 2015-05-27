@@ -54,8 +54,6 @@ public class RacingAI : RacingAIWithHeating {
 
 	public EDriverMessage lastMessage;
 	public bool dmgTriggered = false;
-
-	public ETireWear tireWearLevel = ETireWear.Cold;
 	public static bool considerNitroTutorials = true;
 	public float lastMessageTime;
 
@@ -270,6 +268,7 @@ public class RacingAI : RacingAIWithHeating {
 
 		damage = this.aiInput.GetCarDamage().totalDamage;
 		if(!raceComplete) {
+			tireWear=1f;
 			for(int i = 0;i<wheelInfo.Length;i++) {
 				wheelInfo[i].Update();
 				if(wheelInfo[i].tireTemp>this.tireTemp) {
@@ -280,13 +279,13 @@ public class RacingAI : RacingAIWithHeating {
 				}
 				if(tireTemp<0.8f) {
 					this.currentTireWear = ETireWear.Cold;
-				} else if(tireTemp<1f) {
+				} else if(tireWear<1f) {
 					this.currentTireWear = ETireWear.Warm;
-				} else if(tireTemp>0.8f) { 
+				} else if(tireWear>0.8f) { 
 					this.currentTireWear = ETireWear.Perfect;
-				} else if(tireTemp>0.6f) {
+				} else if(tireWear>0.6f) {
 					this.currentTireWear = ETireWear.LightWear;
-				} else if(tireTemp>0.4f) {
+				} else if(tireWear>0.4f) {
 					this.currentTireWear = ETireWear.Worn;
 				} else this.currentTireWear = ETireWear.Dangerous;
 			} 
@@ -324,7 +323,7 @@ public class RacingAI : RacingAIWithHeating {
 					this.messageHolder.doMessage(EDriverMessage.Overheating);
 				} else if(lastMessage!=EDriverMessage.Overtaking&&this.aiCar.GetIsOvertaking()) {
 					this.messageHolder.doMessage(EDriverMessage.Overtaking);
-				} else if(lastMessage!=EDriverMessage.TiresWorn&&this.tireWearLevel==ETireWear.Dangerous) {
+				} else if(lastMessage!=EDriverMessage.TiresWorn&&this.currentTireWear==ETireWear.Dangerous) {
 					this.messageHolder.doMessage(EDriverMessage.TiresWorn);
 				} else if(lastMessage!=EDriverMessage.TooHot&&this.engineTempMonitor.isTooHot) {
 					this.messageHolder.doMessage(EDriverMessage.TooHot);
@@ -345,17 +344,17 @@ public class RacingAI : RacingAIWithHeating {
 				if(this.currentOrders!=EDriverOrders.TakeItEasy)
 					this.changeEngineOrders(EDriverOrders.TakeItEasy);
 			}
-			if(this.tireWearLevel==ETireWear.Cold||this.tireWearLevel==ETireWear.Worn) {
+			if(this.currentTireWear==ETireWear.Cold||this.currentTireWear==ETireWear.Worn) {
 				if(this.currentTyreOrders!=EDriverOrders.DriveNormal) {
 					this.changeTyreOrders(EDriverOrders.DriveNormal);
 				}
 			}
-			if(this.tireWearLevel==ETireWear.Warm||this.tireWearLevel==ETireWear.Perfect||this.tireWearLevel==ETireWear.LightWear) {
+			if(this.currentTireWear==ETireWear.Warm||this.currentTireWear==ETireWear.Perfect||this.currentTireWear==ETireWear.LightWear) {
 				if(this.currentTyreOrders!=EDriverOrders.DoOrDie) {
 					this.changeTyreOrders(EDriverOrders.DoOrDie);
 				}
 			}
-			if(this.tireWearLevel==ETireWear.Dangerous) {
+			if(this.currentTireWear==ETireWear.Dangerous) {
 				if(this.currentTyreOrders!=EDriverOrders.TakeItEasy) {
 					this.changeTyreOrders(EDriverOrders.TakeItEasy);
 				}

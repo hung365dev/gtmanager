@@ -71,17 +71,17 @@ public class DriverFaceManager : MonoBehaviour {
 					this.engineSprite.color = this.engineTempTooHot;
 				} else this.engineSprite.color = this.engineTempPerfect;
 				
-				if(racingAIRef.tireWearLevel==ETireWear.Cold) {
+				if(racingAIRef.currentTireWear==ETireWear.Cold) {
 					this.tireSprite.color = this.tireWearCold;
-				} else if(racingAIRef.tireWearLevel==ETireWear.Warm) {
+				} else if(racingAIRef.currentTireWear==ETireWear.Warm) {
 					this.tireSprite.color = this.tireWearWarmedUp;
-				} else if(racingAIRef.tireWearLevel==ETireWear.Perfect) {
+				} else if(racingAIRef.currentTireWear==ETireWear.Perfect) {
 					this.tireSprite.color = this.tireWearPerfect;
-				} else if(racingAIRef.tireWearLevel==ETireWear.LightWear) {
+				} else if(racingAIRef.currentTireWear==ETireWear.LightWear) {
 					this.tireSprite.color = this.tireWearWorn;
-				} else if(racingAIRef.tireWearLevel==ETireWear.Worn) {
+				} else if(racingAIRef.currentTireWear==ETireWear.Worn) {
 					this.tireSprite.color = this.tireWearWorn;
-				}	else if(racingAIRef.tireWearLevel==ETireWear.Dangerous) {
+				}	else if(racingAIRef.currentTireWear==ETireWear.Dangerous) {
 					this.tireSprite.color = this.tireWearDangerous;
 				}
 			}

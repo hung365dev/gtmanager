@@ -31,6 +31,8 @@ namespace Championship
 		public int damagesA;
 		public int damagesB;
 
+		public int bets;
+
 		public float sponsorIncome = 0f;
 		public RaceEndFinances ()
 		{

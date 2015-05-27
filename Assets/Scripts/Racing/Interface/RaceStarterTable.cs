@@ -37,7 +37,7 @@ public class RaceStarterTable : MonoBehaviour {
 		if(g!=null) {
 			RaceManager r = g.GetComponent<RaceManager>();
 			r.doStartRace();
-
+ 
 		}
 	}
 	public void allowRaceStart() {

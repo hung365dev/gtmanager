@@ -14,6 +14,7 @@ public class RaceFinisherTable : MonoBehaviour {
 	public List<RaceCompleteMember> completeMembers;
 	public UILabel titleText;
 	public int stage = 0;
+	public static int betWon = 0;
 	public RaceEndFinances finances = new RaceEndFinances();
 	void Start () {
 	
@@ -25,6 +26,8 @@ public class RaceFinisherTable : MonoBehaviour {
 	}
 
 	public void activate(BetterList<RacingAI> aFinishers) {
+
+
 		this.gameObject.SetActive(true);
 		aFinishers.Sort(finishPositionSort);
 		int i = 0;
@@ -91,6 +94,7 @@ public class RaceFinisherTable : MonoBehaviour {
 			playersTeam.decreaseSponsorContractLengths();
 			RaceEndFinances.showFinance = true;
 			RaceEndFinances.mostRecent = finances;
+			RaceEndFinances.mostRecent.bets = betWon;
 			StartCoroutine(ChampionshipSeason.ACTIVE_SEASON.LoadLevel("Garage"));
 
 
