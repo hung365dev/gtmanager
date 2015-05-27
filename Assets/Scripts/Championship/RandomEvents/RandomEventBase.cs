@@ -11,6 +11,7 @@ using System;
 using Teams;
 using Database;
 using Drivers;
+using Cars;
 
 
 namespace championship
@@ -19,7 +20,7 @@ namespace championship
 	{
 		public ERandomEventType eventType;
 		public GTTeam targetTeam;
-		public ResearchItem researchItem;
+		public GTEquippedResearch researchItem;
 		public int date;
 		public int rewardCash;
 		public GTDriver effectedDriver;

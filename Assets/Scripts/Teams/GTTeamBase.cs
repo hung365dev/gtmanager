@@ -34,6 +34,13 @@ namespace Teams
 
 		public GTTeamBase ()
 		{
+
+		}
+		public bool addResearchToTeam(GTEquippedResearch aResearch) {
+			bool r = false;
+			bool car1 = cars[0].forceAddPartToCar(aResearch);
+			bool car2 = cars[1].forceAddPartToCar(aResearch);
+			return car1||car2;
 		}
 	}
 }

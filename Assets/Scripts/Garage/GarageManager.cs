@@ -78,6 +78,18 @@ public class GarageManager : MonoBehaviour {
 		} else if(r.AsString=="Calendar")  {
 			handleStartOfCalendarView();
 		}
+ 
+		r = DialogueLua.GetVariable("RandomEventAcceptResult");
+		RandomEvent randomEvent = ChampionshipSeason.ACTIVE_SEASON.leagueForTeam(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()).getRandomEventOnDay(ChampionshipSeason.ACTIVE_SEASON.secondsPast);
+		DialogueLua.SetVariable("RandomEventAcceptResult","");
+		if(r.AsString=="YES"&&randomEvent!=null) {
+			randomEvent.acknowledged = true;
+			ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().cash -= randomEvent.rewardCash;
+		} else if(r.AsString=="NO"&&randomEvent!=null) {
+			randomEvent.acknowledged = true;
+			randomEvent.targetDate = 0;
+		} 
+	
 	}
 	public void doConversation(string aConversationName) {
 		

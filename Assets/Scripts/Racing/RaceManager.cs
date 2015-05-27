@@ -162,7 +162,7 @@ public class RaceManager : MonoBehaviour {
 				if(r.eventType==ERandomEventType.FinishAheadOf) {
 					if(pointsForTeamInRace(r.targetTeam)<pointsForTeamInRace(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam())) {
 						// User has won their bet
-						RaceFinisherTable.betWon = r.rewardCash;
+						RaceFinisherTable.betWon = r.rewardCash*2;
 
 						DialogueLua.SetVariable("RandomEventStringMessage",r.wonAlert);
 						//DialogueManager.ShowAlert(r.wonAlert);

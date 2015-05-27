@@ -259,13 +259,22 @@ namespace championship
 				RandomEvent r = this.getRandomEventOnDay(aCurrentTick);
 				if(r!=null) { 
 					ChampionshipSeason.ACTIVE_SEASON.allowTimeToPass = false;
-					GarageManager.REF.handleEndOfCalendarView();
 					r.initLua();
 					GarageManager.REF.doConversation(r.startConversation);
 
 				}
 			}
 			
+		}
+
+		public bool giveResearchToAllTeams(GTEquippedResearch aItem) {
+			bool r = false;
+			for(int i = 0;i<this.teams.Count;i++) {
+				if(teams[i].addResearchToTeam(aItem)) {
+					r = true;
+				}
+			}
+			return r;
 		}
 		public RandomEvent getRandomEventOnDay(int aDay) {
 			for(int i = 0;i<randomEvents.Count;i++) {
@@ -285,7 +294,8 @@ namespace championship
 		}
 		public void createRandomEvent(int aDay) {
 			RandomEvent r = new RandomEvent(aDay);
-			this.randomEvents.Add(r);
+			if(!r.failed)
+				this.randomEvents.Add(r);
 		}
 		public bool raceOrEventBeforeRaceOrSincePastRace(int aDay) {
 			int dayOfNextRace = ChampionshipSeason.ACTIVE_SEASON.nextRace.startDate;
@@ -295,7 +305,7 @@ namespace championship
 				}
 			}
 			GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
-			if(myTeam.hasResearchCompletingOnDay(aDay)) {
+			if(myTeam.hasResearchCompletingOnDay(aDay+1)) {
 				return true;
 			}
 			while(aDay>=0) {
@@ -319,10 +329,6 @@ namespace championship
 				if(randomEvents[i].date == aDay) {
 					return true;
 				}		 
-			}
-			GTTeam team = this.getUsersTeam();
-			if(team.hasResearchCompletingOnDay(aDay)) {
-				return true;
 			}
 			return false;
 		}

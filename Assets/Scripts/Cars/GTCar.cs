@@ -204,6 +204,19 @@ namespace Cars
 			return false;
 		}
 
+
+		public bool forceAddPartToCar(GTEquippedResearch aResearch) {
+			for(int i = 0;i<rndParts.Count;i++) {
+				if(rndParts[i].researchRow==aResearch.researchRow) {
+					return false;
+				}
+			}
+			GTEquippedResearch r = new GTEquippedResearch(aResearch.researchRow);
+			r.dayOfCompletion = -1;
+			rndParts.Add(r);
+			
+			return true;
+		}
 		public GTEquippedResearch addPartToCar(RnDRow aRow,GTTeam aTeam) {
 		//	if(aRow._par
 			for(int i = 0;i<rndParts.Count;i++) {

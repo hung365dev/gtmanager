@@ -10,6 +10,8 @@
 using System;
 using Teams;
 using PixelCrushers.DialogueSystem;
+using Cars;
+using Drivers;
 
 
 namespace championship
@@ -17,17 +19,18 @@ namespace championship
 	public class RandomEvent : RandomEventBase
 	{
 		public bool acknowledged = false;
+		public bool failed = false;
 		public RandomEvent (int aDay)
 		{
 			this.date = aDay;
 			
 			GTTeam usersTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 			ChampionshipSeasonLeague division = ChampionshipSeason.ACTIVE_SEASON.leagueForTeam(usersTeam);
-			switch(UnityEngine.Random.Range(1,1)) {
+			switch(UnityEngine.Random.Range(0,4)) {
 				case(1):this.eventType = ERandomEventType.FinishAheadOf;setupForFinishAheadOf(usersTeam,division);break;
-				case(2):this.eventType = ERandomEventType.ResearchLeaked;break;
-				case(3):this.eventType = ERandomEventType.ResearchBreakthrough;break;
-				case(4):this.eventType = ERandomEventType.DriverImprovement;break;
+				case(2):this.eventType = ERandomEventType.ResearchLeaked;setupForResearchLeaked(usersTeam,division);break;
+				case(3):this.eventType = ERandomEventType.ResearchBreakthrough;setupForResearchBreakthrough(usersTeam,division);break;
+				case(4):this.eventType = ERandomEventType.DriverImprovement;setupForDriverImprovement(usersTeam,division);break;
 				case(5):this.eventType = ERandomEventType.ExclusiveSponsorDeal;break;
 				case(6):this.eventType = ERandomEventType.LoseARace;break;
 			}
@@ -38,10 +41,109 @@ namespace championship
 			if(targetTeam!=null) {
 				DialogueLua.SetVariable("RandomEventFinishAheadOf",targetTeam.teamName);
 			}
+			if(this.researchItem!=null) {
+				DialogueLua.SetVariable("RandomEventResearchItem",researchItem.researchRow._partname);
+			}
 			if(this.rewardCash>0) {
-				string s = rewardCash.ToString("C0");
+				string s = rewardCash.ToString("C0"); 
 				DialogueLua.SetVariable("RandomEventValueString",s);
 			}
+		}
+
+		public void setupForDriverImprovement(GTTeam aMyTeam,ChampionshipSeasonLeague aLeague) {
+			int driverToBoost = UnityEngine.Random.Range(0,1);
+			GTDriver driver = aMyTeam.drivers[driverToBoost];
+
+			int areaToChange = UnityEngine.Random.Range(0,5);
+			
+			switch(areaToChange) {
+				// Cornering
+				default:failed = true;
+				break;
+				case(0):float amountToAdd = UnityEngine.Random.Range(0.05f,0.3f);
+						if(GTDriver.percentOfGoodnessCorneringValue(driver.corneringSpeedFactor+amountToAdd)<1f) {
+							driver.corneringSpeedFactor += amountToAdd;
+						} else {
+							failed = true;
+						}
+						DialogueLua.SetVariable("RandomEventDriverImprovement","Cornering Speed");
+						DialogueLua.SetVariable("RandomEventDriver",driver.name);
+						this.startConversation = "RandomEventDriverImprovement";
+						break;
+				case(1):
+					amountToAdd = UnityEngine.Random.Range(0.05f,0.3f)*-1;
+					if(GTDriver.percentOfGoodnessBrakingValue(driver.aggressivenessOnBrake+amountToAdd)<1f) {
+						driver.aggressivenessOnBrake += amountToAdd;
+					} else {
+						failed = true;
+					}
+					DialogueLua.SetVariable("RandomEventDriverImprovement","Braking Aggression");
+					DialogueLua.SetVariable("RandomEventDriver",driver.name);
+					this.startConversation = "RandomEventDriverImprovement";
+					break;
+				case(2):
+					amountToAdd = UnityEngine.Random.Range(0.001f,0.01f)*-1;
+					if(GTDriver.percentOfGoodnessErrorValue(driver.humanError+amountToAdd)<1f) {
+						driver.humanError += amountToAdd;
+					} else {
+						failed = true;
+					}
+					DialogueLua.SetVariable("RandomEventDriverImprovement","Reliaility");
+					DialogueLua.SetVariable("RandomEventDriver",driver.name);
+					this.startConversation = "RandomEventDriverImprovement";
+					break;
+				case(3):
+					amountToAdd = UnityEngine.Random.Range(0.5f,1f)*-1;
+					if(GTDriver.percentOfGoodnessOvertakingValue(driver.overtakeSpeedDifference+amountToAdd)<1f) {
+						driver.overtakeSpeedDifference += amountToAdd;
+					} else {
+						failed = true;
+					}
+					DialogueLua.SetVariable("RandomEventDriverImprovement","Overtaking");
+					DialogueLua.SetVariable("RandomEventDriver",driver.name);
+					this.startConversation = "RandomEventDriverImprovement";
+					break;
+				case(4):
+					amountToAdd = UnityEngine.Random.Range(0.5f,1f)*-1;
+					if(GTDriver.percentOfGoodnessSponsorValue(driver.sponsorFriendliness+amountToAdd)<1f) {
+						driver.sponsorFriendliness += amountToAdd;
+					} else {
+						failed = true;
+					}
+					DialogueLua.SetVariable("RandomEventDriverImprovement","Sponsor Friendliness");
+					DialogueLua.SetVariable("RandomEventDriver",driver.name);
+					this.startConversation = "RandomEventDriverImprovement";
+					break;
+			}
+		}
+		public void setupForResearchBreakthrough(GTTeam aMyTeam,ChampionshipSeasonLeague aLeague) {
+			int carToBoostResearch = UnityEngine.Random.Range(0,1);
+			GTCar car = aMyTeam.cars[carToBoostResearch];
+			if(car.partBeingResearched!=null) {
+				car.partBeingResearched.dayOfCompletion = ChampionshipSeason.ACTIVE_SEASON.secondsPast+1;
+				researchItem = car.partBeingResearched;
+				startConversation = "RandomEventResearchComplete";
+			} else {
+				failed = true;
+			}
+		}
+		public void setupForResearchLeaked(GTTeam aMyTeam,ChampionshipSeasonLeague aLeague) {
+			int carToStealFrom = UnityEngine.Random.Range(0,1);
+			int totalRnDParts = aMyTeam.cars[carToStealFrom].rndParts.Count;
+			if(totalRnDParts>0) {
+				int partToSteal = UnityEngine.Random.Range(0,totalRnDParts);
+			
+				GTEquippedResearch r = aMyTeam.cars[carToStealFrom].rndParts[partToSteal];
+				if(aLeague.giveResearchToAllTeams(r)) {
+					researchItem = r;
+					startConversation = "RandomEventResearchLeaked";
+				} else {
+					failed = true; 
+				}
+			} else {
+				failed = true;
+			}
+			
 		}
 		public void setupForFinishAheadOf(GTTeam aMyTeam,ChampionshipSeasonLeague aLeague) {
 			GTTeam team = aLeague.findTeam1AboveOrBelow(aMyTeam);
@@ -66,3 +168,4 @@ namespace championship
 	}
 }
 
+ 
