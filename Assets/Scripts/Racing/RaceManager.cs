@@ -177,6 +177,8 @@ public class RaceManager : MonoBehaviour {
 					StartCoroutine(delayToActivateFinishers());
 					return;
 				}
+			} else {
+				RaceFinisherTable.betWon = 0;
 			}
 			
 			raceFinisherTable.activate(finishers);

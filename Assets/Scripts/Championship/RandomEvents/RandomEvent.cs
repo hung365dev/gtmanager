@@ -33,6 +33,7 @@ namespace championship
 				case(4):this.eventType = ERandomEventType.DriverImprovement;setupForDriverImprovement(usersTeam,division);break;
 				case(5):this.eventType = ERandomEventType.ExclusiveSponsorDeal;break;
 				case(6):this.eventType = ERandomEventType.LoseARace;break;
+				default:failed = true;break;
 			}
 
 		}

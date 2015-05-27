@@ -21,6 +21,8 @@ public class GarageManager : MonoBehaviour {
 	public CalendarManager calendarManager;
 	public ConversationTrigger trigger;
 
+	public UISprite garageColourButton;
+	public GameObject colourChangeScreen;
 	public EndOfRaceFinances endOfRaceFinances;
 	public GameObject endOfRaceFinancesPrefab;
 	// Use this for initialization
@@ -33,6 +35,10 @@ public class GarageManager : MonoBehaviour {
 
 	}
 	
+
+	public void onEditColours() {
+		colourChangeScreen.gameObject.SetActive(true);
+	}
 	// Update is called once per frame
 	void Update () {
 		if(teamCash!=null) {
@@ -42,6 +48,8 @@ public class GarageManager : MonoBehaviour {
 			}
 			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 			this.teamCash.text = ""+team.cash.ToString("C0");
+			
+			garageColourButton.color = team.teamColor;
 		}
 //		Lua.Result r = DialogueLua.GetVariable("HintArrowHireADriver");
 //		Debug.Log ("HintArrowHireADriver: "+r.AsInt);

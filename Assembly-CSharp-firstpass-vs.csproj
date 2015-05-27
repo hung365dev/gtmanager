@@ -62,6 +62,8 @@
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Duo.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Alpha-Diffuse-ZWrite.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Glitch.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
+     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Normal-BumpSpec.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Kuwahara.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Car.shader" />
@@ -81,6 +83,7 @@
      <None Include="Assets\Dialogue System\Scripts\Supplemental\UI\Example\Art\_README.txt" />
      <None Include="Assets\Colorful\Shaders\CC_Kuwahara.cginc" />
      <None Include="Assets\Colorful\Shaders\CC_Threshold.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
      <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX3 Readme.txt" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Surface_Alpha.shader" />
      <None Include="Assets\CameraPath3\readme.txt" />
