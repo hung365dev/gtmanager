@@ -18,11 +18,24 @@ public class ChangeColoursScreen : MonoBehaviour
 	public UISlider red;
 	public UISlider green;
 	public UISlider blue;	
+	public bool initing = false;
 	public ChangeColoursScreen ()
 	{
 	}
+	void OnEnable() {
+		Awake();
 
+	}
+	void Awake() {
+		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+		initing = true;
+		red.value = team.teamColor.r;
+		green.value = team.teamColor.g;
+		blue.value = team.teamColor.b;
+		initing = false;
+	}
 	public void onUpdateColours() {
+		if(initing) return;
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		team.teamColor.r = red.value;
 		team.teamColor.g = green.value;
