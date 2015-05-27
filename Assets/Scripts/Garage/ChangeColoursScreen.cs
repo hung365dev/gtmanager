@@ -34,6 +34,14 @@ public class ChangeColoursScreen : MonoBehaviour
 		blue.value = team.teamColor.b;
 		initing = false;
 	}
+	public void onClose() {
+		this.gameObject.SetActive(false);
+		GarageManager.REF.UpdateDisplay();
+		GameObject leftSide = GameObject.Find("GarageLeftSide");
+		leftSide.GetComponent<GarageCarManager>().recolourCarForUsersTeam();
+		GameObject rightSide = GameObject.Find("GarageRightSide");
+		rightSide.GetComponent<GarageCarManager>().recolourCarForUsersTeam();
+	}
 	public void onUpdateColours() {
 		if(initing) return;
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();

@@ -58,6 +58,13 @@ public class GarageCarManager : MonoBehaviour {
 			this.deleteIRDSClasses(thisCar);
 		}
 	}
+
+	public void recolourCarForUsersTeam() {
+		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+		RacingAI r = thisCarsGameObject.AddComponent<RacingAI>();
+		r.recolourCarForTeam(team);
+		Destroy(r);
+	}
 	public void deleteIRDSClasses(GameObject aObject) {
 		if(aObject.GetComponent<IRDSSoundController>()!=null) {
 			Destroy(aObject.GetComponent<IRDSSoundController>());

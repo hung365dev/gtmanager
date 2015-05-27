@@ -163,7 +163,7 @@ public class GarageManager : MonoBehaviour {
 					ms[i].materials[j].SetColor("_Color",team.teamColor);
 			}
 
-		}
+		} 
 		if(ChampionshipSeason.ACTIVE_SEASON.seasonComplete) {
 			
 			Debug.Log ("The season is now complete! Show the championship end screen and promote / relegate!");
