@@ -36,23 +36,14 @@ namespace championship
 		}
 
 	
-		public void setupDefaultsForLeague(int aLeague,int aRaceInCalendar) {
+		public void setupDefaultsForLeague(int aLeague,int aStartDate,TrackDatabaseRecord aTrackRecord) {
 			prizeDistrbutionSetting = EPrizeDistrbution.Standard;
-			track = TrackDatabase.REF.recordFromName("OvalTrack");
-			switch(aRaceInCalendar) {
-			case(2):track = TrackDatabase.REF.recordFromName("ShortSnowTrack");break;
-			case(6):track = TrackDatabase.REF.recordFromName("LongStraights");break;
-			case(4):track = TrackDatabase.REF.recordFromName("RaceCircuit1");break;
-			case(3):track = TrackDatabase.REF.recordFromName("OvalTrack");break;
-			case(7):track = TrackDatabase.REF.recordFromName("LowerLevel1");break;
-			case(1):track = TrackDatabase.REF.recordFromName("MiniOval");break;
-			case(5):track = TrackDatabase.REF.recordFromName("HillTrack1");break;
-			case(0):track = TrackDatabase.REF.recordFromName("DirtGrassTrack");break;
-			} 
+			track = aTrackRecord;
+			
 			prizeFund = 50000*(5-aLeague);
 			driversPointsDistribution = EPointsDistribution.F12010Style;
 			constructorsPointsDistribution = EPointsDistribution.F12010Style;
-			startDate = (aRaceInCalendar+1)*(7+ChampionshipSeason.ACTIVE_SEASON.secondsPast)-1;
+			startDate = aStartDate;//(aRaceInCalendar+1)*(7+ChampionshipSeason.ACTIVE_SEASON.secondsPast)-1;
 		} 
 
 		public List<GTDriver> driversForRace() {  

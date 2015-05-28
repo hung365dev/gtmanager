@@ -20,11 +20,22 @@ namespace Database
 		public string sceneName;
 		public string imagePrefabName;
 
+		public int availableFromDivisionLow;
+		public int availableFromDivisionHigh;
 		public TrackDatabaseRecord (RaceTracksRow aRow)
 		{
 			name = aRow._trackname;
 			sceneName = aRow._scenename;
 			imagePrefabName = aRow._texturename;
+			availableFromDivisionLow = aRow._divisionsavailablelow;
+			availableFromDivisionHigh = aRow._divisionsavailablehigh;
+		}
+
+		public bool canUseInDivision(int aDivision) {
+			if(aDivision<=availableFromDivisionLow&&aDivision>=availableFromDivisionHigh) {
+				return true;
+			}
+			return false; 
 		}
 	}
 }

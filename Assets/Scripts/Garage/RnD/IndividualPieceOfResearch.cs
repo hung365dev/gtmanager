@@ -41,7 +41,7 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		if(team.cash>=researchRow._costtoresearch) {
 			GTEquippedResearch er = carRef.addPartToCar(researchRow,ChampionshipSeason.ACTIVE_SEASON.getUsersTeam());
-			if(er!=null) {
+			if(er!=null&&er.daysOfResearchRemaining==0) {
 				er.daysOfResearchRemaining = researchRow._daystoresearch;
 				team.cash -= researchRow._costtoresearch;
 				Lua.Result res = DialogueLua.GetVariable("ResearchTutorialDone");

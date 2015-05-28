@@ -26,12 +26,12 @@ namespace championship
 			
 			GTTeam usersTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 			ChampionshipSeasonLeague division = ChampionshipSeason.ACTIVE_SEASON.leagueForTeam(usersTeam);
-			switch(UnityEngine.Random.Range(5,5)) {
+			switch(UnityEngine.Random.Range(1,5)) {
 				case(1):this.eventType = ERandomEventType.FinishAheadOf;setupForFinishAheadOf(usersTeam,division);break;
 				case(2):this.eventType = ERandomEventType.ResearchLeaked;setupForResearchLeaked(usersTeam,division);break;
 				case(3):this.eventType = ERandomEventType.ResearchBreakthrough;setupForResearchBreakthrough(usersTeam,division);break;
 				case(4):this.eventType = ERandomEventType.DriverImprovement;setupForDriverImprovement(usersTeam,division);break;
-				case(5):this.eventType = ERandomEventType.ToxicDriver;setupForToxicDriver(usersTeam,division);break;
+				case(5):if(UnityEngine.Random.Range(0,10)==1) { this.eventType = ERandomEventType.ToxicDriver;setupForToxicDriver(usersTeam,division); }; break;
 				
 				case(6):this.eventType = ERandomEventType.ExclusiveSponsorDeal;break;
 				case(7):this.eventType = ERandomEventType.LoseARace;break;

@@ -28,6 +28,8 @@ namespace championship
 		public List<ChampionshipRaceSettings> races = new List<ChampionshipRaceSettings>();
 		public List<GTTeam> teams = new List<GTTeam>();
 		public List<RandomEvent> randomEvents = new List<RandomEvent>();
+
+		public const int MAX_RACES_IN_SEASON = 5;
 		public ChampionshipSeasonLeague ()
 		{ 
 
@@ -111,7 +113,11 @@ namespace championship
 			teams.Remove(aTeamToRemove);
 		}
  
+		private int randTrackSort(TrackDatabaseRecord aTrack1,TrackDatabaseRecord aTrack2) {
+			return UnityEngine.Random.Range(-1,1);
+		}
 		public void initRaces() {
+
 			switch(this.divisionNumber) {
 				case(1):
 					this.leagueName = "Premier Championship";
@@ -126,22 +132,27 @@ namespace championship
 					this.leagueName = "Division 3";
 				break;
 			}
-	/*		ChampionshipRaceSettings race1 = new ChampionshipRaceSettings();
-			race1.setupDefaultsForLeague(divisionNumber,0);
-			races.Add(race1);
-			ChampionshipRaceSettings race2 = new ChampionshipRaceSettings();
-			race2.setupDefaultsForLeague(divisionNumber,1);
-			races.Add(race2);*/
-			ChampionshipRaceSettings race3 = new ChampionshipRaceSettings();
-			race3.setupDefaultsForLeague(divisionNumber,2);
-			races.Add(race3);
-/*
-			ChampionshipRaceSettings race4 = new ChampionshipRaceSettings();
-			race4.setupDefaultsForLeague(divisionNumber,3);
-			races.Add(race4);
-			ChampionshipRaceSettings race5 = new ChampionshipRaceSettings();
-			race5.setupDefaultsForLeague(divisionNumber,4);
-			races.Add(race5);*/
+
+			List<TrackDatabaseRecord> allTracks = new List<TrackDatabaseRecord>();
+			for(int i = 0;i<TrackDatabase.REF.tracks.Count;i++) {
+				if(TrackDatabase.REF.tracks[i].canUseInDivision(this.divisionNumber)) {
+					allTracks.Add(TrackDatabase.REF.tracks[i]);
+				}
+			}
+			allTracks.Sort(randTrackSort);
+			int dayOfNextSunday = ChampionshipSeason.ACTIVE_SEASON.secondsPast+1;
+			DateTime theDate = new DateTime( 2015, 12, 28 ).AddDays( dayOfNextSunday );
+			while(!theDate.ToLongDateString().ToLower().Contains("sunday")) {
+				dayOfNextSunday++;
+				theDate = new DateTime( 2015, 12, 28 ).AddDays( dayOfNextSunday );
+			}
+			for(int i = 0;i<allTracks.Count&&i<MAX_RACES_IN_SEASON;i++) {
+				ChampionshipRaceSettings race = new ChampionshipRaceSettings();
+				race.setupDefaultsForLeague(divisionNumber,dayOfNextSunday,allTracks[i]);
+				races.Add(race);
+				
+			}
+
 		}
 		public bool humanLeague {
 			get {

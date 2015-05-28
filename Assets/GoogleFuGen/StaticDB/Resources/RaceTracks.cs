@@ -18,8 +18,9 @@ namespace GoogleFu
 		public string _scenename;
 		public string _texturename;
 		public string _description;
-		public int _divisionsavailable;
-		public RaceTracksRow(string __id, string __trackname, string __scenename, string __texturename, string __description, string __divisionsavailable) 
+		public int _divisionsavailablelow;
+		public int _divisionsavailablehigh;
+		public RaceTracksRow(string __id, string __trackname, string __scenename, string __texturename, string __description, string __divisionsavailablelow, string __divisionsavailablehigh) 
 		{
 			{
 			int res;
@@ -34,14 +35,21 @@ namespace GoogleFu
 			_description = __description;
 			{
 			int res;
-				if(int.TryParse(__divisionsavailable, out res))
-					_divisionsavailable = res;
+				if(int.TryParse(__divisionsavailablelow, out res))
+					_divisionsavailablelow = res;
 				else
-					Debug.LogError("Failed To Convert divisionsavailable string: "+ __divisionsavailable +" to int");
+					Debug.LogError("Failed To Convert divisionsavailablelow string: "+ __divisionsavailablelow +" to int");
+			}
+			{
+			int res;
+				if(int.TryParse(__divisionsavailablehigh, out res))
+					_divisionsavailablehigh = res;
+				else
+					Debug.LogError("Failed To Convert divisionsavailablehigh string: "+ __divisionsavailablehigh +" to int");
 			}
 		}
 
-		public int Length { get { return 6; } }
+		public int Length { get { return 7; } }
 
 		public string this[int i]
 		{
@@ -72,7 +80,10 @@ namespace GoogleFu
 					ret = _description.ToString();
 					break;
 				case 5:
-					ret = _divisionsavailable.ToString();
+					ret = _divisionsavailablelow.ToString();
+					break;
+				case 6:
+					ret = _divisionsavailablehigh.ToString();
 					break;
 			}
 
@@ -99,8 +110,11 @@ namespace GoogleFu
 				case "description":
 					ret = _description.ToString();
 					break;
-				case "divisionsavailable":
-					ret = _divisionsavailable.ToString();
+				case "divisionsavailablelow":
+					ret = _divisionsavailablelow.ToString();
+					break;
+				case "divisionsavailablehigh":
+					ret = _divisionsavailablehigh.ToString();
 					break;
 			}
 
@@ -114,7 +128,8 @@ namespace GoogleFu
 			ret += "{" + "scenename" + " : " + _scenename.ToString() + "} ";
 			ret += "{" + "texturename" + " : " + _texturename.ToString() + "} ";
 			ret += "{" + "description" + " : " + _description.ToString() + "} ";
-			ret += "{" + "divisionsavailable" + " : " + _divisionsavailable.ToString() + "} ";
+			ret += "{" + "divisionsavailablelow" + " : " + _divisionsavailablelow.ToString() + "} ";
+			ret += "{" + "divisionsavailablehigh" + " : " + _divisionsavailablehigh.ToString() + "} ";
 			return ret;
 		}
 	}
@@ -146,49 +161,57 @@ namespace GoogleFu
 														"LowerLevel1",
 														"LowerLevel1",
 														"ShortDescription",
-														"0"));
+														"4",
+														"4"));
 			Rows.Add( new RaceTracksRow("2",
 														"Oval Track",
 														"OvalTrack",
 														"OvalTrack",
 														"ShortDescription",
-														"0"));
+														"3",
+														"1"));
 			Rows.Add( new RaceTracksRow("3",
 														"Race Circuit",
 														"RaceCircuit1",
 														"RaceCircuit1",
 														"ShortDescription",
-														"0"));
+														"3",
+														"1"));
 			Rows.Add( new RaceTracksRow("4",
 														" Short Snow Track",
 														"ShortSnowTrack",
 														"ShortSnowTrack",
 														"ShortDescription",
-														"0"));
+														"4",
+														"3"));
 			Rows.Add( new RaceTracksRow("5",
 														"Long Straights",
 														"LongStraights",
 														"LongStraights",
 														"ShortDescription",
-														"0"));
+														"3",
+														"1"));
 			Rows.Add( new RaceTracksRow("6",
 														"Mini Oval",
 														"MiniOval",
 														"MiniOval",
 														"ShortDescription",
-														"0"));
+														"4",
+														"4"));
 			Rows.Add( new RaceTracksRow("7",
 														"Hill Track",
 														"HillTrack1",
 														"HillTrack1",
 														"ShortDescription",
-														"0"));
+														"4",
+														"3"));
 			Rows.Add( new RaceTracksRow("8",
 														"DirtGrassTrack",
 														"DirtGrassTrack",
 														"DirtGrassTrack",
 														"ShortDescription",
-														"0"));
+														"4",
+														"2"));
 		}
 		public IGoogleFuRow GetGenRow(string in_RowString)
 		{
