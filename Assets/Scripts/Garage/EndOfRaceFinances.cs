@@ -36,8 +36,11 @@ public class EndOfRaceFinances : MonoBehaviour {
 		driversPayLabel.text = ""+totalDriversPay.ToString("C0");
 		driversBonusLabel.text = ""+totalDriversBonus.ToString("C0");
 		repairsLabel.text = ""+repairs.ToString("C0");
-		sponsorsLabel.text = ""+sponsors.ToString("C0");
 		
+		sponsorsLabel.text = ""+sponsors.ToString("C0");
+		if(RaceEndFinances.mostRecent.bets<0) {
+			betsLabel.color = red;
+		}
 		betsLabel.text = ""+RaceEndFinances.mostRecent.bets.ToString("C0");
 		if(RaceEndFinances.mostRecent.bets<0) {
 			// We already paid for this bet when we took it.
@@ -45,6 +48,9 @@ public class EndOfRaceFinances : MonoBehaviour {
 		}
 		int profitLoss = totalPrizeMoney+sponsors-repairs-totalDriversBonus-totalDriversPay+RaceEndFinances.mostRecent.bets;
 		ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().cash += profitLoss;
+		if(profitLoss<0) {
+			totalProfitLossLabel.color = this.red;
+		} else totalProfitLossLabel.color = this.green;
 		totalProfitLossLabel.text = ""+profitLoss.ToString("C0");
 	}
 	 

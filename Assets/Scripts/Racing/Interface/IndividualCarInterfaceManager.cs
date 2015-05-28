@@ -7,7 +7,6 @@ public class IndividualCarInterfaceManager : MonoBehaviour {
 
 
 	public UILabel lapNumberLabel;
-	public UILabel carPosition;
 	public UILabel driverNameLabel;
 
 
@@ -48,7 +47,6 @@ public class IndividualCarInterfaceManager : MonoBehaviour {
 	public void finish() {
 		if(this.lapNumberLabel!=null) {
 			Destroy(this.lapNumberLabel.gameObject);
-			Destroy(this.carPosition.gameObject);
 			Destroy(this.speedLabel.gameObject);
 			Destroy(this.carBehindLabel.gameObject);
 			Destroy(this.carInfrontLabel.gameObject);
@@ -75,7 +73,6 @@ RPM Value
 		if(GameObject.Find ("DriverName Label")!=null) {
 			driverNameLabel = GameObject.Find("DriverName Label").GetComponent<UILabel>();
 			lapNumberLabel = GameObject.Find ("LapValue").GetComponent<UILabel>();
-			carPosition = GameObject.Find ("PositionValue").GetComponent<UILabel>();
 			carBehindLabel = GameObject.Find ("CarBehindLabel").GetComponent<UILabel>();
 			carInfrontLabel = GameObject.Find("CarInfrontLabel").GetComponent<UILabel>();
 			speedLabel = GameObject.Find ("SpeedValue").GetComponent<UILabel>();
@@ -106,10 +103,6 @@ RPM Value
 			if(lapNumberLabel!=null)
 				lapNumberLabel.text = ""+targetAI.aiCar.GetLap(); else return;
 		
-			if(carPosition!=null)
-				carPosition.text = ""+statistics.GetCarPosition(targetAI.aiCar);
-
-
 			//this.nitrosLabel.text = Convert.ToString(targetAI.nitrosRemaining);
 			//this.drsLabel.gameObject.SetActive(targetAI.drsActivated);
 	//		engineTemperature.text = ""+Convert.ToInt32(targetAI.engineTempMonitor.currentTemperature)+"c";

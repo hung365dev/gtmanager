@@ -37,6 +37,9 @@ public class RaceManager : MonoBehaviour {
 	public UILabel driver1Label;
 	public UILabel driver2Label;
 
+
+	public UIButton simSpeedBtn;
+	public UILabel simSpeedLbl;
 	public bool activateFinishersOnClose = false;
 	public List<CC_FastVignette> fv = new List<CC_FastVignette>();
 //	public CarLibrary carLib;
@@ -75,18 +78,20 @@ public class RaceManager : MonoBehaviour {
 
 
 		genericRaceGUI = GameObject.Find("GenericRaceGUI");
-		UILabel totalRacers = GameObject.Find ("NumberOfRacers").GetComponent<UILabel>();
 		UILabel totalLaps = GameObject.Find("LAP").GetComponent<UILabel>();
 
 		driver1Label = GameObject.Find("DriverMessage1").GetComponent<UILabel>();
 		driver2Label = GameObject.Find("DriverMessage2").GetComponent<UILabel>();
+
+		simSpeedBtn = GameObject.Find("SimSpeedButton").GetComponent<UIButton>();
+		simSpeedLbl = GameObject.Find("SimSpeedButton").GetComponent<UILabel>();
+		simSpeedBtn.onClick.Add(new EventDelegate(this,"onSimSpeedChange"));
 
 		if(genericRaceGUI!=null) {
 			genericRaceGUI.gameObject.SetActive(false);
 		}
 		List<GTDriver> driversInRace = ChampionshipRaceSettings.ACTIVE_RACE.driversForRace();
 		
-		totalRacers.text = "/ "+driversInRace.Count;
 		totalLaps.text = "/ "+this.levLoad.laps;
 		
 		GameObject raceStarters = GameObject.Find("RaceLineupPanel");
@@ -109,6 +114,19 @@ public class RaceManager : MonoBehaviour {
 		//
 	}
 	
+	private void onSimSpeedChange() {
+		if(Time.timeScale == 1f) {
+			Time.timeScale = 1.5f;
+			simSpeedLbl.text = "1.5x";
+		} else if(Time.timeScale==1.5f) {
+			Time.timeScale = 2f;
+			simSpeedLbl.text = "2x";
+	
+		} else {
+			Time.timeScale = 1f;
+			simSpeedLbl.text = "1x";
+}
+		}
 	public void doConversation(string aConversationName) {
 		conversationTrigger = this.GetComponent<ConversationTrigger>();
 		if(conversationTrigger==null) {
@@ -152,7 +170,7 @@ public class RaceManager : MonoBehaviour {
 			findAndDestroyGameObjectIfExists("BottomArea");
 			findAndDestroyGameObjectIfExists("CarBehindLabel");
 			findAndDestroyGameObjectIfExists("CarInfrontLabel");
-
+			findAndDestroyGameObjectIfExists("SimSpeedButton");
 			Destroy(this.minimapObject);
 			if(this.racePositions!=null)
 				Destroy(this.racePositions.gameObject);

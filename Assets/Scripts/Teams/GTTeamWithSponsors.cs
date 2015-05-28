@@ -37,6 +37,12 @@ namespace Teams
 			}
 		}
 
+		public void multiplySponsorRelationships(float aAmount) {
+			for(int i = 0;i<this.sponsorRelationships.Count;i++) {
+				float newRelationship = sponsorRelationships[i].currentRelationshipValue * aAmount;
+				sponsorRelationships[i].currentRelationshipValue = Convert.ToInt32(newRelationship);;
+			}
+		}
 		public void decreaseSponsorContractLengths() {
 			List<String> expiredContracts = new List<String>();
 			for(int i = 0;i<currentContracts.Count;i++) {

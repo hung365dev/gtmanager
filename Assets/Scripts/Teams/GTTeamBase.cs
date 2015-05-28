@@ -23,6 +23,7 @@ namespace Teams
 		public List<GTDriver> drivers = new List<GTDriver>();
 		public List<GTCar> cars = new List<GTCar>();
 		public Color teamColor;
+		public Color wheelColor;
 		public bool humanControlled = false;
 		public string teamName;
 		public int seasonPoints = 0;

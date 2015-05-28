@@ -26,13 +26,15 @@ namespace championship
 			
 			GTTeam usersTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 			ChampionshipSeasonLeague division = ChampionshipSeason.ACTIVE_SEASON.leagueForTeam(usersTeam);
-			switch(UnityEngine.Random.Range(0,4)) {
+			switch(UnityEngine.Random.Range(5,5)) {
 				case(1):this.eventType = ERandomEventType.FinishAheadOf;setupForFinishAheadOf(usersTeam,division);break;
 				case(2):this.eventType = ERandomEventType.ResearchLeaked;setupForResearchLeaked(usersTeam,division);break;
 				case(3):this.eventType = ERandomEventType.ResearchBreakthrough;setupForResearchBreakthrough(usersTeam,division);break;
 				case(4):this.eventType = ERandomEventType.DriverImprovement;setupForDriverImprovement(usersTeam,division);break;
-				case(5):this.eventType = ERandomEventType.ExclusiveSponsorDeal;break;
-				case(6):this.eventType = ERandomEventType.LoseARace;break;
+				case(5):this.eventType = ERandomEventType.ToxicDriver;setupForToxicDriver(usersTeam,division);break;
+				
+				case(6):this.eventType = ERandomEventType.ExclusiveSponsorDeal;break;
+				case(7):this.eventType = ERandomEventType.LoseARace;break;
 				default:failed = true;break;
 			}
 
@@ -50,7 +52,24 @@ namespace championship
 				DialogueLua.SetVariable("RandomEventValueString",s);
 			}
 		}
-
+		
+		public void setupForToxicDriver(GTTeam aMyTeam,ChampionshipSeasonLeague aLeague) {
+			int driverToBoost = UnityEngine.Random.Range(0,1);
+			GTDriver driver = aMyTeam.drivers[driverToBoost];
+			
+			float amountToAdd = UnityEngine.Random.Range(0.5f,1.5f)*-1;
+			if(GTDriver.percentOfGoodnessSponsorValue(driver.sponsorFriendliness+amountToAdd)<1f) {
+				driver.sponsorFriendliness += amountToAdd;
+				aMyTeam.multiplySponsorRelationships(0.5f);
+			} else {
+				failed = true;
+			}
+			DialogueLua.SetVariable("RandomEventDriver",driver.name);
+			this.startConversation = "RandomEventDriverToxic";
+			
+		
+		
+		}
 		public void setupForDriverImprovement(GTTeam aMyTeam,ChampionshipSeasonLeague aLeague) {
 			int driverToBoost = UnityEngine.Random.Range(0,1);
 			GTDriver driver = aMyTeam.drivers[driverToBoost];
@@ -105,7 +124,7 @@ namespace championship
 					this.startConversation = "RandomEventDriverImprovement";
 					break;
 				case(4):
-					amountToAdd = UnityEngine.Random.Range(0.5f,1f)*-1;
+					amountToAdd = UnityEngine.Random.Range(0.5f,1f);
 					if(GTDriver.percentOfGoodnessSponsorValue(driver.sponsorFriendliness+amountToAdd)<1f) {
 						driver.sponsorFriendliness += amountToAdd;
 					} else {

@@ -28,6 +28,7 @@ namespace Database
 		public GTDriver driverB;
 
 		public Color teamColor;
+		public Color wheelColor;
 		public int startLeague;
 		
 		public int reputation;
@@ -37,7 +38,9 @@ namespace Database
 			name = aTeamNameRow._teamname;
 			description = aTeamNameRow._teamdescription;
 			teamColor = new Color(aTeamNameRow._teamcolorr/255f,aTeamNameRow._teamcolorg/255f,aTeamNameRow._teamcolorb/255f);
+			wheelColor = new Color(aTeamNameRow._wheelcolorr/255f,aTeamNameRow._wheelcolorg/255f,aTeamNameRow._wheelcolorb/255f);
 			startLeague = aTeamNameRow._startleague;
+			
 			carA = new GTCar (aTeamNameRow._startingcar1);
 			reputation = aTeamNameRow._reputation;
 			

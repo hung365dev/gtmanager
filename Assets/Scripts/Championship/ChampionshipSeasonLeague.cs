@@ -126,22 +126,22 @@ namespace championship
 					this.leagueName = "Division 3";
 				break;
 			}
-			ChampionshipRaceSettings race1 = new ChampionshipRaceSettings();
+	/*		ChampionshipRaceSettings race1 = new ChampionshipRaceSettings();
 			race1.setupDefaultsForLeague(divisionNumber,0);
 			races.Add(race1);
 			ChampionshipRaceSettings race2 = new ChampionshipRaceSettings();
 			race2.setupDefaultsForLeague(divisionNumber,1);
-			races.Add(race2);
+			races.Add(race2);*/
 			ChampionshipRaceSettings race3 = new ChampionshipRaceSettings();
 			race3.setupDefaultsForLeague(divisionNumber,2);
 			races.Add(race3);
-
+/*
 			ChampionshipRaceSettings race4 = new ChampionshipRaceSettings();
 			race4.setupDefaultsForLeague(divisionNumber,3);
 			races.Add(race4);
 			ChampionshipRaceSettings race5 = new ChampionshipRaceSettings();
 			race5.setupDefaultsForLeague(divisionNumber,4);
-			races.Add(race5);
+			races.Add(race5);*/
 		}
 		public bool humanLeague {
 			get {
@@ -298,6 +298,9 @@ namespace championship
 				this.randomEvents.Add(r);
 		}
 		public bool raceOrEventBeforeRaceOrSincePastRace(int aDay) {
+			if(ChampionshipSeason.ACTIVE_SEASON.nextRace==null) {
+				return false;
+			}
 			int dayOfNextRace = ChampionshipSeason.ACTIVE_SEASON.nextRace.startDate;
 			for(int i = aDay+1;i<dayOfNextRace;i++) {
 				if(raceOrEventOnDay(i)) {

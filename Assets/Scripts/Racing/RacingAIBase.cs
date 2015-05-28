@@ -101,8 +101,13 @@ public class RacingAIBase : MonoBehaviour
 		MeshRenderer[] ms = this.GetComponentsInChildren<MeshRenderer>();
 		//	Debug.Log (ms[0].material.shader.name+" on "+this.gameObject.name);
 		for(int i = 0;i<ms.Length;i++) 
-			if(ms[i].material.shader.name.Contains("Car Paint"))
-				ms[i].material.SetColor("_Color",aTeam.teamColor); else {
+			if(ms[i].material.shader.name.Contains("Car Paint")||ms[i].material.shader.name.Contains("Chrome")) {
+				if(ms[i].gameObject.name.ToLower().Contains("wheel")) {
+					ms[i].material.SetColor("_Color",aTeam.wheelColor);
+				} else
+				ms[i].material.SetColor("_Color",aTeam.teamColor); 
+			}
+			else {
 			//			Debug.Log (ms[i].material.shader.name);
 		} 
 	}

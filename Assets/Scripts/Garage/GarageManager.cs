@@ -22,6 +22,7 @@ public class GarageManager : MonoBehaviour {
 	public ConversationTrigger trigger;
 
 	public UISprite garageColourButton;
+	public UISprite wheelColourButton;
 	public GameObject colourChangeScreen;
 	public EndOfRaceFinances endOfRaceFinances;
 	public GameObject endOfRaceFinancesPrefab;
@@ -50,6 +51,7 @@ public class GarageManager : MonoBehaviour {
 			this.teamCash.text = ""+team.cash.ToString("C0");
 			
 			garageColourButton.color = team.teamColor;
+			wheelColourButton.color = team.wheelColor;
 		}
 //		Lua.Result r = DialogueLua.GetVariable("HintArrowHireADriver");
 //		Debug.Log ("HintArrowHireADriver: "+r.AsInt);

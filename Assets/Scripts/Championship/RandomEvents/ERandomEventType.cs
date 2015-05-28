@@ -16,8 +16,9 @@ namespace championship
 		ResearchLeaked = 2,
 		ResearchBreakthrough = 3,
 		DriverImprovement = 4,
-		ExclusiveSponsorDeal = 5,
-		LoseARace = 6,
+		ExclusiveSponsorDeal = 6,
+		LoseARace = 7,
+		ToxicDriver = 5,
 	}
 }
 

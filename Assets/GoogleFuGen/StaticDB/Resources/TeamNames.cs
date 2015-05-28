@@ -19,11 +19,14 @@ namespace GoogleFu
 		public float _teamcolorr;
 		public float _teamcolorg;
 		public float _teamcolorb;
+		public float _wheelcolorr;
+		public float _wheelcolorg;
+		public float _wheelcolorb;
 		public string _teamdescription;
 		public string _startingcar1;
 		public string _startingcar2;
 		public int _reputation;
-		public TeamNamesRow(string __id, string __teamname, string __startleague, string __teamcolorr, string __teamcolorg, string __teamcolorb, string __teamdescription, string __startingcar1, string __startingcar2, string __reputation) 
+		public TeamNamesRow(string __id, string __teamname, string __startleague, string __teamcolorr, string __teamcolorg, string __teamcolorb, string __wheelcolorr, string __wheelcolorg, string __wheelcolorb, string __teamdescription, string __startingcar1, string __startingcar2, string __reputation) 
 		{
 			{
 			int res;
@@ -61,6 +64,27 @@ namespace GoogleFu
 				else
 					Debug.LogError("Failed To Convert teamcolorb string: "+ __teamcolorb +" to float");
 			}
+			{
+			float res;
+				if(float.TryParse(__wheelcolorr, out res))
+					_wheelcolorr = res;
+				else
+					Debug.LogError("Failed To Convert wheelcolorr string: "+ __wheelcolorr +" to float");
+			}
+			{
+			float res;
+				if(float.TryParse(__wheelcolorg, out res))
+					_wheelcolorg = res;
+				else
+					Debug.LogError("Failed To Convert wheelcolorg string: "+ __wheelcolorg +" to float");
+			}
+			{
+			float res;
+				if(float.TryParse(__wheelcolorb, out res))
+					_wheelcolorb = res;
+				else
+					Debug.LogError("Failed To Convert wheelcolorb string: "+ __wheelcolorb +" to float");
+			}
 			_teamdescription = __teamdescription;
 			_startingcar1 = __startingcar1;
 			_startingcar2 = __startingcar2;
@@ -73,7 +97,7 @@ namespace GoogleFu
 			}
 		}
 
-		public int Length { get { return 10; } }
+		public int Length { get { return 13; } }
 
 		public string this[int i]
 		{
@@ -107,15 +131,24 @@ namespace GoogleFu
 					ret = _teamcolorb.ToString();
 					break;
 				case 6:
-					ret = _teamdescription.ToString();
+					ret = _wheelcolorr.ToString();
 					break;
 				case 7:
-					ret = _startingcar1.ToString();
+					ret = _wheelcolorg.ToString();
 					break;
 				case 8:
-					ret = _startingcar2.ToString();
+					ret = _wheelcolorb.ToString();
 					break;
 				case 9:
+					ret = _teamdescription.ToString();
+					break;
+				case 10:
+					ret = _startingcar1.ToString();
+					break;
+				case 11:
+					ret = _startingcar2.ToString();
+					break;
+				case 12:
 					ret = _reputation.ToString();
 					break;
 			}
@@ -146,6 +179,15 @@ namespace GoogleFu
 				case "teamcolorb":
 					ret = _teamcolorb.ToString();
 					break;
+				case "wheelcolorr":
+					ret = _wheelcolorr.ToString();
+					break;
+				case "wheelcolorg":
+					ret = _wheelcolorg.ToString();
+					break;
+				case "wheelcolorb":
+					ret = _wheelcolorb.ToString();
+					break;
 				case "teamdescription":
 					ret = _teamdescription.ToString();
 					break;
@@ -171,6 +213,9 @@ namespace GoogleFu
 			ret += "{" + "teamcolorr" + " : " + _teamcolorr.ToString() + "} ";
 			ret += "{" + "teamcolorg" + " : " + _teamcolorg.ToString() + "} ";
 			ret += "{" + "teamcolorb" + " : " + _teamcolorb.ToString() + "} ";
+			ret += "{" + "wheelcolorr" + " : " + _wheelcolorr.ToString() + "} ";
+			ret += "{" + "wheelcolorg" + " : " + _wheelcolorg.ToString() + "} ";
+			ret += "{" + "wheelcolorb" + " : " + _wheelcolorb.ToString() + "} ";
 			ret += "{" + "teamdescription" + " : " + _teamdescription.ToString() + "} ";
 			ret += "{" + "startingcar1" + " : " + _startingcar1.ToString() + "} ";
 			ret += "{" + "startingcar2" + " : " + _startingcar2.ToString() + "} ";
@@ -207,6 +252,9 @@ namespace GoogleFu
 														"192",
 														"192",
 														"192",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Koenigsegg",
 														"Bugatti Veyron",
@@ -217,6 +265,9 @@ namespace GoogleFu
 														"255",
 														"40",
 														"0",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Ferrari Enzo",
 														"Zonda",
@@ -227,6 +278,9 @@ namespace GoogleFu
 														"5",
 														"11",
 														"118",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Porsche 911",
 														"Aston Martin DB10",
@@ -237,6 +291,9 @@ namespace GoogleFu
 														"70",
 														"253",
 														"52",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Lamborghini Spider",
 														"Lamborghini Spider",
@@ -247,6 +304,9 @@ namespace GoogleFu
 														"240",
 														"236",
 														"48",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Nissan GTR",
 														"Ford GT40",
@@ -257,6 +317,9 @@ namespace GoogleFu
 														"12",
 														"60",
 														"160",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Audi TT",
 														"Aston Martin DB10",
@@ -267,6 +330,9 @@ namespace GoogleFu
 														"136",
 														"17",
 														"36",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Ferrari Scagialetti",
 														"Porsche 911",
@@ -277,6 +343,9 @@ namespace GoogleFu
 														"55",
 														"84",
 														"85",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Mitsubishi",
 														"Mitsubishi",
@@ -287,6 +356,9 @@ namespace GoogleFu
 														"140",
 														"58",
 														"24",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Lexus",
 														"Ford Mustang",
@@ -297,6 +369,9 @@ namespace GoogleFu
 														"138",
 														"147",
 														"155",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"BMW 5 Series",
 														"Corvette",
@@ -307,6 +382,9 @@ namespace GoogleFu
 														"3",
 														"3",
 														"3",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Ford Mondeo",
 														"TVR",
@@ -317,6 +395,9 @@ namespace GoogleFu
 														"232",
 														"167",
 														"25",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Corvette",
 														"Lexus",
@@ -327,6 +408,9 @@ namespace GoogleFu
 														"24",
 														"0",
 														"255",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Ford Focus",
 														"Ford Focus",
@@ -337,6 +421,9 @@ namespace GoogleFu
 														"223",
 														"0",
 														"255",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Mini Cooper",
 														"Volkswagen Golf",
@@ -347,6 +434,9 @@ namespace GoogleFu
 														"254",
 														"255",
 														"0",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Honda Civic",
 														"Volkswagen Golf",
@@ -357,6 +447,9 @@ namespace GoogleFu
 														"122",
 														"186",
 														"191",
+														"135",
+														"141",
+														"150",
 														"Not yet",
 														"Audi A3",
 														"Mini Cooper",

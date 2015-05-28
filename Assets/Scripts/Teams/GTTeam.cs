@@ -31,6 +31,7 @@ namespace Teams
 			initDriver(aTeamDataRecord.driverB);
 			reputation = aTeamDataRecord.reputation;
 			teamColor = aTeamDataRecord.teamColor;
+			wheelColor = aTeamDataRecord.wheelColor;
 			teamName = aTeamDataRecord.name;
 
 			if(teamName==HUMANS_DEBUG_TEAM) {

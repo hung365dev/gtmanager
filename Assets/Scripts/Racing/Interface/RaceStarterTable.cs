@@ -22,9 +22,9 @@ public class RaceStarterTable : MonoBehaviour {
 
 	public bool startEnabled = false;
 	void Start () {
-		if(!startEnabled) {
-		startButtonLabel.text = "LOADING!";
-		startButton.isEnabled = false;
+		if(!startEnabled&&startButtonLabel!=null) {
+			startButtonLabel.text = "LOADING!";
+			startButton.isEnabled = false;
 		}
 	}
 	

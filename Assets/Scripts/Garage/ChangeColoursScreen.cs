@@ -18,6 +18,9 @@ public class ChangeColoursScreen : MonoBehaviour
 	public UISlider red;
 	public UISlider green;
 	public UISlider blue;	
+	public UISlider wheelred;
+	public UISlider wheelgreen;
+	public UISlider wheelblue;	
 	public bool initing = false;
 	public ChangeColoursScreen ()
 	{
@@ -32,6 +35,11 @@ public class ChangeColoursScreen : MonoBehaviour
 		red.value = team.teamColor.r;
 		green.value = team.teamColor.g;
 		blue.value = team.teamColor.b;
+		
+		wheelred.value = team.wheelColor.r;
+		wheelgreen.value = team.wheelColor.g;
+		wheelblue.value = team.wheelColor.b;
+		
 		initing = false;
 	}
 	public void onClose() {
@@ -48,6 +56,11 @@ public class ChangeColoursScreen : MonoBehaviour
 		team.teamColor.r = red.value;
 		team.teamColor.g = green.value;
 		team.teamColor.b = blue.value;
+		
+		team.wheelColor.r = wheelred.value;
+		team.wheelColor.g = wheelgreen.value;
+		team.wheelColor.b = wheelblue.value;
+
 	}
 }
 
