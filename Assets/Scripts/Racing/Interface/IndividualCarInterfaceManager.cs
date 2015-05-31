@@ -75,6 +75,9 @@ RPM Value
 			lapNumberLabel = GameObject.Find ("LapValue").GetComponent<UILabel>();
 			carBehindLabel = GameObject.Find ("CarBehindLabel").GetComponent<UILabel>();
 			carInfrontLabel = GameObject.Find("CarInfrontLabel").GetComponent<UILabel>();
+			carBehindLabel.gameObject.SetActive(false);
+			carInfrontLabel.gameObject.SetActive(false);
+			
 			speedLabel = GameObject.Find ("SpeedValue").GetComponent<UILabel>();
 			//revCounter = GameObject.Find ("RPM Value").GetComponent<UIProgressBar>();
 			rpmLabel = GameObject.Find ("RPM Value").GetComponent<UILabel>();

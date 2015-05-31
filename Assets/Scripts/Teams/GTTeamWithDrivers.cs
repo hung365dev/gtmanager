@@ -11,6 +11,7 @@ using System;
 using Drivers;
 using System.Collections.Generic;
 using UnityEngine;
+using PixelCrushers.DialogueSystem;
 
 
 namespace Teams
@@ -29,6 +30,28 @@ namespace Teams
 			}
 		}
 
+		public void endRaceActions() {
+			DialogueLua.SetVariable("ContractExpiryNote","");
+			DialogueLua.SetVariable("ContractExpiryForceDriversScreen",false);
+			if(drivers[0].racesRemainingOnContract()<3&&drivers[1].racesRemainingOnContract()<3) {
+				
+				DialogueLua.SetVariable("ContractExpiryNote","Both of your drivers contracts are about to expire! You must renew their contracts or sign new drivers!");
+				
+				
+			} else if(drivers[0].racesRemainingOnContract()<3) {
+				DialogueLua.SetVariable("ContractExpiryNote",drivers[0].name+"'s contract is due to expire shortly. Renew their contract or sign a new driver.");
+				
+			} else if(drivers[1].racesRemainingOnContract()<3) {
+				DialogueLua.SetVariable("ContractExpiryNote",drivers[1].name+"'s contract is due to expire shortly. Renew their contract or sign a new driver.");
+			}
+
+			if(drivers[0].racesRemainingOnContract()==0||drivers[1].racesRemainingOnContract()==0)
+				DialogueLua.SetVariable("ContractExpiryForceDriversScreen",true);
+
+			if(DialogueLua.GetVariable("ContractExpiryNote").AsString!="") {
+				GarageManager.REF.doConversation("ContractExpiryNote");
+			}
+		}
 		public DriverRelationshipRecord relationshipWithDriver(GTDriver aDriver) {
 			for(int i = 0;i<driverRelationships.Count;i++) {
 				Debug.Log(driverRelationships[i].record.name+" - "+aDriver.name);

@@ -55,6 +55,7 @@ namespace Cars
 		}
 		public void replaceCar(CarLibraryRecord aCar) {
 			carLibRecord = aCar;
+			rndParts = new List<GTEquippedResearch>();
 		}
 		public GTEquippedResearch partBeingResearched {
 			get {

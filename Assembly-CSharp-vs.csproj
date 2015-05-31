@@ -189,6 +189,10 @@
      <Compile Include="Assets\GoogleFuGen\StaticDB\Resources\RnD.cs" />
      <Compile Include="Assets\GoogleFuGen\StaticDB\Resources\SponsorLibrary.cs" />
      <Compile Include="Assets\GoogleFuGen\StaticDB\Resources\TeamNames.cs" />
+     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\HorizonCompensateZFighting.cs" />
+     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\HorizonCopyMaterialProps.cs" />
+     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\HorizonMaster.cs" />
+     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\Internal\HorizonDisplacementHelper.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX2_Demo.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX3_Demo.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
@@ -420,6 +424,7 @@
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\MultiTexture.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Convolution3x3.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked 1.shader" />
+     <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Displacement.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 2.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Glassreflect2D.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
@@ -430,8 +435,6 @@
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Duo.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Alpha-Diffuse-ZWrite.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Glitch.shader" />
-     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
-     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Normal-BumpSpec.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Kuwahara.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Car.shader" />
@@ -446,12 +449,12 @@
      <None Include="Assets\HereVR Race Scene\Pit Garage Pack 01\Pit Garage Pack 01. - HereVR Race Scene  - Release log.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 3.shader" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Ultra Detail Bump RefMask SpecMask.shader" />
+     <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Transition.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Alpha-Bumped.shader" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Low Detail.shader" />
      <None Include="Assets\Dialogue System\Scripts\Supplemental\UI\Example\Art\_README.txt" />
      <None Include="Assets\Colorful\Shaders\CC_Kuwahara.cginc" />
      <None Include="Assets\Colorful\Shaders\CC_Threshold.shader" />
-     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
      <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX3 Readme.txt" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Surface_Alpha.shader" />
      <None Include="Assets\CameraPath3\readme.txt" />
@@ -470,8 +473,10 @@
      <None Include="Assets\iRDS\Required\Shaders\Multiply.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Sharpen.shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarTVR\readme.txt" />
+     <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Tessellation(DX11).shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarGolf\readme.txt" />
      <None Include="Assets\iRDS\Required\Shaders\GlassReflect.shader" />
+     <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Object.shader" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Medium Detail RefMask.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Blend.shader" />
      <None Include="Assets\Colorful\Shaders\CC_CrossStitch.shader" />
@@ -488,6 +493,7 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
      <None Include="Assets\UI\GameUI\LatoReg144.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarChrome Probes.shader" />
+     <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Cliff.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Led.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Levels.shader" />
@@ -513,6 +519,7 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 1.shader" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarGlass Diffuse.shader" />
      <None Include="Assets\JMO Assets\!JMO Assets Readme.txt" />
+     <None Include="Assets\Horizon[ON]\Sources\Shaders\_horizON_Core.cginc" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Hidden.shader" />
      <None Include="Assets\Colorful\Shaders\CC_DoubleVision.shader" />
      <None Include="Assets\Colorful\Shaders\CC_AnalogTV.shader" />
@@ -534,6 +541,7 @@
      <None Include="Assets\Colorful\Shaders\CC_HueSaturationValue.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add VColor.shader" />
      <None Include="Assets\Dialogue System\Scripts\_README.txt" />
+     <None Include="Assets\Horizon[ON]\Horizon[ON] - ReadMe.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text.shader" />
      <None Include="Assets\Colorful\Shaders\CC_WhiteBalance.shader" />
      <None Include="Assets\Colorful\Shaders\CC_ChannelClamper.shader" />
@@ -579,6 +587,7 @@
      <None Include="Assets\Colorful\Shaders\CC_LookupFilter.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Halftone.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX Readme.txt" />
+     <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Flat.shader" />
      <None Include="Assets\Colorful\Shaders\CC_ChannelSwapper.shader" />
      <None Include="Assets\Colorful\Shaders\CC_RGBSplit.shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\AudiA8\readme.txt" />

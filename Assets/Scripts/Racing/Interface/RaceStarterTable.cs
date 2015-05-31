@@ -167,7 +167,7 @@ public class RaceStarterTable : MonoBehaviour {
 			List<GTDriver> drivers = ChampionshipSeason.ACTIVE_SEASON.nextRace.driversForRace();
 			drivers.Sort(ChampionshipSeasonBase.SortByChampionshipPoints);
 			for(int i = 0;i<starterMembers.Count;i++) {
-				starterMembers[i].showChampionshipPoints(drivers[i]);
+				starterMembers[i].showChampionshipPoints(drivers[i],i);
 			}
 		} else {
 			for(int i = 0;i<starterMembers.Count;i++) {

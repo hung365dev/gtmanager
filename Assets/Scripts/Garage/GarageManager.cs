@@ -72,6 +72,11 @@ public class GarageManager : MonoBehaviour {
 	}
 	private void onCloseFinances() {
 		trigger = this.GetComponent<ConversationTrigger>();
+
+		GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+		// For example, warn the user if contracts are going to expire
+		myTeam.endRaceActions();
+
 		trigger.conversation = "Welcome Conversation";
 		
 		trigger.TryStartConversation(this.transform);
@@ -87,6 +92,8 @@ public class GarageManager : MonoBehaviour {
 
 		} else if(r.AsString=="Calendar")  {
 			handleStartOfCalendarView();
+		} else if(r.AsString=="Drivers") {
+			InterfaceMainButtons.REF.onLaunchDriversScreen();
 		}
  
 		r = DialogueLua.GetVariable("RandomEventAcceptResult");

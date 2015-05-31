@@ -106,7 +106,7 @@ public class ChampionshipStandings : MonoBehaviour {
 			List<GTDriver> drivers = ChampionshipSeason.ACTIVE_SEASON.seasonForTeam(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()).driversChampionshipPositions();
 			//drivers.Sort(ChampionshipSeasonBase.SortByChampionshipPoints);
 			for(int i = 0;i<starterMembers.Count;i++) {
-				starterMembers[i].showChampionshipPoints(drivers[i]);
+				starterMembers[i].showChampionshipPoints(drivers[i],i);
 				if(this.isComplete&&i==0) {	
 					starterMembers[i].GetComponent<UISprite>().color = this.colorForWinner;
 				} else {

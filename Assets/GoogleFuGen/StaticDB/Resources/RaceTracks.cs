@@ -136,10 +136,10 @@ namespace GoogleFu
 	public sealed class RaceTracks : IGoogleFuDB
 	{
 		public enum rowIds {
-			RACETRACK_1, RACETRACK_2, RACETRACK_3, RACETRACK_4, RACETRACK_5, RACETRACK_6, RACETRACK_7, RACETRACK_8
+			RACETRACK_1, RACETRACK_2, RACETRACK_3, RACETRACK_4, RACETRACK_5, RACETRACK_6, RACETRACK_7, RACETRACK_8, RACETRACK_9
 		};
 		public string [] rowNames = {
-			"RACETRACK_1", "RACETRACK_2", "RACETRACK_3", "RACETRACK_4", "RACETRACK_5", "RACETRACK_6", "RACETRACK_7", "RACETRACK_8"
+			"RACETRACK_1", "RACETRACK_2", "RACETRACK_3", "RACETRACK_4", "RACETRACK_5", "RACETRACK_6", "RACETRACK_7", "RACETRACK_8", "RACETRACK_9"
 		};
 		public System.Collections.Generic.List<RaceTracksRow> Rows = new System.Collections.Generic.List<RaceTracksRow>();
 
@@ -189,7 +189,7 @@ namespace GoogleFu
 														"LongStraights",
 														"LongStraights",
 														"ShortDescription",
-														"3",
+														"2",
 														"1"));
 			Rows.Add( new RaceTracksRow("6",
 														"Mini Oval",
@@ -212,6 +212,13 @@ namespace GoogleFu
 														"ShortDescription",
 														"4",
 														"2"));
+			Rows.Add( new RaceTracksRow("9",
+														"TreeTrack1",
+														"TreeTrack1",
+														"TreeTrack1",
+														"ShortDescription",
+														"3",
+														"1"));
 		}
 		public IGoogleFuRow GetGenRow(string in_RowString)
 		{

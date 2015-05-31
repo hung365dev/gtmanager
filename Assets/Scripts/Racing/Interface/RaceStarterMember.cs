@@ -93,7 +93,7 @@ public class RaceStarterMember : MonoBehaviour {
 		this.prizeInfo.text = ""+aTeam.seasonPoints;
 	}
 	
-	public void showChampionshipPoints(GTDriver aDriver) {
+	public void showChampionshipPoints(GTDriver aDriver,int aPosition) {
 		if(positionLabel==null) {
 			UILabel[] childLabels = this.GetComponentsInChildren<UILabel>();
 			for(int i = 0;i<childLabels.Length;i++) {
@@ -108,6 +108,7 @@ public class RaceStarterMember : MonoBehaviour {
 				}
 			}
 		}
+		this.positionLabel.text = (aPosition+1)+". ";
 
 		this.nameLabel.text = aDriver.name+" "+ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aDriver).teamName;
 		this.prizeInfo.text = aDriver.championshipPoints+"";

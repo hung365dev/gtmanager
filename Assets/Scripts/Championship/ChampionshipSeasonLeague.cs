@@ -149,9 +149,11 @@ namespace championship
 			for(int i = 0;i<allTracks.Count&&i<MAX_RACES_IN_SEASON;i++) {
 				ChampionshipRaceSettings race = new ChampionshipRaceSettings();
 				race.setupDefaultsForLeague(divisionNumber,dayOfNextSunday,allTracks[i]);
-				races.Add(race);
 				
-			}
+				races.Add(race);
+				dayOfNextSunday += 14;
+				
+			} 
 
 		}
 		public bool humanLeague {

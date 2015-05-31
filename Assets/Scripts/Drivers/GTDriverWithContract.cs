@@ -42,9 +42,14 @@ namespace Drivers
 			}
 		}
 		
+		public int racesRemainingOnContract() {
+			int r = _contract.remainingOnContract*ChampionshipSeasonLeague.MAX_RACES_IN_SEASON;
+			r += ChampionshipSeason.ACTIVE_SEASON.racesRemainingInSeason;
+			return r;
+		}
 		public int wantedPay {
 			get {
-				return Convert.ToInt32(this.demandingReputation*5);
+				return Convert.ToInt32(this.demandingReputation*10);
 			}
 		}
 
