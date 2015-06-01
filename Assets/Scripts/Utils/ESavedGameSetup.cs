@@ -16,6 +16,7 @@ namespace Utils
 		GameData =2,
 		SeasonsPast = 3,
 		Day = 4,
+		Lua = 5,
 	}
 }
 

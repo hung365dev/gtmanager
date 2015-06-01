@@ -21,7 +21,7 @@ using System.Collections.Generic;
 [ExecuteInEditMode]
 public class CameraPath : MonoBehaviour
 {
-    public static float CURRENT_VERSION_NUMBER = 3.4f;
+    public static float CURRENT_VERSION_NUMBER = 3.41f;
     public float version = CURRENT_VERSION_NUMBER;
 
     public enum PointModes
@@ -571,9 +571,9 @@ public class CameraPath : MonoBehaviour
     {
         if(realNumberOfPoints < 2)
             return percentage;
-        if (percentage == 0)
+        if (percentage <= 0)
             return 0;
-        if (percentage == 1)
+        if (percentage >= 1)
             return 1;
         if(_storedTotalArcLength == 0)
             return percentage;
@@ -596,14 +596,14 @@ public class CameraPath : MonoBehaviour
             index--;
 
         float lengthBefore = _storedArcLengthsFull[index];
-        float currentT = (float)index / (float)storedValueArraySize;
+        float currentT = (float)index / (float)(storedValueArraySize-1);
         if (lengthBefore == targetLength)
         {
             return currentT;
         }
         else
         {
-            return (index + (targetLength - lengthBefore) / (_storedArcLengthsFull[index + 1] - lengthBefore)) / storedValueArraySize;
+            return (index + (targetLength - lengthBefore) / (_storedArcLengthsFull[index + 1] - lengthBefore)) / (storedValueArraySize);
         }
     }
 
@@ -734,7 +734,7 @@ public class CameraPath : MonoBehaviour
     /// <returns>The direction of the path at this percent</returns>
     public Vector3 GetPathDirection(float percentage, bool normalisePercent)
     {
-        if (normalisePercent) percentage = ParsePercentage(percentage);
+//        if (normalisePercent) percentage = DeNormalisePercentage(ParsePercentage(percentage));
         return _storedPathDirections[StoredValueIndex(percentage)];
     }
 
@@ -1077,10 +1077,10 @@ public class CameraPath : MonoBehaviour
             float pointAPercentage = pointPercentage * i;
             float pointBPercentage = pointPercentage * (i+1);
             float arcPercentage = pointBPercentage - pointAPercentage;
-            Vector3 arcCentre = (pointA.worldPosition + pointB.worldPosition) * 0.5f;
+            Vector3 arcCentre = Vector3.Lerp(pointA.worldPosition, pointB.worldPosition, 0.5f);
             float arcLength = StoredArcLength(GetCurveIndex(pointA.index));
             float arcDistance = Vector3.Distance(sceneCamera.transform.position, arcCentre);
-            int arcPoints = Mathf.RoundToInt(arcLength * (40 / Mathf.Max(arcDistance, 20)));
+            int arcPoints = Mathf.CeilToInt(Mathf.Min(arcLength, 50) / (Mathf.Max(arcDistance, 20)/2000));//Mathf.RoundToInt(arcLength * (40 / Mathf.Max(arcDistance, 20)));
             float arcTime = 1.0f / arcPoints;
 
             float endLoop = 1.0f - arcTime;
@@ -1144,47 +1144,125 @@ public class CameraPath : MonoBehaviour
         }
 
         _storedValueArraySize = Mathf.Max(Mathf.RoundToInt(_storedTotalArcLength / _storedPointResolution), 1);
+        float normilisePercentAmount = 1.0f / (_storedValueArraySize * 10);
+        float normalisePercent = 0;
+        float targetMovement = _storedTotalArcLength / (_storedValueArraySize - 1);
 
-        _storedArcLengths = new float[numberOfCurves];
-        float alTime = 1.0f / (_storedValueArraySize);
-        float calculatedTotalArcLength = 0;
-        _storedArcLengthsFull = new float[_storedValueArraySize];
-        _storedArcLengthsFull[0] = 0.0f;
-        for (int i = 0; i < _storedValueArraySize - 1; i++)
+        List<Vector3> storedPoints = new List<Vector3>();
+        List<Vector3> storedDirections = new List<Vector3>();
+        List<float> normValues = new List<float>();
+        List<float> storedArcLengths = new List<float>();
+        List<float> storedArcLengthsFull = new List<float>();
+
+        float currentLength = 0;
+        float targetLength = targetMovement;
+        float totalArcLength = 0;
+
+        Vector3 pA = GetPathPosition(0, true), pB,pC;
+
+        storedPoints.Add(pA);
+        storedDirections.Add((GetPathPosition(normilisePercentAmount, true) - pA).normalized);
+        normValues.Add(0);
+
+        for (; normalisePercent < 1.0f; normalisePercent += normilisePercentAmount)
         {
-            float altA = alTime * (i + 1);
-            float altB = alTime * (i + 1) + alTime;
-            Vector3 pA = GetPathPosition(altA, true);
-            Vector3 pB = GetPathPosition(altB, true);
+//            pB = SplineMaths.CalculateBezierPoint(normalisePercent, curveA, curveP, curveQ, curveB);
+            pB = GetPathPosition(normalisePercent, true);
             float arcLength = Vector3.Distance(pA, pB);
-            calculatedTotalArcLength += arcLength;
-            int arcpoint = Mathf.FloorToInt(altA * numberOfCurves);
-            _storedArcLengths[arcpoint] += arcLength;
-            _storedArcLengthsFull[i + 1] = calculatedTotalArcLength;
-        }
-        _storedTotalArcLength = calculatedTotalArcLength;
 
-        _storedPoints = new Vector3[_storedValueArraySize];
-        _storedPathDirections = new Vector3[_storedValueArraySize];
-        _normalisedPercentages = new float[_storedValueArraySize];
-        for (int i = 0; i < _storedValueArraySize; i++)
-        {
-            float altA = alTime * (i + 1);
-            float altB = alTime * (i + 1);
-            float altC = alTime * (i - 1);
-            _normalisedPercentages[i] = CalculateNormalisedPercentage(altA);
-            Vector3 pA = GetPathPosition(altA, true);
-            Vector3 pB = GetPathPosition(altB, true);
-            Vector3 pC = GetPathPosition(altC, true);
-            _storedPathDirections[i] = (((pB - pA) + (pB - pC)) * 0.5f).normalized;
-        }
+            if (currentLength + arcLength >= targetLength)
+            {
+                float lerpPoint = Mathf.Clamp01((targetLength - currentLength) / arcLength);
 
-        for (int i = 0; i < _storedValueArraySize; i++)
-        {
-            float altA = alTime * (i);
-            Vector3 pA = GetPathPosition(altA);
-            _storedPoints[i] = pA;
+                float normValue = Mathf.Lerp(normalisePercent, normalisePercent + normilisePercentAmount, lerpPoint);
+                normValues.Add(normValue);
+                storedPoints.Add(pB);
+                float cPercent = Mathf.Clamp(normalisePercent + normilisePercentAmount, 0, 1);
+                pC = GetPathPosition(cPercent, true);
+                Vector3 pointDireciton = ((pB - pA) + (pC - pB)).normalized;
+                storedDirections.Add(pointDireciton);
+
+                storedArcLengths.Add(currentLength);
+                storedArcLengthsFull.Add(totalArcLength);
+
+                currentLength = targetLength;
+                targetLength += targetMovement;
+            }
+
+            currentLength += arcLength;
+            totalArcLength += arcLength;
+            pA = pB;
         }
+        normValues.Add(1);
+        storedPoints.Add(GetPathPosition(1, true));
+        storedDirections.Add(GetPathPosition(1, true) - (GetPathPosition(1-normilisePercentAmount, true)).normalized);
+
+        _storedValueArraySize = normValues.Count;//storedPointSize
+        _normalisedPercentages = normValues.ToArray();
+        _storedTotalArcLength = totalArcLength;
+        _storedPoints = storedPoints.ToArray();
+        _storedPathDirections = storedDirections.ToArray();
+        _storedArcLengths = storedArcLengths.ToArray();
+        _storedArcLengthsFull = storedArcLengthsFull.ToArray();
+
+
+
+
+
+
+
+
+//        _storedValueArraySize = Mathf.Max(Mathf.RoundToInt(_storedTotalArcLength / _storedPointResolution), 1);
+//
+//        _storedArcLengths = new float[numberOfCurves];
+//        float alTime = 1.0f / (_storedValueArraySize-1);
+//        float calculatedTotalArcLength = 0;
+//        _storedArcLengthsFull = new float[_storedValueArraySize];
+//        _storedArcLengthsFull[0] = 0.0f;
+//        for (int i = 0; i < _storedValueArraySize - 1; i++)
+//        {
+//            float altA = alTime * (i + 1);
+//            float altB = alTime * (i + 1) + alTime;
+////            Vector3 pA = GetPathPosition(altA, true);
+////            Vector3 pB = GetPathPosition(altB, true);
+//            float arcLength = Vector3.Distance(pA, pB);
+//            calculatedTotalArcLength += arcLength;
+//            int arcpoint = Mathf.FloorToInt(altA * numberOfCurves);
+//            _storedArcLengths[arcpoint] += arcLength;
+//            _storedArcLengthsFull[i + 1] = calculatedTotalArcLength;
+//        }
+//        _storedTotalArcLength = calculatedTotalArcLength;
+
+//        _storedPoints = new Vector3[_storedValueArraySize];
+//        _storedPathDirections = new Vector3[_storedValueArraySize];
+//        _normalisedPercentages = new float[_storedValueArraySize];
+//        Debug.Log(alTime * 0);
+//        Debug.Log(alTime * 1);
+//        Debug.Log(alTime * 2);
+//        Debug.Log(CalculateNormalisedPercentage(alTime * 0));
+//        Debug.Log(CalculateNormalisedPercentage(alTime * 1));
+//        Debug.Log(CalculateNormalisedPercentage(alTime * 2));
+//        for (int i = 0; i < _storedValueArraySize; i++)
+//        {
+//            float altA = Mathf.Clamp01(alTime * (i + 1));
+//            float altB = alTime * (i);
+//            float altC = Mathf.Clamp01(alTime * (i - 1));
+//            _normalisedPercentages[i] = CalculateNormalisedPercentage(altB);
+//            Vector3 pA = GetPathPosition(altA, true);
+//            Vector3 pB = GetPathPosition(altB, true);
+//            Vector3 pC = GetPathPosition(altC, true);
+//            _storedPathDirections[i] = (((pB - pA) + (pB - pC))).normalized;
+//        }
+
+//        _normalisedPercentages[0] = 0;
+//        _normalisedPercentages[_storedValueArraySize-1] = 1;
+
+//        for (int i = 0; i < _storedValueArraySize; i++)
+//        {
+//            float altA = alTime * (i);
+//            Vector3 pA = GetPathPosition(altA);
+//            _storedPoints[i] = pA;
+//        }
 
         if (RecalculateCurvesEvent != null)
             RecalculateCurvesEvent();
@@ -1262,6 +1340,64 @@ public class CameraPath : MonoBehaviour
                 else
                 {
                     if(nextNearestPercentageSqrDistance > newSqrDistance)
+                    {
+                        nextNearestPercentage = perc;
+                        nextNearestPercentageSqrDistance = newSqrDistance;
+                    }
+                }
+            }
+            testResolution = refinedResolution;
+        }
+        float lerpvalue = nearestPercentageSqrDistance / (nearestPercentageSqrDistance + nextNearestPercentageSqrDistance);
+        return Mathf.Clamp01(Mathf.Lerp(nearestPercentage, nextNearestPercentage, lerpvalue));
+    }
+
+    /// <summary>
+    /// Thanks to Antti Luukka for this! :)
+    /// Retrieves the percentage nearest to the specified point
+    /// Using a previous position
+    /// </summary>
+    /// <param name="fromPostition"></param>
+    /// <param name="prevPercentage"></param>
+    /// <param name="prevPosition"></param>
+    /// <param name="ignoreNormalisation"></param>
+    /// <param name="refinments"></param>
+    /// <returns></returns>
+    public float GetNearestPointNear(Vector3 fromPostition, float prevPercentage, Vector3 prevPosition, bool ignoreNormalisation, int refinments)
+    {
+        int testPoints = 10;
+        float testResolution = 1.0f / testPoints;
+        float nearestPercentage = prevPercentage;
+        float nextNearestPercentage = nearestPercentage;
+        float nearestPercentageSqrDistance = Vector3.SqrMagnitude(prevPosition - fromPostition);
+        float nextNearestPercentageSqrDistance = nearestPercentageSqrDistance;
+
+        int numberOfRefinments = refinments;// Mathf.RoundToInt(Mathf.Pow(pathLength * 10, 1.0f / 5.0f));
+        for (int r = 0; r < numberOfRefinments; r++)
+        {
+            float searchSize = testResolution / 1.8f;
+            float startSearch = nearestPercentage - searchSize;
+            float endSearch = nearestPercentage + searchSize;
+            float refinedResolution = testResolution / testPoints;
+            for (float i = startSearch; i < endSearch; i += refinedResolution)
+            {
+                float perc = i % 1.0f;
+                if (perc < 0)
+                    perc += 1.0f;
+                Vector3 point = GetPathPosition(perc, ignoreNormalisation);
+                Vector3 difference = point - fromPostition;
+                float newSqrDistance = Vector3.SqrMagnitude(difference);
+                if (nearestPercentageSqrDistance > newSqrDistance)
+                {
+                    nextNearestPercentage = nearestPercentage;
+                    nextNearestPercentageSqrDistance = nearestPercentageSqrDistance;
+
+                    nearestPercentage = perc;
+                    nearestPercentageSqrDistance = newSqrDistance;
+                }
+                else
+                {
+                    if (nextNearestPercentageSqrDistance > newSqrDistance)
                     {
                         nextNearestPercentage = perc;
                         nextNearestPercentageSqrDistance = newSqrDistance;

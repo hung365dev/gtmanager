@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{F57C3530-0EAD-A0ED-6D92-5B2A5547E82E}</ProjectGuid>
+	<ProjectGuid>{44F47B70-A2E4-B28E-C6D3-23FF804FE35E}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_5_0_1;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;UNITY_IPHONE;ENABLE_RUNTIME_GI;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_NETWORK;UNITY_IPHONE_API;UNITY_IOS;ENABLE_TEXTUREID_MAP;PLAYERCONNECTION_LISTENS_FIXED_PORT;DEBUGGER_LISTENS_FIXED_PORT;ENABLE_IL2CPP;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_5_0_1;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;UNITY_IPHONE;ENABLE_RUNTIME_GI;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_NETWORK;UNITY_IPHONE_API;UNITY_IOS;ENABLE_TEXTUREID_MAP;PLAYERCONNECTION_LISTENS_FIXED_PORT;DEBUGGER_LISTENS_FIXED_PORT;ENABLE_IL2CPP;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -49,6 +49,8 @@
      <Compile Include="Assets\Car Paint Shader PRO Mobile\Scripts\CarCamAround.js" />
      <Compile Include="Assets\Car Paint Shader PRO Mobile\Scripts\Rotate.js" />
      <Compile Include="Assets\Car Paint Shader PRO Mobile\Scripts\SetScrollSpeed.js" />
+     <Compile Include="Assets\Extensions\AndroidNative\xExample\Scripts\JS\JSUseExample.js" />
+     <Compile Include="Assets\Extensions\IOSNative\xExample\Scripts\JSExample\JSCall.js" />
      <None Include="Assets\Dialogue System\_README.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\MultiTexture.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Convolution3x3.shader" />
@@ -64,9 +66,12 @@
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Duo.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Alpha-Diffuse-ZWrite.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Glitch.shader" />
+     <None Include="Assets\Plugins\StansAssets\Android\google_play\an_googleplay.txt" />
+     <None Include="Assets\Plugins\StansAssets\Android\OneSignalSDK.txt" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Normal-BumpSpec.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Kuwahara.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Car.shader" />
+     <None Include="Assets\Plugins\StansAssets\Android\res\values\analytics.xml" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Surface.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAdd_Alpha8.shader" />
      <None Include="Assets\CameraPath3\3.1x Upgrade readme.txt" />
@@ -76,8 +81,10 @@
      <None Include="Assets\Dialogue System\Third Party Support\NGUI\_README.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 2.shader" />
      <None Include="Assets\HereVR Race Scene\Pit Garage Pack 01\Pit Garage Pack 01. - HereVR Race Scene  - Release log.txt" />
+     <None Include="Assets\Extensions\IOSNative\Documentation\ISN_VersionNotes.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 3.shader" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Ultra Detail Bump RefMask SpecMask.shader" />
+     <None Include="Assets\Plugins\StansAssets\IOS\GoogleMobileAdController.mm.txt" />
      <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Transition.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Alpha-Bumped.shader" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Low Detail.shader" />
@@ -88,12 +95,14 @@
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Surface_Alpha.shader" />
      <None Include="Assets\CameraPath3\readme.txt" />
      <None Include="Assets\CameraPath3\versionHistory.txt" />
+     <None Include="Assets\Plugins\StansAssets\Android\AndroidManifest.xml" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\BMW5Series\readme.txt" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarMini\readme.txt" />
      <None Include="Assets\Dialogue System\DLLs\_README.txt" />
      <None Include="Assets\iRDS\Required\Shaders\ShadowProjection.shader" />
      <None Include="Assets\Easy Save 2\changelog.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (TextureClip).shader" />
+     <None Include="Assets\Plugins\StansAssets\Android\social\twitter4j-core-3.0.5.txt" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\FordMondeo\readme.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Duo Probes.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Wiggle.shader" />
@@ -114,6 +123,7 @@
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAlphaBlend_Alpha8.shader" />
      <None Include="Assets\UI\GameUI\LatoHeavy144.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Medium Detail Scrolled Env.shader" />
+     <None Include="Assets\Extensions\AndroidNative\Documentation\AN_VersionNotes.txt" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\ShitRedCar\Skybox\readme.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked 3.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D Marker.shader" />
@@ -131,6 +141,7 @@
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Low Detail RefMask ColorMask SpecMask.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Invert.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Add.shader" />
+     <None Include="Assets\Plugins\StansAssets\Android\libs\image-chooser-library-1.3.0.txt" />
      <None Include="Assets\Colorful\Shaders\CC_Glitch.cginc" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 2.shader" />
      <None Include="Assets\Easy Save 2\readme.txt" />
@@ -163,16 +174,20 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Posterize.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Technicolor.shader" />
+     <None Include="Assets\Dialogue System\Documentation\_README.txt" />
      <None Include="Assets\Dialogue System\Scripts\Supplemental\Utility\_README.txt" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Normal-Diffuse.shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarEnzo\readme.txt" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarBugatti\readme.txt" />
+     <None Include="Assets\Plugins\StansAssets\Android\libs\android-support-v4.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Medium Detail RefMask ColorMask.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Demo\Assets\CFX_Demo_WaterWiggle.shader" />
      <None Include="Assets\Colorful\Shaders\CC_HueSaturationValue.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add VColor.shader" />
+     <None Include="Assets\Plugins\StansAssets\IOS\GoogleMobileAdBanner.h.txt" />
      <None Include="Assets\Dialogue System\Scripts\_README.txt" />
      <None Include="Assets\Horizon[ON]\Horizon[ON] - ReadMe.txt" />
+     <None Include="Assets\Plugins\StansAssets\Android\social\an_social.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text.shader" />
      <None Include="Assets\Colorful\Shaders\CC_WhiteBalance.shader" />
      <None Include="Assets\Colorful\Shaders\CC_ChannelClamper.shader" />
@@ -181,36 +196,50 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
      <None Include="Assets\iRDS\Required\Shaders\GlassBuilding.shader" />
      <None Include="Assets\Dialogue System\Third Party Support\NGUI\Example\Dual Subtitle Example\_README.txt" />
+     <None Include="Assets\Plugins\StansAssets\Android\mobilenativepopups.txt" />
+     <None Include="Assets\Extensions\GoogleMobileAd\Documentation\GMA_VersionNotes.txt" />
      <None Include="Assets\link.xml" />
+     <None Include="Assets\Plugins\StansAssets\Android\androidnative.txt" />
      <None Include="Assets\Colorful\Changelog.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint High Detail RefMask ColorMask.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Normal-BumpSpec_EnvLightmapped.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Alpha-VertexLitGlow02.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Tint.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\Surface.shader" />
+     <None Include="Assets\Extensions\UltimateMobile\Documentation\UM_VersionNotes.txt" />
+     <None Include="Assets\Plugins\StansAssets\Android\billing\an_billing.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarChrome.shader" />
      <None Include="Assets\Colorful\Readme.txt" />
      <None Include="Assets\Colorful\Shaders\CC_ChannelMixer.shader" />
+     <None Include="Assets\Plugins\StansAssets\Android\google_play\google-play-services.txt" />
      <None Include="Assets\Resources\CC_FastVignetteShader.shader" />
      <None Include="Assets\Race_Track_Construction_Kit\Shaders\AlphaSelfIllum_NoFog.shader" />
      <None Include="Assets\iRDS\Required\Shaders\PolyTerrain\polysplatting.cginc" />
+     <None Include="Assets\Extensions\AndroidManifestManager\default.xml" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarMcClarenP1\readme.txt" />
      <None Include="Assets\Colorful\Shaders\CC_Pixelate.shader" />
      <None Include="Assets\Colorful\Shaders\CC_GradientRamp.shader" />
+     <None Include="Assets\Plugins\StansAssets\Android\app_licensing\an_licensing_library.txt" />
      <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX4 Readme.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked.shader" />
      <None Include="Assets\Dialogue System\Scripts\Supplemental\UI\_README.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Unlit.shader" />
+     <None Include="Assets\Plugins\StansAssets\Android\res\values\version.xml" />
      <None Include="Assets\EasyRoads3D\_Readme.txt" />
      <None Include="Assets\iRDS\Required\Shaders\TransparentLightMappedVertexLiZWrite.shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\Lexus\readme.txt" />
      <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX2 Readme.txt" />
+     <None Include="Assets\Plugins\StansAssets\IOS\GoogleMobileAdBanner.mm.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text (TextureClip).shader" />
+     <None Include="Assets\Plugins\StansAssets\IOS\GoogleMobileAdController.h.txt" />
+     <None Include="Assets\Plugins\StansAssets\Android\res\xml\file_paths.xml" />
      <None Include="Assets\Colorful\Shaders\CC_PhotoFilter.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Road-Edit-Mode.shader" />
      <None Include="Assets\Resources\Colorful.cginc" />
      <None Include="Assets\Dialogue System\Scripts\Supplemental\UI\Prefabs\Unity UI Assets\_README.txt" />
+     <None Include="Assets\Plugins\StansAssets\Android\res\values\ids.xml" />
      <None Include="Assets\CC_FastVignette.shader" />
+     <None Include="Assets\Extensions\StansAssetsCommon\SA_FB_PlaceHolder.txt" />
      <None Include="Assets\iRDS\Required\Pictures\Skidmarks\Skidmarks.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Normal-Bumped.shader" />
      <None Include="Assets\iRDS\Required\Shaders\AlphaTest-Diffuse-GEqual.shader" />
@@ -218,6 +247,7 @@
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarLamborghini\readme.txt" />
      <None Include="Assets\Colorful\Shaders\CC_LookupFilter.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Halftone.shader" />
+     <None Include="Assets\Plugins\WP8\GoogleAds.xml" />
      <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX Readme.txt" />
      <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Flat.shader" />
      <None Include="Assets\Colorful\Shaders\CC_ChannelSwapper.shader" />
@@ -229,22 +259,34 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="DialogueSystem">
- <HintPath>/Users/jonathanstarnes/Documents/gtmanagerNEW/Assets/Dialogue System/DLLs/DialogueSystem.dll</HintPath>
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Dialogue System/DLLs/DialogueSystem.dll</HintPath>
  </Reference>
  <Reference Include="LuaInterpreter">
- <HintPath>/Users/jonathanstarnes/Documents/gtmanagerNEW/Assets/Dialogue System/DLLs/LuaInterpreter.dll</HintPath>
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Dialogue System/DLLs/LuaInterpreter.dll</HintPath>
  </Reference>
  <Reference Include="EasyRoads3D">
- <HintPath>/Users/jonathanstarnes/Documents/gtmanagerNEW/Assets/EasyRoads3D/lib/EasyRoads3D.dll</HintPath>
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/EasyRoads3D/lib/EasyRoads3D.dll</HintPath>
  </Reference>
  <Reference Include="iRDSMain">
- <HintPath>/Users/jonathanstarnes/Documents/gtmanagerNEW/Assets/iRDS/Scripts/Main/iRDSMain.dll</HintPath>
- </Reference>
- <Reference Include="MoodkieSecurity">
- <HintPath>/Users/jonathanstarnes/Documents/gtmanagerNEW/Assets/Plugins/MoodkieSecurity.dll</HintPath>
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/iRDS/Scripts/Main/iRDSMain.dll</HintPath>
  </Reference>
  <Reference Include="ES2">
- <HintPath>/Users/jonathanstarnes/Documents/gtmanagerNEW/Assets/Plugins/ES2.dll</HintPath>
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/ES2.dll</HintPath>
+ </Reference>
+ <Reference Include="MoodkieSecurity">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/MoodkieSecurity.dll</HintPath>
+ </Reference>
+ <Reference Include="WP8PopUps">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/WP8PopUps.dll</HintPath>
+ </Reference>
+ <Reference Include="GoogleAdsWP8">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/GoogleAdsWP8.dll</HintPath>
+ </Reference>
+ <Reference Include="WP8Native">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/WP8Native.dll</HintPath>
+ </Reference>
+ <Reference Include="OneSignalSDK">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/OneSignalSDK.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -252,7 +294,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{3F5CF281-7001-A5AA-CE4E-57E97DE12475}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{BB281839-05EA-5CA6-1562-F2662D1954FC}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

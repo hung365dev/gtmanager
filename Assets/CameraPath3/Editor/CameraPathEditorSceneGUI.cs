@@ -246,6 +246,8 @@ public class CameraPathEditorSceneGUI
             Handles.color = (i == selectedPointIndex) ? _cameraPath.selectedPointColour : _cameraPath.unselectedPointColour;
             if (Handles.Button(point.worldPosition, Quaternion.identity, pointHandleSize, pointHandleSize, Handles.DotCap))
             {
+                if (i == selectedPointIndex)
+                    _cameraPath.pointMode = CameraPath.PointModes.Transform;
                 ChangeSelectedPointIndex(i);
                 GUI.changed = true;
             }
@@ -492,7 +494,7 @@ public class CameraPathEditorSceneGUI
             Handles.color = (pointIsSelected) ? _cameraPath.selectedPointColour : _cameraPath.unselectedPointColour;
 
             float tiltSize = 2.0f;
-            Vector3 pointForwardDirection = _cameraPath.GetPathDirection(point.percent, false);
+            Vector3 pointForwardDirection = _cameraPath.GetPathDirection(_cameraPath.DeNormalisePercentage(point.percent));
             Quaternion qTilt = Quaternion.AngleAxis(-point.tilt, pointForwardDirection);
             Quaternion pointForward = Quaternion.LookRotation(pointForwardDirection);
             Handles.CircleCap(0, point.worldPosition, pointForward, tiltSize);

@@ -24,6 +24,10 @@ namespace championship
 		public static ChampionshipSeason ACTIVE_SEASON;
 
 
+		public void initNextRace() {
+
+		}
+
 		public void initFromDatabase(string aUsersTeamName) {
 			ACTIVE_SEASON = this;
 			List<TeamDataRecord> allTeams = Database.TeamDatabase.REF.teams;
@@ -53,10 +57,12 @@ namespace championship
 			list.Add("");
 			list.Add("");
 			list.Add("");
+			list.Add("");
 			list[(int) ESavedGameSetup.Day] = ""+this.secondsPast;
 			list[(int) ESavedGameSetup.GameData] = this.ToString();
 			list[(int) ESavedGameSetup.SavedGameHeadline] = headline;
-			list[(int) ESavedGameSetup.SeasonsPast] = ""+this.season;	
+			list[(int) ESavedGameSetup.SeasonsPast] = ""+this.season;
+			list[(int) ESavedGameSetup.Lua] = PersistentDataManager.GetSaveData();
 			SaveGameUtils.save(list);	
 		}
 

@@ -42,11 +42,19 @@ namespace championship
 		}
 		public void FromString(string aString) {
 			string[] split = Base64.Base64Decode(aString).Split(new char[] {'|'});
-			leagueName = split[0];
-			divisionNumber = Convert.ToInt32(split[1]);
-			this.racesFromString(split[2]);
-			this.teamsFromString(split[3]);
-			this.randomEventsFromString(split[4]);
+			if(split.Length==5) {
+				leagueName = split[0];
+				divisionNumber = Convert.ToInt32(split[1]);
+				this.racesFromString(split[2]);
+				this.teamsFromString(split[3]);
+				this.randomEventsFromString(split[4]);
+			}
+		}
+
+		public void postInit() {
+			for(int i =0;i<this.teams.Count;i++) {
+				this.teams[i].postInit();
+			}
 		}
 		public void racesFromString(string aString) {
 			string s = Base64.Base64Decode(aString);
@@ -79,11 +87,13 @@ namespace championship
 
 		public void teamsFromString(string aString) {
 			string uncomp = Base64.Base64Decode(aString);
-			string[] split = uncomp.Split(new char[] {'%'});
+			string[] split = uncomp.Split(new char[] {'|'});
 			for(int i =0;i<split.Length;i++) {
 				GTTeam team = new GTTeam();
-				team.FromString(split[i]);
-				this.teams.Add(team);
+				if(split[i].Length>5) {
+					team.FromString(split[i]);
+					this.teams.Add(team);
+				}
 			}
 		}
 		public void randomEventsFromString(string aString) {
@@ -92,17 +102,20 @@ namespace championship
 			for(int i = 0;i<split.Length;i++) {
 				string[] all = split[i].Split(new char[] {'|'});
 				RandomEvent r = new RandomEvent();
-				r.date = Convert.ToInt32(all[0]);
-				switch(all[1]) {
-					case("DriverImprovement"):default:r.eventType = ERandomEventType.DriverImprovement;break;
-				}
-				r.rewardCash = Convert.ToInt32(all[2]);
-				r.conversation = all[3];
-				if(all[4]!="0") {
-					Debug.LogError("Find Effect Driver!");
-				}
-				if(all[5]!="0") {
-	
+				if(all.Length>6) {
+					r.date = Convert.ToInt32(all[0]);
+					switch(all[1]) {
+						case("DriverImprovement"):default:r.eventType = ERandomEventType.DriverImprovement;break;
+					}
+					r.rewardCash = Convert.ToInt32(all[2]);
+					r.conversation = all[3];
+					if(all[4]!="0") {
+						Debug.LogError("Find Effect Driver!");
+					}
+					if(all[5]!="0") {
+		
+					}
+					this.randomEvents.Add(r);
 				}
 			}
 		}
@@ -343,6 +356,24 @@ namespace championship
 				}
 			}
 			return null;
+		}
+		public void initNextRace() {
+			bool foundNextRace = false;
+
+			ChampionshipRaceSettings nextRace = null;
+			for(int i = 0;i<races.Count;i++) {
+				
+				int ticksTillThisRace = races[i].startDate-ChampionshipSeason.ACTIVE_SEASON.secondsPast;
+				if(ticksTillThisRace>=0&&!foundNextRace) {
+					if(races[i].teamsInRace==null||races[i].teamsInRace.Count==0) {
+						races[i].teamsInRace = teams;
+					}
+					nextRace = races[i];
+					foundNextRace = true;
+				}
+				
+			}
+			ChampionshipSeason.ACTIVE_SEASON.nextRace = nextRace;
 		}
 		public void doTick(int aCurrentTick) {
 			bool foundNextRace = false;

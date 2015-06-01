@@ -25,6 +25,11 @@ namespace Drivers
 		public int lastRacePoints;
 
 		public static List<GTDriver> allDrivers = new List<GTDriver>();
+
+		public int load_bonusPerRace;
+		public int load_payPerRace;
+		public int load_remainingOnContract;
+
 		public GTDriver ()
 		{
 		}
@@ -38,9 +43,16 @@ namespace Drivers
 			base.FromString(split[0]);
 			championshipPoints = Convert.ToInt32(split[1]);
 			this.lastRacePoints = Convert.ToInt32(split[2]);
-			this.contract.bonusPerRace = Convert.ToInt32(split[3]);
-			this.contract.payPerRace = Convert.ToInt32(split[4]);
-			this.contract.remainingOnContract = Convert.ToInt32(split[5]);
+			load_bonusPerRace = Convert.ToInt32(split[3]);
+			load_payPerRace = Convert.ToInt32(split[4]);
+			load_remainingOnContract = Convert.ToInt32(split[5]);
+			
+		}
+		public void initContract() {
+			
+			this.contract.bonusPerRace = this.load_bonusPerRace;;
+			this.contract.payPerRace = this.load_payPerRace;
+			this.contract.remainingOnContract = this.load_remainingOnContract;
 		}
 		public static float percentOfGoodnessBrakingValue(float aValue) {
 			float worstBraking = brakingAggressionLimit(false);;

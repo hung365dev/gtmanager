@@ -296,6 +296,8 @@ public class RaceManager : MonoBehaviour {
 		if(r!=null) {
 			DialogueManager.ShowAlert(r.alertMessage);
 		}
+		this.teamController.initButtons();
+		this.teamController.changeCar();
 		this.statistics.StartTheRace();
 		if(genericRaceGUI!=null) {
 			genericRaceGUI.gameObject.SetActive(true);

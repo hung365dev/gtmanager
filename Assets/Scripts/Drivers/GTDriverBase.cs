@@ -9,6 +9,7 @@
 // ------------------------------------------------------------------------------
 using System;
 using Database;
+using Utils;
 
 
 namespace Drivers
@@ -98,16 +99,16 @@ namespace Drivers
 		
 
 		public virtual string ToString() {
-			return id+"|"+name+"|"+stamina+"|"+this.aggressivenessOnBrake+"|"+this.speedSteeringFactor+"|"+lookAheadFactor+"|"+lookAheadConstant+"|"+this.corneringSpeedFactor+
-			this.maxDriftAngle+"|"+driftingThrottleFactor+"|"+steeringDriftFactor+"|"+sideAvoidingFactor+"|"+collisionSideFactor+"|"+overtakeFactor+"|"+this.humanError+"|"+
+			return Base64.Base64Encode(id+"|"+name+"|"+stamina+"|"+this.aggressivenessOnBrake+"|"+this.speedSteeringFactor+"|"+lookAheadFactor+"|"+lookAheadConstant+"|"+this.corneringSpeedFactor+
+			"|"+this.maxDriftAngle+"|"+driftingThrottleFactor+"|"+steeringDriftFactor+"|"+sideAvoidingFactor+"|"+collisionSideFactor+"|"+overtakeFactor+"|"+this.humanError+"|"+
 			this.overtakeSpeedDifference+"|"+this.overtakeOffsetIncrementMin+"|"+this.overtakeOffsetIncrementMax+"|"+this.backToLineIncrement+"|"+
 			this.shiftFactor+"|"+this.shiftUpFactor+"|"+this.tyreChangePercentage+"|"+this.fuelLoadPercentage+"|"+fullAccelMargin+"|"+frontCollDist+"|"+backCollDist+"|"+
 			this.sideMargin+"|"+this.heightMargin+"|"+lengthMargin+"|"+SIDE_MARGIN+"|"+offtrackThrottleMultiplier+"|"+jumpThrottleMultiplier+"|"+jumpThrottleTime+"|"+
-			this.agressiveMultiplier+"|"+sponsorFriendliness+"|"+demandingReputation+"|"+this.positionDemanded;
+			this.agressiveMultiplier+"|"+sponsorFriendliness+"|"+demandingReputation+"|"+this.positionDemanded);
 			
 		}
 		public virtual void FromString(string aString) {
-			string[] all = aString.Split(new char[] {'|'});
+			string[] all = Base64.Base64Decode(aString).Split(new char[] {'|'});
 			id = Convert.ToInt32(all[0]);
 			name = all[1];
 			stamina = Convert.ToInt32(all[2]);
@@ -116,25 +117,37 @@ namespace Drivers
 			this.lookAheadFactor = (float) Convert.ToDouble(all[5]);
 
 			this.lookAheadConstant = (float) Convert.ToDouble(all[6]);
-			this.lookAheadFactor = (float) Convert.ToDouble(all[7]);
+			this.corneringSpeedFactor = (float) Convert.ToDouble(all[7]);
 			this.maxDriftAngle = (float) Convert.ToDouble(all[8]);
-			this.offtrackThrottleMultiplier = (float) Convert.ToDouble(all[9]);
-			this.overtakeFactor = (float) Convert.ToDouble(all[10]);
-			this.overtakeOffsetIncrementMax = (float) Convert.ToDouble(all[11]);
-			this.overtakeOffsetIncrementMin = (float) Convert.ToDouble(all[12]);
-			this.overtakeSpeedDifference = (float) Convert.ToDouble(all[13]);
-			this.shiftFactor = (float) Convert.ToDouble(all[14]);
-			this.shiftUpFactor = (float) Convert.ToDouble(all[15]);
-			this.SIDE_MARGIN = (float) Convert.ToDouble(all[16]);
-			this.sideAvoidingFactor = (float) Convert.ToDouble(all[17]);
-			this.sideMargin = (float) Convert.ToDouble(all[18]);
-            this.speedSteeringFactor = (float) Convert.ToDouble(all[19]);
-		    this.steeringDriftFactor = (float) Convert.ToDouble(all[20]);
+			driftingThrottleFactor = (float) Convert.ToDouble(all[9]);
+			steeringDriftFactor = (float) Convert.ToDouble(all[10]);
+			this.sideAvoidingFactor = (float) Convert.ToDouble(all[11]);
+			this.collisionSideFactor = (float) Convert.ToDouble(all[12]);
+			this.overtakeFactor = (float) Convert.ToDouble(all[13]);
+			this.humanError = (float) Convert.ToDouble (all[14]);
+			this.overtakeSpeedDifference = (float) Convert.ToDouble(all[15]);
+			this.overtakeOffsetIncrementMin = (float) Convert.ToDouble(all[16]);
+			this.overtakeOffsetIncrementMax = (float) Convert.ToDouble(all[17]);
+			this.backToLineIncrement = (float) Convert.ToDouble(all[18]);
+			this.shiftFactor = (float) Convert.ToDouble(all[19]);
+			this.shiftUpFactor = (float) Convert.ToDouble(all[20]);
 			this.tyreChangePercentage = (float) Convert.ToDouble(all[21]);
-			
-			this.sponsorFriendliness = (float) Convert.ToDouble(all[22]);
-			
-			this.demandingReputation = Convert.ToInt32(all[23]);
+			this.fuelLoadPercentage = (float) Convert.ToDouble (all[22]);
+			this.fullAccelMargin = (float) Convert.ToDouble(all[23]);
+			this.frontCollDist = (float) Convert.ToDouble(all[24]);
+			this.backCollDist = (float) Convert.ToDouble(all[25]);
+			this.sideMargin = (float) Convert.ToDouble(all[26]);
+			this.heightMargin = (float) Convert.ToDouble(all[27]);
+			this.lengthMargin = (float) Convert.ToDouble(all[28]);
+			this.SIDE_MARGIN = (float) Convert.ToDouble(all[29]);
+			this.offtrackThrottleMultiplier = (float) Convert.ToDouble(all[30]);
+			this.jumpThrottleMultiplier = (float) Convert.ToDouble(all[31]);
+			this.jumpThrottleTime = (float) Convert.ToDouble(all[32]);
+			this.agressiveMultiplier = (float) Convert.ToDouble(all[33]);
+			this.sponsorFriendliness = (float) Convert.ToDouble(all[34]);
+			this.demandingReputation = Convert.ToInt32(all[35]);
+			this.positionDemanded = Convert.ToInt32(all[36]);
+
 
 
 		}

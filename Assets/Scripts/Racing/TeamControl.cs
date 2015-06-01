@@ -27,7 +27,8 @@ namespace Racing
 		public List<RacingAI> racingAIs = new List<RacingAI>();
 		
 		public IRDSCarCamera carCamera;
-
+		public UILabel currentlyViewingLabel;
+		public TweenAlpha currentlyViewingTween;
 		public ECameraViews cameraView = ECameraViews.ChaseCamera;
 
 
@@ -74,7 +75,7 @@ namespace Racing
 			carCamera.GetComponent<Camera>().enabled = true;
 			carCamera.ActivateRoadCamera();
 			RaceManager.REF.hasStarted = true;
-			this.changeCar();
+			//this.changeCar();
 			if(raceStartCamera!=null) {
 				Destroy(raceStartCamera.gameObject);
 			}
@@ -132,6 +133,9 @@ namespace Racing
 				for(int i = 0;i<this.racingAIs.Count;i++) {
 					this.initDriversFace(racingAIs[i]);
 				}
+				currentlyViewingLabel = GameObject.Find("NowViewingLabel").GetComponent<UILabel>();
+				currentlyViewingTween = GameObject.Find ("NowViewingLabel").GetComponent<TweenAlpha>();
+				currentlyViewingTween.enabled = false;
 
 				changeCamera = GameObject.Find("ButtonToggleCamera").GetComponent<UIButton>();
 				changeCars.onClick.Add(new EventDelegate(this,"changeCar"));
@@ -184,6 +188,11 @@ namespace Racing
 				carCamera.changeTarget(racingAIs[0].aiInput.GetInstanceID());
 				selectedCar = racingAIs[0];
 			}
+			if(currentlyViewingTween!=null) {
+				currentlyViewingTween.ResetToBeginning();
+				currentlyViewingTween.enabled = true;
+				currentlyViewingLabel.text = "NOW VIEWING "+selectedCar.driverName.ToUpper();
+			} else this.initButtons();
 			carInterface.targetAI = selectedCar;
 		}
 

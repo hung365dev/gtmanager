@@ -452,9 +452,9 @@ public class CameraPathAnimator : MonoBehaviour
         {
             if (_playing)
             {
-                UpdateAnimationTime();
                 UpdateAnimation();
                 UpdatePointReached();
+                UpdateAnimationTime();
             }
             else
             {
@@ -472,9 +472,9 @@ public class CameraPathAnimator : MonoBehaviour
         {
             if (_playing)
             {
-                UpdateAnimationTime();
                 UpdateAnimation();
                 UpdatePointReached();
+                UpdateAnimationTime();
             }
             else
             {
@@ -512,8 +512,8 @@ public class CameraPathAnimator : MonoBehaviour
     {
         if (animationObject == null)
         {
-			Stop();
-			Destroy(this.gameObject);
+            Debug.LogError("There is no animation object specified in the Camera Path Animator component. Nothing to animate.\nYou can find this component in the main camera path game object called "+gameObject.name+".");
+            Stop();
             return;
         }
 
@@ -585,7 +585,7 @@ public class CameraPathAnimator : MonoBehaviour
             return;
         }
 
-        if(advance)
+        if (advance)
         {
             switch(animationMode)
             {

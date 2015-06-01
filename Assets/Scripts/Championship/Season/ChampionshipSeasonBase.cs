@@ -43,14 +43,23 @@ namespace championship
 			return s;
 		}
 		public void FromString(string aString) {
+			ChampionshipSeason.ACTIVE_SEASON = (ChampionshipSeason) this;
 			string[] split = aString.Split (new char[] {'|'});
 			if(split.Length>1) {
-				secondsPast = Convert.ToInt32(split[0]);
+				ChampionshipSeason.ACTIVE_SEASON.secondsPast = Convert.ToInt32(split[0]);
 			}
 			for(int i = 1;i<split.Length;i++) {
 				ChampionshipSeasonLeague l = new ChampionshipSeasonLeague();
-				l.FromString(split[i]);
-				leagues.Add(l);
+				if(split[i].Length>10) {
+					l.FromString(split[i]);
+					leagues.Add(l);
+				}
+			}
+			for(int i = 0;i<leagues.Count;i++) {
+				leagues[i].postInit();
+			}
+			for(int i = 0;i<GTDriver.allDrivers.Count;i++) {
+				GTDriver.allDrivers[i].initContract();
 			}
 		}
 

@@ -30,21 +30,24 @@ namespace Teams
 				driverRelationships.Add(new DriverRelationshipRecord(GTDriver.allDrivers[i],this.reputation));
 			}
 		}
-
+		public void postInit() {
+		
+		}
 		public override void FromString(string aString) {
-			string[] split = aString.Split(new char[] {'|'});
+			string[] split = Base64.Base64Decode(aString).Split(new char[] {'|'});
 			base.FromString(split[0]);
 			string relationships = Base64.Base64Decode(split[1]);
 			string[] relationshipsSplit = relationships.Split(new char[] {'%'});
 			for(int i = 0;i<relationshipsSplit.Length;i++) {
 				string[] thisSplit = relationshipsSplit[i].Split(new char[] {'|'});
-				driverRelationships.Add(new DriverRelationshipRecord(thisSplit[0],Convert.ToInt32(thisSplit[1])));
+				if(thisSplit.Length==2)
+					driverRelationships.Add(new DriverRelationshipRecord(thisSplit[0],Convert.ToInt32(thisSplit[1])));
 			}
 		}
 		
 		public override string ToString ()
 		{
-			return base.ToString()+"|"+driverRelationshipsToString();
+			return Base64.Base64Encode(base.ToString()+"|"+driverRelationshipsToString());
 		}
 
 		public string driverRelationshipsToString() {

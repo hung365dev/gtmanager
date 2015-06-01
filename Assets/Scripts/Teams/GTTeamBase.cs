@@ -54,23 +54,28 @@ namespace Teams
 			c.FromString(s[3]);
 			this.cars.Add(c);
 
-			teamColor.r = Convert.ToInt32(s[4]);
-			teamColor.g = Convert.ToInt32(s[5]);
-			teamColor.b = Convert.ToInt32(s[6]);
+			teamColor.r = (float) Convert.ToDouble(s[4]);
+			teamColor.g = (float) Convert.ToDouble(s[5]);
+			teamColor.b = (float) Convert.ToDouble(s[6]);
 
-			wheelColor.r = Convert.ToInt32(s[7]);
-			wheelColor.g = Convert.ToInt32(s[8]);
-			wheelColor.b = Convert.ToInt32(s[9]);
+			wheelColor.r = (float) Convert.ToDouble(s[7]);
+			wheelColor.g = (float) Convert.ToDouble(s[8]);
+			wheelColor.b = (float) Convert.ToDouble(s[9]);
 
-			if(s[10]=="true") {
+			if(s[10].ToLower()=="true") {
 				humanControlled = true;
 			} else {
 				humanControlled = false;
 			}
+			this.teamName = s[11];
+			this.seasonPoints = Convert.ToInt32(s[12]);
+			this.seasonWins =Convert.ToInt32(s[13]);
+			this.cash = Convert.ToInt32(s[14]);
+			this.reputation = Convert.ToInt32(s[15]);
 		}
 		public virtual string ToString() {
 			string s = drivers[0].ToString()+"|"+drivers[1].ToString()+"|"+cars[0].ToString()+"|"+cars[1].ToString()+"|"+
-			teamColor.r+"|"+teamColor.g+"|"+teamColor.b+"|"+wheelColor.r+"|"+wheelColor.g+"|"+wheelColor.b+
+			teamColor.r+"|"+teamColor.g+"|"+teamColor.b+"|"+wheelColor.r+"|"+wheelColor.g+"|"+wheelColor.b+"|"+
 			humanControlled+"|"+teamName+"|"+seasonPoints+"|"+seasonWins+"|"+cash+"|"+reputation;
 			return Base64.Base64Encode(s);
 

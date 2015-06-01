@@ -27,6 +27,7 @@ namespace Teams
 		{
 		}
 		public override void FromString(string aString) {
+			Debug.Log ("Decoding: "+aString);
 			string s = Base64.Base64Decode(aString);
 			string[] split = s.Split(new char[] {'|'});
 			base.FromString(split[0]);
@@ -47,7 +48,7 @@ namespace Teams
 				if(split1.Length==2) {
 					
 					int sponsorID = Convert.ToInt32(split1[1]);
-					int relationshipValue = Convert.ToInt32(split[0]);
+					int relationshipValue = Convert.ToInt32(split1[0]);
 					SponsorRelationshipRecord r = new SponsorRelationshipRecord(sponsorID,relationshipValue);
 					this.sponsorRelationships.Add(r);
 				}
@@ -55,7 +56,8 @@ namespace Teams
 		}	
 		
 		public string ToString() {
-			return Base64.Base64Encode(base.ToString()+"|"+currentContractsString+"|"+sponsorRelationshipsString);
+			string s = base.ToString()+"|"+currentContractsString+"|"+sponsorRelationshipsString;
+			return Base64.Base64Encode(s);
 		}
 
 		public string currentContractsString {

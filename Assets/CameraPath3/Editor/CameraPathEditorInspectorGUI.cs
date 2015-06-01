@@ -1102,7 +1102,7 @@ public class CameraPathEditorInspectorGUI
     {
         EditorGUILayout.Space();
         EditorGUILayout.BeginVertical("box");
-        Texture2D cpLogo = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/logoDual400.png", typeof(Texture2D));
+        Texture2D cpLogo = Resources.Load<Texture2D>("Icons/logoDual400");
         GUILayout.Label(cpLogo, GUILayout.Width(400), GUILayout.Height(72));
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Version " + _cameraPath.version);
@@ -1159,7 +1159,7 @@ public class CameraPathEditorInspectorGUI
         EditorGUILayout.EndHorizontal();
         _cameraPath.storedPointResolution = EditorGUILayout.FloatField("Stored Point Resolution", _cameraPath.storedPointResolution);
 
-        if(!_cameraPath.speedList.listEnabled)
+        if (!_cameraPath.speedList.listEnabled && _animator != null)
         {
             if(_cameraPath.storedPointResolution > _animator.pathSpeed / 10)
                 EditorGUILayout.HelpBox("The current stored point resolution is possibly too high. Lower it to less than the speed you're using", MessageType.Error);
@@ -1170,14 +1170,17 @@ public class CameraPathEditorInspectorGUI
 
         EditorGUILayout.EndVertical();
 
-        EditorGUILayout.BeginVertical("box");
-        EditorGUILayout.HelpBox("Ease curves can end up outputing zero which would pause the animation indefinitly. We negate this issue by defining a minimum speed the animation is allowed to move. You can change that value here.", MessageType.Info);
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Minimum Animation Speed");
-        _animator.minimumCameraSpeed = EditorGUILayout.FloatField(_animator.minimumCameraSpeed, GUILayout.Width(60));
-        EditorGUILayout.LabelField("m/s", GUILayout.Width(25));
-        EditorGUILayout.EndHorizontal();
-        EditorGUILayout.EndVertical();
+        if(_animator != null)
+        {
+            EditorGUILayout.BeginVertical("box");
+            EditorGUILayout.HelpBox("Ease curves can end up outputing zero which would pause the animation indefinitly. We negate this issue by defining a minimum speed the animation is allowed to move. You can change that value here.", MessageType.Info);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Minimum Animation Speed");
+            _animator.minimumCameraSpeed = EditorGUILayout.FloatField(_animator.minimumCameraSpeed, GUILayout.Width(60));
+            EditorGUILayout.LabelField("m/s", GUILayout.Width(25));
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
+        }
 
         _cameraPath.enableUndo = EditorGUILayout.Toggle("Enable Undo", _cameraPath.enableUndo);
         _cameraPath.enablePreviews = EditorGUILayout.Toggle("Enable Preview Windows", _cameraPath.enablePreviews);
@@ -1595,14 +1598,23 @@ public class CameraPathEditorInspectorGUI
                 menuStringB = new[] { "Delays", "Ease", "Events", "Options" };
                 toolbarTexturesA = new Texture2D[menuLengthA];
                 toolbarTexturesB = new Texture2D[menuLengthB];
-                toolbarTexturesA[0] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/pathpoints.png", typeof(Texture2D));
-                toolbarTexturesA[1] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/controlpoints.png", typeof(Texture2D));
-                toolbarTexturesA[2] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/fov.png", typeof(Texture2D));
-                toolbarTexturesA[3] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/speed.png", typeof(Texture2D));
-                toolbarTexturesB[0] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/delay.png", typeof(Texture2D));
-                toolbarTexturesB[1] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/easecurves.png", typeof(Texture2D));
-                toolbarTexturesB[2] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/events.png", typeof(Texture2D));
-                toolbarTexturesB[3] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/options.png", typeof(Texture2D));
+                toolbarTexturesA[0] = Resources.Load<Texture2D>("Icons/pathpoints");
+                toolbarTexturesA[1] = Resources.Load<Texture2D>("Icons/controlpoints");
+                toolbarTexturesA[2] = Resources.Load<Texture2D>("Icons/fov");
+                toolbarTexturesA[3] = Resources.Load<Texture2D>("Icons/speed");
+                toolbarTexturesB[0] = Resources.Load<Texture2D>("Icons/delay");
+                toolbarTexturesB[1] = Resources.Load<Texture2D>("Icons/easecurves");
+                toolbarTexturesB[2] = Resources.Load<Texture2D>("Icons/events");
+                toolbarTexturesB[3] = Resources.Load<Texture2D>("Icons/options");
+                //                toolbarTexturesB[3] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/options.png", typeof(Texture2D));
+                //                toolbarTexturesA[0] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/pathpoints.png", typeof(Texture2D));
+                //                toolbarTexturesA[1] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/controlpoints.png", typeof(Texture2D));
+                //                toolbarTexturesA[2] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/fov.png", typeof(Texture2D));
+                //                toolbarTexturesA[3] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/speed.png", typeof(Texture2D));
+                //                toolbarTexturesB[0] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/delay.png", typeof(Texture2D));
+                //                toolbarTexturesB[1] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/easecurves.png", typeof(Texture2D));
+                //                toolbarTexturesB[2] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/events.png", typeof(Texture2D));
+                //                toolbarTexturesB[3] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/options.png", typeof(Texture2D));
 
                 break;
             case 1:
@@ -1612,15 +1624,24 @@ public class CameraPathEditorInspectorGUI
                 menuStringB = new[] { "Delays", "Ease", "Events", "Orientations", "Options" };
                 toolbarTexturesA = new Texture2D[menuLengthA];
                 toolbarTexturesB = new Texture2D[menuLengthB];
-                toolbarTexturesA[0] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/pathpoints.png", typeof(Texture2D));
-                toolbarTexturesA[1] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/controlpoints.png", typeof(Texture2D));
-                toolbarTexturesA[2] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/fov.png", typeof(Texture2D));
-                toolbarTexturesA[3] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/speed.png", typeof(Texture2D));
-                toolbarTexturesB[0] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/delay.png", typeof(Texture2D));
-                toolbarTexturesB[1] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/easecurves.png", typeof(Texture2D));
-                toolbarTexturesB[2] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/events.png", typeof(Texture2D));
-                toolbarTexturesB[3] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/orientation.png", typeof(Texture2D));
-                toolbarTexturesB[4] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/options.png", typeof(Texture2D));
+//                toolbarTexturesA[0] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/pathpoints.png", typeof(Texture2D));
+//                toolbarTexturesA[1] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/controlpoints.png", typeof(Texture2D));
+//                toolbarTexturesA[2] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/fov.png", typeof(Texture2D));
+//                toolbarTexturesA[3] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/speed.png", typeof(Texture2D));
+//                toolbarTexturesB[0] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/delay.png", typeof(Texture2D));
+//                toolbarTexturesB[1] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/easecurves.png", typeof(Texture2D));
+//                toolbarTexturesB[2] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/events.png", typeof(Texture2D));
+//                toolbarTexturesB[3] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/orientation.png", typeof(Texture2D));
+//                toolbarTexturesB[4] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/options.png", typeof(Texture2D));
+                toolbarTexturesA[0] = Resources.Load<Texture2D>("Icons/pathpoints");
+                toolbarTexturesA[1] = Resources.Load<Texture2D>("Icons/controlpoints");
+                toolbarTexturesA[2] = Resources.Load<Texture2D>("Icons/fov");
+                toolbarTexturesA[3] = Resources.Load<Texture2D>("Icons/speed");
+                toolbarTexturesB[0] = Resources.Load<Texture2D>("Icons/delay");
+                toolbarTexturesB[1] = Resources.Load<Texture2D>("Icons/easecurves");
+                toolbarTexturesB[2] = Resources.Load<Texture2D>("Icons/events");
+                toolbarTexturesB[3] = Resources.Load<Texture2D>("Icons/orientation");
+                toolbarTexturesB[4] = Resources.Load<Texture2D>("Icons/options");
                 break;
             case 2:
                 menuLengthA = 4;
@@ -1629,15 +1650,24 @@ public class CameraPathEditorInspectorGUI
                 menuStringB = new[] { "Delays", "Ease", "Events", "Tilt", "Options" };
                 toolbarTexturesA = new Texture2D[menuLengthA];
                 toolbarTexturesB = new Texture2D[menuLengthB];
-                toolbarTexturesA[0] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/pathpoints.png", typeof(Texture2D));
-                toolbarTexturesA[1] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/controlpoints.png", typeof(Texture2D));
-                toolbarTexturesA[2] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/fov.png", typeof(Texture2D));
-                toolbarTexturesA[3] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/speed.png", typeof(Texture2D));
-                toolbarTexturesB[0] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/delay.png", typeof(Texture2D));
-                toolbarTexturesB[1] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/easecurves.png", typeof(Texture2D));
-                toolbarTexturesB[2] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/events.png", typeof(Texture2D));
-                toolbarTexturesB[3] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/tilt.png", typeof(Texture2D));
-                toolbarTexturesB[4] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/options.png", typeof(Texture2D));
+//                toolbarTexturesA[0] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/pathpoints.png", typeof(Texture2D));
+//                toolbarTexturesA[1] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/controlpoints.png", typeof(Texture2D));
+//                toolbarTexturesA[2] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/fov.png", typeof(Texture2D));
+//                toolbarTexturesA[3] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/speed.png", typeof(Texture2D));
+//                toolbarTexturesB[0] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/delay.png", typeof(Texture2D));
+//                toolbarTexturesB[1] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/easecurves.png", typeof(Texture2D));
+//                toolbarTexturesB[2] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/events.png", typeof(Texture2D));
+//                toolbarTexturesB[3] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/tilt.png", typeof(Texture2D));
+//                toolbarTexturesB[4] = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/CameraPath3/Icons/options.png", typeof(Texture2D));
+                toolbarTexturesA[0] = Resources.Load<Texture2D>("Icons/pathpoints");
+                toolbarTexturesA[1] = Resources.Load<Texture2D>("Icons/controlpoints");
+                toolbarTexturesA[2] = Resources.Load<Texture2D>("Icons/fov");
+                toolbarTexturesA[3] = Resources.Load<Texture2D>("Icons/speed");
+                toolbarTexturesB[0] = Resources.Load<Texture2D>("Icons/delay");
+                toolbarTexturesB[1] = Resources.Load<Texture2D>("Icons/easecurves");
+                toolbarTexturesB[2] = Resources.Load<Texture2D>("Icons/events");
+                toolbarTexturesB[3] = Resources.Load<Texture2D>("Icons/tilt");
+                toolbarTexturesB[4] = Resources.Load<Texture2D>("Icons/options");
                 break;
         }
         _toolBarGUIContentA = new GUIContent[menuLengthA];
@@ -1653,8 +1683,10 @@ public class CameraPathEditorInspectorGUI
 
     private static void ExportXML()
     {
-        string defaultName = _cameraPath.name;
-        defaultName.Replace(" ", "_");
+        string[] currentScene = EditorApplication.currentScene.Split(char.Parse("/"));
+        currentScene = currentScene[currentScene.Length-1].Split(char.Parse("."));
+        string defaultName = string.Format("{0}_{1}", currentScene[0], _cameraPath.name);
+        defaultName = defaultName.Replace(" ", "_");
         string filepath = EditorUtility.SaveFilePanel("Export Camera Path Animator to XML", "Assets/CameraPath3", defaultName, "xml");
 
         if(filepath != "")

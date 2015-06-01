@@ -12,6 +12,7 @@ using UnityEngine;
 using Utils;
 using System.Collections.Generic;
 using championship;
+using PixelCrushers.DialogueSystem;
 
 
 namespace MenuScene
@@ -29,13 +30,20 @@ namespace MenuScene
 		{
 		}
 	
+		public void onConfirmDelete() {
+			
+			if(SaveGameUtils.HasSavedGameAtIndex(thisIndex)) {
+				ES2.Delete(SaveGameUtils.SAVED_GAME_NAME+thisIndex);
+				OnEnable();
+			}
+		}
 		public void OnEnable() {
 			if(SaveGameUtils.HasSavedGameAtIndex(thisIndex)) {
 				string headline = SaveGameUtils.headlineGameInfo(thisIndex);
 				this.gameLabel.text = headline;
 				this.deleteButton.gameObject.SetActive(true);
 			} else {
-				
+				this.gameLabel.text = "New Game";
 				this.deleteButton.gameObject.SetActive(false);
 			}
 		}
@@ -49,6 +57,10 @@ namespace MenuScene
 				ChampionshipSeason champ = GameObject.Find ("ChampionshipObject").GetComponent<ChampionshipSeason>();
 				champ.FromString(l[(int) ESavedGameSetup.GameData]);
 				champ.season = Convert.ToInt32(l[(int) ESavedGameSetup.SeasonsPast]);
+				PersistentDataManager.ApplySaveData(l[(int) ESavedGameSetup.Lua]);
+		//		ChampionshipSeason.ACTIVE_SEASON.secondsPast = Convert.ToInt32(l[(int) ESavedGameSetup.SeasonsPast]);
+				ChampionshipSeason.ACTIVE_SEASON.initNextRace();
+				ChampionshipSeason.ACTIVE_SEASON.leagueForTeam(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()).initNextRace();
 				Application.LoadLevel("Garage");
 			} else {
 				Debug.Log ("New Game");
