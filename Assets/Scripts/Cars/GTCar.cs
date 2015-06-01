@@ -15,6 +15,7 @@ using GoogleFu;
 using System.Collections.Generic;
 using Teams;
 using championship;
+using Utils;
 
 
 namespace Cars
@@ -26,7 +27,7 @@ namespace Cars
 		public CarLibraryRecord carLibRecord;
 
 		public List<GTEquippedResearch> rndParts = new List<GTEquippedResearch>();
-		public GTCar (CarLibraryRecord aRecord)
+		public GTCar ()
 		{
 
 		}
@@ -34,7 +35,32 @@ namespace Cars
 		{
 			carLibRecord = CarDatabase.REF.carByName (aCarName);
 		}
+		public string ToString() {
+			string RnD = "";
+			for(int i = 0;i<rndParts.Count;i++) {
+				RnD += rndParts[i].activeLevel+"|"+rndParts[i].dayOfCompletion+"|"+rndParts[i].daysOfResearchRemaining+"|"+rndParts[i].level+"|"+rndParts[i].researchRow._id+"%";
+			}
+			RnD = Base64.Base64Encode(RnD);
+			return Base64.Base64Encode(carLibRecord.id+"|"+RnD);
+		}
 
+		public void FromString(string aString) {
+			string decode = Base64.Base64Decode(aString);
+			string[] split = decode.Split(new char[] {'|'});
+			if(split.Length==2) {
+				carLibRecord = CarDatabase.REF.carRecordByID(Convert.ToInt32(split[0]));
+				string rnd = Base64.Base64Decode(split[1]);
+				string[] rndSplit = rnd.Split(new char[] {'%'});
+				for(int i = 0;i<rndSplit.Length;i++) {
+					string[] part = rndSplit[i].Split(new char[] {'|'});
+					if(part.Length==4) {
+						GTEquippedResearch research = new GTEquippedResearch(Convert.ToInt32(part[0]),Convert.ToInt32(part[1]),Convert.ToInt32(part[2]),Convert.ToInt32(part[3]),Convert.ToInt32(part[4]));
+						this.rndParts.Add(research);
+					}
+				}
+			}
+			
+		}
 		public int carValue {
 			get {
 				float start = carLibRecord.carCost/2;

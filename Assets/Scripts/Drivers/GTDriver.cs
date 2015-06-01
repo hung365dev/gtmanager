@@ -12,6 +12,7 @@ using Cars;
 using Database;
 using UnityEngine;
 using System.Collections.Generic;
+using Utils;
 
 
 namespace Drivers
@@ -27,7 +28,20 @@ namespace Drivers
 		public GTDriver ()
 		{
 		}
+		public override string ToString() {
+			return Base64.Base64Encode(base.ToString ()+"|"+championshipPoints+"|"+lastRacePoints+"|"+contract.bonusPerRace+"|"+contract.payPerRace+"|"+contract.remainingOnContract+"|");
+		}
 
+		public override void FromString(string aString) {
+			string s = Base64.Base64Decode(aString);
+			string[] split = s.Split (new char[] {'|'});
+			base.FromString(split[0]);
+			championshipPoints = Convert.ToInt32(split[1]);
+			this.lastRacePoints = Convert.ToInt32(split[2]);
+			this.contract.bonusPerRace = Convert.ToInt32(split[3]);
+			this.contract.payPerRace = Convert.ToInt32(split[4]);
+			this.contract.remainingOnContract = Convert.ToInt32(split[5]);
+		}
 		public static float percentOfGoodnessBrakingValue(float aValue) {
 			float worstBraking = brakingAggressionLimit(false);;
 			float bestBraking = brakingAggressionLimit(true);

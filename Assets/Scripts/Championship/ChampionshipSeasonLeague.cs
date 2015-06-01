@@ -16,6 +16,7 @@ using Cars;
 using Database;
 using Championship;
 using PixelCrushers.DialogueSystem;
+using Utils;
 
 
 namespace championship
@@ -33,6 +34,116 @@ namespace championship
 		public ChampionshipSeasonLeague ()
 		{ 
 
+		}
+
+		public string ToString() {
+			string s = leagueName+"|"+divisionNumber+"|"+racesToString+"|"+teamsToString+"|"+randomEventsToString;
+			return Base64.Base64Encode(s);
+		}
+		public void FromString(string aString) {
+			string[] split = Base64.Base64Decode(aString).Split(new char[] {'|'});
+			leagueName = split[0];
+			divisionNumber = Convert.ToInt32(split[1]);
+			this.racesFromString(split[2]);
+			this.teamsFromString(split[3]);
+			this.randomEventsFromString(split[4]);
+		}
+		public void racesFromString(string aString) {
+			string s = Base64.Base64Decode(aString);
+			string[] split = s.Split (new char[] {'%'});
+			for(int i = 0;i<split.Length;i++) {
+				string[] raceSplit = split[i].Split (new char[] {'|'});
+				if(raceSplit.Length==2) {
+				ChampionshipRaceSettings raceSetting = new ChampionshipRaceSettings();
+				raceSetting.startDate = Convert.ToInt32(raceSplit[0]);
+				for(int j = 0;j<TrackDatabase.REF.tracks.Count;j++) {
+					if(TrackDatabase.REF.tracks[j].name==raceSplit[1]) {
+						raceSetting.track = TrackDatabase.REF.tracks[j];
+						break;
+					}
+				}
+				races.Add(raceSetting);
+				}
+			}
+		}
+		public string teamsToString {
+			get {
+				string s  = "";
+				for(int i = 0;i<teams.Count;i++) {
+					s += this.teams[i].ToString()+"|";
+				}
+				s = Base64.Base64Encode(s);
+				return s;
+			}
+		}
+
+		public void teamsFromString(string aString) {
+			string uncomp = Base64.Base64Decode(aString);
+			string[] split = uncomp.Split(new char[] {'%'});
+			for(int i =0;i<split.Length;i++) {
+				GTTeam team = new GTTeam();
+				team.FromString(split[i]);
+				this.teams.Add(team);
+			}
+		}
+		public void randomEventsFromString(string aString) {
+			aString = Base64.Base64Decode(aString);
+			string[] split = aString.Split(new char[] {'%'});
+			for(int i = 0;i<split.Length;i++) {
+				string[] all = split[i].Split(new char[] {'|'});
+				RandomEvent r = new RandomEvent();
+				r.date = Convert.ToInt32(all[0]);
+				switch(all[1]) {
+					case("DriverImprovement"):default:r.eventType = ERandomEventType.DriverImprovement;break;
+				}
+				r.rewardCash = Convert.ToInt32(all[2]);
+				r.conversation = all[3];
+				if(all[4]!="0") {
+					Debug.LogError("Find Effect Driver!");
+				}
+				if(all[5]!="0") {
+	
+				}
+			}
+		}
+
+		public string randomEventsToString {
+			get {
+				string s = "";
+
+				for(int i = 0;i<this.randomEvents.Count;i++) {
+					int effectedDriver = 0;
+					if(randomEvents[i].effectedDriver!=null) {
+						effectedDriver = randomEvents[i].effectedDriver.id;
+					}
+					int effectedSponsor = 0;
+					if(randomEvents[i].effectedSponsor!=null) {
+						effectedSponsor = randomEvents[i].effectedSponsor.id;
+
+					}
+					int researchItem = 0;
+					if(randomEvents[i].researchItem!=null) {
+						researchItem = randomEvents[i].researchItem.researchRow._id;
+					}
+					string teamName = "";
+					if(randomEvents[i].targetTeam!=null) {
+						teamName = randomEvents[i].targetTeam.teamName;
+					}
+					s+=randomEvents[i].date+"|"+randomEvents[i].eventType.ToString()+"|"+randomEvents[i].rewardCash+"|"+randomEvents[i].conversation
+						+"|"+effectedDriver+"|"+effectedSponsor+"|"+researchItem+"|"+randomEvents[i].targetDate+"|"+teamName+"%";
+				}
+				return Base64.Base64Encode(s);
+			}
+		}
+		public string racesToString {
+			get {
+				string s  = "";
+				for(int i = 0;i<races.Count;i++) {
+					s += races[i].startDate+"|"+races[i].track.name+"%";
+				}
+				s = Base64.Base64Encode(s);
+				return s;
+			}
 		}
 		public int racesRemainingInSeason {
 			get {

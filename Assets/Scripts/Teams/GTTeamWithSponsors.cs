@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Database;
 using PixelCrushers.DialogueSystem;
-
+using Utils;
 
 namespace Teams
 {
@@ -26,7 +26,57 @@ namespace Teams
 		public GTTeamWithSponsors ()
 		{
 		}
+		public override void FromString(string aString) {
+			string s = Base64.Base64Decode(aString);
+			string[] split = s.Split(new char[] {'|'});
+			base.FromString(split[0]);
+			string currentContracts1 = Base64.Base64Decode(split[1]);
+			string[] currentContractsSplit = currentContracts1.Split(new char[] {'%'});
+			for(int i =0;i<currentContractsSplit.Length;i++) {			
+				string[] thisContractString = currentContractsSplit[i].Split(new char[] {'|'});
+				//public SponsorPlacedRelationshipRecord(string aPosition,int aSponsorID,float aValue,int aRemaining,int aCurrentRelationshipValue) {
+				if(thisContractString.Length==5)
+					currentContracts.Add(new SponsorPlacedRelationshipRecord(thisContractString[1],Convert.ToInt32(thisContractString[4]),(float) Convert.ToDouble(thisContractString[3]),Convert.ToInt32(thisContractString[2]),Convert.ToInt32(thisContractString[0])));
 
+			}
+
+			string sponsorRelationships1 = Base64.Base64Decode(split[2]);
+			string[] spons = sponsorRelationships1.Split(new char[] {'%'});
+			for(int i = 0;i<spons.Length;i++) {
+				string[] split1 = spons[i].Split(new char[] {'|'});
+				if(split1.Length==2) {
+					
+					int sponsorID = Convert.ToInt32(split1[1]);
+					int relationshipValue = Convert.ToInt32(split[0]);
+					SponsorRelationshipRecord r = new SponsorRelationshipRecord(sponsorID,relationshipValue);
+					this.sponsorRelationships.Add(r);
+				}
+			}
+		}	
+		
+		public string ToString() {
+			return Base64.Base64Encode(base.ToString()+"|"+currentContractsString+"|"+sponsorRelationshipsString);
+		}
+
+		public string currentContractsString {
+			get {
+				string s = "";
+				for(int i = 0;i<currentContracts.Count;i++) {
+					s+=currentContracts[i].currentRelationshipValue+"|"+currentContracts[i].position.ToString()+"|"+currentContracts[i].remaining+"|"+currentContracts[i].valuePerRace+"|"+currentContracts[i].record.id+"%";
+				}
+				return Base64.Base64Encode(s);
+			}
+		}
+		public string sponsorRelationshipsString {
+			get {
+				string s = "";
+				for(int i = 0;i<sponsorRelationships.Count;i++) {
+					s+=sponsorRelationships[i].currentRelationshipValue+"|"+sponsorRelationships[i].record.id+"%";
+				}
+				return Base64.Base64Encode(s);
+			}
+		}
+		
 		public int sponsorIncomePerRace {
 			get {
 				int r = 0;

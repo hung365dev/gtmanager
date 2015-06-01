@@ -92,6 +92,7 @@
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarMini\readme.txt" />
      <None Include="Assets\Dialogue System\DLLs\_README.txt" />
      <None Include="Assets\iRDS\Required\Shaders\ShadowProjection.shader" />
+     <None Include="Assets\Easy Save 2\changelog.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (TextureClip).shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\FordMondeo\readme.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Duo Probes.shader" />
@@ -132,6 +133,7 @@
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Add.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Glitch.cginc" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 2.shader" />
+     <None Include="Assets\Easy Save 2\readme.txt" />
      <None Include="Assets\Colorful\Shaders\Colorful.cginc" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarSeatLeon\readme.txt" />
      <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
@@ -179,6 +181,7 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
      <None Include="Assets\iRDS\Required\Shaders\GlassBuilding.shader" />
      <None Include="Assets\Dialogue System\Third Party Support\NGUI\Example\Dual Subtitle Example\_README.txt" />
+     <None Include="Assets\link.xml" />
      <None Include="Assets\Colorful\Changelog.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint High Detail RefMask ColorMask.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Normal-BumpSpec_EnvLightmapped.shader" />
@@ -236,6 +239,12 @@
  </Reference>
  <Reference Include="iRDSMain">
  <HintPath>/Users/andrew/Documents/GTManager/Assets/iRDS/Scripts/Main/iRDSMain.dll</HintPath>
+ </Reference>
+ <Reference Include="MoodkieSecurity">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/MoodkieSecurity.dll</HintPath>
+ </Reference>
+ <Reference Include="ES2">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/ES2.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

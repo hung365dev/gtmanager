@@ -22,6 +22,9 @@ namespace Teams
 	[System.Serializable]
 	public class GTTeam : GTTeamWithSponsors
 	{
+		public GTTeam() {
+
+		}
 		public GTTeam (TeamDataRecord aTeamDataRecord) {
 			cars.Add(aTeamDataRecord.carA);
 			cars.Add(aTeamDataRecord.carB);

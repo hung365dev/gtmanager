@@ -22,6 +22,7 @@ namespace championship
 	{
 		public List<ChampionshipSeasonLeague> leagues = new List<ChampionshipSeasonLeague>();
 		public int secondsPast;
+		public int season;
 		public bool allowTimeToPass = false;
 		private float _lastUpdate;
 		public ChampionshipSeasonBase ()
@@ -31,6 +32,26 @@ namespace championship
 		public void Start() {
 			DontDestroyOnLoad(this);
 			_lastUpdate = Time.time;
+		}
+
+		public string ToString() {
+			string s = "";
+			s+=secondsPast+"|";
+			for(int i = 0;i<leagues.Count;i++) {
+				s+=leagues[i].ToString ()+"|";
+			}
+			return s;
+		}
+		public void FromString(string aString) {
+			string[] split = aString.Split (new char[] {'|'});
+			if(split.Length>1) {
+				secondsPast = Convert.ToInt32(split[0]);
+			}
+			for(int i = 1;i<split.Length;i++) {
+				ChampionshipSeasonLeague l = new ChampionshipSeasonLeague();
+				l.FromString(split[i]);
+				leagues.Add(l);
+			}
 		}
 
 		public void handleRelegationsAndPromotions() {
@@ -49,6 +70,7 @@ namespace championship
 			for(int i = 0;i<leagues.Count;i++) {
 				leagues[i].initRaces();
 			}
+			season++;
 		}
 		public GTTeam getTeamFromCar(GTCar aCar) {
 			for(int i = 0;i<leagues.Count;i++) {
@@ -105,6 +127,7 @@ namespace championship
 						CalendarManager cm = go.GetComponent<CalendarManager>();
 						cm.updateDay();
 					}
+					ChampionshipSeason.ACTIVE_SEASON.SaveGame();
 				}
 			}
 		}

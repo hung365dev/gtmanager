@@ -97,7 +97,47 @@ namespace Drivers
 		}
 		
 
+		public virtual string ToString() {
+			return id+"|"+name+"|"+stamina+"|"+this.aggressivenessOnBrake+"|"+this.speedSteeringFactor+"|"+lookAheadFactor+"|"+lookAheadConstant+"|"+this.corneringSpeedFactor+
+			this.maxDriftAngle+"|"+driftingThrottleFactor+"|"+steeringDriftFactor+"|"+sideAvoidingFactor+"|"+collisionSideFactor+"|"+overtakeFactor+"|"+this.humanError+"|"+
+			this.overtakeSpeedDifference+"|"+this.overtakeOffsetIncrementMin+"|"+this.overtakeOffsetIncrementMax+"|"+this.backToLineIncrement+"|"+
+			this.shiftFactor+"|"+this.shiftUpFactor+"|"+this.tyreChangePercentage+"|"+this.fuelLoadPercentage+"|"+fullAccelMargin+"|"+frontCollDist+"|"+backCollDist+"|"+
+			this.sideMargin+"|"+this.heightMargin+"|"+lengthMargin+"|"+SIDE_MARGIN+"|"+offtrackThrottleMultiplier+"|"+jumpThrottleMultiplier+"|"+jumpThrottleTime+"|"+
+			this.agressiveMultiplier+"|"+sponsorFriendliness+"|"+demandingReputation+"|"+this.positionDemanded;
+			
+		}
+		public virtual void FromString(string aString) {
+			string[] all = aString.Split(new char[] {'|'});
+			id = Convert.ToInt32(all[0]);
+			name = all[1];
+			stamina = Convert.ToInt32(all[2]);
+			this.aggressivenessOnBrake = (float) Convert.ToDouble(all[3]);
+			this.speedSteeringFactor = (float) Convert.ToDouble(all[4]);
+			this.lookAheadFactor = (float) Convert.ToDouble(all[5]);
 
+			this.lookAheadConstant = (float) Convert.ToDouble(all[6]);
+			this.lookAheadFactor = (float) Convert.ToDouble(all[7]);
+			this.maxDriftAngle = (float) Convert.ToDouble(all[8]);
+			this.offtrackThrottleMultiplier = (float) Convert.ToDouble(all[9]);
+			this.overtakeFactor = (float) Convert.ToDouble(all[10]);
+			this.overtakeOffsetIncrementMax = (float) Convert.ToDouble(all[11]);
+			this.overtakeOffsetIncrementMin = (float) Convert.ToDouble(all[12]);
+			this.overtakeSpeedDifference = (float) Convert.ToDouble(all[13]);
+			this.shiftFactor = (float) Convert.ToDouble(all[14]);
+			this.shiftUpFactor = (float) Convert.ToDouble(all[15]);
+			this.SIDE_MARGIN = (float) Convert.ToDouble(all[16]);
+			this.sideAvoidingFactor = (float) Convert.ToDouble(all[17]);
+			this.sideMargin = (float) Convert.ToDouble(all[18]);
+            this.speedSteeringFactor = (float) Convert.ToDouble(all[19]);
+		    this.steeringDriftFactor = (float) Convert.ToDouble(all[20]);
+			this.tyreChangePercentage = (float) Convert.ToDouble(all[21]);
+			
+			this.sponsorFriendliness = (float) Convert.ToDouble(all[22]);
+			
+			this.demandingReputation = Convert.ToInt32(all[23]);
+
+
+		}
 		public string sponsorAppealString {
 			get {
 				if(this.sponsorFriendliness<0.25f) {

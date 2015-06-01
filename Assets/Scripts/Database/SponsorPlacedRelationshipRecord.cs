@@ -23,5 +23,20 @@ using Database;
 			valuePerRace = aValuePerRace;
 			
 		}
+		public SponsorPlacedRelationshipRecord(string aPosition,int aSponsorID,float aValue,int aRemaining,int aCurrentRelationshipValue) {
+			switch(aPosition) {
+				default:position = ESponsorPosition.Back;break;
+			}
+			for(int i = 0;i<SponsorDatabase.REF.sponsors.Count;i++) {
+				if(SponsorDatabase.REF.sponsors[i].id==aSponsorID) {
+					this.record = SponsorDatabase.REF.sponsors[i];
+					break;
+				}
+			}
+			this.valuePerRace = aValue;
+			this.remaining = aRemaining;
+			this.currentRelationshipValue = aCurrentRelationshipValue;
+			init(record,currentRelationshipValue);
+		}
 	}
 

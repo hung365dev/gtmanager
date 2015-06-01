@@ -23,8 +23,11 @@ public class InitGameScript : MonoBehaviour {
 		}
 		this.GetComponent<TrackDatabase>().init();
 		this.GetComponent<SponsorDatabase>().init();
-		ChampionshipSeason champ = GameObject.Find ("ChampionshipObject").GetComponent<ChampionshipSeason>();
-		champ.initFromDatabase();
+		if(Application.loadedLevelName=="InitGame") {
+			Application.LoadLevel("MainMenu");
+		}
+	//	ChampionshipSeason champ = GameObject.Find ("ChampionshipObject").GetComponent<ChampionshipSeason>();
+	//	champ.initFromDatabase();
 		//StartCoroutine(LoadLevel());
 
 	}

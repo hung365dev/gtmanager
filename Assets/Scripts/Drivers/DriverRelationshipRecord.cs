@@ -30,11 +30,22 @@ namespace Drivers
 		{
 			init(aRecord,aRelationshipValue);
 		}
+		public DriverRelationshipRecord (string aDriverID,int aRelationshipValue)
+		{
+			int id = Convert.ToInt32(aDriverID);
+			for(int i = 0;i<GTDriver.allDrivers.Count;i++) {
+				if(GTDriver.allDrivers[i].id==id) {
+					init(GTDriver.allDrivers[i],aRelationshipValue);
+				}
+			}
+		}
 		public void init(GTDriver aRecord,int aRelationshipValue)
 		{
 			record = aRecord;
 			currentRelationshipValue = aRelationshipValue - record.demandingReputation;
 		}
+
+
 		public DriverInterestInfo interest {
 			get {
 				if(currentRelationshipValue<-200) {

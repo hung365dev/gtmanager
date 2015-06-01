@@ -28,7 +28,17 @@ namespace Cars
 			researchRow = aPart;
 			level = 1;
 		}
-
+		public GTEquippedResearch(int aActiveLevel,int aDayOfCompletion,int aDaysOfResearchRemaining,int aRnDLevel,int aResearchID) {
+			this.dayOfCompletion = aDayOfCompletion;
+			this.daysOfResearchRemaining = aDaysOfResearchRemaining;
+			this.level = aRnDLevel;
+			for(int i = 0;i<RnD.Instance.Rows.Count;i++) {
+				if(RnD.Instance.Rows[i]._id==aResearchID) {
+					this.researchRow = RnD.Instance.Rows[i];
+				}
+			}
+		}
+		                          
 		public int activeLevel {
 			get {
 				if(daysOfResearchRemaining>0) {

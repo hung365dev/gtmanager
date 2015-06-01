@@ -18,6 +18,19 @@ public class SponsorRelationshipRecord
 	{
 		init(aRecord,aRelationshipValue);
 	}
+	public SponsorRelationshipRecord (int aID,int aRelationshipValue)
+	{
+		for(int i = 0;i<SponsorDatabase.REF.sponsors.Count;i++) {
+			if(SponsorDatabase.REF.sponsors[i].id==aID) {
+				this.record = SponsorDatabase.REF.sponsors[i];
+				break;
+			}
+		}
+		init(record,aRelationshipValue);
+	}
+	public SponsorRelationshipRecord() {
+
+	}
 	public void init(SponsorRecord aRecord,int aRelationshipValue)
 	{
 		record = aRecord;

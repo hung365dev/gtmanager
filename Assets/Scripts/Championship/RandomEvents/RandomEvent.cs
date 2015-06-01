@@ -39,7 +39,9 @@ namespace championship
 			}
 
 		}
-		
+		public RandomEvent() {
+
+		}
 		public void initLua() {
 			if(targetTeam!=null) {
 				DialogueLua.SetVariable("RandomEventFinishAheadOf",targetTeam.teamName);
@@ -108,7 +110,7 @@ namespace championship
 					} else {
 						failed = true;
 					}
-					DialogueLua.SetVariable("RandomEventDriverImprovement","Reliaility");
+					DialogueLua.SetVariable("RandomEventDriverImprovement","Reliability");
 					DialogueLua.SetVariable("RandomEventDriver",driver.name);
 					this.startConversation = "RandomEventDriverImprovement";
 					break;

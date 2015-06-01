@@ -35,6 +35,14 @@ namespace Database
 			}
 
 		}
+		public CarLibraryRecord carRecordByID(int aID) {
+			for (int i = 0; i<cars.Count; i++) {
+				if(cars[i].id==aID) {
+					return cars[i];
+				}
+			}
+			return cars [0];
+		}
 		public CarLibraryRecord carByName(string aName) {
 			for (int i = 0; i<cars.Count; i++) {
 				if(cars[i].name==aName) {

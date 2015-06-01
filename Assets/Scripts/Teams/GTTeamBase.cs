@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Drivers;
 using Cars;
+using Utils;
 
 
 namespace Teams
@@ -35,6 +36,43 @@ namespace Teams
 
 		public GTTeamBase ()
 		{
+
+		}
+		public virtual void FromString(string aString) {
+			string uncom = Base64.Base64Decode(aString);
+			string[] s = uncom.Split(new char[] {'|'});
+			GTDriver d = new GTDriver();
+			d.FromString(s[0]);
+			this.drivers.Add(d);
+			d = new GTDriver();
+			d.FromString(s[1]);
+			this.drivers.Add(d);
+			GTCar c = new GTCar();
+			c.FromString(s[2]);
+			this.cars.Add(c);
+			c = new GTCar();
+			c.FromString(s[3]);
+			this.cars.Add(c);
+
+			teamColor.r = Convert.ToInt32(s[4]);
+			teamColor.g = Convert.ToInt32(s[5]);
+			teamColor.b = Convert.ToInt32(s[6]);
+
+			wheelColor.r = Convert.ToInt32(s[7]);
+			wheelColor.g = Convert.ToInt32(s[8]);
+			wheelColor.b = Convert.ToInt32(s[9]);
+
+			if(s[10]=="true") {
+				humanControlled = true;
+			} else {
+				humanControlled = false;
+			}
+		}
+		public virtual string ToString() {
+			string s = drivers[0].ToString()+"|"+drivers[1].ToString()+"|"+cars[0].ToString()+"|"+cars[1].ToString()+"|"+
+			teamColor.r+"|"+teamColor.g+"|"+teamColor.b+"|"+wheelColor.r+"|"+wheelColor.g+"|"+wheelColor.b+
+			humanControlled+"|"+teamName+"|"+seasonPoints+"|"+seasonWins+"|"+cash+"|"+reputation;
+			return Base64.Base64Encode(s);
 
 		}
 		public bool addResearchToTeam(GTEquippedResearch aResearch) {

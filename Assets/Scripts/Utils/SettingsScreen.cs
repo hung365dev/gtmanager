@@ -64,11 +64,13 @@ x 4 Antialiasing
 */
 
 		Destroy(this.gameObject);
-		InterfaceMainButtons.REF.onCloseOtherScreen();
+		if(InterfaceMainButtons.REF!=null)
+			InterfaceMainButtons.REF.onCloseOtherScreen(); else
+				MainMenuScene.REF.onCloseSettings();
 	}
 
 	
-
+ 
 
 	public int currentResolutionIndex {
 		get {

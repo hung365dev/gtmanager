@@ -12,6 +12,8 @@ using Database;
 using System.Collections.Generic;
 using Teams;
 using UnityEngine;
+using PixelCrushers.DialogueSystem;
+using Utils;
 
 
 namespace championship
@@ -22,13 +24,15 @@ namespace championship
 		public static ChampionshipSeason ACTIVE_SEASON;
 
 
-		public void initFromDatabase() {
+		public void initFromDatabase(string aUsersTeamName) {
 			ACTIVE_SEASON = this;
 			List<TeamDataRecord> allTeams = Database.TeamDatabase.REF.teams;
 			for(int i = 0;i<allTeams.Count;i++) {
 				this.seasonForLeague(allTeams[i].startLeague).addTeam(new GTTeam(allTeams[i]));
 			}
-			if(Application.loadedLevelName=="InitGame") {
+			this.getUsersTeam().teamName = aUsersTeamName;
+			DialogueLua.SetVariable("PlayersTeamName",aUsersTeamName);
+			if(Application.loadedLevelName=="MainMenu") {
 				StartCoroutine(this.LoadLevel("Garage"));
 			}
 		}
@@ -39,6 +43,21 @@ namespace championship
 				ChampionshipSeasonLeague league = this.leagueForTeam(humansTeam);
 				return league.racesRemainingInSeason;
 			}
+		}
+
+		public void SaveGame() {
+			string headline = this.getUsersTeam().teamName+" - Season: "+this.season;
+			List<string> list = new List<string>();
+			list.Add("");
+			list.Add("");
+			list.Add("");
+			list.Add("");
+			list.Add("");
+			list[(int) ESavedGameSetup.Day] = ""+this.secondsPast;
+			list[(int) ESavedGameSetup.GameData] = this.ToString();
+			list[(int) ESavedGameSetup.SavedGameHeadline] = headline;
+			list[(int) ESavedGameSetup.SeasonsPast] = ""+this.season;	
+			SaveGameUtils.save(list);	
 		}
 
 

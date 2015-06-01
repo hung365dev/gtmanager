@@ -12,6 +12,7 @@ using Drivers;
 using System.Collections.Generic;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
+using Utils;
 
 
 namespace Teams
@@ -30,6 +31,29 @@ namespace Teams
 			}
 		}
 
+		public override void FromString(string aString) {
+			string[] split = aString.Split(new char[] {'|'});
+			base.FromString(split[0]);
+			string relationships = Base64.Base64Decode(split[1]);
+			string[] relationshipsSplit = relationships.Split(new char[] {'%'});
+			for(int i = 0;i<relationshipsSplit.Length;i++) {
+				string[] thisSplit = relationshipsSplit[i].Split(new char[] {'|'});
+				driverRelationships.Add(new DriverRelationshipRecord(thisSplit[0],Convert.ToInt32(thisSplit[1])));
+			}
+		}
+		
+		public override string ToString ()
+		{
+			return base.ToString()+"|"+driverRelationshipsToString();
+		}
+
+		public string driverRelationshipsToString() {
+			string s = "";
+			for(int i = 0;i<driverRelationships.Count;i++) {
+				s+=driverRelationships[i].record.id+"|"+driverRelationships[i].currentRelationshipValue+"%";
+			}
+			return Base64.Base64Encode(s);
+		}
 		public void endRaceActions() {
 			DialogueLua.SetVariable("ContractExpiryNote","");
 			DialogueLua.SetVariable("ContractExpiryForceDriversScreen",false);
