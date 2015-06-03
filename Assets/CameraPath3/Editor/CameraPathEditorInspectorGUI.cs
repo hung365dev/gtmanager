@@ -1170,6 +1170,14 @@ public class CameraPathEditorInspectorGUI
 
         EditorGUILayout.EndVertical();
 
+
+        EditorGUILayout.BeginVertical("box");
+        EditorGUILayout.HelpBox("This is the percentage difference used when calculating the direction of a path. Larger values might help smooth out kinks within the path though too large and it might produce unpredicatble results.", MessageType.Info);
+        EditorGUILayout.LabelField("Direction Calculation Width");
+        _cameraPath.directionWidth = EditorGUILayout.Slider(_cameraPath.directionWidth, 0.0001f, 0.5f);
+        EditorGUILayout.EndVertical();
+
+
         if(_animator != null)
         {
             EditorGUILayout.BeginVertical("box");

@@ -34,6 +34,7 @@ namespace championship
 			for(int i = 0;i<allTeams.Count;i++) {
 				this.seasonForLeague(allTeams[i].startLeague).addTeam(new GTTeam(allTeams[i]));
 			}
+			this.season = 1;
 			this.getUsersTeam().teamName = aUsersTeamName;
 			DialogueLua.SetVariable("PlayersTeamName",aUsersTeamName);
 			if(Application.loadedLevelName=="MainMenu") {

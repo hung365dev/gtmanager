@@ -22,7 +22,7 @@ namespace championship
 	{
 		public List<ChampionshipSeasonLeague> leagues = new List<ChampionshipSeasonLeague>();
 		public int secondsPast;
-		public int season;
+		public int season = 1;
 		public bool allowTimeToPass = false;
 		private float _lastUpdate;
 		public ChampionshipSeasonBase ()
@@ -43,6 +43,7 @@ namespace championship
 			return s;
 		}
 		public void FromString(string aString) {
+			GTDriver.allDrivers = new List<GTDriver>();
 			ChampionshipSeason.ACTIVE_SEASON = (ChampionshipSeason) this;
 			string[] split = aString.Split (new char[] {'|'});
 			if(split.Length>1) {
@@ -85,7 +86,7 @@ namespace championship
 			for(int i = 0;i<leagues.Count;i++) {
 				GTTeam team = leagues[i].getTeamFromCar(aCar);
 				if(team!=null) {
-					return team;
+					return team;  
 				}
 			}
 			return null;

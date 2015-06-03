@@ -4,9 +4,15 @@ Version History
 Any issues, comments or suggestions please send to email@jasperstocker.com
 
 ------------------------------------------------------
+3.42 - 28 May 2015
+------------------------------------------------------
+Update to Core Direction Algorithm
+New value to modify how directions are calculated
+
+------------------------------------------------------
 3.41 - 7 May 2015
 ------------------------------------------------------
-Update to Core Normalisation Algorythm - Increase in speed
+Update to Core Normalisation Algorithm - Increase in speed
 Clicking on point in control point mode will swtich to point mode
 Can move core directory without losing icons now
 Fixed bug with errors occuring when animator component was deleted

@@ -250,7 +250,7 @@ namespace Lean
 			}
 		}
 		
-		// This will return the ray of the current finger 
+		// This will return the ray of the finger's current position
 		public Ray GetRay(Camera camera = null)
 		{
 			if (camera == null) camera = Camera.main;
@@ -258,6 +258,19 @@ namespace Lean
 			if (camera != null)
 			{
 				return camera.ScreenPointToRay(ScreenPosition);
+			}
+			
+			return default(Ray);
+		}
+		
+		// This will return the ray of the finger's start position
+		public Ray GetStartRay(Camera camera = null)
+		{
+			if (camera == null) camera = Camera.main;
+			
+			if (camera != null)
+			{
+				return camera.ScreenPointToRay(StartScreenPosition);
 			}
 			
 			return default(Ray);

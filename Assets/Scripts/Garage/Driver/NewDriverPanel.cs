@@ -39,7 +39,7 @@ public class NewDriverPanel : DriverPanel
 				
 				GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 				DriverRelationshipRecord relationship = myTeam.relationshipWithDriver(allDrivers[i]);
-				if(relationship.interest.payDemand>0f)
+				if(relationship.interest.payDemand>0f||true)
 					availableDrivers.Add(allDrivers[i]);
 			}
 		}

@@ -149,7 +149,11 @@ namespace Drivers
 			this.positionDemanded = Convert.ToInt32(all[36]);
 
 
-
+			for(int i = 0;i<DriverLibrary.REF.drivers.Count;i++) {
+				if(DriverLibrary.REF.drivers[i].id==this.id) {
+					this.record = DriverLibrary.REF.drivers[i];
+				}
+			}
 		}
 		public string sponsorAppealString {
 			get {

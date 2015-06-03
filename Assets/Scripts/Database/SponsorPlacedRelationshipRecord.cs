@@ -26,6 +26,11 @@ using Database;
 		public SponsorPlacedRelationshipRecord(string aPosition,int aSponsorID,float aValue,int aRemaining,int aCurrentRelationshipValue) {
 			switch(aPosition) {
 				default:position = ESponsorPosition.Back;break;
+				case("Roof"):position = ESponsorPosition.Roof;break;
+				case("Left"):position = ESponsorPosition.Left;break;
+				case("Right"):position = ESponsorPosition.Right;break;
+				case("Back"):position = ESponsorPosition.Back;break;
+				case("Bonnet"):position = ESponsorPosition.Bonnet;break;
 			}
 			for(int i = 0;i<SponsorDatabase.REF.sponsors.Count;i++) {
 				if(SponsorDatabase.REF.sponsors[i].id==aSponsorID) {

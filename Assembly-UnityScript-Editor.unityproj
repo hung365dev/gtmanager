@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_5_0_1;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;UNITY_IPHONE;ENABLE_RUNTIME_GI;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_NETWORK;UNITY_IPHONE_API;UNITY_IOS;ENABLE_TEXTUREID_MAP;PLAYERCONNECTION_LISTENS_FIXED_PORT;DEBUGGER_LISTENS_FIXED_PORT;ENABLE_IL2CPP;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ENABLE_DUCK_TYPING</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_5_0_2;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;UNITY_IPHONE;ENABLE_RUNTIME_GI;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_NETWORK;UNITY_IPHONE_API;UNITY_IOS;ENABLE_TEXTUREID_MAP;PLAYERCONNECTION_LISTENS_FIXED_PORT;DEBUGGER_LISTENS_FIXED_PORT;ENABLE_IL2CPP;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ENABLE_DUCK_TYPING</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -57,6 +57,7 @@
      <None Include="Assets\Colorful\Shaders\CC_Convolution3x3.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked 1.shader" />
      <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Displacement.shader" />
+     <None Include="Assets\Plugins\StansAssets\Versions\UM_VersionInfo.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 2.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Glassreflect2D.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
@@ -68,9 +69,12 @@
      <None Include="Assets\iRDS\Required\Shaders\Alpha-Diffuse-ZWrite.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Glitch.shader" />
      <None Include="Assets\Plugins\StansAssets\Android\google_play\an_googleplay.txt" />
+     <None Include="Assets\Plugins\StansAssets\Versions\AN_VersionInfo.txt" />
      <None Include="Assets\Plugins\StansAssets\Android\OneSignalSDK.txt" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Normal-BumpSpec.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Kuwahara.shader" />
+     <None Include="Assets\Plugins\Android\res\values\analytics.xml" />
+     <None Include="Assets\Plugins\Android\res\values\ids.xml" />
      <None Include="Assets\iRDS\Required\Shaders\Car.shader" />
      <None Include="Assets\Plugins\StansAssets\Android\res\values\analytics.xml" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Surface.shader" />
@@ -111,6 +115,7 @@
      <None Include="Assets\UI\GameUI\Gent144.txt" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarMitsubishi\readme.txt" />
      <None Include="Assets\iRDS\Required\Shaders\Multiply.shader" />
+     <None Include="Assets\Plugins\Android\res\values\version.xml" />
      <None Include="Assets\Colorful\Shaders\CC_Sharpen.shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarTVR\readme.txt" />
      <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Tessellation(DX11).shader" />
@@ -136,6 +141,7 @@
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarChrome Probes.shader" />
      <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Cliff.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Led.shader" />
+     <None Include="Assets\Plugins\StansAssets\Versions\GMA_VersionInfo.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Levels.shader" />
      <None Include="Assets\Colorful\Shaders\CC_BleachBypass.shader" />
@@ -154,6 +160,7 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+AddSoft.shader" />
      <None Include="Assets\Colorful\Shaders\CC_RadialBlur.shader" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+AddSoft VColor.shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarCorvette\readme.txt" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add.shader" />
@@ -173,6 +180,7 @@
      <None Include="Assets\EasyRoads3D\Shaders\surfaceAlpha.shader" />
      <None Include="Assets\EasyRoads3D\_Release Notes.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored.shader" />
+     <None Include="Assets\Plugins\Android\res\xml\file_paths.xml" />
      <None Include="Assets\Colorful\Shaders\CC_Posterize.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Technicolor.shader" />
      <None Include="Assets\Dialogue System\Documentation\_README.txt" />
@@ -241,6 +249,7 @@
      <None Include="Assets\Plugins\StansAssets\Android\res\values\ids.xml" />
      <None Include="Assets\CC_FastVignette.shader" />
      <None Include="Assets\Extensions\StansAssetsCommon\SA_FB_PlaceHolder.txt" />
+     <None Include="Assets\Plugins\IOS\UM_IOS_INSTALATION_MARK.txt" />
      <None Include="Assets\iRDS\Required\Pictures\Skidmarks\Skidmarks.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Normal-Bumped.shader" />
      <None Include="Assets\iRDS\Required\Shaders\AlphaTest-Diffuse-GEqual.shader" />
@@ -304,8 +313,20 @@
  <Reference Include="ES2">
  <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/ES2.dll</HintPath>
  </Reference>
+ <Reference Include="GoogleAdsWP8">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/GoogleAdsWP8.dll</HintPath>
+ </Reference>
  <Reference Include="MoodkieSecurity">
  <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/MoodkieSecurity.dll</HintPath>
+ </Reference>
+ <Reference Include="OneSignalSDK">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/OneSignalSDK.dll</HintPath>
+ </Reference>
+ <Reference Include="WP8Native">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/WP8Native.dll</HintPath>
+ </Reference>
+ <Reference Include="WP8PopUps">
+ <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/WP8PopUps.dll</HintPath>
  </Reference>
  <Reference Include="ES2Editor">
  <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/Editor/ES2Editor.dll</HintPath>
@@ -322,9 +343,6 @@
  <Reference Include="UnityEditor.BB10.Extensions">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/BlackBerryPlayer/UnityEditor.BB10.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor.SamsungTV.Extensions">
- <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/STVPlayer/STVPlayer/UnityEditor.SamsungTV.Extensions.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.WebGL.Extensions">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
  </Reference>
@@ -337,18 +355,6 @@
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="WP8PopUps">
- <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/WP8PopUps.dll</HintPath>
- </Reference>
- <Reference Include="GoogleAdsWP8">
- <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/GoogleAdsWP8.dll</HintPath>
- </Reference>
- <Reference Include="WP8Native">
- <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/WP8Native.dll</HintPath>
- </Reference>
- <Reference Include="OneSignalSDK">
- <HintPath>/Users/andrew/Documents/GTManager/Assets/Plugins/OneSignalSDK.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
@@ -356,8 +362,6 @@
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{BB281839-05EA-5CA6-1562-F2662D1954FC}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
-    <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{787723AD-9A94-84B4-4FCF-30450E50B60A}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript.unityproj">
       <Project>{44F47B70-A2E4-B28E-C6D3-23FF804FE35E}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>

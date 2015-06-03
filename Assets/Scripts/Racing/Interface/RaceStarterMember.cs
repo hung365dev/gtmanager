@@ -57,7 +57,7 @@ public class RaceStarterMember : MonoBehaviour {
 			for(int i = 0;i<childLabels.Length;i++) {
 				if(childLabels[i].gameObject.name=="FinisherPosition") {
 					positionLabel = childLabels[i];
-				}
+				}  
 				if(childLabels[i].gameObject.name=="FinisherName") {
 					nameLabel = childLabels[i];
 				}

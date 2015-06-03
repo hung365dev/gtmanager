@@ -549,7 +549,7 @@ namespace Lean
 				if (finger.Up == true)
 				{
 					// Tap?
-					if (finger.Age <= TapThreshold)
+					if (finger.Age <= TapThreshold && finger.ScaledTotalDeltaMagnitude < SwipeThreshold)
 					{
 						finger.Tap       = true;
 						finger.TapCount += 1;

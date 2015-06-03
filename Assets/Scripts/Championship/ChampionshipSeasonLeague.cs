@@ -106,15 +106,45 @@ namespace championship
 					r.date = Convert.ToInt32(all[0]);
 					switch(all[1]) {
 						case("DriverImprovement"):default:r.eventType = ERandomEventType.DriverImprovement;break;
+						case("ExclusiveSponsorDeal"):r.eventType = ERandomEventType.ExclusiveSponsorDeal;break;
+						case("FinishAheadOf"):r.eventType = ERandomEventType.FinishAheadOf;break;
+						case("LoseARace"):r.eventType = ERandomEventType.LoseARace;break;
+						case("ResearchBreakthrough"):r.eventType = ERandomEventType.ResearchBreakthrough;break;
+						case("ResearchLeaked"):r.eventType = ERandomEventType.ResearchLeaked;break;
+						case("ToxicDriver"):r.eventType = ERandomEventType.ToxicDriver;break;
 					}
 					r.rewardCash = Convert.ToInt32(all[2]);
 					r.conversation = all[3];
 					if(all[4]!="0") {
-						Debug.LogError("Find Effect Driver!");
+						int driverID = Convert.ToInt32(all[4]);
+						for(int c = 0;c<GTDriver.allDrivers.Count;c++) {
+							if(GTDriver.allDrivers[c].id == driverID) {
+								r.effectedDriver = GTDriver.allDrivers[c];
+								break;
+							}
+						}
 					}
 					if(all[5]!="0") {
-		
+						Debug.LogError("Effected Sponsor: "+all[5]);
+						for(int c = 0;c<SponsorDatabase.REF.sponsors.Count;c++) {
+							if(SponsorDatabase.REF.sponsors[c].id==Convert.ToInt32(all[5])) {
+								r.effectedSponsor = SponsorDatabase.REF.sponsors[c];
+								break;
+							}
+						}
 					}
+					if(all[6]!="0") {
+						GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+						for(int c = 0;c<myTeam.cars.Count;c++) {
+							for(int j = 0;j<myTeam.cars[c].rndParts.Count;j++) {
+								if(myTeam.cars[c].rndParts[j].researchRow._id==Convert.ToInt32(all[6])) {
+									r.researchItem = myTeam.cars[c].rndParts[j];
+									break;
+								}
+							}
+						}
+					}
+					r.targetDate = Convert.ToInt32(all[7]);
 					this.randomEvents.Add(r);
 				}
 			}

@@ -47,6 +47,7 @@ public class RaceManager : MonoBehaviour {
 	void Start () {
 		lastUpdate = Time.time;
 		REF = this;
+		Time.timeScale = 1f;
 		carCamera = GameObject.Find("Main_Camera").GetComponent<IRDSCarCamera>();
 		levLoad = GameObject.Find ("LevelLoad").GetComponent<IRDSLevelLoadVariables>();
 

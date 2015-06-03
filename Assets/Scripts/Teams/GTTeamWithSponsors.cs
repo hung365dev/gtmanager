@@ -27,6 +27,9 @@ namespace Teams
 		{
 		}
 		public override void FromString(string aString) {
+			if(sponsorMaterial==null) {
+				sponsorMaterial = (Material) Resources.Load ("Sponsors/SponsorMaterial");
+			}
 			Debug.Log ("Decoding: "+aString);
 			string s = Base64.Base64Decode(aString);
 			string[] split = s.Split(new char[] {'|'});

@@ -4,13 +4,14 @@ using Database;
 using championship;
 using System.Collections.Generic;
 using Drivers;
+using UnionAssets.FLE;
 
 public class InitGameScript : MonoBehaviour {
 
 	private bool _loaded = false;
 	// Use this for initialization
 	void Start () {
-		
+		UM_InAppPurchaseManager.instance.Init();
 		DontDestroyOnLoad (this.gameObject);
 		this.GetComponent<DriverLibrary> ().init ();
 		this.GetComponent<CarDatabase> ().init ();
@@ -26,12 +27,21 @@ public class InitGameScript : MonoBehaviour {
 		if(Application.loadedLevelName=="InitGame") {
 			Application.LoadLevel("MainMenu");
 		}
+		
+		UM_InAppPurchaseManager.instance.addEventListener(UM_InAppPurchaseManager.ON_BILLING_CONNECT_FINISHED, OnConnectFinished);
 	//	ChampionshipSeason champ = GameObject.Find ("ChampionshipObject").GetComponent<ChampionshipSeason>();
 	//	champ.initFromDatabase();
 		//StartCoroutine(LoadLevel());
 
 	}
-	
+	private void OnConnectFinished(CEvent e) {
+		UM_BillingConnectionResult result = e.data as UM_BillingConnectionResult;
+		if(result.isSuccess) {
+			Debug.Log("Billing init Success");
+		} else  {
+			Debug.Log ("Billing init Failed");
+		}
+	}
 	// Update is called once per frame
 	void Update () {
 

@@ -15,7 +15,7 @@ public class MainMenuScene : MonoBehaviour {
 	public GameObject settingsScreenPrefab;
 	
 	public GameObject playGameScreen;
-
+	public GameObject mtxScreen;
 	public GameObject topLogo;
 	public GameObject bottomText;
 	public static MainMenuScene REF;
@@ -28,6 +28,10 @@ public class MainMenuScene : MonoBehaviour {
 		gameMaker.gameObject.SetActive(true);
 		playGameScreen.gameObject.SetActive(false);
 	}
+	public void onOpenMTXScreen() {
+		toggleMyStuff(false);
+		mtxScreen.gameObject.SetActive(true);
+	}
 	private void toggleMyStuff(bool aShow) {
 		playGameBtn.gameObject.SetActive(aShow);
 		settingsBtn.gameObject.SetActive(aShow);
@@ -37,7 +41,7 @@ public class MainMenuScene : MonoBehaviour {
 		bottomText.gameObject.SetActive(aShow);
 	}
 	public void onBackToMainMenu() {
-		
+		mtxScreen.gameObject.SetActive(false);
 		toggleMyStuff(true);
 		playGameScreen.gameObject.SetActive(false);
 	}

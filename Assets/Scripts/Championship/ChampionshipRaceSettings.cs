@@ -37,6 +37,7 @@ namespace championship
 
 	
 		public void setupDefaultsForLeague(int aLeague,int aStartDate,TrackDatabaseRecord aTrackRecord) {
+		//	aTrackRecord = TrackDatabase.REF.recordFromName("BulletsTrack1");
 			prizeDistrbutionSetting = EPrizeDistrbution.Standard;
 			track = aTrackRecord;
 			
