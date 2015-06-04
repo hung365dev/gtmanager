@@ -135,11 +135,13 @@ public class RaceManager : MonoBehaviour {
 			sendMessage = this.gameObject.GetComponent<SendMessageOnDialogueEvent>();
 
 		}
+		Time.timeScale = 2f; 
+		onSimSpeedChange();
 		conversationTrigger.conversation = aConversationName;
 		conversationTrigger.OnUse();
 	}
 	
-	public void onConversationEnded() {
+	public void onConversationEnded() { 
 		if(activateFinishersOnClose) {
 			raceFinisherTable.activate(finishers);
 		}
@@ -322,9 +324,14 @@ public class RaceManager : MonoBehaviour {
 		}
 		GameObject g1 = GameObject.Find("RaceStartGUI");
 		Destroy(g1);
-
+		StartCoroutine(initCameraIconAfterFrame());
 	
 	//	
+	}
+	private IEnumerator initCameraIconAfterFrame() {
+		yield return new WaitForEndOfFrame();
+		
+		this.teamController.changeCameraIcon();
 	}
 
 	void Update () {
