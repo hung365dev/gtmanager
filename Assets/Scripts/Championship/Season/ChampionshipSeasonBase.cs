@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Teams;
 using Drivers;
 using Cars;
+using PixelCrushers.DialogueSystem;
 
 
 namespace championship
@@ -40,11 +41,19 @@ namespace championship
 			for(int i = 0;i<leagues.Count;i++) {
 				s+=leagues[i].ToString ()+"|";
 			}
+			s+="%";
+			for(int i = 0;i<GTDriver.allDrivers.Count;i++) {
+				if(this.getTeamFromDriver(GTDriver.allDrivers[i])==null) {
+					s+=GTDriver.allDrivers[i].ToString()+"|";
+				}
+			}
 			return s;
 		}
 		public void FromString(string aString) {
 			GTDriver.allDrivers = new List<GTDriver>();
 			ChampionshipSeason.ACTIVE_SEASON = (ChampionshipSeason) this;
+			string[] split1 = aString.Split (new char[] {'%'});
+			aString = split1[0];
 			string[] split = aString.Split (new char[] {'|'});
 			if(split.Length>1) {
 				ChampionshipSeason.ACTIVE_SEASON.secondsPast = Convert.ToInt32(split[0]);
@@ -56,22 +65,50 @@ namespace championship
 					leagues.Add(l);
 				}
 			}
+			split = split1[1].Split (new char[] {'|'});
+			for(int i = 0;i<split.Length;i++) {
+				if(split[i].Length>10) {
+					GTDriver d = new GTDriver();
+					d.FromString(split[i]);
+				}
+				
+			}
 			for(int i = 0;i<leagues.Count;i++) {
 				leagues[i].postInit();
 			}
+
 			for(int i = 0;i<GTDriver.allDrivers.Count;i++) {
 				GTDriver.allDrivers[i].initContract();
 			}
 		}
-
 		public void handleRelegationsAndPromotions() {
+			bool conversationTriggered = false;
 			for(int i = 0;i<leagues.Count;i++) {
 				GTTeam relegatedTeam = leagues[i].relegatedTeam;
+				if(relegatedTeam==this.getUsersTeam()) {
+					switch(i) {
+				//		case(3):DialogueLua.SetVariable("EndSeasonResult","RelegatedDivision4");break;
+						case(2):DialogueLua.SetVariable("EndSeasonResult","RelegatedDivision3");break;
+						case(1):DialogueLua.SetVariable("EndSeasonResult","RelegatedDivision2");break;
+						case(0):DialogueLua.SetVariable("EndSeasonResult","RelegatedDivision1");break;
+					}
+					conversationTriggered = true;
+				}
 				if(relegatedTeam!=null) {
 					leagues[i+1].addTeam(relegatedTeam);
 					leagues[i].removeTeam(relegatedTeam);
 				} 
 				GTTeam promotedTeam = leagues[i].promotedTeam;
+				if(promotedTeam==this.getUsersTeam()) {
+					switch(i) {
+						case(3):DialogueLua.SetVariable("EndSeasonResult","PromotedDivision4");break;
+						case(2):DialogueLua.SetVariable("EndSeasonResult","PromotedDivision3");break;
+						case(1):DialogueLua.SetVariable("EndSeasonResult","PromotedDivision2");break;
+					}
+					conversationTriggered = true;
+					GarageManager.REF.enableFireworks();
+				}
+
 				if(promotedTeam!=null) {
 					leagues[i-1].addTeam(promotedTeam);
 					leagues[i].removeTeam(promotedTeam);
@@ -80,6 +117,11 @@ namespace championship
 			for(int i = 0;i<leagues.Count;i++) {
 				leagues[i].initRaces();
 			}
+			if(!conversationTriggered) {
+				DialogueLua.SetVariable("EndSeasonResult","NoChange");
+			}
+			
+			GarageManager.REF.doConversation("EndSeasonResult");
 			season++;
 		}
 		public GTTeam getTeamFromCar(GTCar aCar) {

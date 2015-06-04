@@ -9,6 +9,7 @@
 // ------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace Utils
@@ -16,7 +17,9 @@ namespace Utils
 	public class SaveGameUtils
 	{
 		public const string SAVED_GAME_NAME = "d";
+		public const string SETTINGS_DATA = "settings";
 		public static int USING_INDEX = 0;
+		public static int fullGameOwned = 0;
 		public SaveGameUtils ()
 		{
 		}
@@ -26,6 +29,31 @@ namespace Utils
 				return true;
 			}
 			return false;
+		}
+		
+		public static void loadSettings() {
+			if(ES2.Exists(SETTINGS_DATA)) {
+				List<String> l = ES2.LoadList<String>(SETTINGS_DATA);
+				int resWidth = Convert.ToInt32(l[(int) ESettingsList.ResolutionWidth]);
+				int resHeight = Convert.ToInt32(l[(int) ESettingsList.ResolutionHeight]);
+				
+				Screen.SetResolution(resWidth,resHeight,true);
+				int antiAlias = Convert.ToInt32(l[(int) ESettingsList.AntiAliasLevel]);
+				int shadows = Convert.ToInt32(l[(int) ESettingsList.ShadowLevel]);
+				fullGameOwned = Convert.ToInt32(l[(int) ESettingsList.FullGameOwned]);
+				SettingsScreen.shadowLevel = shadows;
+				QualitySettings.antiAliasing = antiAlias;
+			}
+		}
+
+		public static void saveSettings() {
+			List<String> settings = new List<string>();
+			settings.Add(""+Screen.currentResolution.width);
+			settings.Add(""+Screen.currentResolution.height);
+			settings.Add (""+QualitySettings.antiAliasing);
+			settings.Add(""+SettingsScreen.shadowLevel);
+			settings.Add (""+fullGameOwned);
+			ES2.Save(settings,SETTINGS_DATA);
 		}
 
 		public static void save(List<string> aData) {

@@ -154,6 +154,8 @@ namespace Drivers
 					this.record = DriverLibrary.REF.drivers[i];
 				}
 			}
+			
+			GTDriver.allDrivers.Add((GTDriver) this);
 		}
 		public string sponsorAppealString {
 			get {

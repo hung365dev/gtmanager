@@ -800,6 +800,7 @@
      <Compile Include="Assets\Scripts\Garage\EndOfRaceFinances.cs" />
      <Compile Include="Assets\Scripts\Garage\GarageManager.cs" />
      <Compile Include="Assets\Scripts\Garage\InterfaceMainButtons.cs" />
+     <Compile Include="Assets\Scripts\Garage\PromotionFireworkManager.cs" />
      <Compile Include="Assets\Scripts\Garage\RnD\IndividualPieceOfResearch.cs" />
      <Compile Include="Assets\Scripts\Garage\RnD\ResearchItem.cs" />
      <Compile Include="Assets\Scripts\Garage\RnD\ResearchScreenMain.cs" />
@@ -846,6 +847,7 @@
      <Compile Include="Assets\Scripts\Teams\GTTeamWithSponsors.cs" />
      <Compile Include="Assets\Scripts\Utils\Base64.cs" />
      <Compile Include="Assets\Scripts\Utils\ESavedGameSetup.cs" />
+     <Compile Include="Assets\Scripts\Utils\ESettingsList.cs" />
      <Compile Include="Assets\Scripts\Utils\SaveGameUtils.cs" />
      <Compile Include="Assets\Scripts\Utils\SetNullAnchorsToGameObject.cs" />
      <Compile Include="Assets\Scripts\Utils\SettingsScreen.cs" />

@@ -68,6 +68,7 @@ public class ChampionshipStandings : MonoBehaviour {
 			this.gameObject.SetActive(false);
 			GarageManager.REF.gameObject.SetActive(true);
 			InterfaceMainButtons.REF.onCloseOtherScreen();
+			GarageManager.REF.doConversation("EndSeasonConvo");
 		} else {
 			this.gameObject.SetActive(false);
 			GarageManager.REF.gameObject.SetActive(true);

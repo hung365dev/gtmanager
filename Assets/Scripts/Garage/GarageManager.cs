@@ -4,6 +4,7 @@ using Teams;
 using championship;
 using PixelCrushers.DialogueSystem;
 using Championship;
+using Utils;
 
 public class GarageManager : MonoBehaviour {
 
@@ -18,6 +19,9 @@ public class GarageManager : MonoBehaviour {
 
 	public GameObject interfacePanel;
 	public GameObject mainButtons;
+
+	public GameObject fireworksDisplay;
+
 	public CalendarManager calendarManager;
 	public ConversationTrigger trigger;
 
@@ -26,6 +30,8 @@ public class GarageManager : MonoBehaviour {
 	public GameObject colourChangeScreen;
 	public EndOfRaceFinances endOfRaceFinances;
 	public GameObject endOfRaceFinancesPrefab;
+
+	public GameObject unlockFullGameScreen;
 	// Use this for initialization
 	void Start () {
 		REF = this;
@@ -33,10 +39,22 @@ public class GarageManager : MonoBehaviour {
 		UpdateDisplay();
 //		trigger.TryStartConversation(this.gameObject.transform);
 		
-
+		DialogueLua.SetVariable("FullGameOwned",SaveGameUtils.fullGameOwned);
 	}
-	
 
+	public void onMTXComplete() {
+		unlockFullGameScreen.gameObject.SetActive(false);
+		
+		calendarManager.gameObject.SetActive(false);
+		mainButtons.gameObject.SetActive(true);
+		interfacePanel.gameObject.SetActive(true);
+	}
+	public void OnGoMainMenu() {
+		Application.LoadLevel("MainMenu");
+	}
+	public void enableFireworks() {
+		fireworksDisplay.gameObject.SetActive(true);
+	}
 	public void onEditColours() {
 		colourChangeScreen.gameObject.SetActive(true);
 	}
@@ -59,6 +77,7 @@ public class GarageManager : MonoBehaviour {
 	public void Awake() {
 		
 		if(!RaceEndFinances.showFinance) {
+			DialogueLua.SetVariable("UsersCash",ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().cash);
 			trigger = this.GetComponent<ConversationTrigger>();
 			trigger.conversation = "Welcome Conversation";
 			trigger.TryStartConversation(this.transform);
@@ -86,6 +105,21 @@ public class GarageManager : MonoBehaviour {
 		Lua.Result r = DialogueLua.GetVariable("OnCloseAction");
 		
 		DialogueLua.SetVariable("OnCloseAction","");
+		if(r.AsString=="UpdateMoney") {
+			ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().cash = DialogueLua.GetVariable("UsersCash").AsInt;
+		}
+		if(r.AsString=="BuyGame") {
+			unlockFullGameScreen.gameObject.SetActive(true);
+			calendarManager.gameObject.SetActive(false);
+			mainButtons.gameObject.SetActive(false);
+			interfacePanel.gameObject.SetActive(false);
+		}
+		if(r.AsString=="MainMenu") {
+			Application.LoadLevel("MainMenu");
+
+			return;
+
+		}
 		if(r.AsString=="Garage") {
 			handleEndOfCalendarView();
 			InterfaceMainButtons.REF.onCloseOtherScreen();
@@ -110,6 +144,7 @@ public class GarageManager : MonoBehaviour {
 	}
 	public void doConversation(string aConversationName) {
 		
+		DialogueLua.SetVariable("UsersCash",ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().cash);
 		trigger = this.GetComponent<ConversationTrigger>();
 		trigger.conversation = aConversationName;
 		trigger.OnUse();

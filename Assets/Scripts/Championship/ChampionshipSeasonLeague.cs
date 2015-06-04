@@ -17,6 +17,7 @@ using Database;
 using Championship;
 using PixelCrushers.DialogueSystem;
 using Utils;
+using championship;
 
 
 namespace championship
@@ -54,7 +55,8 @@ namespace championship
 		public void postInit() {
 			for(int i =0;i<this.teams.Count;i++) {
 				this.teams[i].postInit();
-			}
+		
+			} 
 		}
 		public void racesFromString(string aString) {
 			string s = Base64.Base64Decode(aString);
@@ -67,6 +69,7 @@ namespace championship
 				for(int j = 0;j<TrackDatabase.REF.tracks.Count;j++) {
 					if(TrackDatabase.REF.tracks[j].name==raceSplit[1]) {
 						raceSetting.track = TrackDatabase.REF.tracks[j];
+						raceSetting.setupDefaultsForLeague(this.divisionNumber,Convert.ToInt32(raceSplit[0]),TrackDatabase.REF.tracks[j]);
 						break;
 					}
 				}
@@ -96,6 +99,13 @@ namespace championship
 				}
 			}
 		}
+
+		public void initTeamsRelationshipsAfterLoad() {
+			for(int i = 0;i<this.teams.Count;i++) {
+				teams[i].initDriverRelationshipsAfterLoad();
+			}
+		}
+
 		public void randomEventsFromString(string aString) {
 			aString = Base64.Base64Decode(aString);
 			string[] split = aString.Split(new char[] {'%'});
@@ -104,15 +114,7 @@ namespace championship
 				RandomEvent r = new RandomEvent();
 				if(all.Length>6) {
 					r.date = Convert.ToInt32(all[0]);
-					switch(all[1]) {
-						case("DriverImprovement"):default:r.eventType = ERandomEventType.DriverImprovement;break;
-						case("ExclusiveSponsorDeal"):r.eventType = ERandomEventType.ExclusiveSponsorDeal;break;
-						case("FinishAheadOf"):r.eventType = ERandomEventType.FinishAheadOf;break;
-						case("LoseARace"):r.eventType = ERandomEventType.LoseARace;break;
-						case("ResearchBreakthrough"):r.eventType = ERandomEventType.ResearchBreakthrough;break;
-						case("ResearchLeaked"):r.eventType = ERandomEventType.ResearchLeaked;break;
-						case("ToxicDriver"):r.eventType = ERandomEventType.ToxicDriver;break;
-					}
+
 					r.rewardCash = Convert.ToInt32(all[2]);
 					r.conversation = all[3];
 					if(all[4]!="0") {
@@ -145,6 +147,22 @@ namespace championship
 						}
 					}
 					r.targetDate = Convert.ToInt32(all[7]);
+					if(all[8].Length>2) {
+						for(int j = 0;j<this.teams.Count;j++) {
+							if(this.teams[j].teamName==all[8]) {
+								r.targetTeam = this.teams[j];
+							}
+						}
+					}
+					switch(all[1]) {
+						case("DriverImprovement"):default:r.eventType = ERandomEventType.DriverImprovement;break;
+						case("ExclusiveSponsorDeal"):r.eventType = ERandomEventType.ExclusiveSponsorDeal;break;
+						case("FinishAheadOf"):r.eventType = ERandomEventType.FinishAheadOf;r.setupForFinishAheadOf();break;
+						case("LoseARace"):r.eventType = ERandomEventType.LoseARace;break;
+						case("ResearchBreakthrough"):r.eventType = ERandomEventType.ResearchBreakthrough;break;
+						case("ResearchLeaked"):r.eventType = ERandomEventType.ResearchLeaked;break;
+						case("ToxicDriver"):r.eventType = ERandomEventType.ToxicDriver;break;
+					}
 					this.randomEvents.Add(r);
 				}
 			}
@@ -169,12 +187,14 @@ namespace championship
 						researchItem = randomEvents[i].researchItem.researchRow._id;
 					}
 					string teamName = "";
+					Debug.Log ("Target Team: "+randomEvents[i].targetTeam);
 					if(randomEvents[i].targetTeam!=null) {
 						teamName = randomEvents[i].targetTeam.teamName;
 					}
 					s+=randomEvents[i].date+"|"+randomEvents[i].eventType.ToString()+"|"+randomEvents[i].rewardCash+"|"+randomEvents[i].conversation
 						+"|"+effectedDriver+"|"+effectedSponsor+"|"+researchItem+"|"+randomEvents[i].targetDate+"|"+teamName+"%";
 				}
+				Debug.Log ("Random Event: "+s);
 				return Base64.Base64Encode(s);
 			}
 		}
@@ -223,6 +243,12 @@ namespace championship
 				if(divisionNumber>1) {
 					List<GTTeam> teams = sortedTeams;
 					return teams[0];
+				} else { 
+					List<GTTeam> teams = sortedTeams;
+					if(teams[0]==ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()) {
+						DialogueLua.SetVariable("EndSeasonResult","WonPremiership");
+						GarageManager.REF.enableFireworks();
+					}
 				}
 				return null;
 			}

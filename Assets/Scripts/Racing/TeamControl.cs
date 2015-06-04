@@ -31,6 +31,8 @@ namespace Racing
 		public TweenAlpha currentlyViewingTween;
 		public ECameraViews cameraView = ECameraViews.ChaseCamera;
 
+		public GameObject driver1Camera;
+		public GameObject driver2Camera;
 
 		public UIButton btnDoOrDieTyres1;
 		public UIButton btnDriveNormalTyres1;
@@ -70,6 +72,7 @@ namespace Racing
 			
 		}
 		public void onStartedRace() {
+			changeCameraIcon();
 			carCamera.freeCamera = false;
 			carCamera.overrideLookAt = false;
 			carCamera.GetComponent<Camera>().enabled = true;
@@ -133,6 +136,8 @@ namespace Racing
 				for(int i = 0;i<this.racingAIs.Count;i++) {
 					this.initDriversFace(racingAIs[i]);
 				}
+				this.driver1Camera = GameObject.Find ("CameraOn");
+				this.driver2Camera = GameObject.Find ("CameraOn 1");
 				currentlyViewingLabel = GameObject.Find("NowViewingLabel").GetComponent<UILabel>();
 				currentlyViewingTween = GameObject.Find ("NowViewingLabel").GetComponent<TweenAlpha>();
 				currentlyViewingTween.enabled = false;
@@ -176,7 +181,19 @@ namespace Racing
 			}
 
 		}
-
+		public void changeCameraIcon() {
+			if(driver1Camera!=null) {
+				if(selectedCar==racingAIs[1]) {
+					
+					driver1Camera.gameObject.SetActive(false);
+					driver2Camera.gameObject.SetActive(true);
+				} else {
+					
+					driver1Camera.gameObject.SetActive(true);
+					driver2Camera.gameObject.SetActive(false);
+				}
+			}
+		}
 		public void changeCar() {
 			if(selectedCar == null) {
 				selectedCar = racingAIs[1];
@@ -184,6 +201,7 @@ namespace Racing
 			if (selectedCar.driverRecord.id==racingAIs[0].driverRecord.id) {
 				carCamera.changeTarget(racingAIs[1].aiInput.GetInstanceID());
 				selectedCar = racingAIs[1];
+				
 			} else {
 				carCamera.changeTarget(racingAIs[0].aiInput.GetInstanceID());
 				selectedCar = racingAIs[0];
@@ -192,6 +210,7 @@ namespace Racing
 				currentlyViewingTween.ResetToBeginning();
 				currentlyViewingTween.enabled = true;
 				currentlyViewingLabel.text = "NOW VIEWING "+selectedCar.driverName.ToUpper();
+				changeCameraIcon();
 			} else this.initButtons();
 			carInterface.targetAI = selectedCar;
 		}

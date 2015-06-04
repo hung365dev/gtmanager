@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Utils;
 
 public class SettingsScreen : MonoBehaviour {
 
@@ -62,7 +63,7 @@ public class SettingsScreen : MonoBehaviour {
 x 2 Antialiasing
 x 4 Antialiasing
 */
-
+		SaveGameUtils.saveSettings();
 		Destroy(this.gameObject);
 		if(InterfaceMainButtons.REF!=null)
 			InterfaceMainButtons.REF.onCloseOtherScreen(); else

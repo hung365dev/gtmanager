@@ -5,6 +5,7 @@ using championship;
 using System.Collections.Generic;
 using Drivers;
 using UnionAssets.FLE;
+using Utils;
 
 public class InitGameScript : MonoBehaviour {
 
@@ -16,7 +17,8 @@ public class InitGameScript : MonoBehaviour {
 		this.GetComponent<DriverLibrary> ().init ();
 		this.GetComponent<CarDatabase> ().init ();
 		this.GetComponent<TeamDatabase> ().init ();
-		
+		SaveGameUtils.loadSettings();
+
 		List<DriverLibraryRecord> availableDrivers = DriverLibrary.REF.getAllAvailableDrivers();
 		for(int i = 0;i<availableDrivers.Count;i++) {
 			GTDriver g = new GTDriver();
@@ -38,6 +40,7 @@ public class InitGameScript : MonoBehaviour {
 		UM_BillingConnectionResult result = e.data as UM_BillingConnectionResult;
 		if(result.isSuccess) {
 			Debug.Log("Billing init Success");
+			UM_InAppPurchaseManager.instance.RestorePurchases();
 		} else  {
 			Debug.Log ("Billing init Failed");
 		}

@@ -15,6 +15,8 @@ public class RaceStarterMember : MonoBehaviour {
 	public UILabel prizeInfo;
 	public GTDriver driver;
 
+	public Color colorWhenOwned;
+	public Color colorWhenNotOwned;
 	public int stage = 0;
 	void Start () {
 		
@@ -48,6 +50,7 @@ public class RaceStarterMember : MonoBehaviour {
 			this.prizeInfo.text = ""; else {
 			this.prizeInfo.text = ""+aDriver.championshipPoints;
 		}
+
 		
 	}
 	public void init(GTTeam aTeam,int aPosition,bool showPoints) {
@@ -109,7 +112,9 @@ public class RaceStarterMember : MonoBehaviour {
 			}
 		}
 		this.positionLabel.text = (aPosition+1)+". ";
-
+		if(ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aDriver)==ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()) {
+			this.nameLabel.color = colorWhenOwned;
+		} else this.nameLabel.color = colorWhenNotOwned;
 		this.nameLabel.text = aDriver.name+" "+ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(aDriver).teamName;
 		this.prizeInfo.text = aDriver.championshipPoints+"";
 	}

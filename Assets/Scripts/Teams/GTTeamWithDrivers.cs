@@ -26,12 +26,15 @@ namespace Teams
 
 
 		public void initDriverRelationships() {
-			for(int i = 0;i<GTDriver.allDrivers.Count;i++) {
-				driverRelationships.Add(new DriverRelationshipRecord(GTDriver.allDrivers[i],this.reputation));
+			if(driverRelationships.Count==0) {
+				for(int i = 0;i<GTDriver.allDrivers.Count;i++) {
+					driverRelationships.Add(new DriverRelationshipRecord(GTDriver.allDrivers[i],this.reputation));
+				}
 			}
+			initDriverRelationshipsAfterLoad();
 		}
 		public void postInit() {
-		
+			this.initDriverRelationships();
 		}
 		public override void FromString(string aString) {
 			string[] split = Base64.Base64Decode(aString).Split(new char[] {'|'});
@@ -45,6 +48,11 @@ namespace Teams
 			}
 		}
 		
+		public void initDriverRelationshipsAfterLoad() {
+			for(int i = 0;i<driverRelationships.Count;i++) {
+				driverRelationships[i].fullInit();
+			}
+		}
 		public override string ToString ()
 		{
 			return Base64.Base64Encode(base.ToString()+"|"+driverRelationshipsToString());
@@ -53,7 +61,11 @@ namespace Teams
 		public string driverRelationshipsToString() {
 			string s = "";
 			for(int i = 0;i<driverRelationships.Count;i++) {
-				s+=driverRelationships[i].record.id+"|"+driverRelationships[i].currentRelationshipValue+"%";
+				if(driverRelationships[i].record!=null) {
+					s+=driverRelationships[i].record.id+"|"+driverRelationships[i].currentRelationshipValue+"%";
+				} else {
+					Debug.LogWarning("Relationship: "+driverRelationships[i].load_id+" on team: "+this.teamName+" is null");
+				}
 			}
 			return Base64.Base64Encode(s);
 		}

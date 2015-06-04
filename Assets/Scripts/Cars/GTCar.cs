@@ -53,7 +53,7 @@ namespace Cars
 				string[] rndSplit = rnd.Split(new char[] {'%'});
 				for(int i = 0;i<rndSplit.Length;i++) {
 					string[] part = rndSplit[i].Split(new char[] {'|'});
-					if(part.Length==4) {
+					if(part.Length==5) {
 						GTEquippedResearch research = new GTEquippedResearch(Convert.ToInt32(part[0]),Convert.ToInt32(part[1]),Convert.ToInt32(part[2]),Convert.ToInt32(part[3]),Convert.ToInt32(part[4]));
 						this.rndParts.Add(research);
 					}

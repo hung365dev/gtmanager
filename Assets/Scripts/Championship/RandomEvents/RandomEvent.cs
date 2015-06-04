@@ -182,6 +182,14 @@ namespace championship
 			this.wonAlert = "You scored more than "+team.teamName+" and win "+rewardCash.ToString("C0")+"!";
 			this.lostAlert = "You failed to score more than "+team.teamName+" and lose "+rewardCash.ToString("C0")+"!";
 		}
+		public void setupForFinishAheadOf() {
+			this.alertMessage = "Score more points in the race than "+this.targetTeam.teamName;
+			raceStartBehaviour = ERaceStartEventBehaviour.Alert;
+			startConversation = "RandomEventFinishAheadOf";
+			this.wonAlert = "You scored more than "+this.targetTeam.teamName+" and win "+rewardCash.ToString("C0")+"!";
+			this.lostAlert = "You failed to score more than "+this.targetTeam.teamName+" and lose "+rewardCash.ToString("C0")+"!";
+		}
+		
 
 		public void doConversation() {
 			

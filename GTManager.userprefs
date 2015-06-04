@@ -1,14 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Database/SponsorPlacedRelationshipRecord.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Racing/Interface/RaceStarterMember.cs">
     <Files>
-      <File FileName="Assets/Scripts/Racing/TeamControl.cs" Line="191" Column="28" />
-      <File FileName="Assets/CameraPath3/Scripts/CameraPathAnimator.cs" Line="808" Column="1" />
-      <File FileName="Assets/Scripts/Championship/ChampionshipSeasonLeague.cs" Line="145" Column="8" />
-      <File FileName="Assets/Scripts/Championship/Season/ChampionshipSeasonBase.cs" Line="57" Column="6" />
-      <File FileName="Assets/Scripts/MenuScene/NewGameOrLoadBtn.cs" Line="67" Column="46" />
-      <File FileName="Assets/Scripts/Teams/GTTeamWithSponsors.cs" Line="40" Column="62" />
-      <File FileName="Assets/Scripts/Database/SponsorPlacedRelationshipRecord.cs" Line="42" Column="29" />
+      <File FileName="Assets/Scripts/Utils/SaveGameUtils.cs" Line="60" Column="1" />
+      <File FileName="Assets/Scripts/Championship/Season/ChampionshipSeason.cs" Line="67" Column="1" />
+      <File FileName="Assets/Scripts/MenuScene/NewGameOrLoadBtn.cs" Line="60" Column="1" />
+      <File FileName="Assets/Scripts/Cars/GTCar.cs" Line="56" Column="1" />
+      <File FileName="Assets/Scripts/Racing/Interface/RaceStarterMember.cs" Line="19" Column="27" />
+      <File FileName="Assets/Scripts/Garage/Championship/ChampionshipStandings.cs" Line="11" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -21,8 +20,8 @@
       <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Colorful/Components/CC_Base.cs" line="34" />
       <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Garage/RnD/ResearchItem.cs" line="60" />
       <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Championship/RandomEvents/RandomEvent.cs" line="135" />
-      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Championship/ChampionshipSeasonLeague.cs" line="106" />
-      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Championship/ChampionshipSeasonLeague.cs" line="118" />
+      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Cars/GTCar.cs" line="41" />
+      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Cars/GTCar.cs" line="40" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -26,16 +26,22 @@ namespace Drivers
 	{
 		public GTDriver record;
 		public int currentRelationshipValue;
+		public int load_id;
+		public int load_relationship_value;
 		public DriverRelationshipRecord (GTDriver aRecord,int aRelationshipValue)
 		{
 			init(aRecord,aRelationshipValue);
 		}
 		public DriverRelationshipRecord (string aDriverID,int aRelationshipValue)
 		{
-			int id = Convert.ToInt32(aDriverID);
+			load_id = Convert.ToInt32(aDriverID);
+			load_relationship_value = aRelationshipValue;
+
+		}
+		public void fullInit() {
 			for(int i = 0;i<GTDriver.allDrivers.Count;i++) {
-				if(GTDriver.allDrivers[i].id==id) {
-					init(GTDriver.allDrivers[i],aRelationshipValue);
+				if(GTDriver.allDrivers[i].id==load_id) {
+					init(GTDriver.allDrivers[i],load_relationship_value);
 				}
 			}
 		}

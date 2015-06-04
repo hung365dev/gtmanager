@@ -57,10 +57,11 @@ namespace Teams
 			teamColor.r = (float) Convert.ToDouble(s[4]);
 			teamColor.g = (float) Convert.ToDouble(s[5]);
 			teamColor.b = (float) Convert.ToDouble(s[6]);
-
+			teamColor.a = 1f;
 			wheelColor.r = (float) Convert.ToDouble(s[7]);
 			wheelColor.g = (float) Convert.ToDouble(s[8]);
 			wheelColor.b = (float) Convert.ToDouble(s[9]);
+			wheelColor.a = 1f;
 
 			if(s[10].ToLower()=="true") {
 				humanControlled = true;
