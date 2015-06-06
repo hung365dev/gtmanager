@@ -771,7 +771,7 @@ namespace GoogleFu
 														"Reduces your Gear Change speeds significantly.",
 														"2",
 														"Linear",
-														"Advanced Ignition",
+														"Variable Valve Timing",
 														"2",
 														"4",
 														"11",

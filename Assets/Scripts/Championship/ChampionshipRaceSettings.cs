@@ -76,7 +76,7 @@ namespace championship
 				if(UnityEngine.Random.Range(0,100)<50) {
 					return -1;
 				} else {
-					return 1;
+					return 1;  
 				}
 			}
 		}

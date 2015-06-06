@@ -65,7 +65,7 @@ namespace Racing
 		public void Update(IRDSDrivetrain aDriveTrain,IRDSCarControllerAI aCarController,IRDSCarControllInput aInput,RacingAI aAI) {
 			// First, we add the heat from the current RPM
 			if(aDriveTrain==null) {
-				return;
+				return;  
 			}
 
 			float currentRPM = aDriveTrain.GetRPM();

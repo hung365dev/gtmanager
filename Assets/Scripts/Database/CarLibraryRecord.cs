@@ -42,8 +42,12 @@ namespace Database
 
 		public float carDrag;
 		
+		public float tireGrip;
 		public float turboPSI = 0f;
 		public float carMaxSpeed;
+
+		public int frontBrakeTorque;
+		public int rearBrakeTorque;
 		public CarLibraryRecord (CarLibraryRow aRow)
 		{
 			id = aRow._id;
@@ -70,9 +74,12 @@ namespace Database
 			carDrag = aRow._cardrag;
 			this.carShiftSpeed = aRow._carshiftspeed;
 			carMaxSpeed = aRow._maxspeed;
-			
+			tireGrip = aRow._tiregrip;
 			leagueRequired = aRow._leaguerequired; 
-		}
+		
+			this.frontBrakeTorque = aRow._frontbraketorque;
+			this.rearBrakeTorque = aRow._rearbraketorque;
+		}  
 		public string carDragString {
 			get {
 				if(carDrag>0.8f) {

@@ -135,8 +135,11 @@ public class RaceManager : MonoBehaviour {
 			sendMessage = this.gameObject.GetComponent<SendMessageOnDialogueEvent>();
 
 		}
-		Time.timeScale = 2f; 
-		onSimSpeedChange();
+		if(aConversationName=="TutorialOverheating"&&DialogueLua.GetVariable("HintArrowOverheating").AsInt==2) {
+		} else {
+			Time.timeScale = 2f; 
+			onSimSpeedChange();
+		}
 		conversationTrigger.conversation = aConversationName;
 		conversationTrigger.OnUse();
 	}
@@ -246,11 +249,12 @@ public class RaceManager : MonoBehaviour {
 		
 		for(int i = 0;i<driversInRace.Count;i++) {
 			GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(driversInRace[i]);
+			team.ignoreFromRelegationAndPromotion = false;
 			GTCar gtCar = team.getGTCarFromDriver(driversInRace[i]);
 			IRDSCarControllerAI car = team.getCarFromDriver(driversInRace[i]);
 			IRDSCarControllerAI placedCar = placeCars.AddNewAICar(car.gameObject,team.teamColor,driversInRace[i].name);
 			if(placedCar!=null) {
-				
+				  
 				RacingAI thisCar = placedCar.GetComponent<RacingAI>().initDriver(driversInRace[i]);
 				if(team.humanControlled) {
 					thisCar.humanControl = true;

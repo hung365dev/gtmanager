@@ -109,7 +109,7 @@ namespace Racing
 				carInterface = GameObject.Find("IndividualRaceInterface").GetComponent<IndividualCarInterfaceManager>();
 			}
 			carInterface.targetAI = selectedCar;
-
+  
 			
 
 		}
@@ -227,7 +227,7 @@ namespace Racing
 				}
 			}
 		}
-		public void onChangeCamera() {
+		public void onChangeCamera() { 
 			switch (cameraView) {
 				case(ECameraViews.ChaseCamera):
 					cameraView = ECameraViews.HeliCam;

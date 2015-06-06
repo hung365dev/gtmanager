@@ -26,7 +26,7 @@ public class SponsorRelationshipRecord
 				break;
 			}
 		}
-		init(record,aRelationshipValue);
+		this.currentRelationshipValue = aRelationshipValue;
 	}
 	public SponsorRelationshipRecord() {
 
@@ -43,7 +43,7 @@ public class SponsorRelationshipRecord
 			}
 			if(currentRelationshipValue<-100) {
 				return new SponsorInterestInfo("Becoming Interested",0f,0);
-			}
+			} 
 			if(currentRelationshipValue<-50) {
 				if(currentRelationshipValue<-75)
 					return new SponsorInterestInfo("Semi-Interested",record.startPayPerRace*0.25f,4); else {

@@ -58,7 +58,7 @@ public class RacingAI : RacingAIWithHeating {
 	public float lastMessageTime;
 
 	public DriverFaceManager messageHolder;
-
+	public bool started = false;
 	public ErrorState currentErrorState;
 	// Use this for initialization
 	void Start () {
@@ -215,37 +215,39 @@ public class RacingAI : RacingAIWithHeating {
 
 		}
 	}
-
-	public void FixedUpdate() {
-		
-		if(this.currentErrorState==null) {
-			if(this.aiCar!=null&&UnityEngine.Random.Range(0f,50f)<this.aiCar.GetHumanError()) {
-				currentErrorState = new ErrorState(this.aiCar.GetHumanError(),this);
-				speedCornerBeforeError = this.aiCar.GetCorneringSpeedFactor();
-				this.breakAggressionBeforeError = this.aiCar.GetAggressivenessOnBrake();
-				this.backToLineBeforeError = this.aiCar.backToLineIncrement; 
-				
-			}
-		} else {
-			currentErrorState.framesOfError--;
-			this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError*currentErrorState.corneringSpeedEffector);
-			this.aiCar.backToLineIncrement = currentErrorState.backToLineError;
-			this.aiCar.SetAggressivenessOnBrake(this.currentErrorState.brakeAggressionEffector);
-			if(currentErrorState.framesOfError==0) {
-				currentErrorState = null;
-				this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError);
-				this.aiCar.backToLineIncrement = backToLineBeforeError;
-				this.aiCar.SetAggressivenessOnBrake(this.breakAggressionBeforeError);
-			} else
+  
+	public void FixedUpdate() {  
+		if(this.aiCar!=null&&this.aiCar.GetTopSpeed()>1f) {
+			if(this.currentErrorState==null) {
+				if(this.aiCar!=null&&UnityEngine.Random.Range(0f,50f)<this.aiCar.GetHumanError()) {
+					currentErrorState = new ErrorState(this.aiCar.GetHumanError(),this);
+					speedCornerBeforeError = this.aiCar.GetCorneringSpeedFactor();
+					this.breakAggressionBeforeError = this.aiCar.GetAggressivenessOnBrake();
+					this.backToLineBeforeError = this.aiCar.backToLineIncrement; 
+					
+				}
+			} else {
+				currentErrorState.framesOfError--;
 				this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError*currentErrorState.corneringSpeedEffector);
-		}
-		engineTempMonitor.Update(this.aiDriveTrain,this.aiCar,this.aiInput,this);
-		this.fatigue -= this.staminaDecrementer;
-		fatigueCount++;
-		if(fatigueCount%40==0&&aiCar!=null) {
-			//if(fatigue>0)
-				//this.aiCar.SetHumanError(500000f+(this.driverRecord.humanError*(this.fatigue/this.driverRecord.stamina)));
-				//this.aiCar.SetHumanError(this.driverRecord.humanError+(this.driverRecord.humanError*(this.fatigue/this.driverRecord.stamina)));
+				this.aiCar.backToLineIncrement = currentErrorState.backToLineError;
+				this.aiCar.SetAggressivenessOnBrake(this.currentErrorState.brakeAggressionEffector);
+				if(currentErrorState.framesOfError==0) {
+					currentErrorState = null;
+					this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError);
+					this.aiCar.backToLineIncrement = backToLineBeforeError;
+					this.aiCar.SetAggressivenessOnBrake(this.breakAggressionBeforeError);
+				} else
+					this.aiCar.SetCorneringSpeedFactor(speedCornerBeforeError*currentErrorState.corneringSpeedEffector);
+			}
+			
+			engineTempMonitor.Update(this.aiDriveTrain,this.aiCar,this.aiInput,this);
+		/*	this.fatigue -= this.staminaDecrementer;
+			fatigueCount++;
+			if(fatigueCount%40==0&&aiCar!=null) {
+				//if(fatigue>0)
+					//this.aiCar.SetHumanError(500000f+(this.driverRecord.humanError*(this.fatigue/this.driverRecord.stamina)));
+					//this.aiCar.SetHumanError(this.driverRecord.humanError+(this.driverRecord.humanError*(this.fatigue/this.driverRecord.stamina)));
+			}*/
 		}
 	}
 

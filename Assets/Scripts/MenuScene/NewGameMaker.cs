@@ -10,6 +10,7 @@
 using System;
 using UnityEngine;
 using championship;
+using Utils;
 
 
 namespace MenuScene
@@ -27,8 +28,17 @@ namespace MenuScene
 			if(teamName.value=="") {
 				teamName.value = "Test Pilots";
 			}
+			if(teamName.value=="Omega") {
+				SaveGameUtils.fullGameOwned = 2; 
+				SaveGameUtils.saveSettings();
+			}
 			ChampionshipSeason champ = GameObject.Find ("ChampionshipObject").GetComponent<ChampionshipSeason>();
-			champ.initFromDatabase(teamName.value);
+			GameObject g= champ.gameObject;
+			Destroy(champ);
+			ChampionshipSeason s = g.AddComponent<ChampionshipSeason>();
+			s.initFromDatabase(teamName.value);
+			
+			
 		}
 	}
 }

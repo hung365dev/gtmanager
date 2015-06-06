@@ -33,8 +33,8 @@ namespace Drivers
 		public GTDriver ()
 		{
 		}
-		public override string ToString() {
-			return Base64.Base64Encode(base.ToString ()+"|"+championshipPoints+"|"+lastRacePoints+"|"+contract.bonusPerRace+"|"+contract.payPerRace+"|"+contract.remainingOnContract+"|");
+		public override string SaveString() {
+			return Base64.Base64Encode(base.SaveString()+"|"+championshipPoints+"|"+lastRacePoints+"|"+contract.bonusPerRace+"|"+contract.payPerRace+"|"+contract.remainingOnContract+"|");
 		}
 
 		public override void FromString(string aString) {
@@ -46,7 +46,7 @@ namespace Drivers
 			load_bonusPerRace = Convert.ToInt32(split[3]);
 			load_payPerRace = Convert.ToInt32(split[4]);
 			load_remainingOnContract = Convert.ToInt32(split[5]);
-			
+			  
 		}
 		public void initContract() {
 			
@@ -65,8 +65,8 @@ namespace Drivers
 			return (aValue-worst)/(best-worst);
 		}
 		public static float percentOfGoodnessErrorValue(float aValue) {
-			float worst = errorLimit(true);
-			float best = errorLimit(false);
+			float worst = errorLimit(false);
+			float best = errorLimit(true);
 			float divided = ((aValue-worst)/(best-worst));
 			float toReturn = 1-divided;
 			return toReturn;

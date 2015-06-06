@@ -20,7 +20,7 @@ namespace Drivers
 		public GTDriverWithContract ()
 		{
 		}
-
+  
 		public DriverContract contract {
 			get {
 				if(_contract==null) {

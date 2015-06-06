@@ -40,7 +40,7 @@ public class InitGameScript : MonoBehaviour {
 		UM_BillingConnectionResult result = e.data as UM_BillingConnectionResult;
 		if(result.isSuccess) {
 			Debug.Log("Billing init Success");
-			UM_InAppPurchaseManager.instance.RestorePurchases();
+		//	UM_InAppPurchaseManager.instance.RestorePurchases();
 		} else  {
 			Debug.Log ("Billing init Failed");
 		}

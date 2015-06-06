@@ -81,12 +81,14 @@ namespace Garage
 			
 			GarageManager.REF.doConversation("TutorialCarBought");
 			GTTeam humansTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
-			if(CarDatabase.REF.cars[currentIndex].carCost<=humansTeam.cash) {
+			
+			int cost = CarDatabase.REF.cars[currentIndex].carCost-this._carToReplace.carValue;
+			if(cost<=humansTeam.cash) {
 
 				int indexOfCar = humansTeam.indexForCar(_carToReplace);
 
 				_carToReplace.replaceCar(CarDatabase.REF.cars[currentIndex]);
-				humansTeam.cash -= CarDatabase.REF.cars[currentIndex].carCost;
+				humansTeam.cash -= cost;
 				onGoBackAScreen();
 			} else {
 				GarageManager.REF.doConversation("NotEnoughCashForCar");

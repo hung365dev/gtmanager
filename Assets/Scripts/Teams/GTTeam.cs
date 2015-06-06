@@ -45,14 +45,30 @@ namespace Teams
 			}
 			initDriverRelationships();
 			initSponsorRelationships();
+			ignoreFromRelegationAndPromotion = false;
 		}
 
+		public void buyCarForDivision(int aDivision) {
+			List<CarLibraryRecord> recs = new List<CarLibraryRecord>();
+			for(int i = 0;i<CarDatabase.REF.cars.Count;i++) {
+				if(CarDatabase.REF.cars[i].leagueRequired==aDivision) {
+					recs.Add(CarDatabase.REF.cars[i]);
+				}
+			}
+			if(recs.Count>0) {
+				if(UnityEngine.Random.Range(0,1)==0)
+					cars[0].replaceCarAI(recs[UnityEngine.Random.Range(0,recs.Count)]);
+			
+				if(UnityEngine.Random.Range(0,1)==0)
+					cars[1].replaceCarAI(recs[UnityEngine.Random.Range(0,recs.Count)]);
+			}
+		}
 		public void addPoints(int aPoints,int aPosition) {
 			
 			seasonPoints += aPoints;
 			ChampionshipSeasonLeague league = ChampionshipSeason.ACTIVE_SEASON.leagueForTeam(this);
 			
-			addSponsorPoints(aPosition);
+			addSponsorPoints((league.divisionNumber-1)*8+aPosition);
 		}
 		
 

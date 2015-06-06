@@ -37,6 +37,7 @@ namespace championship
 			this.season = 1;
 			this.getUsersTeam().teamName = aUsersTeamName;
 			DialogueLua.SetVariable("PlayersTeamName",aUsersTeamName);
+			ChampionshipSeason.ACTIVE_SEASON = this;
 			if(Application.loadedLevelName=="MainMenu") {
 				StartCoroutine(this.LoadLevel("Garage"));
 			}
@@ -60,13 +61,13 @@ namespace championship
 			list.Add("");
 			list.Add("");
 			list[(int) ESavedGameSetup.Day] = ""+this.secondsPast;
-			list[(int) ESavedGameSetup.GameData] = this.ToString();
+			list[(int) ESavedGameSetup.GameData] = this.SaveString();
 			list[(int) ESavedGameSetup.SavedGameHeadline] = headline;
 			list[(int) ESavedGameSetup.SeasonsPast] = ""+this.season;
 			list[(int) ESavedGameSetup.Lua] = PersistentDataManager.GetSaveData();
 			SaveGameUtils.save(list);	
 		}
-
+  
 
 	}
 }

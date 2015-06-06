@@ -53,11 +53,11 @@ namespace Teams
 				driverRelationships[i].fullInit();
 			}
 		}
-		public override string ToString ()
+		public override string SaveString ()
 		{
-			return Base64.Base64Encode(base.ToString()+"|"+driverRelationshipsToString());
+			return Base64.Base64Encode(base.SaveString()+"|"+driverRelationshipsToString());
 		}
-
+  
 		public string driverRelationshipsToString() {
 			string s = "";
 			for(int i = 0;i<driverRelationships.Count;i++) {

@@ -153,33 +153,33 @@ public class CarDetails : MonoBehaviour {
 	public void compareCarTo(CarLibraryRecord aNewCar,GTCar aCurrentCar,Color aColorIfBetter,Color aColorIfWorse) {
 		Color colorToUse = Color.black;
 		
-		float diff = aNewCar.carHP - aCurrentCar.carLibRecord.carHP;
-		if(aNewCar.carHP>aCurrentCar.carLibRecord.carHP) {
+		float diff = aNewCar.carHP - aCurrentCar.carHP;
+		if(aNewCar.carHP>aCurrentCar.carHP) {
 			colorLabel(this.horsepowerBoost,"+"+diff,aColorIfBetter);
 		} else {
 			colorLabel(this.horsepowerBoost,""+diff,aColorIfWorse);
 		}
 
-		diff = aNewCar.carTorque - aCurrentCar.carLibRecord.carTorque;
-		if(aNewCar.carTorque>aCurrentCar.carLibRecord.carTorque) {
+		diff = aNewCar.carTorque - aCurrentCar.carTorque;
+		if(aNewCar.carTorque>aCurrentCar.carTorque) {
 			colorLabel(this.torqueBoost,"+"+diff,aColorIfBetter);
 		} else {
 			colorLabel(this.torqueBoost,""+diff,aColorIfWorse);
 		}
-		if(aNewCar.turboPSI>aCurrentCar.carLibRecord.turboPSI) {
+		if(aNewCar.turboPSI>aCurrentCar.getResearchEffectOnTurboPSI()+aNewCar.turboPSI) {
 			colorLabel(this.turboBoost,"",aColorIfBetter);
 		} else {
 			colorLabel(this.turboBoost,"",aColorIfWorse);
 		}
 		
-		diff = aNewCar.maxNitro - aCurrentCar.carLibRecord.maxNitro;
+		diff = aNewCar.maxNitro - aCurrentCar.nitroCapacity;
 		if(aNewCar.maxNitro>aCurrentCar.carLibRecord.maxNitro) {
 			colorLabel(this.nitroBoost,"+"+diff,aColorIfBetter);
 		} else {
 			colorLabel(this.nitroBoost,""+diff,aColorIfWorse);
 		}
 		
-		diff = aCurrentCar.carLibRecord.carShiftSpeed-aNewCar.carShiftSpeed;
+		diff = aCurrentCar.shiftSpeed-aNewCar.carShiftSpeed;
 		if(aNewCar.carShiftSpeed<aCurrentCar.carLibRecord.carShiftSpeed) {
 			colorLabel(this.shiftspeedBoost,""+diff,aColorIfBetter);
 		} else {
@@ -187,7 +187,7 @@ public class CarDetails : MonoBehaviour {
 		}
 
 		
-		diff = aCurrentCar.carLibRecord.carDrag-aNewCar.carDrag;
+		diff = aCurrentCar.carDrag-aNewCar.carDrag;
 		if(aNewCar.carDrag<aCurrentCar.carLibRecord.carDrag) {
 			colorLabel(this.dragBoost,"+",aColorIfBetter);
 		} else {
@@ -195,13 +195,15 @@ public class CarDetails : MonoBehaviour {
 		}
 
 		
-		diff = aNewCar.carMaxSpeed-aCurrentCar.carLibRecord.carMaxSpeed;
+		diff = aNewCar.carMaxSpeed-aCurrentCar.carMaxSpeed;
 
 		if(aNewCar.carMaxSpeed>aCurrentCar.carLibRecord.carMaxSpeed) {
 			colorLabel(this.maxSpeedBoost,"+"+diff,aColorIfBetter);
 		} else {
 			colorLabel(this.maxSpeedBoost,""+diff,aColorIfWorse);
 		} 
+		int cost = aNewCar.carCost-aCurrentCar.carValue;
+		this.carValue.text = cost.ToString("C0");
 	}
 	
 	public void alignToLeft() {

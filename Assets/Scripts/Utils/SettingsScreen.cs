@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Utils;
+using championship;
 
 public class SettingsScreen : MonoBehaviour {
 
@@ -13,6 +14,9 @@ public class SettingsScreen : MonoBehaviour {
 
 	public UILabel shadowsLabel;
 	public UILabel antiAliasingLabel;
+	
+	public UIButton mainMenuBtn;
+	public UIButton restorePurchasesBtn;
 
 	public static Resolution[] resolutions;
 	public static int shadowLevel = 0; 
@@ -47,11 +51,27 @@ public class SettingsScreen : MonoBehaviour {
 //		resolutionProgressBar.numberOfSteps = resolutions.Length-1;
 //		resolutionProgressBar.onChange.Add(new EventDelegate(this,"onResolutionChange"));
 
-		
+		#if UNITY_IPHONE
+			restorePurchasesBtn.gameObject.SetActive(true);
+				#else
+			restorePurchasesBtn.gameObject.SetActive(false);
+		#endif
 		showShadowsLabel();
 		this.showAntiAliasingLabel();
 		this.currentResolutionText.text = Screen.width+" x "+Screen.height;
-
+		if(Application.loadedLevelName=="Garage") {
+			this.mainMenuBtn.gameObject.SetActive(true);
+		} else {
+			this.mainMenuBtn.gameObject.SetActive(false);
+		}
+	}
+	public void onRestorePurchases() {
+		UM_InAppPurchaseManager.instance.RestorePurchases();
+		MobileNativeMessage msg = new MobileNativeMessage("Restoring Purchases", "Racing Manager will now check to see if you previously unlocked the game and will restore your purchases if any are found");
+	}
+	public void onGoMainMenu() {
+		ChampionshipSeason.ACTIVE_SEASON.SaveGame();
+		Application.LoadLevel("MainMenu");
 	}
 	public void doSaveSettings() {
 	//	int resIndex = Mathf.RoundToInt(resolutionProgressBar.value*resolutionProgressBar.numberOfSteps);
@@ -85,6 +105,7 @@ x 4 Antialiasing
 		}
 		set {
 			Screen.SetResolution(resolutions[value].width,resolutions[value].height,true);
+			
 		}
 	}
 	public void onDecreaseResolution() {
@@ -163,8 +184,11 @@ x 4 Antialiasing
 			this.currentResolutionText.text = "Made up Resolution: "+newRes; else {
 			this.currentResolutionText.text = "Native Res: "+newRes;
 		}
-	}
+	} 
 	// Update is called once per frame
 	void Update () {
+		if(this.currentResolutionText!=null) 
+			this.currentResolutionText.text = Screen.width+" x "+Screen.height;
 	}
+
 }

@@ -73,7 +73,7 @@ public class RacingAIBase : MonoBehaviour
 			
 			this.wheelInfo = new WheelInfo[wheels.Length];
 			for(int i = 0;i<wheelInfo.Length;i++) {
-				wheelInfo[i] = new WheelInfo(wheels[i],this.carRef);
+				wheelInfo[i] = new WheelInfo(wheels[i],this.carRef,i<2);
 			}
 			driverName = this.aiCar.GetDriverName();
 			//wings[0].SetLiftCoefficient(-0.3f);
@@ -85,7 +85,7 @@ public class RacingAIBase : MonoBehaviour
 			this.originalPower = this.aiDriveTrain.GetMaxPower();
 			this.originalTorque = this.aiDriveTrain.GetMaxTorque();
 			
-			
+			  
 		}
 		return;
 	}

@@ -56,7 +56,7 @@ namespace Drivers
 		public DriverLibraryRecord record;
 		public void initFromLibrary(DriverLibraryRecord aLibraryRecord) {
 			record = aLibraryRecord;
-
+  
 			GTDriver.allDrivers.Add((GTDriver) this);
 			this.id = aLibraryRecord.id;
 			this.aggressivenessOnBrake = aLibraryRecord.aggressivenessOnBrake;
@@ -98,7 +98,7 @@ namespace Drivers
 		}
 		
 
-		public virtual string ToString() {
+		public virtual string SaveString() {
 			return Base64.Base64Encode(id+"|"+name+"|"+stamina+"|"+this.aggressivenessOnBrake+"|"+this.speedSteeringFactor+"|"+lookAheadFactor+"|"+lookAheadConstant+"|"+this.corneringSpeedFactor+
 			"|"+this.maxDriftAngle+"|"+driftingThrottleFactor+"|"+steeringDriftFactor+"|"+sideAvoidingFactor+"|"+collisionSideFactor+"|"+overtakeFactor+"|"+this.humanError+"|"+
 			this.overtakeSpeedDifference+"|"+this.overtakeOffsetIncrementMin+"|"+this.overtakeOffsetIncrementMax+"|"+this.backToLineIncrement+"|"+

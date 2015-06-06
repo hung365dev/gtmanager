@@ -55,8 +55,12 @@ namespace MenuScene
 				List<string> l = ES2.LoadList<string>(SaveGameUtils.SAVED_GAME_NAME+thisIndex);
 				
 				ChampionshipSeason champ = GameObject.Find ("ChampionshipObject").GetComponent<ChampionshipSeason>();
-				champ.FromString(l[(int) ESavedGameSetup.GameData]);
-				champ.season = Convert.ToInt32(l[(int) ESavedGameSetup.SeasonsPast]);
+				GameObject g = champ.gameObject;
+				Destroy(champ);
+				ChampionshipSeason s = g.AddComponent<ChampionshipSeason>();
+				ChampionshipSeason.ACTIVE_SEASON = s;
+				s.FromString(l[(int) ESavedGameSetup.GameData]);
+				s.season = Convert.ToInt32(l[(int) ESavedGameSetup.SeasonsPast]);
 				PersistentDataManager.ApplySaveData(l[(int) ESavedGameSetup.Lua]);
 		//		ChampionshipSeason.ACTIVE_SEASON.secondsPast = Convert.ToInt32(l[(int) ESavedGameSetup.SeasonsPast]);
 				ChampionshipSeason.ACTIVE_SEASON.initNextRace();

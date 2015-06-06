@@ -21,6 +21,7 @@ namespace Teams
 	public class GTTeamBase
 	{
 		
+		public bool ignoreFromRelegationAndPromotion = false;
 		public List<GTDriver> drivers = new List<GTDriver>();
 		public List<GTCar> cars = new List<GTCar>();
 		public Color teamColor;
@@ -73,14 +74,15 @@ namespace Teams
 			this.seasonWins =Convert.ToInt32(s[13]);
 			this.cash = Convert.ToInt32(s[14]);
 			this.reputation = Convert.ToInt32(s[15]);
+			ignoreFromRelegationAndPromotion = false;
 		}
-		public virtual string ToString() {
-			string s = drivers[0].ToString()+"|"+drivers[1].ToString()+"|"+cars[0].ToString()+"|"+cars[1].ToString()+"|"+
+		public virtual string SaveString() {
+			string s = drivers[0].SaveString()+"|"+drivers[1].SaveString()+"|"+cars[0].SaveString()+"|"+cars[1].SaveString()+"|"+
 			teamColor.r+"|"+teamColor.g+"|"+teamColor.b+"|"+wheelColor.r+"|"+wheelColor.g+"|"+wheelColor.b+"|"+
 			humanControlled+"|"+teamName+"|"+seasonPoints+"|"+seasonWins+"|"+cash+"|"+reputation;
 			return Base64.Base64Encode(s);
 
-		}
+		}  
 		public bool addResearchToTeam(GTEquippedResearch aResearch) {
 			bool r = false;
 			bool car1 = cars[0].forceAddPartToCar(aResearch);

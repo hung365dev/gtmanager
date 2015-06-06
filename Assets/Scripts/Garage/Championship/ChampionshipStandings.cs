@@ -20,7 +20,7 @@ public class ChampionshipStandings : MonoBehaviour {
 	public Color colorForWinner;
 	public Color colorForRelegated;
 	public Color colorRegular;
-	
+	public Color colorFontRegular;
 	public bool isComplete = false;
 	public int startSetting = 0;
 
@@ -36,7 +36,7 @@ public class ChampionshipStandings : MonoBehaviour {
 	public void activate(bool aIsFinished) {
 		isComplete = aIsFinished;
 		activate();
-	}
+	}  
 
 	public void activate() {
 		this.gameObject.SetActive(true);
@@ -93,8 +93,14 @@ public class ChampionshipStandings : MonoBehaviour {
 					starterMembers[i].GetComponent<UISprite>().color = this.colorForWinner;
 				} else if(this.isComplete&&i==sortedTeams.Count-1) {
 					starterMembers[i].GetComponent<UISprite>().color = this.colorForRelegated;
+				} else {
+					starterMembers[i].GetComponent<UISprite>().color = this.colorRegular;
 				}
-					
+				if(sortedTeams[i]==ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()) {
+					starterMembers[i].nameLabel.color = this.colorIfHumanDriver;
+				} else {
+					starterMembers[i].nameLabel.color = this.colorFontRegular;
+				} 
 				starterMembers[i].gameObject.SetActive(true);
 			}
 			

@@ -36,9 +36,11 @@ public class GarageManager : MonoBehaviour {
 	void Start () {
 		REF = this;
 		trigger = this.GetComponent<ConversationTrigger>();
+		
+		
 		UpdateDisplay();
 //		trigger.TryStartConversation(this.gameObject.transform);
-		
+		Time.timeScale = 1f;
 		DialogueLua.SetVariable("FullGameOwned",SaveGameUtils.fullGameOwned);
 	}
 
@@ -82,6 +84,7 @@ public class GarageManager : MonoBehaviour {
 			trigger.conversation = "Welcome Conversation";
 			trigger.TryStartConversation(this.transform);
 		} else {
+			RaceEndFinances.showFinance = false;
 			GameObject g =NGUITools.AddChild(GameObject.Find ("UI Root").gameObject,this.endOfRaceFinancesPrefab);
 			Debug.Log (g.name);
 			endOfRaceFinances = g.GetComponent<EndOfRaceFinances>();
@@ -102,6 +105,7 @@ public class GarageManager : MonoBehaviour {
 		Destroy(endOfRaceFinances.gameObject);
 	}
 	public void onConversationEnded() {
+	//	DialogueLua.SetVariable("OnCloseAction","BuyGame");
 		Lua.Result r = DialogueLua.GetVariable("OnCloseAction");
 		
 		DialogueLua.SetVariable("OnCloseAction","");

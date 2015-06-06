@@ -35,16 +35,16 @@ namespace championship
 			_lastUpdate = Time.time;
 		}
 
-		public string ToString() {
+		public string SaveString() {
 			string s = "";
 			s+=secondsPast+"|";
-			for(int i = 0;i<leagues.Count;i++) {
-				s+=leagues[i].ToString ()+"|";
+			for(int i = 0;i<leagues.Count;i++) { 
+				s+=leagues[i].SaveString ()+"|";
 			}
-			s+="%";
+			s+="%";   
 			for(int i = 0;i<GTDriver.allDrivers.Count;i++) {
 				if(this.getTeamFromDriver(GTDriver.allDrivers[i])==null) {
-					s+=GTDriver.allDrivers[i].ToString()+"|";
+					s+=GTDriver.allDrivers[i].SaveString()+"|";
 				}
 			}
 			return s;
@@ -85,6 +85,7 @@ namespace championship
 			bool conversationTriggered = false;
 			for(int i = 0;i<leagues.Count;i++) {
 				GTTeam relegatedTeam = leagues[i].relegatedTeam;
+	
 				if(relegatedTeam==this.getUsersTeam()) {
 					switch(i) {
 				//		case(3):DialogueLua.SetVariable("EndSeasonResult","RelegatedDivision4");break;
@@ -93,6 +94,8 @@ namespace championship
 						case(0):DialogueLua.SetVariable("EndSeasonResult","RelegatedDivision1");break;
 					}
 					conversationTriggered = true;
+				} else {
+					relegatedTeam.buyCarForDivision(i+1);
 				}
 				if(relegatedTeam!=null) {
 					leagues[i+1].addTeam(relegatedTeam);
@@ -107,6 +110,8 @@ namespace championship
 					}
 					conversationTriggered = true;
 					GarageManager.REF.enableFireworks();
+				} else {
+					promotedTeam.buyCarForDivision(i-1);
 				}
 
 				if(promotedTeam!=null) {

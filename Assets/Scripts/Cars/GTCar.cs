@@ -35,7 +35,11 @@ namespace Cars
 		{
 			carLibRecord = CarDatabase.REF.carByName (aCarName);
 		}
-		public string ToString() {
+
+		public float grip() {
+			return this.carLibRecord.tireGrip+this.getResearchEffectOnTireGrip();
+		}
+		public string SaveString() {
 			string RnD = "";
 			for(int i = 0;i<rndParts.Count;i++) {
 				RnD += rndParts[i].activeLevel+"|"+rndParts[i].dayOfCompletion+"|"+rndParts[i].daysOfResearchRemaining+"|"+rndParts[i].level+"|"+rndParts[i].researchRow._id+"%";
@@ -43,7 +47,20 @@ namespace Cars
 			RnD = Base64.Base64Encode(RnD);
 			return Base64.Base64Encode(carLibRecord.id+"|"+RnD);
 		}
-
+		public int frontBrakeTorque {
+			get {
+				int brake = this.carLibRecord.frontBrakeTorque;
+				return brake;
+			}
+	
+		}
+		public int rearBrakeTorque {
+			get {
+				int brake = this.carLibRecord.rearBrakeTorque;
+				return brake;
+			}
+			
+		}
 		public void FromString(string aString) {
 			string decode = Base64.Base64Decode(aString);
 			string[] split = decode.Split(new char[] {'|'});
@@ -82,6 +99,9 @@ namespace Cars
 		public void replaceCar(CarLibraryRecord aCar) {
 			carLibRecord = aCar;
 			rndParts = new List<GTEquippedResearch>();
+		}
+		public void replaceCarAI(CarLibraryRecord aCar) {
+			carLibRecord = aCar;
 		}
 		public GTEquippedResearch partBeingResearched {
 			get {
@@ -200,7 +220,8 @@ namespace Cars
 			aRacingAI.nitrosRemaining = (byte) this.nitroCapacity;
 		//	aDriveTrain.SetEngineOrientation(Vector3.up);
  
-		}
+		}  
+	
 		public void applyResearchToCar(IRDSDrivetrain aDriveTrain,IRDSCarControllerAI aAI,RacingAI aRacingAI) {
 			for(int i = 0;i<this.rndParts.Count;i++) {
 				rndParts[i].applyPartToCar(aDriveTrain,aAI,aRacingAI);
@@ -324,11 +345,11 @@ namespace Cars
 		}
 		
 		public float getResearchEffectOnDrag() {
-			float turboPSI = 0f;
+			float drag1 = 0f;
 			for(int i = 0;i<rndParts.Count;i++) {
-				turboPSI += rndParts[i].researchRow._bodyaerodragreduce*rndParts[i].activeLevel;
+				drag1 += rndParts[i].researchRow._bodyaerodragreduce*rndParts[i].activeLevel;
 			}
-			return turboPSI;
+			return drag1;
 		}
 		public float getResearchEffectOnTurboPSI() {
 			float turboPSI = 0f;
@@ -336,6 +357,13 @@ namespace Cars
 				turboPSI += rndParts[i].researchRow._effectonturbopsi*rndParts[i].activeLevel;
 			}
 			return turboPSI;
+		}
+		public float getResearchEffectOnTireGrip() {
+			float tireGrip = 0f;
+			for(int i = 0;i<rndParts.Count;i++) {
+				tireGrip += rndParts[i].researchRow._tirecoefficientofgripchange*rndParts[i].activeLevel;
+			}
+			return Convert.ToInt32(tireGrip);
 		}
 		public float getResearchEffectOnMaxSpeed() {
 			float maxSpeed = 0f;

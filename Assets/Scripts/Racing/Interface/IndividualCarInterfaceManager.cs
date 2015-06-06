@@ -145,7 +145,9 @@ RPM Value
 			//	this.carInfrontLabel.gameObject.SetActive(false);
 			}
 			if(!this.targetAI.raceComplete) {
-
+				if(this.gearLabel==null) {
+					return;
+				}
 				if(targetAI.aiDriveTrain!=null) {	
 					speedLabel.text = ""+Convert.ToInt16(targetAI.aiCar.GetCarSpeed()*3.6f);
 					switch(targetAI.aiDriveTrain.GetGear()) {
@@ -179,7 +181,7 @@ RPM Value
 				debugGrid.transform.FindChild("OvertakeSpeedDiff").GetComponent<UILabel>().text = "OvertakeSpeedDiff: "+targetAI.aiCar.GetOvertakeSpeedDiference();
 			//	debugGrid.transform.FindChild("OvertakeOffsetIncrementMin").GetComponent<UILabel>().text = "OvertakeOffIncMin: "+targetAI.aiCar.GetOvertakeOffsetIncrementMin();
 		//		debugGrid.transform.FindChild("OvertakeOffsetIncrementMax").GetComponent<UILabel>().text = "OvertakeOffIncMax: "+targetAI.aiCar.GetOvertakeOffsetIncrementMax();
-
+  
 				debugGrid.transform.FindChild("BackToLineIncrement").GetComponent<UILabel>().text = "BackToLineIncrement: "+targetAI.aiCar.backToLineIncrement;
 				debugGrid.transform.FindChild("ShiftFactor").GetComponent<UILabel>().text = "ShiftFactor: "+targetAI.aiCar.GetShifFactor();
 				debugGrid.transform.FindChild("ShiftUpFactor").GetComponent<UILabel>().text = "ShiftUpFactor: "+targetAI.aiCar.shiftUpFactor;

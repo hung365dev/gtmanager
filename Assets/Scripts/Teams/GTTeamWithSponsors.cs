@@ -43,7 +43,7 @@ namespace Teams
 					currentContracts.Add(new SponsorPlacedRelationshipRecord(thisContractString[1],Convert.ToInt32(thisContractString[4]),(float) Convert.ToDouble(thisContractString[3]),Convert.ToInt32(thisContractString[2]),Convert.ToInt32(thisContractString[0])));
 
 			}
-
+  
 			string sponsorRelationships1 = Base64.Base64Decode(split[2]);
 			string[] spons = sponsorRelationships1.Split(new char[] {'%'});
 			for(int i = 0;i<spons.Length;i++) {
@@ -52,14 +52,18 @@ namespace Teams
 					
 					int sponsorID = Convert.ToInt32(split1[1]);
 					int relationshipValue = Convert.ToInt32(split1[0]);
+					if(this.teamName=="Omega") {
+						Debug.Log ("Break");
+					}
 					SponsorRelationshipRecord r = new SponsorRelationshipRecord(sponsorID,relationshipValue);
+					r.currentRelationshipValue = relationshipValue;
 					this.sponsorRelationships.Add(r);
 				}
 			}
 		}	
 		
-		public string ToString() {
-			string s = base.ToString()+"|"+currentContractsString+"|"+sponsorRelationshipsString;
+		public string SaveString() {
+			string s = base.SaveString()+"|"+currentContractsString+"|"+sponsorRelationshipsString;
 			return Base64.Base64Encode(s);
 		}
 
@@ -76,6 +80,12 @@ namespace Teams
 			get {
 				string s = "";
 				for(int i = 0;i<sponsorRelationships.Count;i++) {
+					if(this.teamName=="Omega") {
+						Debug.Log ("Break");
+					}
+					if(sponsorRelationships[i].currentRelationshipValue==0) {
+						Debug.LogError("Error saving current relationship val");
+					}
 					s+=sponsorRelationships[i].currentRelationshipValue+"|"+sponsorRelationships[i].record.id+"%";
 				}
 				return Base64.Base64Encode(s);
@@ -212,11 +222,9 @@ namespace Teams
 				}
 				differenceToDemand *= 10;
 				sponsorRelationships[i].currentRelationshipValue += Convert.ToInt32(differenceToDemand);
-				if(sponsorRelationships[i].currentRelationshipValue<0) { 
-					sponsorRelationships[i].currentRelationshipValue = 0;
-				}
-				if(sponsorRelationships[i].currentRelationshipValue>1000) {
-					sponsorRelationships[i].currentRelationshipValue = 1000;
+
+				if(sponsorRelationships[i].currentRelationshipValue>100000) {
+					sponsorRelationships[i].currentRelationshipValue = 100000;
 				}
 				
 			}

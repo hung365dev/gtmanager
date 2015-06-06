@@ -853,6 +853,7 @@
      <Compile Include="Assets\Scripts\Utils\SettingsScreen.cs" />
      <Compile Include="Assets\Scripts\Utils\StarBar.cs" />
      <Compile Include="Assets\SmoothLookAt.cs" />
+     <Compile Include="Assets\TakeScreenshot.cs" />
      <Compile Include="Assets\TutorialArrow.cs" />
      <Compile Include="Assets\iRDS\Scripts\Main\AutoStartEngine.cs" />
      <Compile Include="Assets\iRDS\Scripts\Main\AutoThrottle.cs" />

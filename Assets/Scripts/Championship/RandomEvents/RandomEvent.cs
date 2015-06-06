@@ -170,6 +170,7 @@ namespace championship
 		public void setupForFinishAheadOf(GTTeam aMyTeam,ChampionshipSeasonLeague aLeague) {
 			GTTeam team = aLeague.findTeam1AboveOrBelow(aMyTeam);
 			this.targetTeam = team;
+			if(ChampionshipSeason.ACTIVE_SEASON.nextRace!=null) {
 			this.targetDate = ChampionshipSeason.ACTIVE_SEASON.nextRace.startDate;
 			this.alertMessage = "Score more points in the race than "+team.teamName;
 			raceStartBehaviour = ERaceStartEventBehaviour.Alert;
@@ -181,6 +182,9 @@ namespace championship
 			rewardCash = (rewardCash/1000)*1000;
 			this.wonAlert = "You scored more than "+team.teamName+" and win "+rewardCash.ToString("C0")+"!";
 			this.lostAlert = "You failed to score more than "+team.teamName+" and lose "+rewardCash.ToString("C0")+"!";
+			} else {
+				failed = true;
+			}
 		}
 		public void setupForFinishAheadOf() {
 			this.alertMessage = "Score more points in the race than "+this.targetTeam.teamName;

@@ -31,7 +31,7 @@ public class EndOfRaceFinances : MonoBehaviour {
 		int totalDriversBonus = RaceEndFinances.mostRecent.driverABonus+RaceEndFinances.mostRecent.driverBBonus;
 		int repairs = RaceEndFinances.mostRecent.damagesA+RaceEndFinances.mostRecent.damagesB;
 		int sponsors = Convert.ToInt32(RaceEndFinances.mostRecent.sponsorIncome);
-
+  
 		prizeMoneyGainedLabel.text = ""+totalPrizeMoney.ToString("C0");
 		driversPayLabel.text = ""+totalDriversPay.ToString("C0");
 		driversBonusLabel.text = ""+totalDriversBonus.ToString("C0");

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using MenuScene;
+using PixelCrushers.DialogueSystem;
+using championship;
+using Utils;
 
 public class MainMenuScene : MonoBehaviour {
 
@@ -21,10 +24,25 @@ public class MainMenuScene : MonoBehaviour {
 	public static MainMenuScene REF;
 	public NewGameMaker gameMaker;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		REF = this;
+		PersistentDataManager.Reset();
+		if(UM_InAppPurchaseManager.instance.IsProductPurchased("full_game")) {
+			if(SaveGameUtils.fullGameOwned==0) {
+				SaveGameUtils.fullGameOwned = 1;
+				SaveGameUtils.saveSettings();
+			}
+		}		
+		if(UM_InAppPurchaseManager.instance.IsProductPurchased("full_gameplus")) {
+			if(SaveGameUtils.fullGameOwned<2) {
+				SaveGameUtils.fullGameOwned = 2;
+				SaveGameUtils.saveSettings();
+			}
+		}
 	}
-	public void doGameMaker(int aIndex) {
+	public void doGameMaker(int aIndex) {  
+		
+		ChampionshipSeason.ACTIVE_SEASON = null;
 		gameMaker.gameObject.SetActive(true);
 		playGameScreen.gameObject.SetActive(false);
 	}
@@ -41,11 +59,26 @@ public class MainMenuScene : MonoBehaviour {
 		bottomText.gameObject.SetActive(aShow);
 	}
 	public void onBackToMainMenu() {
+		
+		ChampionshipSeason.ACTIVE_SEASON = null;
 		mtxScreen.gameObject.SetActive(false);
 		toggleMyStuff(true);
 		playGameScreen.gameObject.SetActive(false);
 	}
 	public void onPlayGameBtn() {
+		if(UM_InAppPurchaseManager.instance.IsProductPurchased("full_game")) {
+			if(SaveGameUtils.fullGameOwned==0) {
+				SaveGameUtils.fullGameOwned = 1;
+				SaveGameUtils.saveSettings();
+			}
+		}		
+		if(UM_InAppPurchaseManager.instance.IsProductPurchased("full_gameplus")) {
+			if(SaveGameUtils.fullGameOwned<2) {
+				SaveGameUtils.fullGameOwned = 2;
+				SaveGameUtils.saveSettings();
+			}
+		}
+		ChampionshipSeason.ACTIVE_SEASON = null;
 		toggleMyStuff(false);
 		playGameScreen.gameObject.SetActive(true);
 	}

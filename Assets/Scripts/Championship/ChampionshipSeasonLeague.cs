@@ -36,8 +36,8 @@ namespace championship
 		{ 
 
 		}
-
-		public string ToString() {
+  
+		public string SaveString() {
 			string s = leagueName+"|"+divisionNumber+"|"+racesToString+"|"+teamsToString+"|"+randomEventsToString;
 			return Base64.Base64Encode(s);
 		}
@@ -81,7 +81,7 @@ namespace championship
 			get {
 				string s  = "";
 				for(int i = 0;i<teams.Count;i++) {
-					s += this.teams[i].ToString()+"|";
+					s += this.teams[i].SaveString()+"|";
 				}
 				s = Base64.Base64Encode(s);
 				return s;
@@ -137,13 +137,17 @@ namespace championship
 					}
 					if(all[6]!="0") {
 						GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
-						for(int c = 0;c<myTeam.cars.Count;c++) {
-							for(int j = 0;j<myTeam.cars[c].rndParts.Count;j++) {
-								if(myTeam.cars[c].rndParts[j].researchRow._id==Convert.ToInt32(all[6])) {
-									r.researchItem = myTeam.cars[c].rndParts[j];
-									break;
+						if(myTeam!=null) {
+							for(int c = 0;c<myTeam.cars.Count;c++) {
+								for(int j = 0;j<myTeam.cars[c].rndParts.Count;j++) {
+									if(myTeam.cars[c].rndParts[j].researchRow._id==Convert.ToInt32(all[6])) {
+										r.researchItem = myTeam.cars[c].rndParts[j];
+										break;
+									}
 								}
 							}
+						} else {
+							continue;
 						}
 					}
 					r.targetDate = Convert.ToInt32(all[7]);
@@ -152,6 +156,9 @@ namespace championship
 							if(this.teams[j].teamName==all[8]) {
 								r.targetTeam = this.teams[j];
 							}
+						}
+						if(r.targetTeam==null) {
+							continue;
 						}
 					}
 					switch(all[1]) {
@@ -287,9 +294,11 @@ namespace championship
 			return null;
 		}
 		public void addTeam(GTTeam aTeamToAdd) {
+			aTeamToAdd.ignoreFromRelegationAndPromotion = true;
 			teams.Add(aTeamToAdd);
 		}
 		public void removeTeam(GTTeam aTeamToRemove) {
+			aTeamToRemove.ignoreFromRelegationAndPromotion = true;
 			teams.Remove(aTeamToRemove);
 		}
  
@@ -319,7 +328,24 @@ namespace championship
 					allTracks.Add(TrackDatabase.REF.tracks[i]);
 				}
 			}
-			allTracks.Sort(randTrackSort);
+			bool allowTracksLikeThis = false;
+			while(!allowTracksLikeThis) {
+				allTracks.Sort(randTrackSort);
+				if(allTracks[0].name.ToLower().Contains("oval")) {	
+					allowTracksLikeThis = false;
+				} else {
+					allowTracksLikeThis = true;
+				}
+			}
+			for(int i = 0;i<this.teams.Count;i++) {
+				teams[i].seasonPoints = 0;
+				teams[i].ignoreFromRelegationAndPromotion = false;
+				teams[i].drivers[0].championshipPoints = 0;
+				teams[i].drivers[0].lastRacePoints = 0;
+				teams[i].drivers[1].lastRacePoints = 0;
+				teams[i].drivers[1].championshipPoints = 0;
+			}
+
 			int dayOfNextSunday = ChampionshipSeason.ACTIVE_SEASON.secondsPast+1;
 			DateTime theDate = new DateTime( 2015, 12, 28 ).AddDays( dayOfNextSunday );
 			while(!theDate.ToLongDateString().ToLower().Contains("sunday")) {
@@ -351,21 +377,21 @@ namespace championship
 			int lastPosition = -1;
 			int lastPoints = -1;
 			int lastWins = -1;
-
-			teams.Sort(sortOnChampsPoints);
-			for(int i = 0;i<teams.Count;i++) {
+		
+			List<GTTeam> sort1 = this.sortedTeams;
+			for(int i = 0;i<sort1.Count;i++) {
 				if(lastPosition==-1) {
 					lastPosition = 0;
-					lastPoints = teams[i].seasonPoints;
-					lastWins = teams[i].seasonWins;
+					lastPoints = sort1[i].seasonPoints;
+					lastWins = sort1[i].seasonWins;
 				} else {
-					if(teams[i].seasonPoints==lastPoints&&teams[i].seasonWins==lastWins) {
+					if(sort1[i].seasonPoints==lastPoints&&sort1[i].seasonWins==lastWins) {
 
 					} else {
 						lastPosition++;
 					}
 				}
-				if(teams[i]==aTeam) {
+				if(sort1[i]==aTeam) {
 					return lastPosition;
 				}
 			}
@@ -374,8 +400,14 @@ namespace championship
 
 		public List<GTTeam> sortedTeams {
 			get {
-				teams.Sort(sortOnChampsPoints);
-				return teams;
+				List<GTTeam> team1 = new List<GTTeam>();
+				for(int i = 0;i<teams.Count;i++) {
+					if(!teams[i].ignoreFromRelegationAndPromotion) {
+						team1.Add(teams[i]);
+					}
+				}	
+				team1.Sort(sortOnChampsPoints);
+				return team1;
 			}
 		}
 
@@ -463,7 +495,7 @@ namespace championship
 					int nextRaceStartDate = nextRace.startDate;
 					int ticksTillNextRace = nextRaceStartDate -aCurrentTick;
 					Debug.Log("Ticks till next race: "+ticksTillNextRace);
-				}
+				} else 
 				if(!raceOrEventBeforeRaceOrSincePastRace(aCurrentTick)) {
 					createRandomEvent(aCurrentTick+1);
 				}
@@ -522,17 +554,25 @@ namespace championship
 			if(myTeam.hasResearchCompletingOnDay(aDay+1)) {
 				return true;
 			}
-			while(aDay>=0) {
-				if(raceOrEventOnDay(aDay)) {
-					return true;
-				}
-				aDay--;
+			if(eventSinceLastRace()) {
+				return true;
 			}
-
-
 			return false;
 		}
-
+		public bool eventSinceLastRace() {
+			int dayOfLastRace = 0;
+			for(int i = 0;i<races.Count;i++) {
+				if(races[i].startDate<ChampionshipSeason.ACTIVE_SEASON.secondsPast) {
+					dayOfLastRace = races[i].startDate;
+				}
+			}
+			for(int i = 0;i<this.randomEvents.Count;i++) {
+				if(randomEvents[i].date > dayOfLastRace) {
+					return true;
+				}		 
+			}
+			return false;
+		}
 		public bool raceOrEventOnDay(int aDay) {
 			for(int i = 0;i<races.Count;i++) {
 				if(races[i].startDate==aDay) {

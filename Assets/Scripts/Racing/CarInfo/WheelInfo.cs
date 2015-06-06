@@ -12,13 +12,18 @@ namespace Racing
 		public float dividedTireWear;
 
 		private IRDSWheel _wheelRef;
-		public WheelInfo (IRDSWheel aWheel,GTCar aCar)
+		public WheelInfo (IRDSWheel aWheel,GTCar aCar,bool aFront)
 		{
 			_wheelRef = aWheel;
 			_wheelRef.SetWear(true);
 			_wheelRef.realTireMode = true;
 			_wheelRef.SetTyreHardness(10f);
-			
+			_wheelRef.SetGrip(aCar.grip());
+			if(aFront)
+				_wheelRef.SetBrakeFrictionTorque(aCar.frontBrakeTorque);
+			if(!aFront)
+				_wheelRef.SetBrakeFrictionTorque(aCar.rearBrakeTorque);
+			  
 		}
 
 		public void Update() {

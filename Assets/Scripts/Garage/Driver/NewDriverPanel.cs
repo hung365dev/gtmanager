@@ -14,6 +14,7 @@ using Drivers;
 using championship;
 using Teams;
 using Cars;
+using System.Collections;
 
 
 public class NewDriverPanel : DriverPanel
@@ -60,9 +61,17 @@ public class NewDriverPanel : DriverPanel
 				isInterestedInSigning.text = "NO";
 			}
 		}
+		this.initDriver(availableDrivers[availableDrivers.Count-1]);
+		showDriver(availableDrivers.Count-1);
+		StartCoroutine(delayToInit());
 		GarageManager.REF.doConversation("OpenHireDriverScreen");
 	}
-
+	public IEnumerator delayToInit() {
+		yield return new WaitForEndOfFrame();
+		
+		this.initDriver(driverList[driverList.Count-1]);
+		showDriver(driverList.Count-1);
+	}
 	public void OnDestroy() { 
 		
 		Lean.LeanTouch.OnFingerSwipe -= OnFingerSwipe;
@@ -105,6 +114,7 @@ public class NewDriverPanel : DriverPanel
 	private void onContractAccepted(GTDriver aHiredDriver) {
 		Destroy(this.gameObject);
 		myDriverPanel.initDriver(aHiredDriver);
+		myDriverPanel.showButtons();
 	}
 	public void OnFingerSwipe(Lean.LeanFinger finger)
 	{
