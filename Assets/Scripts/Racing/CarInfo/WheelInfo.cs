@@ -17,7 +17,7 @@ namespace Racing
 			_wheelRef = aWheel;
 			_wheelRef.SetWear(true);
 			_wheelRef.realTireMode = true;
-			_wheelRef.SetTyreHardness(10f);
+			_wheelRef.SetTyreHardness(aCar.tireHardnessValue);
 			_wheelRef.SetGrip(aCar.grip());
 			if(aFront)
 				_wheelRef.SetBrakeFrictionTorque(aCar.frontBrakeTorque);

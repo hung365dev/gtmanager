@@ -64,8 +64,8 @@ namespace Cars
 				IRDSAerodynamicResistance ar = aDriveTrain.gameObject.GetComponent<IRDSAerodynamicResistance>();
 				Vector3 coefficients = ar.GetCoefficients();
 				coefficients.z -= researchRow._bodyaerodragreduce;
-				if(coefficients.z<0.01f) {
-					coefficients.z = 0.01f;
+				if(coefficients.z<0.001f) {
+					coefficients.z = 0.001f;
 				}
 				ar.SetCoefficients(coefficients);
 
@@ -75,16 +75,15 @@ namespace Cars
 				if(float.IsNaN(aRacingAI.engineTempMonitor.baseCooling)||float.IsNaN(aRacingAI.engineTempMonitor.engineBlowupTemp)) {
 					Debug.Log ("STOP!");
 				}
-				IRDSWheel[] wheels = aRacingAI.wheels;
+		/*		IRDSWheel[] wheels = aRacingAI.wheels;
 				for(int c = 0;c<wheels.Length;c++) {
 					wheels[c].SetGrip(wheels[c].GetGrip()+researchRow._tirecoefficientofgripchange);
 					
-				}
- 
+				}*/
 
-			 
-
-			}
+				aRacingAI.nitroFerocity += researchRow._effectonnitrodurability;
+				aRacingAI.nitroFuel += researchRow._effectonnitrofuel;
+ 			}
 
 		}
 	}

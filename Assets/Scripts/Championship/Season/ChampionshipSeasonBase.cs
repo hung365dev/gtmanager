@@ -215,10 +215,11 @@ namespace championship
 			return newLeague;
 		}
 
-		public IEnumerator LoadLevel(string aLevelName) {
-			AsyncOperation async = Application.LoadLevelAsync(aLevelName);
-			yield return async;
-			Debug.Log("Loading complete");
+		public IEnumerator LoadLevel(string aLevelName,string aLoadText) {
+			SplashScreen.levelToLoad = aLevelName;
+			SplashScreen.levelLoadText = aLoadText;
+			Application.LoadLevel("SplashScreen");
+			yield return null;
 
 		}
 

@@ -26,7 +26,7 @@ public class TakeScreenshot : MonoBehaviour {
 	public void doScreenshot() { 
 		thisSprite.enabled = false;
 		thisLabel.enabled = false;
-
+ 
 
 		//UM_ShareUtility.FacebookShare("Racing Manager for iOS and Android", tex);
 	}

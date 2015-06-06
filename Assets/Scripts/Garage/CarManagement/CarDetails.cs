@@ -85,7 +85,7 @@ public class CarDetails : MonoBehaviour {
 		gripValue = this.transform.FindChild("GripValue").GetComponent<UILabel>();
 		maxSpeedValue = this.transform.FindChild("MaxSpeedValue").GetComponent<UILabel>();
 		maxSpeedBoost = this.transform.FindChild("MaxSpeedBoost").GetComponent<UILabel>();
-	
+		this.gripBoost = this.transform.FindChild("GripBoost").GetComponent<UILabel>();
 		carValue = this.transform.FindChild("CarValueValue").GetComponent<UILabel>();
 	}
 
@@ -290,7 +290,7 @@ public class CarDetails : MonoBehaviour {
 		this.dragValue.text = ""+aRecord.carDragString+" ("+aRecord.carDrag+")";
 		this.maxSpeedValue.text = ""+aRecord.carMaxSpeed+"MPH";
 		this.hasDRSValue.text = "Level "+aRecord.hasDRS;
-		//gripValue.text = ""+aRecord.carTireWearEffect;
+		gripValue.text = ""+aRecord.grip();
 		
 		this.carValue.text = ""+aRecord.carValue.ToString("C0");
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
@@ -399,6 +399,14 @@ public class CarDetails : MonoBehaviour {
 		} else if(dragReduce<0f) {
 			this.dragBoost.gameObject.SetActive(true);
 			this.dragBoost.text = "-"+dragReduce+"";		
+		}
+
+		float gripAdd = this.carRef.getResearchEffectOnTireGrip();
+		if(gripAdd==0f) {
+			this.gripBoost.gameObject.SetActive(false);
+		} else if(gripAdd>0f) {
+			this.gripBoost.gameObject.SetActive(true);
+			this.gripBoost.text = "+"+gripAdd;
 		}
 
 	}

@@ -95,9 +95,9 @@ public class RaceFinisherTable : MonoBehaviour {
 			RaceEndFinances.showFinance = true;
 			RaceEndFinances.mostRecent = finances;
 			RaceEndFinances.mostRecent.bets = betWon;
-			StartCoroutine(ChampionshipSeason.ACTIVE_SEASON.LoadLevel("Garage"));
+			StartCoroutine(ChampionshipSeason.ACTIVE_SEASON.LoadLevel("Garage","Loading Garage"));
 
-
+ 
 		} else if(stage==4) {
 			List<GTTeam> sortedTeams = ChampionshipSeason.ACTIVE_SEASON.seasonForTeam(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()).sortedTeams;
 			int i = 0;

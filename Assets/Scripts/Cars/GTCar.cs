@@ -61,6 +61,16 @@ namespace Cars
 			}
 			
 		}
+
+		public float tireHardnessValue {
+			get {
+				float hardness = 10f;
+				for(int i = 0;i<this.rndParts.Count;i++) {
+					hardness+=rndParts[i].researchRow._tirehardnesseffect;
+				}
+				return hardness;
+			}
+		}
 		public void FromString(string aString) {
 			string decode = Base64.Base64Decode(aString);
 			string[] split = decode.Split(new char[] {'|'});

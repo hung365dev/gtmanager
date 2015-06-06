@@ -34,7 +34,7 @@ namespace championship
 			if(nextRace!=null&&nextRace.startDate==this.secondsPast&&this.secondsPast>0&&allowTimeToPass) {
 				allowTimeToPass = false;
 				ChampionshipRaceSettings.ACTIVE_RACE = nextRace;
-				StartCoroutine(LoadLevel(nextRace.track.sceneName));
+				StartCoroutine(LoadLevel(nextRace.track.sceneName,"Loading Race"));
 			}
 		}
 	}

@@ -39,7 +39,7 @@ namespace championship
 			DialogueLua.SetVariable("PlayersTeamName",aUsersTeamName);
 			ChampionshipSeason.ACTIVE_SEASON = this;
 			if(Application.loadedLevelName=="MainMenu") {
-				StartCoroutine(this.LoadLevel("Garage"));
+				StartCoroutine(this.LoadLevel("Garage","Loading Garage"));
 			}
 		}
 

@@ -10,7 +10,6 @@ using Cars;
 using PixelCrushers.DialogueSystem;
 
 public class RacingAI : RacingAIWithHeating {
-	public float nitroBoostDurability = 200f;
 	public float speedCornerBeforeError = 0f;
 	public float backToLineBeforeError = 0f;
 	public float breakAggressionBeforeError = 0f;
@@ -60,6 +59,7 @@ public class RacingAI : RacingAIWithHeating {
 	public DriverFaceManager messageHolder;
 	public bool started = false;
 	public ErrorState currentErrorState;
+
 	// Use this for initialization
 	void Start () {
 		this.tag = "Player";
@@ -186,8 +186,8 @@ public class RacingAI : RacingAIWithHeating {
 	}
 	public void useNitro() {
 		if(aiCar.GetCarSpeed()>2f) {
-			aiDriveTrain.nitroFuel = 1f;
-			aiDriveTrain.nitroBoostDurability = 1f;
+			aiDriveTrain.nitroFuel += this.nitroFuel;
+			aiDriveTrain.nitroBoostDurability = this.nitroFerocity;
 			aiInput.activateNitro = true;
 			nitrosRemaining--;
 		}

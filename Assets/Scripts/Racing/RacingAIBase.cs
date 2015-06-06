@@ -45,6 +45,11 @@ public class RacingAIBase : MonoBehaviour
 	public string driverName;
 	
 	public IRDSWing[] wings;
+
+	
+	public float nitroFerocity = 1f;
+	public float nitroFuel = 1f;
+
 	public RacingAIBase ()
 	{
 	}
@@ -84,7 +89,7 @@ public class RacingAIBase : MonoBehaviour
 			
 			this.originalPower = this.aiDriveTrain.GetMaxPower();
 			this.originalTorque = this.aiDriveTrain.GetMaxTorque();
-			
+		
 			  
 		}
 		return;
