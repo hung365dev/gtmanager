@@ -17,9 +17,12 @@ namespace Utils
 	public class SaveGameUtils
 	{
 		public const string SAVED_GAME_NAME = "d";
-		public const string SETTINGS_DATA = "settings";
+		public const string SETTINGS_DATA = "settings1";
 		public static int USING_INDEX = 0;
 		public static int fullGameOwned = 0;
+
+		public static bool MUSIC_ON = true;
+		public static bool SOUNDS_ON = true;
 		public SaveGameUtils ()
 		{
 		}
@@ -36,11 +39,19 @@ namespace Utils
 				List<String> l = ES2.LoadList<String>(SETTINGS_DATA);
 				int resWidth = Convert.ToInt32(l[(int) ESettingsList.ResolutionWidth]);
 				int resHeight = Convert.ToInt32(l[(int) ESettingsList.ResolutionHeight]);
-				
+				if(resWidth<resHeight) {
+					int t = resHeight;
+					resHeight = resWidth;
+					resWidth = t;
+				}
 				Screen.SetResolution(resWidth,resHeight,true);
 				int antiAlias = Convert.ToInt32(l[(int) ESettingsList.AntiAliasLevel]);
 				int shadows = Convert.ToInt32(l[(int) ESettingsList.ShadowLevel]);
 				fullGameOwned = Convert.ToInt32(l[(int) ESettingsList.FullGameOwned]);
+
+				MUSIC_ON = Convert.ToBoolean(l[(int) ESettingsList.MusicOn]);
+				SOUNDS_ON = Convert.ToBoolean(l[(int) ESettingsList.SoundsOn]);
+
 				SettingsScreen.shadowLevel = shadows;
 				QualitySettings.antiAliasing = antiAlias;
 			}
@@ -53,8 +64,10 @@ namespace Utils
 			settings.Add (""+QualitySettings.antiAliasing);
 			settings.Add(""+SettingsScreen.shadowLevel);
 			settings.Add (""+fullGameOwned);
+			settings.Add(SOUNDS_ON.ToString());
+			settings.Add(MUSIC_ON.ToString());
 			ES2.Save(settings,SETTINGS_DATA);
-		}
+		} 
 
 		public static void save(List<string> aData) {
 			ES2.Save(aData,SAVED_GAME_NAME+USING_INDEX);

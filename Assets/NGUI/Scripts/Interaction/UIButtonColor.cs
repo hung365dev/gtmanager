@@ -28,6 +28,9 @@ public class UIButtonColor : UIWidgetContainer
 	public GameObject tweenTarget;
 	public GameObject gameObjectToDisableOnDisable;
 
+	
+	public string audioClipOnClick = "standardButton";
+
 	/// <summary>
 	/// Color to apply on hover event (mouse only).
 	/// </summary>

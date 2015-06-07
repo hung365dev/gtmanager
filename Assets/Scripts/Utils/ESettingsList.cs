@@ -17,6 +17,8 @@ namespace Utils
 		ShadowLevel = 2,
 		AntiAliasLevel = 3,
 		FullGameOwned = 4,
+		SoundsOn = 5,
+		MusicOn = 6,
 	}
 }
 

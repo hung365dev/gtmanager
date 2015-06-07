@@ -49,17 +49,19 @@ namespace Teams
 		}
 
 		public void buyCarForDivision(int aDivision) {
+			Debug.Log ("Finding car for division: "+this.teamName);
 			List<CarLibraryRecord> recs = new List<CarLibraryRecord>();
 			for(int i = 0;i<CarDatabase.REF.cars.Count;i++) {
 				if(CarDatabase.REF.cars[i].leagueRequired==aDivision) {
 					recs.Add(CarDatabase.REF.cars[i]);
+					Debug.Log (this.teamName+" Finding car for division: "+aDivision+" - "+CarDatabase.REF.cars[i].prefabName);
 				}
 			}
 			if(recs.Count>0) {
-				if(UnityEngine.Random.Range(0,1)==0)
+				if(UnityEngine.Random.Range(0,10)<7) 
 					cars[0].replaceCarAI(recs[UnityEngine.Random.Range(0,recs.Count)]);
 			
-				if(UnityEngine.Random.Range(0,1)==0)
+				if(UnityEngine.Random.Range(0,10)<7)
 					cars[1].replaceCarAI(recs[UnityEngine.Random.Range(0,recs.Count)]);
 			}
 		}

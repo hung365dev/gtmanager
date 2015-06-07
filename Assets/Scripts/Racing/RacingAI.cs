@@ -8,6 +8,7 @@ using System;
 using Teams;
 using Cars;
 using PixelCrushers.DialogueSystem;
+using Utils;
 
 public class RacingAI : RacingAIWithHeating {
 	public float speedCornerBeforeError = 0f;
@@ -66,6 +67,11 @@ public class RacingAI : RacingAIWithHeating {
 		Lua.Result r = DialogueLua.GetVariable ("HintArrowNitroBoost");
 		if(r.AsInt==3) {
 			considerNitroTutorials = false;
+		}
+
+		if(!SaveGameUtils.SOUNDS_ON) {
+			IRDSSoundController sounds = this.GetComponent<IRDSSoundController>();
+			sounds.masterVolume = 0f;
 		}
 	}
 	

@@ -94,10 +94,13 @@ namespace championship
 						case(0):DialogueLua.SetVariable("EndSeasonResult","RelegatedDivision1");break;
 					}
 					conversationTriggered = true;
-				} else {
-					relegatedTeam.buyCarForDivision(i+1);
 				}
 				if(relegatedTeam!=null) {
+					if(i==2) {
+						Debug.Log("Car here");
+					}
+					
+					relegatedTeam.buyCarForDivision(i+2);
 					leagues[i+1].addTeam(relegatedTeam);
 					leagues[i].removeTeam(relegatedTeam);
 				} 
@@ -111,10 +114,11 @@ namespace championship
 					conversationTriggered = true;
 					GarageManager.REF.enableFireworks();
 				} else {
-					promotedTeam.buyCarForDivision(i-1);
 				}
 
 				if(promotedTeam!=null) {
+					
+					promotedTeam.buyCarForDivision(i);
 					leagues[i-1].addTeam(promotedTeam);
 					leagues[i].removeTeam(promotedTeam);
 				}

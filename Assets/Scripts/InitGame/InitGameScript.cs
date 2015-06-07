@@ -17,8 +17,6 @@ public class InitGameScript : MonoBehaviour {
 		this.GetComponent<DriverLibrary> ().init ();
 		this.GetComponent<CarDatabase> ().init ();
 		this.GetComponent<TeamDatabase> ().init ();
-		SaveGameUtils.loadSettings();
-
 		List<DriverLibraryRecord> availableDrivers = DriverLibrary.REF.getAllAvailableDrivers();
 		for(int i = 0;i<availableDrivers.Count;i++) {
 			GTDriver g = new GTDriver();

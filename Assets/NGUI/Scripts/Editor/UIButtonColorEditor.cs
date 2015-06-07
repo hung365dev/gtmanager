@@ -21,6 +21,7 @@ public class UIButtonColorEditor : UIWidgetContainerEditor
 		serializedObject.Update();
 		NGUIEditorTools.DrawProperty("Tween Target", serializedObject, "tweenTarget");
 		NGUIEditorTools.DrawProperty("GameObject To Disable On Disable", serializedObject, "gameObjectToDisableOnDisable");
+		NGUIEditorTools.DrawProperty("Audio Click Clip", serializedObject, "audioClipOnClick");
 		DrawProperties();
 		serializedObject.ApplyModifiedProperties();
 

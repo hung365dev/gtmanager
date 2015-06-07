@@ -2,6 +2,7 @@
 using System.Collections;
 using Teams;
 using PixelCrushers.DialogueSystem;
+using championship;
 
 public class DriverFaceManager : MonoBehaviour {
 
@@ -110,6 +111,10 @@ public class DriverFaceManager : MonoBehaviour {
 	}
 
 	public void onUseNitro() {
+		if(ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().teamName=="CameraDebug") {
+			GameObject.Find("UI Root").gameObject.SetActive(false);
+		}
+
 		if(racingAIRef.nitrosRemaining>0) {
 			racingAIRef.useNitro();
 			remainingNitros.text = ""+racingAIRef.nitrosRemaining;

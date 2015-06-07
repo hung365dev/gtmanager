@@ -214,8 +214,9 @@ namespace Racing
 			} else this.initButtons();
 			carInterface.targetAI = selectedCar;
 		}
-
+/*
 		public void onUseNitro() {
+
 			if (selectedCar != null) {
 				if(selectedCar.nitrosRemaining>0) {
 					if(RacingAI.considerNitroTutorials) {
@@ -226,7 +227,7 @@ namespace Racing
 					selectedCar.useNitro();
 				}
 			}
-		}
+		}*/
 		public void onChangeCamera() { 
 			switch (cameraView) {
 				case(ECameraViews.ChaseCamera):

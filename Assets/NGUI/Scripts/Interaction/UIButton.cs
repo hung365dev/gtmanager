@@ -28,7 +28,6 @@ public class UIButton : UIButtonColor
 	/// <summary>
 	/// Name of the hover state sprite.
 	/// </summary>
-
 	public string hoverSprite;
 
 	/// <summary>
@@ -255,6 +254,9 @@ public class UIButton : UIButtonColor
 	{
 		if (current == null && isEnabled)
 		{
+			if(this.audioClipOnClick!=null&&this.audioClipOnClick.Length>0) {
+				MusicManager.REF.playSound(this.audioClipOnClick);
+			}
 			current = this;
 			EventDelegate.Execute(onClick);
 			current = null;

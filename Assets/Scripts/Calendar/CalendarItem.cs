@@ -57,7 +57,7 @@ public class CalendarItem : MonoBehaviour {
 		}
 		GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		TrackDatabaseRecord tdr = ChampionshipSeason.ACTIVE_SEASON.seasonForTeam(myTeam).eventOnDay(aDayOfYear);
-
+		
 		UITexture t= this.GetComponentInChildren<UITexture>();
 
 		if(tdr!=null) {
@@ -67,7 +67,10 @@ public class CalendarItem : MonoBehaviour {
 		} else {
 			if(t!=null)
 				t.mainTexture = null;
-			
+			tdr = ChampionshipSeason.ACTIVE_SEASON.seasonForTeam(myTeam).eventOnDay(aDayOfYear+7);
+			if(tdr!=null) {
+				title.text += "\n(One week till next race)";
+			}
 			RandomEvent specialEvent = ChampionshipSeason.ACTIVE_SEASON.seasonForTeam(myTeam).getRandomEventOnDay(aDayOfYear);
 			if(specialEvent!=null) {
 				Texture texture1 = (Texture) Resources.Load ("gambleicon");

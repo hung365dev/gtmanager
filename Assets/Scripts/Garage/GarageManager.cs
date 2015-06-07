@@ -72,6 +72,9 @@ public class GarageManager : MonoBehaviour {
 			
 			garageColourButton.color = team.teamColor;
 			wheelColourButton.color = team.wheelColor;
+			if(ChampionshipSeason.ACTIVE_SEASON.nextRace!=null)
+				this.nextRaceDate.text = "Next Race: "+ChampionshipSeason.ACTIVE_SEASON.dateString(ChampionshipSeason.ACTIVE_SEASON.nextRace.startDate);
+			
 		}
 //		Lua.Result r = DialogueLua.GetVariable("HintArrowHireADriver");
 //		Debug.Log ("HintArrowHireADriver: "+r.AsInt);

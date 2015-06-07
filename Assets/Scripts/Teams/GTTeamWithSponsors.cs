@@ -83,9 +83,9 @@ namespace Teams
 					if(this.teamName=="Omega") {
 						Debug.Log ("Break");
 					}
-					if(sponsorRelationships[i].currentRelationshipValue==0) {
-						Debug.LogError("Error saving current relationship val");
-					}
+		//			if(sponsorRelationships[i].currentRelationshipValue==0) {
+		//				Debug.LogError("Error saving current relationship val");
+		//			}
 					s+=sponsorRelationships[i].currentRelationshipValue+"|"+sponsorRelationships[i].record.id+"%";
 				}
 				return Base64.Base64Encode(s);

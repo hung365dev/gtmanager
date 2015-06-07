@@ -39,6 +39,13 @@ public class MainMenuScene : MonoBehaviour {
 				SaveGameUtils.saveSettings();
 			}
 		}
+		GameObject g = GameObject.Find("GameLoadObj");
+		if(g!=null) {
+			Destroy(g);
+		}
+		
+		SaveGameUtils.loadSettings();
+		
 	}
 	public void doGameMaker(int aIndex) {  
 		

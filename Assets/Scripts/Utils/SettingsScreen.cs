@@ -23,6 +23,12 @@ public class SettingsScreen : MonoBehaviour {
 	public bool madeUpRess = false;
 	public const int MAX_RESOLUTION_CHOICES = 4;
 
+
+	public UILabel soundsBtnLabel;
+	public UILabel musicBtnLabel;
+
+
+
 	void Start () {
 		
 		int maxResolutionWidth = Screen.width;
@@ -64,6 +70,22 @@ public class SettingsScreen : MonoBehaviour {
 		} else {
 			this.mainMenuBtn.gameObject.SetActive(false);
 		}
+	}
+
+	public void onMusicToggle() {
+		SaveGameUtils.MUSIC_ON = !SaveGameUtils.MUSIC_ON;
+		if(!SaveGameUtils.MUSIC_ON) {
+			MusicManager.REF.fadeInMusic();
+		} else {
+			MusicManager.REF.fadeOutMusic();
+		}
+	}
+	public void onSoundsToggle() {
+		SaveGameUtils.SOUNDS_ON = !SaveGameUtils.SOUNDS_ON;
+	}
+
+	public void onContactUs() {
+		Debug.Log ("Contact us");
 	}
 	public void onRestorePurchases() {
 		UM_InAppPurchaseManager.instance.RestorePurchases();
@@ -189,6 +211,17 @@ x 4 Antialiasing
 	void Update () {
 		if(this.currentResolutionText!=null) 
 			this.currentResolutionText.text = Screen.width+" x "+Screen.height;
+
+		if(SaveGameUtils.SOUNDS_ON) {
+			this.soundsBtnLabel.text = "SOUNDS ON";
+		} else {
+			this.soundsBtnLabel.text = "SOUNDS OFF";
+		}
+		if(SaveGameUtils.MUSIC_ON) {
+			this.musicBtnLabel.text = "MUSIC ON";
+		} else {
+			this.musicBtnLabel.text = "MUSIC OFF";
+		} 
 	}
 
 }
