@@ -17,12 +17,14 @@ namespace Utils
 	public class SaveGameUtils
 	{
 		public const string SAVED_GAME_NAME = "d";
-		public const string SETTINGS_DATA = "settings1";
+		public const string SETTINGS_DATA = "settings2";
 		public static int USING_INDEX = 0;
 		public static int fullGameOwned = 0;
 
 		public static bool MUSIC_ON = true;
 		public static bool SOUNDS_ON = true;
+	
+		public static bool allowRating = true;
 		public SaveGameUtils ()
 		{
 		}
@@ -52,13 +54,15 @@ namespace Utils
 				MUSIC_ON = Convert.ToBoolean(l[(int) ESettingsList.MusicOn]);
 				SOUNDS_ON = Convert.ToBoolean(l[(int) ESettingsList.SoundsOn]);
 
+
+				allowRating = Convert.ToBoolean(l[(int) ESettingsList.AllowRating]);
 				SettingsScreen.shadowLevel = shadows;
 				QualitySettings.antiAliasing = antiAlias;
 			}
 		}
 
 		public static void saveSettings() {
-			List<String> settings = new List<string>();
+			List<String> settings = new List<string>(); 
 			settings.Add(""+Screen.currentResolution.width);
 			settings.Add(""+Screen.currentResolution.height);
 			settings.Add (""+QualitySettings.antiAliasing);
@@ -66,6 +70,7 @@ namespace Utils
 			settings.Add (""+fullGameOwned);
 			settings.Add(SOUNDS_ON.ToString());
 			settings.Add(MUSIC_ON.ToString());
+			settings.Add(allowRating.ToString());
 			ES2.Save(settings,SETTINGS_DATA);
 		} 
 

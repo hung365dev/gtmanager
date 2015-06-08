@@ -7,6 +7,8 @@ using Teams;
 using PixelCrushers.DialogueSystem;
 using Championship;
 using System;
+using UnionAssets.FLE;
+using Utils;
 
 public class RaceFinisherTable : MonoBehaviour {
 
@@ -33,14 +35,46 @@ public class RaceFinisherTable : MonoBehaviour {
 		int i = 0;
 		for(i = 0;i<aFinishers.size;i++) {
 			completeMembers[i].init(aFinishers[i],i);
+			
 			completeMembers[i].gameObject.SetActive(true);
 		}
-
+		if(ChampionshipSeason.ACTIVE_SEASON.getTeamFromDriver(completeMembers[0].driver.driverRecord)==ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()) {
+			MobileNativeRateUs ratePopUp =  new MobileNativeRateUs("Enjoying Racing Manager?", "Rate us 5 Stars to help with future updates!","5 Stars","Not Right Now","Never!");
+			#if UNITY_IOS
+				ratePopUp.SetAppleId("975017895");
+			#endif
+			#if UNITY_ANDROID
+				ratePopUp.SetAndroidAppUrl("market://details?id=com.blueomega.gpmanager");
+			#endif
+			ratePopUp.addEventListener(BaseEvent.COMPLETE,OnRatePopUpClose);
+			ratePopUp.Start();
+		} 
 		for(int c = i;c<completeMembers.Count;c++) {
 			completeMembers[i].gameObject.SetActive(false);
 		}
 	}
-
+			private void OnRatePopUpClose(CEvent e) {
+				//removing listner
+				e.dispatcher.removeEventListener(BaseEvent.COMPLETE, OnRatePopUpClose);
+				//parsing result
+				switch((MNDialogResult)e.data) {
+				case MNDialogResult.RATED:
+					// No action needed
+					SaveGameUtils.allowRating = false;
+					break;
+				case MNDialogResult.REMIND:
+					Debug.Log ("Remind Option picked");
+					SaveGameUtils.allowRating = true;
+					break;
+				case MNDialogResult.DECLINED:
+					Debug.Log ("Declined Option picked");
+			
+					SaveGameUtils.allowRating = false;
+					SaveGameUtils.saveSettings();
+					break;
+				}
+			}
+			
 	private int finishPositionSort(RacingAI a1,RacingAI a2) {
 		if(a1.finishPosition<a2.finishPosition) {
 			return -1;

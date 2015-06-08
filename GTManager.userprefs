@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MusicManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Utils/SaveGameUtils.cs">
     <Files>
-      <File FileName="Assets/MusicManager.cs" Line="33" Column="22" />
+      <File FileName="Assets/MusicManager.cs" Line="60" Column="6" />
+      <File FileName="Assets/SoundController.cs" Line="8" Column="27" />
+      <File FileName="Assets/Scripts/Utils/SaveGameUtils.cs" Line="65" Column="48" />
+      <File FileName="Assets/Scripts/Utils/ESettingsList.cs" Line="21" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

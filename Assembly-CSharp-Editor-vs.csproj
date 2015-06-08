@@ -131,16 +131,6 @@
      <Compile Include="Assets\GoogleFu\Editor\GoogleFuLanguages.cs" />
      <Compile Include="Assets\GoogleFu\Editor\GoogleFuMimeType.cs" />
      <Compile Include="Assets\GoogleFu\Editor\Localization.cs" />
-     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\Editor\AddHorizonMenuItems.cs" />
-     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\Editor\CustomDrawers\BlockInfoDrawer.cs" />
-     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\Editor\CustomDrawers\FoldoutDrawer.cs" />
-     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\Editor\CustomDrawers\HideByPropDrawer.cs" />
-     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\Editor\CustomDrawers\PropBlockDrawer.cs" />
-     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\Editor\CustomDrawers\PropBlockKeywordDrawer.cs" />
-     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\Editor\CustomDrawers\TexNoTilingDrawer.cs" />
-     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\Editor\CustomDrawers\WarningInfoDrawer.cs" />
-     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\Editor\HorizonCopyMaterialPropsEditor.cs" />
-     <Compile Include="Assets\Horizon[ON]\Sources\Scripts\Editor\HorizonMasterEditor.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX Easy Editor\Editor\CFXEasyEditor.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Editor\CFX_InspectorHelpEditor.cs" />
      <Compile Include="Assets\JMO Assets\Cartoon FX\Editor\CFX_SpawnSystemEditor.cs" />
@@ -231,7 +221,6 @@
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\MultiTexture.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Convolution3x3.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked 1.shader" />
-     <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Displacement.shader" />
      <None Include="Assets\Plugins\StansAssets\Versions\UM_VersionInfo.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 2.shader" />
      <None Include="Assets\iRDS\Required\Shaders\Glassreflect2D.shader" />
@@ -265,7 +254,6 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 3.shader" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Ultra Detail Bump RefMask SpecMask.shader" />
      <None Include="Assets\Plugins\StansAssets\IOS\GoogleMobileAdController.mm.txt" />
-     <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Transition.shader" />
      <None Include="Assets\EasyRoads3D\Shaders\EasyRoads3D-Alpha-Bumped.shader" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Low Detail.shader" />
      <None Include="Assets\Dialogue System\Scripts\Supplemental\UI\Example\Art\_README.txt" />
@@ -293,10 +281,8 @@
      <None Include="Assets\Plugins\Android\res\values\version.xml" />
      <None Include="Assets\Colorful\Shaders\CC_Sharpen.shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarTVR\readme.txt" />
-     <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Tessellation(DX11).shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\CarGolf\readme.txt" />
      <None Include="Assets\iRDS\Required\Shaders\GlassReflect.shader" />
-     <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Object.shader" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarPaint Medium Detail RefMask.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Blend.shader" />
      <None Include="Assets\Colorful\Shaders\CC_CrossStitch.shader" />
@@ -314,7 +300,6 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
      <None Include="Assets\UI\GameUI\LatoReg144.txt" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarChrome Probes.shader" />
-     <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Cliff.shader" />
      <None Include="Assets\Colorful\Shaders\CC_Led.shader" />
      <None Include="Assets\Plugins\StansAssets\Versions\GMA_VersionInfo.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
@@ -344,7 +329,6 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 1.shader" />
      <None Include="Assets\Car Paint Shader PRO Mobile\Shaders\CarGlass Diffuse.shader" />
      <None Include="Assets\JMO Assets\!JMO Assets Readme.txt" />
-     <None Include="Assets\Horizon[ON]\Sources\Shaders\_horizON_Core.cginc" />
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Hidden.shader" />
      <None Include="Assets\Colorful\Shaders\CC_DoubleVision.shader" />
      <None Include="Assets\Colorful\Shaders\CC_AnalogTV.shader" />
@@ -370,7 +354,6 @@
      <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add VColor.shader" />
      <None Include="Assets\Plugins\StansAssets\IOS\GoogleMobileAdBanner.h.txt" />
      <None Include="Assets\Dialogue System\Scripts\_README.txt" />
-     <None Include="Assets\Horizon[ON]\Horizon[ON] - ReadMe.txt" />
      <None Include="Assets\Plugins\StansAssets\Android\social\an_social.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text.shader" />
      <None Include="Assets\Colorful\Shaders\CC_WhiteBalance.shader" />
@@ -434,7 +417,6 @@
      <None Include="Assets\Colorful\Shaders\CC_Halftone.shader" />
      <None Include="Assets\Plugins\WP8\GoogleAds.xml" />
      <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX Readme.txt" />
-     <None Include="Assets\Horizon[ON]\Sources\Shaders\Horizon[ON] Flat.shader" />
      <None Include="Assets\Colorful\Shaders\CC_ChannelSwapper.shader" />
      <None Include="Assets\Colorful\Shaders\CC_RGBSplit.shader" />
      <None Include="Assets\Res\Cars\AE_CARS\SAMOCHODY\AudiA8\readme.txt" />

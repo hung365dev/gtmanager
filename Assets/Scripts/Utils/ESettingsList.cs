@@ -18,7 +18,8 @@ namespace Utils
 		AntiAliasLevel = 3,
 		FullGameOwned = 4,
 		SoundsOn = 5,
-		MusicOn = 6,
+		MusicOn = 6, 
+		AllowRating = 7,
 	}
 }
 
