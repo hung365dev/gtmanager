@@ -69,7 +69,7 @@ public class ResearchItem : MonoBehaviour {
 				}
 			} else {
 				if(this.carRef.partBeingResearched.researchRow==researchRow) {
-					this._button.defaultColor = parent.defaultColour;
+					this._button.defaultColor = parent.beingResearchedColour; 
 				} else {
 					this._button.defaultColor = parent.unavailableColour;
 					this._button.isEnabled = false;

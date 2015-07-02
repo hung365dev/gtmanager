@@ -79,8 +79,10 @@ public class GarageManager : MonoBehaviour {
 //		Lua.Result r = DialogueLua.GetVariable("HintArrowHireADriver");
 //		Debug.Log ("HintArrowHireADriver: "+r.AsInt);
 	}
-	public void Awake() {
-		
+		public void Awake() {
+	
+		DialogueLua.SetVariable("Tutorials",SaveGameUtils.TUTORIALS_ON);
+		SaveGameUtils.setTutorialFlags();
 		if(!RaceEndFinances.showFinance) {
 			DialogueLua.SetVariable("UsersCash",ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().cash);
 			trigger = this.GetComponent<ConversationTrigger>();
@@ -96,6 +98,8 @@ public class GarageManager : MonoBehaviour {
 		
 	}
 	private void onCloseFinances() {
+		
+		DialogueLua.SetVariable("Tutorials",SaveGameUtils.TUTORIALS_ON);
 		trigger = this.GetComponent<ConversationTrigger>();
 
 		GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
@@ -150,7 +154,8 @@ public class GarageManager : MonoBehaviour {
 	
 	}
 	public void doConversation(string aConversationName) {
-		
+		SaveGameUtils.setTutorialFlags();
+		DialogueLua.SetVariable("Tutorials",SaveGameUtils.TUTORIALS_ON);
 		DialogueLua.SetVariable("UsersCash",ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().cash);
 		trigger = this.GetComponent<ConversationTrigger>();
 		trigger.conversation = aConversationName;

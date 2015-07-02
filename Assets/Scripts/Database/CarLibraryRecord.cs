@@ -48,6 +48,8 @@ namespace Database
 
 		public int frontBrakeTorque;
 		public int rearBrakeTorque;
+
+		public int upgradeRequired;
 		public CarLibraryRecord (CarLibraryRow aRow)
 		{
 			id = aRow._id;
@@ -79,6 +81,8 @@ namespace Database
 		
 			this.frontBrakeTorque = aRow._frontbraketorque;
 			this.rearBrakeTorque = aRow._rearbraketorque;
+
+			upgradeRequired = aRow._exclusivepack;
 		}  
 		public string carDragString {
 			get {

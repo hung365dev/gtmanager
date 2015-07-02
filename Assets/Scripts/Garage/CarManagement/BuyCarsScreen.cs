@@ -14,6 +14,7 @@ using Database;
 using GoogleFu;
 using Teams;
 using championship;
+using Utils;
 
 
 namespace Garage
@@ -138,10 +139,20 @@ namespace Garage
 				Destroy(renderers[i].gameObject);
 			}
 			GTTeam myTeam = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+
 			if(car.leagueRequired>=ChampionshipSeason.ACTIVE_SEASON.leagueForTeam(myTeam).divisionNumber) {
-				this.lblDivisionLabel.gameObject.SetActive(false);
-				this.centerLight.gameObject.SetActive(true);
-				btnBuyCar.isEnabled = true;
+				
+				if((car.upgradeRequired==2&&SaveGameUtils.fullGameOwned==2)||(car.upgradeRequired<2)) {
+					this.lblDivisionLabel.gameObject.SetActive(false);
+					this.centerLight.gameObject.SetActive(true);
+					btnBuyCar.isEnabled = true;
+				} else if(car.upgradeRequired==2) {
+					
+					lblDivisionLabel.text = "Full Game Plus Pack Required";
+					this.lblDivisionLabel.gameObject.SetActive(true);
+					this.centerLight.gameObject.SetActive(false);
+					btnBuyCar.isEnabled = false;
+				}
 			} else {
 				lblDivisionLabel.text = "League "+car.leagueRequired+" Required";
 				this.lblDivisionLabel.gameObject.SetActive(true);
@@ -226,7 +237,7 @@ namespace Garage
 		}
 
 		public void OnDisable() {
-			
+			centerLight.gameObject.SetActive(true);
 			Lean.LeanTouch.OnFingerSwipe -= OnFingerSwipe;
 		}
 	} 

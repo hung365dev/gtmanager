@@ -314,7 +314,7 @@ if(target.ODCDODQODC[0] != "None Available!"  && target.OQQCDCOCQO.road.GetCompo
 #if UNITY_5_0
 //UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(target.OQQCDCOCQO.road, "Assets/EasyRoads3D/Editor/EasyRoadsEditorMenu.cs (460,4)", target.ODCDODQODC[target.selectedWaterScript]);
 #else
-target.OQQCDCOCQO.road.AddComponent(target.ODCDODQODC[target.selectedWaterScript]);
+UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(target.OQQCDCOCQO.road, "Assets/EasyRoads3D/Editor/EasyRoadsEditorMenu.cs (317,1)", target.ODCDODQODC[target.selectedWaterScript]);
 #endif
 
 }

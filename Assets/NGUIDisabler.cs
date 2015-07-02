@@ -5,7 +5,7 @@ public class NGUIDisabler : MonoBehaviour {
 	
 	public UICamera cameraRef;
 	public CC_RadialBlur blur;
-	public CC_AnalogTV analogTV;
+// 	public CC_AnalogTV analogTV;
 	public static float PAUSED_TIME_SCALE = 0f;
 	// Use this for initialization
 	void Start () {
@@ -23,7 +23,7 @@ public class NGUIDisabler : MonoBehaviour {
 			
 			if(Application.loadedLevelName=="Garage") {
 				blur.enabled = false;
-				analogTV.enabled = false;
+			//	analogTV.enabled = false;
 			}
 		}
 	}
@@ -41,13 +41,12 @@ public class NGUIDisabler : MonoBehaviour {
 						blur = camera.gameObject.AddComponent<CC_RadialBlur>();
 					}
 					blur.enabled = true;
-					analogTV = camera.GetComponent<CC_AnalogTV>();
+			/*		analogTV = camera.GetComponent<CC_AnalogTV>();
 					if(analogTV==null) {
 						analogTV = camera.gameObject.AddComponent<CC_AnalogTV>();
-					}
-					analogTV.enabled = true;
+					}*/
+					//analogTV.enabled = true;
 				}
-				
 			}
 		}
 	}

@@ -13,6 +13,7 @@ public class ResearchScreenMain : MonoBehaviour {
 	public Color unavailableColour;
 	public Color unlockedColour;
 	public Color selectedColour;
+	public Color beingResearchedColour;
 	public GarageCameraController camController;
 	public IndividualPieceOfResearch individualResearch;
 	public UILabel researchBoxTitle;

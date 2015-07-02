@@ -13,6 +13,7 @@ using UnityEngine;
 using Drivers;
 using Cars;
 using Utils;
+using Database;
 
 
 namespace Teams
@@ -32,7 +33,7 @@ namespace Teams
 		public int seasonWins = 0;
 		public int cash = 200000;
 		public static string HUMANS_DEBUG_TEAM = "Test Pilots";
-		
+		public int id = 0;
 		public int reputation;
 
 		public GTTeamBase ()
@@ -44,6 +45,7 @@ namespace Teams
 			string[] s = uncom.Split(new char[] {'|'});
 			GTDriver d = new GTDriver();
 			d.FromString(s[0]);
+
 			this.drivers.Add(d);
 			d = new GTDriver();
 			d.FromString(s[1]);
@@ -74,12 +76,21 @@ namespace Teams
 			this.seasonWins =Convert.ToInt32(s[13]);
 			this.cash = Convert.ToInt32(s[14]);
 			this.reputation = Convert.ToInt32(s[15]);
+			this.id = Convert.ToInt32(s[16]);
+
+			DriverLibraryRecord rec = DriverLibrary.REF.driverByID(drivers[0].id);
+			
+			rec.assignedTeam = id;
+			rec = DriverLibrary.REF.driverByID(drivers[1].id);
+			 
+			rec.assignedTeam = id; 
+
 			ignoreFromRelegationAndPromotion = false;
 		}
 		public virtual string SaveString() {
 			string s = drivers[0].SaveString()+"|"+drivers[1].SaveString()+"|"+cars[0].SaveString()+"|"+cars[1].SaveString()+"|"+
 			teamColor.r+"|"+teamColor.g+"|"+teamColor.b+"|"+wheelColor.r+"|"+wheelColor.g+"|"+wheelColor.b+"|"+
-			humanControlled+"|"+teamName+"|"+seasonPoints+"|"+seasonWins+"|"+cash+"|"+reputation;
+			humanControlled+"|"+teamName+"|"+seasonPoints+"|"+seasonWins+"|"+cash+"|"+reputation+"|"+this.id;
 			return Base64.Base64Encode(s);
 
 		}  

@@ -2,6 +2,7 @@
 using System.Collections;
 using Utils;
 using championship;
+using PixelCrushers.DialogueSystem;
 
 public class SettingsScreen : MonoBehaviour {
 
@@ -27,6 +28,8 @@ public class SettingsScreen : MonoBehaviour {
 	public UILabel soundsBtnLabel;
 	public UILabel musicBtnLabel;
 
+
+	public UILabel tutorialsBtnLabel;
 
 
 	void Start () {
@@ -72,6 +75,15 @@ public class SettingsScreen : MonoBehaviour {
 		}
 	}
 
+	public void onContact() {
+		
+		Application.OpenURL("http://www.blueomega.me/contact");
+	}
+
+	public void onTutorialToggle() {
+		SaveGameUtils.TUTORIALS_ON = !SaveGameUtils.TUTORIALS_ON;
+		DialogueLua.SetVariable("Tutorials",SaveGameUtils.TUTORIALS_ON);
+	}
 	public void onMusicToggle() {
 		SaveGameUtils.MUSIC_ON = !SaveGameUtils.MUSIC_ON;
 		if(!SaveGameUtils.MUSIC_ON) {
@@ -86,12 +98,15 @@ public class SettingsScreen : MonoBehaviour {
 
 	public void onContactUs() {
 		Debug.Log ("Contact us");
+		
+		Application.OpenURL("http://www.blueomega.me/contact");
 	}
 	public void onRestorePurchases() {
 		UM_InAppPurchaseManager.instance.RestorePurchases();
 		MobileNativeMessage msg = new MobileNativeMessage("Restoring Purchases", "Racing Manager will now check to see if you previously unlocked the game and will restore your purchases if any are found");
 	}
 	public void onGoMainMenu() {
+		this.doSaveSettings();
 		ChampionshipSeason.ACTIVE_SEASON.SaveGame();
 		Application.LoadLevel("MainMenu");
 	}
@@ -161,7 +176,7 @@ x 4 Antialiasing
 
 	private void showShadowsLabel() {
 		switch(shadowLevel ) {
-		case(0):this.shadowsLabel.text = "No Shadows (Fast)";break;
+		case(0):default:shadowLevel = 0;this.shadowsLabel.text = "No Shadows (Fast)";break;
 		case(1):this.shadowsLabel.text = "Basic Shadows";break;
 		case(2):this.shadowsLabel.text = "Good Shadows (Slow)";break;
 		}
@@ -211,7 +226,8 @@ x 4 Antialiasing
 	void Update () {
 		if(this.currentResolutionText!=null) 
 			this.currentResolutionText.text = Screen.width+" x "+Screen.height;
-
+		
+		this.showShadowsLabel();
 		if(SaveGameUtils.SOUNDS_ON) {
 			this.soundsBtnLabel.text = "SOUNDS ON";
 		} else {
@@ -222,6 +238,12 @@ x 4 Antialiasing
 		} else {
 			this.musicBtnLabel.text = "MUSIC OFF";
 		} 
+		if(SaveGameUtils.TUTORIALS_ON) {
+			this.tutorialsBtnLabel.text = "TUTORIALS ON";
+		} else {
+			this.tutorialsBtnLabel.text = "TUTORIALS OFF";
+		}
+		
 	}
 
 }

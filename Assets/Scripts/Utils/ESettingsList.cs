@@ -20,6 +20,7 @@ namespace Utils
 		SoundsOn = 5,
 		MusicOn = 6, 
 		AllowRating = 7,
+		TutorialsOn = 8,
 	}
 }
 

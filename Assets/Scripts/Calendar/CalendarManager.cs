@@ -2,6 +2,7 @@
 using System.Collections;
 using championship;
 using System;
+using Teams;
 
 public class CalendarManager : MonoBehaviour {
 
@@ -14,6 +15,12 @@ public class CalendarManager : MonoBehaviour {
 
 	void OnEnable() {
 		updateDay();
+		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
+		team.initEmptySponsorVars();
+		if(ChampionshipSeason.ACTIVE_SEASON.nextRace==null)
+			GarageManager.REF.doConversation("CalendarConversation"); else
+		if(ChampionshipSeason.ACTIVE_SEASON.nextRace!=null&&ChampionshipSeason.ACTIVE_SEASON.nextRace.startDate==ChampionshipSeason.ACTIVE_SEASON.secondsPast&&ChampionshipSeason.ACTIVE_SEASON.nextRace.startDate>0) {
+} else
 		GarageManager.REF.doConversation("CalendarConversation");
 	}
 

@@ -1,11 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Utils/SaveGameUtils.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Championship/ChampionshipRaceSettings.cs">
     <Files>
-      <File FileName="Assets/MusicManager.cs" Line="60" Column="6" />
-      <File FileName="Assets/SoundController.cs" Line="8" Column="27" />
-      <File FileName="Assets/Scripts/Utils/SaveGameUtils.cs" Line="65" Column="48" />
-      <File FileName="Assets/Scripts/Utils/ESettingsList.cs" Line="21" Column="16" />
+      <File FileName="Assets/Scripts/Racing/RaceManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Racing/Interface/RaceFinisherTable.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Garage/Contracts/ContractOfferScreen.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MenuScene/MainMenuScene.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Teams/GTTeam.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Teams/GTTeamWithDrivers.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MenuScene/NewGameMaker.cs" Line="1" Column="1" />
+      <File FileName="Assets/SplashScreen.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Championship/ChampionshipRaceSettings.cs" Line="27" Column="44" />
+      <File FileName="Assets/Scripts/Championship/ChampionshipSeasonLeague.cs" Line="553" Column="48" />
+      <File FileName="Assets/Scripts/Championship/Season/ChampionshipSeasonWithRaces.cs" Line="28" Column="21" />
+      <File FileName="Assets/Scripts/Championship/Season/ChampionshipSeasonBase.cs" Line="15" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -16,10 +24,10 @@
       <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Dialogue System/Scripts/Core/Manager/DialogueSystemController.cs" line="991" />
       <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Dialogue System/Scripts/Core/Manager/DialogueSystemController.cs" line="992" />
       <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Colorful/Components/CC_Base.cs" line="34" />
-      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Racing/TeamControl.cs" line="274" />
-      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Garage/GarageManager.cs" line="125" />
+      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Racing/TeamControl.cs" line="273" />
+      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Garage/GarageManager.cs" line="129" />
       <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Garage/InterfaceMainButtons.cs" line="96" />
-      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Garage/GarageManager.cs" line="188" />
+      <Breakpoint file="/Users/andrew/Documents/GTManager/Assets/Scripts/Garage/GarageManager.cs" line="193" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -140,7 +140,7 @@ namespace Racing
 				this.driver2Camera = GameObject.Find ("CameraOn 1");
 				currentlyViewingLabel = GameObject.Find("NowViewingLabel").GetComponent<UILabel>();
 				currentlyViewingTween = GameObject.Find ("NowViewingLabel").GetComponent<TweenAlpha>();
-				currentlyViewingTween.enabled = false;
+				currentlyViewingTween.enabled = false; 
 
 				changeCamera = GameObject.Find("ButtonToggleCamera").GetComponent<UIButton>();
 				changeCars.onClick.Add(new EventDelegate(this,"changeCar"));
@@ -184,7 +184,6 @@ namespace Racing
 		public void changeCameraIcon() {
 			if(driver1Camera!=null) {
 				if(selectedCar==racingAIs[1]) {
-					
 					driver1Camera.gameObject.SetActive(false);
 					driver2Camera.gameObject.SetActive(true);
 				} else {
@@ -211,7 +210,7 @@ namespace Racing
 				currentlyViewingTween.enabled = true;
 				currentlyViewingLabel.text = "NOW VIEWING "+selectedCar.driverName.ToUpper();
 				changeCameraIcon();
-			} else this.initButtons();
+			} else this.initButtons(); 
 			carInterface.targetAI = selectedCar;
 		}
 /*

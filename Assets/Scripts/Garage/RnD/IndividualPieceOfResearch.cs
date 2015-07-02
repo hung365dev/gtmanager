@@ -13,7 +13,7 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 	public UILabel partNameTitle;
 	public UILabel partDescription;
 	public UILabel divisionRequired;
-	public UILabel prerequisiteParts;
+	public UILabel prerequisiteParts; 
 	public UISprite  partGraphic;
 	public UILabel lblCost;
 	public UILabel lblDaysToResearch;
@@ -77,7 +77,7 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 	}
 	public void initResearch(RnDRow aRow,GTCar aCar,UISprite aSprite) {
 		this.gameObject.SetActive(true);
-		researchRow = aRow;
+		researchRow = aRow; 
 		carRef = aCar;
 		GTEquippedResearch r = carRef.hasPart(aRow);
 		if(r==null) {
@@ -87,7 +87,7 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 		}
 		
 		partDescription.text = aRow._partdescription;
-		divisionRequired.text = "Division Required: "+aRow._partprerequisitedivision;
+	//	divisionRequired.text = "Division Required: "+aRow._partprerequisitedivision;
 		if(aRow._partprerequisites.Length==0) {
 			prerequisiteParts.text = "Prerequisite Parts: None";
 		} else {
@@ -96,7 +96,9 @@ public class IndividualPieceOfResearch : MonoBehaviour {
 		lblCost.text = "Cost to Research: "+aRow._costtoresearch.ToString("C0");
 		this.lblDaysToResearch.text = "Days to Research: "+aRow._daystoresearch;
 		partGraphic.spriteName = aSprite.spriteName;
- 
+ 		if(this.carRef.partBeingResearched!=null) {
+			startResearchBtn.isEnabled = false;
+		}
 		
 	}
 } 

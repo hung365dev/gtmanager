@@ -40,8 +40,8 @@ namespace championship
 		//	aTrackRecord = TrackDatabase.REF.recordFromName("BulletsTrack1");
 			prizeDistrbutionSetting = EPrizeDistrbution.Standard;
 			track = aTrackRecord;
-			
-			prizeFund = 50000*(5-aLeague);
+			float prize1 = 50000f*((5f-aLeague)/3f);
+			prizeFund = Convert.ToInt32(prize1) ;
 			driversPointsDistribution = EPointsDistribution.F12010Style;
 			constructorsPointsDistribution = EPointsDistribution.F12010Style;
 			startDate = aStartDate;//(aRaceInCalendar+1)*(7+ChampionshipSeason.ACTIVE_SEASON.secondsPast)-1;

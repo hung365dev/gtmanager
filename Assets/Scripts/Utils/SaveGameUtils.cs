@@ -10,20 +10,24 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using PixelCrushers.DialogueSystem;
 
 
 namespace Utils
 {
 	public class SaveGameUtils
 	{
-		public const string SAVED_GAME_NAME = "d";
-		public const string SETTINGS_DATA = "settings2";
+		public const string SAVED_GAME_NAME = "e";
+		public const string SETTINGS_DATA = "settings3";
 		public static int USING_INDEX = 0;
 		public static int fullGameOwned = 0;
 
 		public static bool MUSIC_ON = true;
 		public static bool SOUNDS_ON = true;
 	
+
+		public static bool TUTORIALS_ON = true;
+
 		public static bool allowRating = true;
 		public SaveGameUtils ()
 		{
@@ -56,11 +60,37 @@ namespace Utils
 
 
 				allowRating = Convert.ToBoolean(l[(int) ESettingsList.AllowRating]);
+				if(l.Count>8)
+					TUTORIALS_ON = Convert.ToBoolean(l[(int) ESettingsList.TutorialsOn]);
 				SettingsScreen.shadowLevel = shadows;
 				QualitySettings.antiAliasing = antiAlias;
 			}
 		}
+		public static void setTutorialFlags() {
 
+			if(!SaveGameUtils.TUTORIALS_ON) { 
+				DialogueLua.SetVariable("HintArrowDrivers",10);			
+				DialogueLua.SetVariable("HintArrowFirstRAndD",10);
+				DialogueLua.SetVariable("HintArrowNewCars",10);
+				DialogueLua.SetVariable("HintArrowNitroBoost",10);
+				DialogueLua.SetVariable("HintArrowOverheating",10);
+				DialogueLua.SetVariable("HintArrowSelectResearch",10);
+				DialogueLua.SetVariable("HintArrowFindSponsor",10);
+				DialogueLua.SetVariable("HintBuyACar",10);
+				DialogueLua.SetVariable("HintFirstCalendar",10);
+				DialogueLua.SetVariable("HintArrowBuyCarButton",10);
+				DialogueLua.SetVariable("HintOpenHireDriversScreen",10);
+				DialogueLua.SetVariable("HintArrowHireADriver",10);
+				DialogueLua.SetVariable("HintArrowOfferContract",10);
+			//	DialogueLua.SetVariable("SignedDriver",1);
+				DialogueLua.SetVariable("DriverSigned",1);
+				DialogueLua.SetVariable("ResearchTutorialDone",true);
+				DialogueLua.SetVariable("ResearchIndividualBitDone",true);
+				DialogueLua.SetVariable("ResearchDescriptionDone",true);
+			}
+
+
+		}
 		public static void saveSettings() {
 			List<String> settings = new List<string>(); 
 			settings.Add(""+Screen.currentResolution.width);
@@ -71,6 +101,8 @@ namespace Utils
 			settings.Add(SOUNDS_ON.ToString());
 			settings.Add(MUSIC_ON.ToString());
 			settings.Add(allowRating.ToString());
+			settings.Add (TUTORIALS_ON.ToString());
+
 			ES2.Save(settings,SETTINGS_DATA);
 		} 
 

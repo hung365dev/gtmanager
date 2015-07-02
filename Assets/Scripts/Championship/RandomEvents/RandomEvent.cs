@@ -38,7 +38,7 @@ namespace championship
 				default:failed = true;break;
 			}
 
-		}
+		} 
 		public RandomEvent() {
 
 		}
@@ -50,10 +50,13 @@ namespace championship
 				DialogueLua.SetVariable("RandomEventResearchItem",researchItem.researchRow._partname);
 			}
 			if(this.rewardCash>0) {
+				if(this.rewardCash>=ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().cash) {
+					this.rewardCash = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam().cash;
+				}
 				string s = rewardCash.ToString("C0"); 
 				DialogueLua.SetVariable("RandomEventValueString",s);
 			}
-		}
+		} 
 		
 		public void setupForToxicDriver(GTTeam aMyTeam,ChampionshipSeasonLeague aLeague) {
 			int driverToBoost = UnityEngine.Random.Range(0,1);
@@ -143,6 +146,7 @@ namespace championship
 			GTCar car = aMyTeam.cars[carToBoostResearch];
 			if(car.partBeingResearched!=null) {
 				car.partBeingResearched.dayOfCompletion = ChampionshipSeason.ACTIVE_SEASON.secondsPast+1;
+				car.partBeingResearched.daysOfResearchRemaining = 1;
 				researchItem = car.partBeingResearched;
 				startConversation = "RandomEventResearchComplete";
 			} else {

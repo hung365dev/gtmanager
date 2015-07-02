@@ -77,6 +77,11 @@ namespace championship
 				}
 			}
 		}
+		public int dateOfEndOfSeason {
+			get {
+				return races[races.Count-1].startDate+1;
+			}
+		}
 		public string teamsToString {
 			get {
 				string s  = "";
@@ -228,19 +233,19 @@ namespace championship
 		}
 		public GTTeam findTeam1AboveOrBelow(GTTeam aTeam) {
 			
-			List<GTTeam> teams = sortedTeams;
+			List<GTTeam> teams1 = sortedTeams;
 			int positionForTeam = this.positionForTeamInChampionship(aTeam);
 			if(positionForTeam==0) {
-				return teams[positionForTeam+1];
+				return teams1[positionForTeam+1];
 			} else {
-				return teams[positionForTeam-1];
+				return teams1[positionForTeam-1];
 			}
 		}
 		public GTTeam relegatedTeam {
 			get {
 				if(divisionNumber<4) {
-					List<GTTeam> teams = sortedTeams;
-					return teams[teams.Count-1];
+					List<GTTeam> teams1 = sortedTeams;
+					return teams1[teams1.Count-1];
 				}
 				return null;
 			}
@@ -248,17 +253,17 @@ namespace championship
 		public GTTeam promotedTeam {
 			get {
 				if(divisionNumber>1) {
-					List<GTTeam> teams = sortedTeams;
-					return teams[0];
+					List<GTTeam> teams1 = sortedTeams;
+					return teams1[0];
 				} else { 
-					List<GTTeam> teams = sortedTeams;
-					if(teams[0]==ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()) {
+					List<GTTeam> teams1 = sortedTeams;
+					if(teams1[0]==ChampionshipSeason.ACTIVE_SEASON.getUsersTeam()) {
 						DialogueLua.SetVariable("EndSeasonResult","WonPremiership");
 						GarageManager.REF.enableFireworks();
 					}
 				}
 				return null;
-			}
+			}  
 		}
 		public GTTeam getTeamFromDriver(GTDriver aDriver) {
 			for(int i = 0;i<teams.Count;i++) {
@@ -326,7 +331,7 @@ namespace championship
 			for(int i = 0;i<TrackDatabase.REF.tracks.Count;i++) {
 				if(TrackDatabase.REF.tracks[i].canUseInDivision(this.divisionNumber)) {
 					allTracks.Add(TrackDatabase.REF.tracks[i]);
-				}
+				} 
 			}
 			bool allowTracksLikeThis = false;
 			while(!allowTracksLikeThis) {
@@ -495,15 +500,19 @@ namespace championship
 					int nextRaceStartDate = nextRace.startDate;
 					int ticksTillNextRace = nextRaceStartDate -aCurrentTick;
 					Debug.Log("Ticks till next race: "+ticksTillNextRace);
-				} else 
-				if(!raceOrEventBeforeRaceOrSincePastRace(aCurrentTick)) {
-					createRandomEvent(aCurrentTick+1);
-				}
+					if(!raceOrEventBeforeRaceOrSincePastRace(aCurrentTick)) {
+						createRandomEvent(aCurrentTick+1);
+					}
+				} 
+
 				RandomEvent r = this.getRandomEventOnDay(aCurrentTick);
 				if(r!=null) { 
 					ChampionshipSeason.ACTIVE_SEASON.allowTimeToPass = false;
+					
 					r.initLua();
+					
 					GarageManager.REF.doConversation(r.startConversation);
+					Time.timeScale = 0f;
 
 				}
 			}
@@ -543,6 +552,9 @@ namespace championship
 		public bool raceOrEventBeforeRaceOrSincePastRace(int aDay) {
 			if(ChampionshipSeason.ACTIVE_SEASON.nextRace==null) {
 				return false;
+			}
+			if(this.dateOfEndOfSeason==aDay) {
+				return true;
 			}
 			int dayOfNextRace = ChampionshipSeason.ACTIVE_SEASON.nextRace.startDate;
 			for(int i = aDay+1;i<dayOfNextRace;i++) {

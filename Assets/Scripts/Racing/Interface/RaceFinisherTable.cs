@@ -76,12 +76,10 @@ public class RaceFinisherTable : MonoBehaviour {
 			}
 			
 	private int finishPositionSort(RacingAI a1,RacingAI a2) {
-		if(a1.finishPosition<a2.finishPosition) {
+		if(a1.finishPoints>a2.finishPoints) {
 			return -1;
-		} else if(a1.finishPosition>a2.finishPosition) {
+		} else if(a1.finishPoints<a2.finishPoints) {
 			return 1;
-		} else if(a1==a2) {
-			return 0;
 		}
 		return 0;
 	}
@@ -109,12 +107,12 @@ public class RaceFinisherTable : MonoBehaviour {
 						if(completeMembers[i].driver.won)
 							finances.driverABonus+= thisDriver.contract.bonusPerRace;
 						finances.prizeA = completeMembers[i].driver.prize;
-						finances.damagesA += Convert.ToInt32((completeMembers[i].driver.damage/100)*completeMembers[i].driver.carRef.carLibRecord.carCost);
+						finances.damagesA += Convert.ToInt32((completeMembers[i].driver.damage/100)*completeMembers[i].driver.carRef.carLibRecord.carCost/10);
 						break;
 					case(1):finances.driverBCost += thisDriver.contract.payPerRace; 
 						if(completeMembers[i].driver.won)
 							finances.driverBBonus+= thisDriver.contract.bonusPerRace;
-						finances.damagesB += Convert.ToInt32((completeMembers[i].driver.damage/100)*completeMembers[i].driver.carRef.carLibRecord.carCost);
+						finances.damagesB += Convert.ToInt32((completeMembers[i].driver.damage/100)*completeMembers[i].driver.carRef.carLibRecord.carCost/10);
 						
 						finances.prizeB = completeMembers[i].driver.prize;
 						break;

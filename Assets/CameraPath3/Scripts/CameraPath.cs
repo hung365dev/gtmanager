@@ -591,12 +591,12 @@ public class CameraPath : MonoBehaviour
         while (low < high)
         {
             index = low + ((high - low) / 2);
-            if (_storedArcLengthsFull[index] < targetLength)
+			if (index<this._storedArcLengthsFull.Length&&_storedArcLengthsFull[index] < targetLength)
                 low = index + 1;
             else
                 high = index;
         }
-
+ 
         if (_storedArcLengthsFull[index] > targetLength && index > 0)
             index--;
 

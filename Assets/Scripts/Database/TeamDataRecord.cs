@@ -44,13 +44,13 @@ namespace Database
 			carA = new GTCar (aTeamNameRow._startingcar1);
 			reputation = aTeamNameRow._reputation;
 			
-
+  
 			driverA = new GTDriver (); 
 			DriverLibraryRecord driverRecord = DriverLibrary.REF.getAvailableDriver();
 			driverRecord.assignedTeam = id;
 			driverA.initFromLibrary(driverRecord);
 			carB = new GTCar (aTeamNameRow._startingcar2);
-
+  
 			driverB = new GTDriver ();
 			driverRecord = DriverLibrary.REF.getAvailableDriver();
 			driverB.initFromLibrary(driverRecord);

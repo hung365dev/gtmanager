@@ -64,6 +64,7 @@ public class ContractOfferScreen : MonoBehaviour {
 		offerContract.team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		//float demandSalary = aDriver.contract;
 		DriverRelationshipRecord relationshipForDriver = myTeam.relationshipWithDriver(aDriver);
+	
 		if(relationshipForDriver.interest.payDemand==0f) {
 			this.driverDemands.text = aDriver.name+" is not interested in joining your team at any price";
 		} else {

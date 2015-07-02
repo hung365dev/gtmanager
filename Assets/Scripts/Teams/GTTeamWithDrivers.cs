@@ -28,6 +28,10 @@ namespace Teams
 		public void initDriverRelationships() {
 			if(driverRelationships.Count==0) {
 				for(int i = 0;i<GTDriver.allDrivers.Count;i++) {
+					
+					if(this.humanControlled&&GTDriver.allDrivers[i].name.Contains("Peterson")) {
+						Debug.Log("Break!");
+					}
 					driverRelationships.Add(new DriverRelationshipRecord(GTDriver.allDrivers[i],this.reputation));
 				}
 			}
@@ -93,8 +97,8 @@ namespace Teams
 		}
 		public DriverRelationshipRecord relationshipWithDriver(GTDriver aDriver) {
 			for(int i = 0;i<driverRelationships.Count;i++) {
-				Debug.Log(driverRelationships[i].record.name+" - "+aDriver.name);
-				if(driverRelationships[i].record==aDriver) {
+				Debug.Log(driverRelationships[i].record.name+" - "+aDriver.name+" "+driverRelationships[i].record.id+" - "+aDriver.id);
+				if(driverRelationships[i].record.id==aDriver.id) {
 					return driverRelationships[i]; 
 				}
 			}

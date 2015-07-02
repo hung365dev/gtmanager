@@ -2231,7 +2231,7 @@ namespace GoogleFu
 														"Lombardi",
 														"",
 														"Faces_39",
-														"1.7",
+														"1.48",
 														"100",
 														"1.8",
 														"6",

@@ -15,6 +15,7 @@ using Teams;
 using Drivers;
 using Cars;
 using PixelCrushers.DialogueSystem;
+using Database;
 
 
 namespace championship
@@ -41,16 +42,25 @@ namespace championship
 			for(int i = 0;i<leagues.Count;i++) { 
 				s+=leagues[i].SaveString ()+"|";
 			}
+			int c = 0;
 			s+="%";   
 			for(int i = 0;i<GTDriver.allDrivers.Count;i++) {
 				if(this.getTeamFromDriver(GTDriver.allDrivers[i])==null) {
 					s+=GTDriver.allDrivers[i].SaveString()+"|";
+					c++;
 				}
 			}
+			Debug.Log ("C is "+c);
 			return s;
 		}
 		public void FromString(string aString) {
 			GTDriver.allDrivers = new List<GTDriver>();
+			List<DriverLibraryRecord> availableDrivers = DriverLibrary.REF.drivers;
+			for(int i = 0;i<availableDrivers.Count;i++) {
+				availableDrivers[i].assignedTeam = 0;
+			}
+			GTDriver.allDrivers = new List<GTDriver>();
+
 			ChampionshipSeason.ACTIVE_SEASON = (ChampionshipSeason) this;
 			string[] split1 = aString.Split (new char[] {'%'});
 			aString = split1[0];
@@ -82,6 +92,7 @@ namespace championship
 			}
 		}
 		public void handleRelegationsAndPromotions() {
+			this.getUsersTeam().ignoreFromRelegationAndPromotion = false;
 			bool conversationTriggered = false;
 			for(int i = 0;i<leagues.Count;i++) {
 				GTTeam relegatedTeam = leagues[i].relegatedTeam;
@@ -99,12 +110,16 @@ namespace championship
 					if(i==2) {
 						Debug.Log("Car here");
 					}
-					
-					relegatedTeam.buyCarForDivision(i+2);
+					if(relegatedTeam!=ChampionshipSeason.ACTIVE_SEASON.getUsersTeam())
+						relegatedTeam.buyCarForDivision(i+2);
 					leagues[i+1].addTeam(relegatedTeam);
 					leagues[i].removeTeam(relegatedTeam);
 				} 
+				if(leagues[i].divisionNumber==4) {
+					Debug.Log ("Debug Here");
+				}
 				GTTeam promotedTeam = leagues[i].promotedTeam;
+
 				if(promotedTeam==this.getUsersTeam()) {
 					switch(i) {
 						case(3):DialogueLua.SetVariable("EndSeasonResult","PromotedDivision4");break;
@@ -117,8 +132,8 @@ namespace championship
 				}
 
 				if(promotedTeam!=null) {
-					
-					promotedTeam.buyCarForDivision(i);
+					if(promotedTeam!=ChampionshipSeason.ACTIVE_SEASON.getUsersTeam())
+						promotedTeam.buyCarForDivision(i);
 					leagues[i-1].addTeam(promotedTeam);
 					leagues[i].removeTeam(promotedTeam);
 				}

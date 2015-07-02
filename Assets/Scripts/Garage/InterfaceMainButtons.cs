@@ -76,7 +76,7 @@ public class InterfaceMainButtons : MonoBehaviour {
 		GameObject g = NGUITools.AddChild(GameObject.Find ("UI Root"),prefabSettingsScreen.gameObject);
 	}
 	public void onLaunchCarDetails() {
-	//	GarageManager.REF.doConversation("OpenCarDetails");
+		GarageManager.REF.doConversation("OpenCarDetails");
 		this.gameObject.SetActive(false);
 		GTTeam team = ChampionshipSeason.ACTIVE_SEASON.getUsersTeam();
 		this.createCarDetailsScreen(null,team.cars[0],true);

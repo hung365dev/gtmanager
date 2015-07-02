@@ -37,6 +37,72 @@ namespace Drivers
 			return Base64.Base64Encode(base.SaveString()+"|"+championshipPoints+"|"+lastRacePoints+"|"+contract.bonusPerRace+"|"+contract.payPerRace+"|"+contract.remainingOnContract+"|");
 		}
 
+		public DriversSettings driversSettings {
+			get {
+				DriversSettings r = new DriversSettings();
+				r.AggressivenessOnBrakeMax = this.aggressivenessOnBrake;
+				r.AggressivenessOnBrakeMin = this.aggressivenessOnBrake;
+				r.backCollDistMax = this.backCollDist;
+				r.backCollDistMin = this.backCollDist;
+				r.backToLineIncrementMax = this.backToLineIncrement;
+				r.backToLineIncrementMin = this.backToLineIncrement;
+				r.collisionSideFactorMax = this.collisionSideFactor;
+				r.collisionSideFactorMin = this.collisionSideFactor;
+				r.CorneringSpeedFactorMax = this.corneringSpeedFactor;
+				r.CorneringSpeedFactorMin = this.corneringSpeedFactor;
+				r.driftingThrotleFactorMax = this.driftingThrottleFactor;
+				r.driftingThrotleFactorMin = this.driftingThrottleFactor;
+				r.frontCollDistMax = this.frontCollDist;
+				r.frontCollDistMin = this.frontCollDist;
+				r.fuelloadPorcentageMax = this.fuelLoadPercentage;
+				r.fuelloadPorcentageMin = this.fuelLoadPercentage;
+				r.FullAccelMaringMax = this.fullAccelMargin;
+				r.FullAccelMaringMin = this.fullAccelMargin;
+				r.heightMarginMax = this.heightMargin;
+				r.heightMarginMin = this.heightMargin;
+				r.humanErrorMax = this.humanError;
+				r.humanErrorMin =this.humanError;
+				r.jumpThrottleMulpilierMax = this.jumpThrottleMultiplier;
+				r.jumpThrottleMulpilierMin = this.jumpThrottleMultiplier;
+				r.jumpThrottleTimeMax = this.jumpThrottleTime;
+				r.jumpThrottleTimeMin = this.jumpThrottleTime;
+				r.LENGTH_MARGINMax = this.lengthMargin;
+				r.LENGTH_MARGINMin = this.lengthMargin;
+				r.LOOKAHEAD_FACTORMax = this.lookAheadFactor;
+				r.LOOKAHEAD_FACTORMin = this.lookAheadFactor;
+				r.LookAheadConst = this.lookAheadConstant;
+				//r.maxAgressOnBrkDACMax = this.ma
+				r.maxDriftAngleMax = this.maxDriftAngle;
+				r.maxDriftAngleMin = this.maxDriftAngle;
+				r.offTrackThrottleMulpilierMax = this.offtrackThrottleMultiplier;
+				r.offTrackThrottleMulpilierMin = this.offtrackThrottleMultiplier;
+				r.overtakeFactorMax = this.overtakeFactor;
+				r.overtakeFactorMin = this.overtakeFactor;
+				r.overtakeOffsetIncrementMaxMax = this.overtakeOffsetIncrementMax;
+				r.overtakeOffsetIncrementMaxMin = this.overtakeOffsetIncrementMax;
+				r.overtakeOffsetIncrementMinMax = this.overtakeOffsetIncrementMin;
+				r.overtakeOffsetIncrementMinMin = this.overtakeOffsetIncrementMin;
+				r.overtakeSpeedDiferenceMax = this.overtakeSpeedDifference;
+				r.overtakeSpeedDiferenceMin = this.overtakeSpeedDifference;
+				r.shifFactorMax = this.shiftFactor;
+				r.shifFactorMin = this.shiftFactor;
+				r.shiftUpFactorMax = this.shiftUpFactor;
+				r.shiftUpFactorMin = this.shiftUpFactor;
+				r.SIDE_MARGINMax = this.SIDE_MARGIN;
+				r.SIDE_MARGINMin = this.SIDE_MARGIN;
+				r.sideAvoidingFactorMax = this.sideAvoidingFactor;
+				r.sideAvoidingFactorMin = this.sideAvoidingFactor;
+				r.sideMarginMax = this.sideMargin; 
+				r.sideMarginMin = this.sideMargin;
+				r.speedSteeringFactorMax = this.speedSteeringFactor;
+				r.speedSteeringFactorMin = this.speedSteeringFactor;
+				r.steeringDriftFactorMax = this.steeringDriftFactor;
+				r.steeringDriftFactorMin = this.steeringDriftFactor;
+				
+				return r;
+			}
+		}
+
 		public override void FromString(string aString) {
 			string s = Base64.Base64Decode(aString);
 			string[] split = s.Split (new char[] {'|'});

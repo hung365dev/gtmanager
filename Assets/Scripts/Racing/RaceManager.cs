@@ -123,10 +123,13 @@ public class RaceManager : MonoBehaviour {
 			Time.timeScale = 2f;
 			simSpeedLbl.text = "2x";
 	
+		} else if(Time.timeScale==2f) {
+			Time.timeScale = 4f;
+			simSpeedLbl.text = "4x";
 		} else {
 			Time.timeScale = 1f;
 			simSpeedLbl.text = "1x";
-}
+			}
 		}
 	public void doConversation(string aConversationName) {
 		conversationTrigger = this.GetComponent<ConversationTrigger>();
@@ -137,7 +140,7 @@ public class RaceManager : MonoBehaviour {
 		}
 		if(aConversationName=="TutorialOverheating"&&DialogueLua.GetVariable("HintArrowOverheating").AsInt==2) {
 		} else {
-			Time.timeScale = 2f; 
+			Time.timeScale = 4f; 
 			onSimSpeedChange();
 		}
 		conversationTrigger.conversation = aConversationName;
@@ -252,8 +255,9 @@ public class RaceManager : MonoBehaviour {
 			team.ignoreFromRelegationAndPromotion = false;
 			GTCar gtCar = team.getGTCarFromDriver(driversInRace[i]);
 			IRDSCarControllerAI car = team.getCarFromDriver(driversInRace[i]);
-			IRDSCarControllerAI placedCar = placeCars.AddNewAICar(car.gameObject,team.teamColor,driversInRace[i].name);
-			if(placedCar!=null) {
+			DriversSettings settings = driversInRace[i].driversSettings;
+			IRDSCarControllerAI placedCar = placeCars.AddNewAICar(car.gameObject,team.teamColor,driversInRace[i].name,settings);
+			if(placedCar!=null) { 
 				  
 				RacingAI thisCar = placedCar.GetComponent<RacingAI>().initDriver(driversInRace[i]);
 				if(team.humanControlled) {

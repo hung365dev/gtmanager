@@ -26,6 +26,21 @@ namespace Teams
 		public GTTeamWithSponsors ()
 		{
 		}
+
+		public void initEmptySponsorVars() {
+			if(this.hasSponsorForPlace(ESponsorPosition.Back)!=null&&this.hasSponsorForPlace(ESponsorPosition.Bonnet)!=null&&
+			   this.hasSponsorForPlace(ESponsorPosition.Left)!=null&&this.hasSponsorForPlace(ESponsorPosition.Right)!=null&&
+			   this.hasSponsorForPlace(ESponsorPosition.Roof)!=null) {
+				DialogueLua.SetVariable("EmptySponsorSlots",false);
+			} else {
+				
+				DialogueLua.SetVariable("EmptySponsorSlots",false);
+				for(int i = 0;i<this.sponsorRelationships.Count;i++) {
+					if(sponsorRelationships[i].interest.sponsorValue>0f)
+						DialogueLua.SetVariable("EmptySponsorSlots",true);
+				}
+			}
+		}
 		public override void FromString(string aString) {
 			if(sponsorMaterial==null) {
 				sponsorMaterial = (Material) Resources.Load ("Sponsors/SponsorMaterial");

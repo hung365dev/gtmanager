@@ -375,14 +375,14 @@ public class CarDetails : MonoBehaviour {
 			this.nitroBoost.gameObject.SetActive(false);
 		} else if(nitroCapacity>0) {
 			this.nitroBoost.gameObject.SetActive(true);
-			this.nitroBoost.text = "+"+turboPSI+"";
+			this.nitroBoost.text = "+"+nitroCapacity+"";
 		}
 		float shiftSpeed = this.carRef.getResearchEffectOnShiftSpeed();
 		if(shiftSpeed==0f) {
 			this.shiftspeedBoost.gameObject.SetActive(false);
 		} else if(shiftSpeed<0) {
 			this.shiftspeedBoost.gameObject.SetActive(true);
-			this.shiftspeedBoost.text = "-"+shiftSpeed+"s";
+			this.shiftspeedBoost.text = ""+shiftSpeed+"s";
 		}
 
 		float maxSpeed = this.carRef.getResearchEffectOnMaxSpeed();
@@ -398,7 +398,7 @@ public class CarDetails : MonoBehaviour {
 			this.dragBoost.gameObject.SetActive(false);
 		} else if(dragReduce<0f) {
 			this.dragBoost.gameObject.SetActive(true);
-			this.dragBoost.text = "-"+dragReduce+"";		
+			this.dragBoost.text = ""+dragReduce+"";		
 		}
 
 		float gripAdd = this.carRef.getResearchEffectOnTireGrip();

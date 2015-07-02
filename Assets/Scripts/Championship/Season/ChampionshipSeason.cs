@@ -14,6 +14,7 @@ using Teams;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
 using Utils;
+using Drivers;
 
 
 namespace championship
@@ -29,10 +30,25 @@ namespace championship
 		}
 
 		public void initFromDatabase(string aUsersTeamName) {
+			List<DriverLibraryRecord> availableDrivers = DriverLibrary.REF.drivers;
+			for(int i = 0;i<availableDrivers.Count;i++) {
+				availableDrivers[i].assignedTeam = 0;
+			}
+			GTDriver.allDrivers = new List<GTDriver>();
+			List<DriverLibraryRecord> availableDrivers1 = DriverLibrary.REF.getAllAvailableDrivers();
+			for(int i = 0;i<availableDrivers1.Count;i++) {
+				GTDriver g = new GTDriver();
+				g.initFromLibrary(availableDrivers1[i]);
+			}
 			ACTIVE_SEASON = this;
 			List<TeamDataRecord> allTeams = Database.TeamDatabase.REF.teams;
 			for(int i = 0;i<allTeams.Count;i++) {
 				this.seasonForLeague(allTeams[i].startLeague).addTeam(new GTTeam(allTeams[i]));
+			}
+			for(int i = 0;i<this.leagues.Count;i++) {
+				for(int c = 0;c<leagues[i].teams.Count;c++) {
+					leagues[i].teams[c].ignoreFromRelegationAndPromotion = false;
+				}
 			}
 			this.season = 1;
 			this.getUsersTeam().teamName = aUsersTeamName;

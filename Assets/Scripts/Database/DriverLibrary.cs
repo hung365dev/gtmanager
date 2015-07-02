@@ -34,6 +34,14 @@ namespace Database
 			}
 		}
 
+		public DriverLibraryRecord driverByID(int aID) {
+			for(int i = 0;i<drivers.Count;i++) {
+				if(drivers[i].id==aID) {
+					return drivers[i];
+				}
+			}
+			return null;
+		}
 		public DriverLibraryRecord getAvailableDriver() {
 			for(int i = 0;i<drivers.Count;i++) {
 				if(drivers[i].assignedTeam==0) {

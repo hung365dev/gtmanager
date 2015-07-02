@@ -40,7 +40,7 @@ namespace Drivers
 		}
 		public void fullInit() {
 			for(int i = 0;i<GTDriver.allDrivers.Count;i++) {
-				if(GTDriver.allDrivers[i].id==load_id) {
+				if(GTDriver.allDrivers[i].id==load_id&&load_id>0) {
 					init(GTDriver.allDrivers[i],load_relationship_value);
 				}
 			}

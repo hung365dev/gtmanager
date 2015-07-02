@@ -28,8 +28,8 @@ namespace Teams
 		public GTTeam (TeamDataRecord aTeamDataRecord) {
 			cars.Add(aTeamDataRecord.carA);
 			cars.Add(aTeamDataRecord.carB);
-
-
+ 
+			this.id = aTeamDataRecord.id;
 			initDriver(aTeamDataRecord.driverA);
 			initDriver(aTeamDataRecord.driverB);
 			reputation = aTeamDataRecord.reputation;
@@ -40,12 +40,14 @@ namespace Teams
 			if(teamName==HUMANS_DEBUG_TEAM) {
 				humanControlled = true;
 				DialogueLua.SetVariable("PlayersDriver1",drivers[0].name);
+
 			} else {
 			
 			}
 			initDriverRelationships();
 			initSponsorRelationships();
 			ignoreFromRelegationAndPromotion = false;
+
 		}
 
 		public void buyCarForDivision(int aDivision) {
@@ -94,9 +96,9 @@ namespace Teams
 					GTEquippedResearch partBeingResearched = cars[i].partBeingResearched;
 					cars[i].partBeingResearched.daysOfResearchRemaining--;
 					if(cars[i].partBeingResearched!=null&&ChampionshipSeason.ACTIVE_SEASON.nextRace!=null)
-					if(cars[i].partBeingResearched.dayOfCompletion==ChampionshipSeason.ACTIVE_SEASON.nextRace.startDate) {
+					if(cars[i].partBeingResearched.dayOfCompletion==ChampionshipSeason.ACTIVE_SEASON.nextRace.startDate||ChampionshipSeason.ACTIVE_SEASON.leagueForTeam(this).dateOfEndOfSeason==cars[i].partBeingResearched.dayOfCompletion) {
 						cars[i].partBeingResearched.dayOfCompletion++;
-						cars[i].partBeingResearched.daysOfResearchRemaining++;
+						cars[i].partBeingResearched.daysOfResearchRemaining++; 
 					}
 					if(partBeingResearched.daysOfResearchRemaining == 0) {
 
@@ -147,7 +149,7 @@ namespace Teams
 		}
 		public GTDriver hasDriver(GTDriver aDriver) {
 			for(int i = 0;i<drivers.Count;i++) {
-				if(drivers[i]==aDriver) {
+				if(drivers[i].id==aDriver.id) {
 					return drivers[i];
 				}
 			}

@@ -10,6 +10,7 @@
 using System;
 using Database;
 using Utils;
+using UnityEngine;
 
 
 namespace Drivers
@@ -156,8 +157,11 @@ namespace Drivers
 			}
 			
 			GTDriver.allDrivers.Add((GTDriver) this);
+			if(GTDriver.allDrivers.Count>39) {
+				Debug.LogError("Too many drivers");
+			}
 		}
-		public string sponsorAppealString {
+		public string sponsorAppealString { 
 			get {
 				if(this.sponsorFriendliness<0.25f) {
 					return "Toxic";

@@ -29,6 +29,14 @@ namespace Database
 
 		public void init() {
 			REF = this;
+			while(this.teams.Count>0) {
+				teams.RemoveAt(0);
+			}
+			List<DriverLibraryRecord> availableDrivers = DriverLibrary.REF.drivers;
+			for(int i = 0;i<availableDrivers.Count;i++) {
+				availableDrivers[i].assignedTeam = 0;
+			}
+
 			List<TeamNamesRow> teamLibRows = TeamNames.Instance.Rows;
 			for(int i = 0;i<teamLibRows.Count;i++) {
 				teams.Add(new TeamDataRecord(teamLibRows[i]));
